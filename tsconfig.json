@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "declaration": true,
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "outDir": "./build/main",
+        "rootDir": "src",
+        "target": "es6",
+        "sourceMap": true,
+        "removeComments": true,
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
