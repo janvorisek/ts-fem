@@ -5,6 +5,7 @@ import { Solver } from "./fem";
 export class EigenValueDynamicSolver extends Solver {
     constructor() {
         super();
+        this.n = 10;
     }
     assemble() {
         this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
@@ -36,10 +37,13 @@ export class EigenValueDynamicSolver extends Solver {
         this.assemble();
         const kk = math.subset((this.k), math.index(unknowns, unknowns));
         const mm = math.subset((this.m), math.index(unknowns, unknowns));
+        const endtime1 = new Date();
         const mkinv = math.multiply(math.inv(kk), mm);
+        let timediff2 = (endtime1.getTime() - startime.getTime()) / 1000;
+        console.log("Matrix inverse took ", Math.round(timediff2 * 100) / 100, " [sec]");
         const evs = [];
-        for (let i = 0; i < this.neq; i++) {
-            let tol = 1e-6;
+        for (let i = 0; i < Math.min(this.n, this.neq); i++) {
+            let tol = 1e-4;
             let rho = 0;
             let newrho = 999;
             let x = math.ones(this.neq);
