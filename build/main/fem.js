@@ -4,9 +4,6 @@ exports.Solver = exports.LoadCase = exports.Domain = exports.PrescribedDisplacem
 const mathjs_1 = require("mathjs");
 const config = {};
 const math = mathjs_1.create(mathjs_1.all, config);
-/**
- * Enum to define physical meaning of degrees of freedom (DOFs)
- */
 var DofID;
 (function (DofID) {
     DofID[DofID["Dx"] = 0] = "Dx";
@@ -14,38 +11,19 @@ var DofID;
     DofID[DofID["Dz"] = 2] = "Dz";
     DofID[DofID["Rx"] = 3] = "Rx";
     DofID[DofID["Ry"] = 4] = "Ry";
-    DofID[DofID["Rz"] = 5] = "Rz"; // Rotation around z axis
+    DofID[DofID["Rz"] = 5] = "Rz";
 })(DofID = exports.DofID || (exports.DofID = {}));
 ;
 const MaterialParametersDefaults = { e: 1.0, g: 1.0, alpha: 1.0, d: 1.0 };
-/**
- * A class representing linear elastic material
- */
 class Material {
-    /**
-     * @param  label int label of receiver
-     * @param  e Young's modulus of receiver [Pa]
-     * @param g  Shear modulus of receiver [Pa]
-     * @param alpha thermal dillatation coefficient [K-1]
-     * @param d mass density of receiver [kg/m3]
-     */
     constructor(label, params = {}) {
-        // Compulsory parameters
         this.label = label;
-        // Optional parameters
         params = Object.assign(Object.assign({}, MaterialParametersDefaults), params);
         this.e = params.e;
         this.g = params.g;
         this.alpha = params.alpha;
         this.d = params.d;
     }
-    /**
-     * Change receiver properties
-     * @param  e Young's modulus of receiver [Pa]
-     * @param g  Shear modulus of receiver [Pa]
-     * @param alpha thermal dillatation coefficient [K-1]
-     * @param d mass density of receiver [kg/m3]
-     */
     change(params) {
         if (params.e !== undefined)
             this.e = params.e;
@@ -58,26 +36,10 @@ class Material {
     }
 }
 exports.Material = Material;
-// TODO: no defaults specified, is that correct?
 const CrossSectionParametersDefaults = {};
-/** A class representing beam cross section
-*/
 class CrossSection {
-    /**
-    * Constructor
-    * @param label string label of receiver
-    * @param a cross section area of receiver [m2]. > 0.0
-    * @param iy area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
-    * @param iz area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
-    * @param dyz product moment of area with respect to yz axes [m4]
-    * @param h height of receiver [m]
-    * @param k Timoshenko's shear coefficient [-]
-    * @param j torsional stiffness moment [m4]
-    */
     constructor(label, params = {}) {
-        // Compulsory parameters 
         this.label = label;
-        // Optional parameters
         params = Object.assign(Object.assign({}, CrossSectionParametersDefaults), params);
         this.a = params.a;
         this.iy = params.iy;
@@ -87,16 +49,6 @@ class CrossSection {
         this.k = params.k;
         this.j = params.j;
     }
-    /**
-    * Change receiver properties
-    * @param a cross section area of receiver [m2]. > 0.0
-    * @param iy area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
-    * @param iz area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
-    * @param dyz product moment of area with respect to yz axes [m4]
-    * @param h height of receiver [m]
-    * @param k Timoshenko's shear coefficient [-]
-    * @param j torsional stiffness moment [m4]
-    */
     change(params) {
         if (params.a != undefined)
             this.a = params.a;
@@ -115,30 +67,14 @@ class CrossSection {
     }
 }
 exports.CrossSection = CrossSection;
-/**
- * "A class representing a FE node
- * bcs and pDspl: x,y,z for displacement, X,Y,Z for rotations
- */
 class Node {
-    /**
-     * Node constructor
-     * @param label number
-     * @param coords coordinates
-     * @param bcs boundary conditions {code:string]:boolean}
-     */
     constructor(label, domain, coords = [0, 0, 0], bcs = []) {
         this.label = label;
         this.domain = domain;
         this.coords = coords;
         this.bcs = new Set(bcs);
-        this.lcs = undefined; // means local cs is the same as global cs
+        this.lcs = undefined;
     }
-    /**
-     * Change properties
-     * @param label new label
-     * @param coords new coordinates
-     * @param bcs new dictionary with applied boundary conditions
-     */
     change(label, coords, bcs = []) {
         if (label != undefined)
             this.label = label;
@@ -168,10 +104,6 @@ class Node {
         let cn = this.getLocationArray(dofs);
         return math.subset(lc.r, math.index(cn));
     }
-    /**
-     * Returns receiver transformation matrix (from nodal to global c.s., ie. rg=t*r_n)
-     * @param dofs dofs mask to consider
-     */
     getTransformationMtrx(dofs) {
         let size = dofs.length;
         if (this.lcs == undefined) {
@@ -181,7 +113,6 @@ class Node {
             let ans = math.zeros([size, size]);
             for (let i = 0; i < size; i++) {
                 let id = dofs[i];
-                // test for vector quantities
                 switch (id) {
                     case DofID.Dx:
                     case DofID.Dy:
@@ -205,48 +136,40 @@ class Node {
                         break;
                     default:
                         throw new TypeError("Unknown DofID: " + id);
-                } // end switch
-            } // end loop over dofs
+                }
+            }
             return math.matrix(ans);
         }
     }
-    /**
-     * Updates the reciver lcs triplet according to given lcs orientation
-     * @param lcs
-     */
     updateLcs(lcs) {
         if (lcs == undefined) {
-            this.lcs = undefined; // reset to default
+            this.lcs = undefined;
         }
         else {
             this.lcs = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
             let e1norm = math.norm(lcs.locx);
             let e2norm = math.norm(lcs.locy);
-            for (let j = 0; j < 3; j++) { // normalize e1' e2'
+            for (let j = 0; j < 3; j++) {
                 this.lcs[0][j] = lcs.locx[j] / e1norm;
                 this.lcs[1][j] = lcs.locy[j] / e2norm;
             }
-            // vector e3' computed from vector product of e1', e2'
             this.lcs[2][0] = this.lcs[0][1] * this.lcs[1][2] - this.lcs[0][2] * this.lcs[1][1];
             this.lcs[2][1] = this.lcs[0][2] * this.lcs[1][0] - this.lcs[0][0] * this.lcs[1][2];
             this.lcs[2][2] = this.lcs[0][0] * this.lcs[1][1] - this.lcs[0][1] * this.lcs[1][0];
         }
     }
-    /**
-     * Returns true if receiver has local c.s.
-     */
     hasLcs() {
         return (this.lcs != undefined);
     }
     getReactions(lc, inGlobalCS = false) {
         console.log("type R:", typeof lc.R);
         if (inGlobalCS && this.hasLcs()) {
-            let sdofs = this.domain.solver.getNodeDofIDs(this.label); // all dofs
-            let cn = this.getLocationArray(sdofs); // code numbers of all DOFs
+            let sdofs = this.domain.solver.getNodeDofIDs(this.label);
+            let cn = this.getLocationArray(sdofs);
             let R = [];
             for (let i = 0; i < sdofs.length; i++) {
                 if (this.bcs.has(sdofs[i])) {
-                    R.push(math.subset(lc.R, math.index([cn[i] - this.domain.solver.neq]))); // math.js type maze
+                    R.push(math.subset(lc.R, math.index([cn[i] - this.domain.solver.neq])));
                 }
                 else {
                     R.push(0.0);
@@ -255,10 +178,10 @@ class Node {
             let t = this.getTransformationMtrx(sdofs);
             return { dofs: sdofs, values: math.multiply(t, R).toArray() };
         }
-        else { // results in nodal c.s.
+        else {
             if (this.bcs.size > 0) {
-                let sdofs = Array.from(this.bcs); // supported dofs only
-                let cn = this.getLocationArray(sdofs); // code numbers of supported DOFs
+                let sdofs = Array.from(this.bcs);
+                let cn = this.getLocationArray(sdofs);
                 let ccn = math.subtract(cn, this.domain.solver.neq);
                 let R = math.subset(lc.R, math.index(ccn));
                 if (math.typeOf(R) === 'number') {
@@ -275,17 +198,7 @@ class Node {
     }
 }
 exports.Node = Node;
-/**
- * A class representing Finite Element
- */
 class Element {
-    /**
-     * Constructor
-     * @param label new label
-     * @param nodes element nodes
-     * @param mat element material number
-     * @param cs element cross section number
-     */
     constructor(label, domain, nodes, mat, cs) {
         this.label = label;
         this.nodes = nodes;
@@ -293,13 +206,6 @@ class Element {
         this.cs = cs;
         this.domain = domain;
     }
-    /**
-     * Change receiver properties
-     * @param label new label
-     * @param nodes nodes
-     * @param mat new material (number)
-     * @param cs new cross section (number)
-     */
     change(label, nodes, mat, cs) {
         if (label != undefined)
             this.label = label;
@@ -324,53 +230,21 @@ class Element {
             this.cs = params.cs;
         }
     }
-    /**
-     * Returns Material (object) associated to element
-     */
     getMaterial() {
         return this.domain.getMaterial(this.mat);
     }
-    /**
-     * Returns Cross Section (object) associated to element
-     */
     getCS() {
         return this.domain.getCS(this.cs);
     }
-    /**
-     * Returns array of DOFs for given node
-     * @param node node id
-     */
     getNodeDofs(node) { return []; }
-    /**
-     * Computes global stiffness matrix of element
-     */
     computeStiffness() { }
-    /**
-     * Returns element code numbers
-     */
+    computeMassMatrix() { }
     getLocationArray() { }
-    /**
-     * Returns object with element geometry
-     */
     computeGeo() { }
-    /**
-     * Returns element transformation matrix frol global to local c.s
-     */
     computeT() { return math.matrix(); }
 }
 exports.Element = Element;
-/**
- * Implementation of Timoshenko beam element in 2D (xz plane)
- */
 class Beam2D extends Element {
-    /**
-     * Constructor
-     * @param label element label (num)
-     * @param nodes element nodes
-     * @param mat element material (num)
-     * @param cs element cross section (num)
-     * @param hinges array of two boolean values indicating if hinge is present at start or end
-     */
     constructor(label, domain, nodes, mat, cs, hinges = [false, false]) {
         super(label, domain, nodes, mat, cs);
         this.hinges = hinges;
@@ -398,15 +272,10 @@ class Beam2D extends Element {
     getLocationArray() {
         var loc = Array();
         for (let n of this.nodes) {
-            //console.log("Element ", this.label, "Node ", n, "loc:", solver.getNodeLocationArray(n, [DofID.Dx, DofID.Dz, DofID.Ry]));
             loc = loc.concat(this.domain.solver.getNodeLocationArray(n, [DofID.Dx, DofID.Dz, DofID.Ry]));
         }
         return loc;
     }
-    // evaluates l, dx, dz 
-    /**
-     * Returns Beam2D geometry object containing l: length, dx: element projection in to x axis, dz: element projection in z axis
-     */
     computeGeo() {
         var c1 = this.domain.getNode(this.nodes[0]).coords;
         var c2 = this.domain.getNode(this.nodes[1]).coords;
@@ -415,13 +284,7 @@ class Beam2D extends Element {
         var l = Math.sqrt(dx * dx + dz * dz);
         return { l: l, dx: dx, dz: dz };
     }
-    /**
-     * Returns tru if element has start or end hinge (or both)
-     */
     hasHinges() { return this.hinges[0] || this.hinges[1]; }
-    /**
-     * Computes element transformation matrix from local to global (nodal) c.s.
-     */
     computeT() {
         var geo = this.computeGeo();
         var c = geo.dx / geo.l;
@@ -431,19 +294,15 @@ class Beam2D extends Element {
             [0., 0., 1., 0., 0., 0.],
             [0., 0., 0., c, s, 0.],
             [0., 0., 0., -s, c, 0.],
-            [0., 0., 0., 0., 0., 1.]]); // rl = t*rg;
+            [0., 0., 0., 0., 0., 1.]]);
         if (this.domain.getNode(this.nodes[0]).hasLcs() || this.domain.getNode(this.nodes[1]).hasLcs()) {
-            let T_n2g = math.zeros(6); // rg = T_n2g rn
+            let T_n2g = math.zeros(6);
             T_n2g = math.subset(T_n2g, math.index([0, 1, 2], [0, 1, 2]), this.domain.getNode(this.nodes[0]).getTransformationMtrx(this.getNodeDofs(this.nodes[0])));
             T_n2g = math.subset(T_n2g, math.index([3, 4, 5], [3, 4, 5]), this.domain.getNode(this.nodes[1]).getTransformationMtrx(this.getNodeDofs(this.nodes[1])));
             t = math.multiply(t, T_n2g);
         }
         return t;
     }
-    /**
-     * Computes Beam2D local stifness matrix
-     * @param retCondenseSubMats when true, extended info on condensed DOFs is provided
-     */
     computeLocalStiffnessMtrx(retCondenseSubMats = false) {
         var geo = this.computeGeo();
         var mat = this.getMaterial();
@@ -461,8 +320,6 @@ class Beam2D extends Element {
             [-ea / l, 0., 0., ea / l, 0., 0.],
             [0., -12. * eiy / l3 / fi1, 6. * eiy / l2 / fi1, 0., 12. * eiy / l3 / fi1, 6. * eiy / l2 / fi1],
             [0., -6. * eiy / l2 / fi1, (2. - fi) * eiy / l / fi1, 0., 6. * eiy / l2 / fi1, (4. + fi) * eiy / l / fi1]]);
-        // static condensation if some ends are hinges
-        // a=nonzero force value, b=zero force(moment) value
         if (this.hasHinges()) {
             if (this.hinges[0] && this.hinges[1]) {
                 var a = [0, 1, 3, 4];
@@ -498,10 +355,6 @@ class Beam2D extends Element {
         }
         return { answer: answer };
     }
-    /**
-     * Computes local initial stress matrix
-     * @param N normal force
-     */
     computeLocalInitialStressMtrx(N) {
         var geo = this.computeGeo();
         var mat = this.getMaterial();
@@ -523,29 +376,35 @@ class Beam2D extends Element {
         answer[0][3] = -cc;
         answer[3][0] = -cc;
         answer[3][3] = cc;
-        // static condensation if some ends are hinges
-        // a=nonzero force value, b=zero force(moment) value
         if (this.hasHinges()) {
             var stiffrec = this.computeLocalStiffnessMtrx(true);
             var asize = math.size(stiffrec.a)[0];
             var t = math.zeros(6, asize);
             math.subset(t, math.index(stiffrec.a, math.range(0, asize)), math.identity(asize));
-            //print "t:",t``
-            //print (-1)*dot(linalg.inv(kbb),kab.transpose())
-            //print "ti",t[ix_(b),:] 
             math.subset(t, math.index(stiffrec.b, math.range(0, asize)), math.multiply(math.multiply(math.inv(stiffrec.kbb), math.transpose(stiffrec.kab)), -1.0));
-            //print "t:",t
             var k2 = math.multiply(math.transpose(t), math.multiply(answer, t));
             var answer2 = math.zeros(6, 6);
             math.subset(stiffrec.a, math.index(stiffrec.a, stiffrec.a), k2);
             return answer2;
-            //print answer
         }
         return answer;
     }
-    /**
-     * Evaluate element stiffness matrix in global c.s.
-     */
+    computeLocalMassMatrix(retCondenseSubMats = false) {
+        var geo = this.computeGeo();
+        var mat = this.getMaterial();
+        var cs = this.getCS();
+        var l = geo.l;
+        var l2 = l * l;
+        var l3 = l2 * l;
+        return math.multiply(mat.d * cs.a * l / 420, math.matrix([
+            [140, 0, 0, 70, 0, 0],
+            [0, 156, -22 * l, 0, 54, 13 * l],
+            [0, -22 * l, 4 * l * l, 0, -13 * l, -3 * l * l],
+            [70, 0, 0, 140, 0, 0],
+            [0, 54, -13 * l, 0, 156, 22 * l],
+            [0, 13 * l, -3 * l * l, 0, 22 * l, 4 * l * l]
+        ]));
+    }
     computeStiffness() {
         var geo = this.computeGeo();
         var kl = this.computeLocalStiffnessMtrx();
@@ -553,20 +412,19 @@ class Beam2D extends Element {
         var k = math.multiply(math.multiply(math.transpose(t), kl.answer), t);
         return k;
     }
-    /**
-     * Evaluates initial stress matrix in global c.s.
-     * @param N Element normal force
-     */
+    computeMassMatrix() {
+        var geo = this.computeGeo();
+        var ml = this.computeLocalMassMatrix();
+        var t = this.computeT();
+        var m = math.multiply(math.multiply(math.transpose(t), ml), t);
+        return m;
+    }
     computeInitialStressMatrix(N) {
         var kl = this.computeLocalInitialStressMtrx(N);
         var t = this.computeT();
         var k = math.multiply(math.multiply(math.transpose(t), kl), t);
         return k;
     }
-    /**
-     * Computes element end displacement vector (in element local c.s.)
-     * @param r global vector of unknowns
-     */
     computeEndDisplacement(lc) {
         var t = this.computeT();
         var loc = this.getLocationArray();
@@ -578,16 +436,11 @@ class Beam2D extends Element {
                 bl = math.add(bl, load.getLoadVectorForClampedBeam());
             }
             if (this.hasHinges()) {
-                // re[ix_(b)] = dot(linalg.inv(kbb), -bl[ix_(b)] - dot(kab.transpose(), re[ix_(a)] ) )
                 rloc = math.subset(rloc, math.index(stiffrec.b), math.multiply(math.inv(stiffrec.kbb), math.multiply(math.add(math.subset(bl, math.index(stiffrec.b)), math.squeeze(math.multiply(math.transpose(stiffrec.kab), math.subset(rloc, math.index(stiffrec.a))))), -1.0)));
             }
         }
         return rloc;
     }
-    /**
-     * Computes element end forces (in element local c.s.)
-     * @param lc load case reference
-     */
     computeEndForces(lc) {
         var t = this.computeT();
         var loc = this.getLocationArray();
@@ -599,7 +452,6 @@ class Beam2D extends Element {
             bl = math.add(bl, load.getLoadVectorForClampedBeam());
         }
         if (this.hasHinges()) {
-            // fe[ix_(a)] += bl[ix_(a)] - dot(dot(kab,linalg.inv(kbb)),bl[ix_(b)])
             let h1 = math.multiply(stiffrec.kab, math.inv(stiffrec.kbb));
             if (stiffrec.b.length == 1) {
                 let blv = bl.get(stiffrec.b);
@@ -617,11 +469,6 @@ class Beam2D extends Element {
         }
         return fe;
     }
-    /**
-     * Computes nseg+1 values of local deflections
-     * @param lc reference to load case
-     * @param nseg deflection will be evaluated in nseg+1 points generated along the element
-     */
     computeLocalDefl(lc, nseg) {
         let rl = this.computeEndDisplacement(lc);
         let u = [];
@@ -630,11 +477,9 @@ class Beam2D extends Element {
         let l = geo.l;
         let eloads = lc.getElementLoadsOnElement(this.label);
         for (let iseg = 0; iseg <= nseg; iseg++) {
-            let xl = iseg / nseg; // [0,1]
-            // components from end displacements
+            let xl = iseg / nseg;
             let wl = (1.0 - 3.0 * xl * xl + 2.0 * xl * xl * xl) * rl.get([1]) + l * (-xl + 2.0 * xl * xl - xl * xl * xl) * rl.get([2]) + (3.0 * xl * xl - 2.0 * xl * xl * xl) * rl.get([4]) + l * (xl * xl - xl * xl * xl) * rl.get([5]);
             let ul = (1. - xl) * rl.get([0]) + xl * rl.get([3]);
-            // add contributions of loads
             for (let load of eloads) {
                 let c = load.computeBeamDeflectionContrib(xl);
                 wl += c.w;
@@ -645,11 +490,6 @@ class Beam2D extends Element {
         }
         return { u: u, w: w };
     }
-    /**
-     * Computes nseg+1 values of global deflections
-     * @param lc reference to load case
-     * @param nseg deflection will be evaluated in nseg+1 points generated along the element
-     */
     computeGlobalDefl(lc, nseg) {
         let ld = this.computeLocalDefl(lc, nseg);
         let geo = this.computeGeo();
@@ -663,14 +503,7 @@ class Beam2D extends Element {
         }
         return { u: ug, w: wg };
     }
-    /**
-     * Computes the values of normal force along element
-     * @param lc load case reference
-     * @param nseg number of points-1
-     */
     computeNormalForce(lc, nseg) {
-        //Computes >=nseg+1 values of local normal force, 
-        //returns list of distances, values N(x) and where labels should be  plotted
         let F = this.computeEndForces(lc);
         let geo = this.computeGeo();
         let x = [];
@@ -679,7 +512,6 @@ class Beam2D extends Element {
         for (let iseg = 0; iseg <= nseg; iseg++) {
             let xi = geo.l * iseg / nseg;
             let Ni = -F.get([0]);
-            // add contributions of loads
             for (let load of eloads) {
                 Ni += load.computeBeamNContrib(xi);
             }
@@ -688,14 +520,7 @@ class Beam2D extends Element {
         }
         return { x: x, N: N };
     }
-    /**
-     * Computes the values of shear force along element
-     * @param lc load case reference
-     * @param nseg number of points-1
-     */
     computeShearForce(lc, nseg) {
-        //Computes >=nseg+1 values of local normal force, 
-        //returns list of distances, values N(x) and where labels should be  plotted
         let F = this.computeEndForces(lc);
         let geo = this.computeGeo();
         let x = [];
@@ -704,7 +529,6 @@ class Beam2D extends Element {
         for (let iseg = 0; iseg <= nseg; iseg++) {
             let xi = geo.l * iseg / nseg;
             let Vi = -F.get([1]);
-            // add contributions of loads
             for (let load of eloads) {
                 Vi += load.computeBeamVContrib(xi);
             }
@@ -713,14 +537,7 @@ class Beam2D extends Element {
         }
         return { x: x, V: V };
     }
-    /**
-     * Computes the values of bending moment along element
-     * @param lc load case reference
-     * @param nseg number of points-1
-     */
     computeBendingMoment(lc, nseg) {
-        //Computes >=nseg+1 values of local bending moment, 
-        //returns list of distances, values N(x) and where labels should be  plotted
         let F = this.computeEndForces(lc);
         let geo = this.computeGeo();
         let x = [];
@@ -729,7 +546,6 @@ class Beam2D extends Element {
         for (let iseg = 0; iseg <= nseg; iseg++) {
             let xi = geo.l * iseg / nseg;
             let Mi = -F.get([2]) - F.get([1]) * xi;
-            // add contributions of loads
             for (let load of eloads) {
                 Mi += load.computeBeamMContrib(xi);
             }
@@ -740,33 +556,17 @@ class Beam2D extends Element {
     }
 }
 exports.Beam2D = Beam2D;
-/**
- * Abstract class representing all loads
- */
 class Load {
-    /**
-     * Returns load vector for clamped beam
-     * @param elem element number
-     */
     constructor(target, domain) {
         this.target = target;
         this.domain = domain;
     }
-    /**
-     * Evaluates the contribution to the load vector
-     */
     getLoadVector() {
         return [];
     }
-    /**
-     * Returns load code numbers
-     */
     getLocationArray() { return []; }
 }
 exports.Load = Load;
-/**
- * Implementation of concentrated nodal load
- */
 class NodalLoad extends Load {
     constructor(node, domain, values = {}) {
         super(node, domain);
@@ -794,10 +594,6 @@ class NodalLoad extends Load {
     }
 }
 exports.NodalLoad = NodalLoad;
-/**
- * Abstract class for Beam elements extending the basic Load class to evaluate load contribution to
- * exact displacement and internal forces.
- */
 class BeamElementLoad extends Load {
     getLoadVectorForClampedBeam() { return []; }
     computeBeamDeflectionContrib(xl) { return { u: 0, w: 0 }; }
@@ -810,9 +606,6 @@ class BeamElementLoad extends Load {
     ;
 }
 exports.BeamElementLoad = BeamElementLoad;
-/**
- * Implementation of Beam2d uniform load
- */
 class BeamElementUniformEdgeLoad extends BeamElementLoad {
     constructor(elem, domain, values, lcs) {
         super(elem, domain);
@@ -825,10 +618,9 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
         this.lcs = lcs;
     }
     getGlobalIntensities() {
-        let fx = this.values[0]; // intensity in x-local
-        let fz = this.values[1]; // intensity in z-local
+        let fx = this.values[0];
+        let fz = this.values[1];
         if (this.lcs) {
-            // transrform intensities to global
             let geo = this.domain.elements.get(this.target).computeGeo();
             let cos = geo.dx / geo.l;
             let sin = geo.dz / geo.l;
@@ -839,8 +631,8 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
         }
     }
     getLocalIntensities() {
-        let fx = this.values[0]; // intensity in x-local
-        let fz = this.values[1]; // intensity in z-local
+        let fx = this.values[0];
+        let fz = this.values[1];
         let geo = this.domain.elements.get(this.target).computeGeo();
         let l = geo.l;
         let dx = geo.dx;
@@ -848,7 +640,6 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
         let cos = dx / l;
         let sin = dz / l;
         if (!this.lcs) {
-            // transform global intensities to local c.s.
             return {
                 fx: fx * cos + fz * sin,
                 fz: -fx * sin + fz * cos
@@ -858,7 +649,6 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
             return { fx: fx, fz: fz };
         }
     }
-    // in local c.s
     getLoadVectorForClampedBeam() {
         let geo = this.domain.elements.get(this.target).computeGeo();
         let f = this.getLocalIntensities();
@@ -877,9 +667,6 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
         if (elem.hasHinges()) {
             let stiffrec = elem.computeLocalStiffnessMtrx(true);
             let ans = [0, 0, 0, 0, 0, 0];
-            // following is result of static condensation
-            // ret[ix_(a)] = f[ix_(a)] - dot(dot(kab,linalg.inv(kbb)),f[ix_(b)])
-            // fe[ix_(a)] += bl[ix_(a)] - dot(dot(kab,linalg.inv(kbb)),bl[ix_(b)])
             let h1 = math.multiply(stiffrec.kab, math.inv(stiffrec.kbb));
             if (stiffrec.b.length == 1) {
                 let flv = f[stiffrec.b[0]];
@@ -921,11 +708,7 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
     }
 }
 exports.BeamElementUniformEdgeLoad = BeamElementUniformEdgeLoad;
-/** Class representing prescribed displacement TBD */
 class PrescribedDisplacement {
-    /**
-     * Constructor
-     */
     constructor(target, domain, values) {
         this.target = target;
         this.prescribedValues = values;
@@ -933,9 +716,7 @@ class PrescribedDisplacement {
     }
     getNodePrescribedDisplacementVector() {
         let answer = new Array();
-        // get node DOFs
         let dofs = this.domain.solver.getNodeDofIDs(this.target);
-        // generate prescribed displacement vector
         for (let dof of dofs) {
             if (dof in this.prescribedValues) {
                 answer.push(this.prescribedValues[dof]);
@@ -951,13 +732,7 @@ class PrescribedDisplacement {
     }
 }
 exports.PrescribedDisplacement = PrescribedDisplacement;
-/**
- * Class representing problem domain
- */
 class Domain {
-    /**
-     * Constructor
-    */
     constructor(solver) {
         this.nodes = new Map();
         this.elements = new Map();
@@ -997,7 +772,6 @@ class Domain {
             throw new RangeError("CrossSection label " + id + " does not exists");
         }
     }
-    // class factory
     createNode(label, coords = [0, 0, 0], bcs = []) {
         let ans = new Node(label, this, coords, bcs);
         this.nodes.set(label, ans);
@@ -1020,28 +794,15 @@ class Domain {
     }
 }
 exports.Domain = Domain;
-/**
- * LoadCase represents a collection of loads. LoadCase stores also its solution vector.
- */
 class LoadCase {
-    /**
-     * Creates a new loadcase
-     * @param label load case name
-     */
     constructor(label, domain) {
-        // dictionary (map), key is node number, value is PrescribedDisplacement object applied
         this.bcMap = {};
-        // Array of loads applied
         this.nodalLoadList = new Array();
         this.elementLoadList = new Array();
         this.prescribedBC = new Array();
         this.label = label;
         this.domain = domain;
     }
-    /**
-     * Returns list of applied element loads on element with given number
-     * param e element number
-     */
     getElementLoadsOnElement(e) {
         let ans = [];
         for (let l of this.elementLoadList) {
@@ -1051,7 +812,6 @@ class LoadCase {
         }
         return ans;
     }
-    //class factory
     createNodalLoad(node, values = {}) {
         let ans = new NodalLoad(node, this.domain, values);
         this.nodalLoadList.push(ans);
@@ -1069,23 +829,17 @@ class LoadCase {
     }
 }
 exports.LoadCase = LoadCase;
-/**
- * Class representing linear elastic solver.
- */
 class Solver {
     constructor() {
         this.loadCases = new Array();
         this.codeNumberGenerated = false;
-        // code numbers assigned to supported as well as free DOFs
         this.nodeCodeNumbers = new Map();
         this.domain = new Domain(this);
         this.loadCases.push(new LoadCase("DefaultLC", this.domain));
     }
     getNodeLocationArray(num, dofs) {
         var ans = [];
-        //console.log("Node:", num, "Locatioan Array dofs:", dofs);
         for (let i of dofs) {
-            //console.log(num, i, this.nodeCodeNumbers.get(num)[i]);
             ans = ans.concat(this.nodeCodeNumbers.get(num)[i]);
         }
         return ans;
@@ -1103,7 +857,6 @@ class Solver {
             this.nodeCodeNumbers.set(key, {});
             nodalDofs.set(key, new Set());
         }
-        // compile list of DOFs needed in nodes from element requirements
         for (let [ie, elem] of this.domain.elements) {
             for (let en of elem.nodes) {
                 var dofs = elem.getNodeDofs(en);
@@ -1118,8 +871,6 @@ class Solver {
                 }
             }
         }
-        //console.log(nodalDofs);
-        // compute number of unknown and prescribed DOFs
         this.neq = 0;
         this.pneq = 0;
         for (let [num, node] of this.domain.nodes) {
@@ -1132,7 +883,6 @@ class Solver {
                 }
             }
         }
-        // assign equation (code) numbers to dofs
         var eq = 0;
         var peq = this.neq;
         for (let [num, node] of this.domain.nodes) {
@@ -1145,8 +895,6 @@ class Solver {
                 }
             }
         }
-        //console.log("Number of equations: ",this.neq, ", number of prescribved: ", this.pneq);
-        //console.log(this.nodeCodeNumbers);
         this.codeNumberGenerated = true;
     }
     assembleVecLC(f, fe, loc, lc) {
@@ -1161,14 +909,10 @@ class Solver {
     }
     assemble() {
         this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
-        // assemble stifness matrix
         for (let [num, el] of this.domain.elements) {
             let estiff = el.computeStiffness();
             let loc = el.getLocationArray();
             let ndofs = math.size(loc)[0];
-            //console.log("assembling element ", num);
-            //console.log("loc[",math.size(loc)[0],"]:", loc );
-            //console.log("Element ", num, "loc:", loc, "k:", estiff);
             if (true) {
                 for (let r = 0; r < ndofs; r++) {
                     let rc = loc[r];
@@ -1179,31 +923,20 @@ class Solver {
                 }
             }
             else {
-                //console.log("El: ", num, "loc:", loc, "ke:", el.computeStiffness());
                 let acc = math.add(math.subset(this.k, math.index(loc, loc)), el.computeStiffness());
-                //console.log("add:", acc);
-                //console.log("indx:", math.index(loc,loc));
                 math.subset(this.k, math.index(loc, loc), acc);
             }
         }
-        //console.log("k=", this.k);
         this.f = math.zeros(this.neq + this.pneq, this.loadCases.length);
         for (let i = 0; i < this.loadCases.length; i++) {
             this.loadCases[i].r = math.zeros(this.neq + this.pneq);
             let lc = this.loadCases[i];
             for (let load of lc.nodalLoadList) {
-                // assemble load
-                //math.subset(this.f, math.index(load.getLocationArray()), load.getLoadVector());
                 this.assembleVecLC(this.f, load.getLoadVector(), load.getLocationArray(), i);
-                //console.log("nodal load:", load.getLoadVector(), "codes:", load.getLocationArray(), "result:", this.f);
             }
             for (let load of lc.elementLoadList) {
-                // assemble load
-                //math.subset(this.f, math.index(load.getLocationArray()), load.getLoadVector());
-                //console.log("element load:", load.getLoadVector(), "codes:", load.getLocationArray());
                 this.assembleVecLC(this.f, load.getLoadVector(), load.getLocationArray(), i);
             }
-            // assemble prescribed displacement vector
             for (let dbc of lc.prescribedBC) {
                 this.assembleVec(lc.r, dbc.getNodePrescribedDisplacementVector(), dbc.getLocationArray());
             }
@@ -1218,29 +951,79 @@ class Solver {
         if (this.neq > 0) {
             let unknowns = math.range(0, this.neq);
             let prescribed = math.range(this.neq, this.neq + this.pneq);
-            // solve linear system 
-            //console.log("unknowns=", unknowns);
-            //console.log("kuu=", math.subset(this.k, math.index(unknowns, unknowns)));
-            //console.log("fu=", math.subset(this.f, math.index(unknowns, math.range(0, this.loadCases.length))));
             for (let lc = 0; lc < this.loadCases.length; lc++) {
                 let rp = math.subset(this.loadCases[lc].r, math.index(prescribed));
                 let fp = math.multiply(math.subset(this.k, math.index(unknowns, prescribed)), rp);
-                //console.log('fp', fp);
-                //console.log('fsubset', math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))));
                 let b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))), fp);
                 let ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)), b));
-                //this.loadCases[lc].r = math.zeros(this.neq+this.pneq);
                 this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
-                // evaluate reactions
                 this.loadCases[lc].R = math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru).toArray();
-                // add contributions from elements
                 this.loadCases[lc].R = math.subtract(this.loadCases[lc].R, math.squeeze(math.subset(this.f, math.index(prescribed, [lc]))));
-                //console.log("lc:", lc, " r:", this.loadCases[lc].r, " R:", this.loadCases[lc].R);
             }
         }
         const endtime = new Date();
         let timediff = (endtime.getTime() - startime.getTime()) / 1000;
-        console.log("Solution took ", Math.round(timediff), " [sec]");
+        console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");
+    }
+    assembleDyn() {
+        this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
+        this.m = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
+        this.loadCases[0].r = math.zeros(this.neq + this.pneq);
+        for (let [num, el] of this.domain.elements) {
+            let estiff = el.computeStiffness();
+            let emass = el.computeMassMatrix();
+            let loc = el.getLocationArray();
+            let ndofs = math.size(loc)[0];
+            for (let r = 0; r < ndofs; r++) {
+                let rc = loc[r];
+                for (let c = 0; c < ndofs; c++) {
+                    let cc = loc[c];
+                    this.k.set([rc, cc], this.k.get([rc, cc]) + estiff.get([r, c]));
+                    this.m.set([rc, cc], this.m.get([rc, cc]) + emass.get([r, c]));
+                }
+            }
+        }
+    }
+    solveDyn() {
+        const startime = new Date();
+        if (!this.codeNumberGenerated) {
+            this.generateCodeNumbers();
+        }
+        let unknowns = math.range(0, this.neq);
+        this.assembleDyn();
+        const kk = math.subset((this.k), math.index(unknowns, unknowns));
+        const mm = math.subset((this.m), math.index(unknowns, unknowns));
+        const mkinv = math.multiply(math.inv(kk), mm);
+        let omegas = [];
+        let vectors = [];
+        for (let i = 0; i < this.neq; i++) {
+            let tol = 1e-6;
+            let rho = 0;
+            let newrho = 999;
+            let x = math.ones(this.neq, 1);
+            while (Math.abs(newrho - rho) / newrho > tol) {
+                rho = newrho;
+                const newx = math.multiply(mkinv, x);
+                const divisor = math.multiply(math.multiply(math.transpose(newx), mm), newx).get([0, 0]);
+                newrho = math.multiply(math.multiply(math.transpose(newx), mm), x).get([0, 0]) / divisor;
+                x = math.divide(newx, Math.sqrt(divisor));
+                let dx = math.zeros(this.neq, 1);
+                for (let j = 0; j < omegas.length; j++) {
+                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x).get([0, 0]);
+                    dx = math.add(dx, math.multiply(c, vectors[j]));
+                }
+                x = math.subtract(x, dx);
+            }
+            console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho) / (2 * Math.PI)}`);
+            omegas.push(Math.sqrt(newrho));
+            vectors.push(x);
+            if (i == 0)
+                this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq), 1), x);
+        }
+        console.log(this.loadCases[0].r);
+        const endtime = new Date();
+        let timediff = (endtime.getTime() - startime.getTime()) / 1000;
+        console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");
     }
 }
 exports.Solver = Solver;
