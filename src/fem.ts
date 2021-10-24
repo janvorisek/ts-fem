@@ -1507,7 +1507,7 @@ export class Solver {
             while(Math.abs(newrho-rho)/newrho > tol) {
                 rho = newrho;
 
-                const newx =  math.multiply(math.multiply(math.inv(kk), mm), x) as math.Matrix;
+                const newx =  math.multiply(mkinv, x) as math.Matrix;
                 const divisor = (math.multiply(math.multiply(math.transpose(newx), mm),newx) as math.Matrix).get([0,0]) as number;
                 newrho = (math.multiply(math.multiply(math.transpose(newx), mm),x) as math.Matrix).get([0,0]) as number / divisor;
                 
