@@ -102,7 +102,7 @@ class Node {
     }
     getUnknowns(lc, dofs) {
         let cn = this.getLocationArray(dofs);
-        return math.subset(lc.r, math.index(cn));
+        return math.subset(lc.r, math.index(cn, 1));
     }
     getTransformationMtrx(dofs) {
         let size = dofs.length;
@@ -162,7 +162,6 @@ class Node {
         return (this.lcs != undefined);
     }
     getReactions(lc, inGlobalCS = false) {
-        console.log("type R:", typeof lc.R);
         if (inGlobalCS && this.hasLcs()) {
             let sdofs = this.domain.solver.getNodeDofIDs(this.label);
             let cn = this.getLocationArray(sdofs);
@@ -428,7 +427,7 @@ class Beam2D extends Element {
     computeEndDisplacement(lc) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc)));
+        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
         if (this.hasHinges()) {
             var stiffrec = this.computeLocalStiffnessMtrx(true);
             let bl = math.zeros(6);
@@ -444,7 +443,7 @@ class Beam2D extends Element {
     computeEndForces(lc) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var re = math.multiply(t, math.subset(lc.r, math.index(loc)));
+        var re = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
         var stiffrec = this.computeLocalStiffnessMtrx(true);
         var fe = math.multiply(stiffrec.answer, re);
         var bl = math.zeros(6);

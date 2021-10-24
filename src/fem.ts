@@ -222,7 +222,7 @@ export class Node {
     }
     getUnknowns (lc:LoadCase, dofs:Array<DofID>) {
         let cn = this.getLocationArray(dofs);
-        return math.subset(lc.r, math.index(cn));
+        return math.subset(lc.r, math.index(cn, 1));
     }
     /**
      * Returns receiver transformation matrix (from nodal to global c.s., ie. rg=t*r_n)
@@ -298,7 +298,6 @@ export class Node {
     }
     
     getReactions (lc:LoadCase, inGlobalCS:boolean=false) {
-        console.log("type R:", typeof lc.R);
         if (inGlobalCS && this.hasLcs()) {
             let sdofs = this.domain.solver.getNodeDofIDs(this.label); // all dofs
             let cn = this.getLocationArray(sdofs); // code numbers of all DOFs
@@ -712,7 +711,7 @@ export class Beam2D extends Element {
     computeEndDisplacement (lc:LoadCase) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc)));
+        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
 
         if (this.hasHinges()) {
             var stiffrec = this.computeLocalStiffnessMtrx(true);
@@ -741,7 +740,7 @@ export class Beam2D extends Element {
     computeEndForces (lc: LoadCase) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var re = math.multiply(t, math.subset(lc.r, math.index(loc)));
+        var re = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
 
         var stiffrec = this.computeLocalStiffnessMtrx(true);
         var fe = math.multiply(stiffrec.answer, re) as math.Matrix;
@@ -1487,6 +1486,7 @@ export class Solver {
 
         const kk = math.subset((this.k), math.index(unknowns, unknowns)) as math.Matrix;
         const mm = math.subset((this.m), math.index(unknowns, unknowns)) as math.Matrix;
+        const mkinv = math.multiply(math.inv(kk), mm);
 
         let omegas = [];
         let vectors = [];
