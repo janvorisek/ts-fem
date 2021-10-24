@@ -1,3 +1,6 @@
+import { create, all } from 'mathjs';
+const config = {};
+const math = create(all, config);
 import { Solver } from './fem';
 export class LinearStaticSolver extends Solver {
     assemble() {

@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LinearStaticSolver = void 0;
-const math = require("mathjs");
+const mathjs_1 = require("mathjs");
+const config = {};
+const math = mathjs_1.create(mathjs_1.all, config);
 const fem_1 = require("./fem");
 class LinearStaticSolver extends fem_1.Solver {
     assemble() {

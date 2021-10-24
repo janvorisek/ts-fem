@@ -1,4 +1,8 @@
-import math = require("mathjs");
+import { create, all, MathArray } from 'mathjs'
+
+const config = { }
+const math = create(all, config)
+
 import { Domain, LoadCase, DofID, Solver } from "./fem";
 
 /**
