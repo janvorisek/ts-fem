@@ -409,6 +409,10 @@ export class Element {
      */
     computeStiffness (): any {}
     /**
+     * Computes global mass matrix of element
+     */
+     computeMassMatrix (): any {}
+    /**
      * Returns element code numbers
      */
     getLocationArray(): any {}
@@ -621,6 +625,52 @@ export class Beam2D extends Element {
     }
 
     /**
+     * Computes Beam2D local stifness matrix
+     * @param retCondenseSubMats when true, extended info on condensed DOFs is provided
+     */
+     computeLocalMassMatrix (retCondenseSubMats:boolean=false) {
+        var geo = this.computeGeo();
+        var mat = this.getMaterial();
+        var cs = this.getCS();
+    
+        //var ea = mat.e*cs.a;
+       // var eiy = mat.e*cs.iy;
+        var l = geo.l;
+        var l2 = l*l;
+        var l3 = l2*l;
+        //var fi=12.*eiy/(cs.k*mat.g*cs.a*l*l);
+        //var fi2= fi*fi;
+        /*const M_CT = math.matrix([
+            [0, 0, 0, 0, 0, 0],
+            [0, 13/35+7/10*fi+1/3*fi2,         (11/210+11/120*fi+1/24*fi2)*l, 0, 9/70+3/10*fi+1/6*fi2,        -(13/420+3/40*fi+1/24*fi2)*l],
+            [0, (11/210+11/120*fi+1/24*fi2)*l, (1/105+1/60*fi+1/120*fi2)*l2,  0, (13/420+3/40*fi+1/24*fi2)*l, -(1/140+1/60*fi+1/120*fi2)*l2],
+            [0, 0, 0, 0, 0, 0],
+            [0, 9/70+3/10*fi+1/6*fi2,          (13/420+3/40*fi+1/24*fi2)*l,   0, 13/35+7/10*fi+1/3*fi2,        (11/210+11/120*fi+1/24*fi2)*l],
+            [0, -(13/420+3/40*fi+1/24*fi2)*l,  -(1/140+1/60*fi+1/120*fi2)*l2, 0, (11/210+11/120*fi+1/24*fi2)*l, (1/105+1/60*fi+1/120*fi2)*l2],     
+        ]);
+
+        const M_CR = math.matrix([
+            [0, 0, 0, 0, 0, 0],
+            [0, 6/5, (1/10-1/2*fi)*l, 0, -6/5, (1/10-1/2*fi)*l],
+            [0, (1/10-1/2*fi)*l, (2/15+1/6*fi+1/3*fi2)*l2, 0, -(1/10-1/2*fi)*l, -(1/30+1/6*fi-1/6*fi2)*l2],
+            [0, 0, 0, 0, 0, 0],
+            [0, -6/5, -(1/10-1/2*fi)*l, 0, 6/5, -(1/10-1/2*fi)*l],
+            [0, (1/10-1/2*fi)*l, -(1/30+1/6*fi-1/6*fi2)*l2, 0, -(1/10-1/2*fi)*l, (2/15+1/6*fi+1/3*fi2)*l2]
+        ]);
+
+        return math.add(math.multiply((mat.d*cs.a*l)/((1+fi)*(1+fi)),M_CT), math.multiply(mat.d*cs.iy/((1+fi)*(1+fi)*l),M_CR));*/
+
+        return math.multiply(mat.d*cs.a*l/420, math.matrix([
+            [140, 0, 0, 70, 0, 0],
+            [0, 156, -22*l, 0, 54, 13*l],
+            [0, -22*l, 4*l*l, 0, -13*l, -3*l*l],
+            [70, 0, 0, 140, 0, 0],
+            [0, 54, -13*l, 0, 156, 22*l],
+            [0, 13*l, -3*l*l, 0, 22*l, 4*l*l]
+        ]))
+    }
+
+    /**
      * Evaluate element stiffness matrix in global c.s.
      */
     computeStiffness () {
@@ -630,6 +680,18 @@ export class Beam2D extends Element {
         var t  = this.computeT();
         var k  = math.multiply(math.multiply(math.transpose(t), kl.answer), t);
         return k;
+    }
+
+    /**
+     * Evaluate element mass matrix in global c.s.
+     */
+    computeMassMatrix () {
+        var geo = this.computeGeo();
+
+        var ml = this.computeLocalMassMatrix();
+        var t  = this.computeT();
+        var m  = math.multiply(math.multiply(math.transpose(t), ml), t);
+        return m;
     }
 
     /**
@@ -1200,6 +1262,7 @@ export class Solver {
     neq: number; // number of unknowns
     pneq: number; // number of prescribed unknowns
     k: any;
+    m: any;
     f: math.Matrix | number[] | number[][];
     loadCases = new Array<LoadCase>();
     codeNumberGenerated:boolean = false;
@@ -1371,9 +1434,8 @@ export class Solver {
                 //console.log('fp', fp);
                 //console.log('fsubset', math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))));
                 let b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))),fp) as math.Matrix;
-                let ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)),b)); 
-                                                            
-          
+                let ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)),b));
+                                     
                 //this.loadCases[lc].r = math.zeros(this.neq+this.pneq);
                 this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
 
@@ -1387,7 +1449,117 @@ export class Solver {
         }
         const endtime = new Date();
         let timediff = (endtime.getTime()-startime.getTime())/1000;
-        console.log("Solution took ", Math.round(timediff), " [sec]");
+        console.log("Solution took ", Math.round(timediff*100)/100, " [sec]");
+    }
+
+    assembleDyn () {
+        this.k = math.zeros(this.neq+this.pneq, this.neq+this.pneq);
+        this.m = math.zeros(this.neq+this.pneq, this.neq+this.pneq);
+
+        this.loadCases[0].r = math.zeros(this.neq+this.pneq);
+        
+        // assemble stifness matrix
+        for (let [num, el] of this.domain.elements) {
+            let estiff = el.computeStiffness();
+            let emass = el.computeMassMatrix();
+            let loc = el.getLocationArray() as [];
+            let ndofs = math.size(loc)[0];
+  
+            for (let r = 0; r< ndofs; r++) {
+                let rc = loc[r];
+                for (let c = 0; c< ndofs; c++) {
+                    let cc = loc[c];
+                    this.k.set([rc,cc],  this.k.get([rc,cc])+estiff.get([r,c]));
+                    this.m.set([rc,cc],  this.m.get([rc,cc])+emass.get([r,c]));
+                }
+            }
+        }
+    }
+    
+    solveDyn() {
+        const startime = new Date();
+        if (!this.codeNumberGenerated) {
+            this.generateCodeNumbers();
+        }
+
+        let unknowns = math.range(0, this.neq);
+        this.assembleDyn();
+
+        const kk = math.subset((this.k), math.index(unknowns, unknowns)) as math.Matrix;
+        const mm = math.subset((this.m), math.index(unknowns, unknowns)) as math.Matrix;
+
+        let omegas = [];
+        let vectors = [];
+
+
+        for(let i =0; i < this.neq; i++) {
+            //console.log("hledam f " + i)
+            let tol = 1e-6;
+            let rho = 0;
+            let newrho = 999;
+
+            // first one
+            //let x = math.zeros(this.neq, 1) as math.Matrix;
+            //x.set([this.neq-1, 0], 1.0);
+            //console.log(x)
+            let x = math.ones(this.neq, 1) as math.Matrix;
+            
+            while(Math.abs(newrho-rho)/newrho > tol) {
+                rho = newrho;
+
+                const newx =  math.multiply(math.multiply(math.inv(kk), mm), x) as math.Matrix;
+                const divisor = (math.multiply(math.multiply(math.transpose(newx), mm),newx) as math.Matrix).get([0,0]) as number;
+                newrho = (math.multiply(math.multiply(math.transpose(newx), mm),x) as math.Matrix).get([0,0]) as number / divisor;
+                
+                // normovani
+                x = math.divide(newx, Math.sqrt(divisor)) as math.Matrix;
+
+                let dx = math.zeros(this.neq, 1) as math.Matrix;
+                for(let j =0; j < omegas.length; j++) {
+                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x).get([0,0]) as number;
+                    dx = math.add(dx, math.multiply(c, vectors[j])) as math.Matrix;
+                }
+                x = math.subtract(x, dx) as math.Matrix;
+
+                //console.log(x);
+                //console.log(Math.sqrt(newrho));
+                
+                //console.log(rho)
+                //console.log(newrho)
+                //console.log((newrho-rho)/newrho)
+            }
+
+            console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho)/(2*Math.PI)}`)
+            //console.log(x.toArray())
+            
+            omegas.push(Math.sqrt(newrho));
+            vectors.push(x);
+
+            // Solved
+            if(i == 0)
+               this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq), 1), x);
+        }
+
+        console.log(this.loadCases[0].r)
+
+        // test determinant
+        //console.log(math.multiply(math.subtract(kk, math.multiply(newrho, mm) as math.Matrix), x));
+        //console.log(math.det(math.subtract(kk, math.multiply(newrho, mm) as math.Matrix) as math.Matrix));
+
+        // stejny vysledek, spatne matice M nebo K???
+
+        //console.log(math.eigs(math.multiply(math.inv(mm), kk)));
+
+        //console.log(math.subset((this.k), math.index(unknowns, unknowns)))
+        //console.log(this.m)
+        
+        //console.log(math.det(math.subset((this.m), math.index(unknowns, unknowns))))
+        //console.log(math.subset(math.multiply(math.inv(this.m),(this.k)), math.index(unknowns, unknowns)))
+        //const eigs = math.eigs(math.subset(math.multiply(math.inv(this.m),(this.k)), math.index(unknowns, unknowns)));
+        
+        const endtime = new Date();
+        let timediff = (endtime.getTime()-startime.getTime())/1000;
+        console.log("Solution took ", Math.round(timediff*100)/100, " [sec]");
     }
 }
 
