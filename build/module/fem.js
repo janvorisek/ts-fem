@@ -97,7 +97,7 @@ export class Node {
     }
     getUnknowns(lc, dofs) {
         let cn = this.getLocationArray(dofs);
-        return math.subset(lc.r, math.index(cn, 1));
+        return math.subset(lc.r, math.index(cn));
     }
     getTransformationMtrx(dofs) {
         let size = dofs.length;
@@ -420,7 +420,7 @@ export class Beam2D extends Element {
     computeEndDisplacement(lc) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
+        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc)));
         if (this.hasHinges()) {
             var stiffrec = this.computeLocalStiffnessMtrx(true);
             let bl = math.zeros(6);
@@ -436,7 +436,7 @@ export class Beam2D extends Element {
     computeEndForces(lc) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var re = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
+        var re = math.multiply(t, math.subset(lc.r, math.index(loc)));
         var stiffrec = this.computeLocalStiffnessMtrx(true);
         var fe = math.multiply(stiffrec.answer, re);
         var bl = math.zeros(6);
@@ -984,27 +984,27 @@ export class Solver {
             let tol = 1e-6;
             let rho = 0;
             let newrho = 999;
-            let x = math.ones(this.neq, 1);
+            let x = math.ones(this.neq);
             while (Math.abs(newrho - rho) / newrho > tol) {
                 rho = newrho;
-                const newx = math.multiply(mkinv, x);
-                const divisor = math.multiply(math.multiply(math.transpose(newx), mm), newx).get([0, 0]);
-                newrho = math.multiply(math.multiply(math.transpose(newx), mm), x).get([0, 0]) / divisor;
+                const newx = math.squeeze(math.multiply(mkinv, x));
+                const divisor = math.multiply(math.multiply(math.transpose(newx), mm), newx);
+                newrho = math.multiply(math.multiply(math.transpose(newx), mm), x) / divisor;
                 x = math.divide(newx, Math.sqrt(divisor));
-                let dx = math.zeros(this.neq, 1);
+                let dx = math.zeros(this.neq);
                 for (let j = 0; j < omegas.length; j++) {
-                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x).get([0, 0]);
+                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x);
                     dx = math.add(dx, math.multiply(c, vectors[j]));
                 }
                 x = math.subtract(x, dx);
             }
             console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho) / (2 * Math.PI)}`);
+            x = math.squeeze(x);
             omegas.push(Math.sqrt(newrho));
             vectors.push(x);
             if (i == 0)
-                this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq), 1), x);
+                this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq)), x);
         }
-        console.log(this.loadCases[0].r);
         const endtime = new Date();
         let timediff = (endtime.getTime() - startime.getTime()) / 1000;
         console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");

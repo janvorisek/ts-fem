@@ -222,7 +222,7 @@ export class Node {
     }
     getUnknowns (lc:LoadCase, dofs:Array<DofID>) {
         let cn = this.getLocationArray(dofs);
-        return math.subset(lc.r, math.index(cn, 1));
+        return math.subset(lc.r, math.index(cn));
     }
     /**
      * Returns receiver transformation matrix (from nodal to global c.s., ie. rg=t*r_n)
@@ -711,7 +711,7 @@ export class Beam2D extends Element {
     computeEndDisplacement (lc:LoadCase) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
+        var rloc = math.multiply(t, math.subset(lc.r, math.index(loc)));
 
         if (this.hasHinges()) {
             var stiffrec = this.computeLocalStiffnessMtrx(true);
@@ -740,7 +740,7 @@ export class Beam2D extends Element {
     computeEndForces (lc: LoadCase) {
         var t = this.computeT();
         var loc = this.getLocationArray();
-        var re = math.multiply(t, math.subset(lc.r, math.index(loc, 1)));
+        var re = math.multiply(t, math.subset(lc.r, math.index(loc)));
 
         var stiffrec = this.computeLocalStiffnessMtrx(true);
         var fe = math.multiply(stiffrec.answer, re) as math.Matrix;
@@ -1502,45 +1502,36 @@ export class Solver {
             //let x = math.zeros(this.neq, 1) as math.Matrix;
             //x.set([this.neq-1, 0], 1.0);
             //console.log(x)
-            let x = math.ones(this.neq, 1) as math.Matrix;
+            let x = math.ones(this.neq) as math.Matrix;
             
             while(Math.abs(newrho-rho)/newrho > tol) {
                 rho = newrho;
 
-                const newx =  math.multiply(mkinv, x) as math.Matrix;
-                const divisor = (math.multiply(math.multiply(math.transpose(newx), mm),newx) as math.Matrix).get([0,0]) as number;
-                newrho = (math.multiply(math.multiply(math.transpose(newx), mm),x) as math.Matrix).get([0,0]) as number / divisor;
+                const newx =  math.squeeze(math.multiply(mkinv, x)) as math.Matrix;
+                const divisor = (math.multiply(math.multiply(math.transpose(newx), mm),newx) as math.Matrix) as unknown as number;
+                newrho = (math.multiply(math.multiply(math.transpose(newx), mm),x) as math.Matrix) as unknown as number / divisor;
                 
                 // normovani
                 x = math.divide(newx, Math.sqrt(divisor)) as math.Matrix;
 
-                let dx = math.zeros(this.neq, 1) as math.Matrix;
+                let dx = math.zeros(this.neq) as math.Matrix;
                 for(let j =0; j < omegas.length; j++) {
-                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x).get([0,0]) as number;
+                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x) as number;
                     dx = math.add(dx, math.multiply(c, vectors[j])) as math.Matrix;
                 }
                 x = math.subtract(x, dx) as math.Matrix;
-
-                //console.log(x);
-                //console.log(Math.sqrt(newrho));
-                
-                //console.log(rho)
-                //console.log(newrho)
-                //console.log((newrho-rho)/newrho)
             }
 
             console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho)/(2*Math.PI)}`)
-            //console.log(x.toArray())
+            x =math.squeeze(x)
             
             omegas.push(Math.sqrt(newrho));
             vectors.push(x);
 
             // Solved
             if(i == 0)
-               this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq), 1), x);
+               this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq)), x);
         }
-
-        console.log(this.loadCases[0].r)
 
         // test determinant
         //console.log(math.multiply(math.subtract(kk, math.multiply(newrho, mm) as math.Matrix), x));
