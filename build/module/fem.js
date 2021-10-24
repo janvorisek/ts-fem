@@ -495,6 +495,47 @@ export class Beam2D extends Element {
         }
         return { u: ug, w: wg };
     }
+    computeEndDisplacementEigenMode(lc, ntheig) {
+        var t = this.computeT();
+        var loc = this.getLocationArray();
+        var rloc = math.multiply(t, math.subset(lc.eigenVectors[ntheig], math.index(loc)));
+        if (this.hasHinges()) {
+            var stiffrec = this.computeLocalStiffnessMtrx(true);
+            let bl = math.zeros(6);
+            if (this.hasHinges()) {
+                rloc = math.subset(rloc, math.index(stiffrec.b), math.multiply(math.inv(stiffrec.kbb), math.multiply(math.add(math.subset(bl, math.index(stiffrec.b)), math.squeeze(math.multiply(math.transpose(stiffrec.kab), math.subset(rloc, math.index(stiffrec.a))))), -1.0)));
+            }
+        }
+        return rloc;
+    }
+    computeLocalEigenMode(lc, ntheig, nseg) {
+        let rl = this.computeEndDisplacementEigenMode(lc, ntheig);
+        let u = [];
+        let w = [];
+        let geo = this.computeGeo();
+        let l = geo.l;
+        for (let iseg = 0; iseg <= nseg; iseg++) {
+            let xl = iseg / nseg;
+            let wl = (1.0 - 3.0 * xl * xl + 2.0 * xl * xl * xl) * rl.get([1]) + l * (-xl + 2.0 * xl * xl - xl * xl * xl) * rl.get([2]) + (3.0 * xl * xl - 2.0 * xl * xl * xl) * rl.get([4]) + l * (xl * xl - xl * xl * xl) * rl.get([5]);
+            let ul = (1. - xl) * rl.get([0]) + xl * rl.get([3]);
+            u.push(ul);
+            w.push(wl);
+        }
+        return { u: u, w: w };
+    }
+    computeGlobalEigenMode(lc, ntheig, nseg) {
+        let ld = this.computeLocalEigenMode(lc, ntheig, nseg);
+        let geo = this.computeGeo();
+        var c = geo.dx / geo.l;
+        var s = geo.dz / geo.l;
+        let ug = [];
+        let wg = [];
+        for (let i = 0; i <= nseg; i++) {
+            ug.push(ld.u[i] * c - ld.w[i] * s);
+            wg.push(ld.w[i] * c + ld.u[i] * s);
+        }
+        return { u: ug, w: wg };
+    }
     computeNormalForce(lc, nseg) {
         let F = this.computeEndForces(lc);
         let geo = this.computeGeo();
@@ -785,6 +826,8 @@ export class LoadCase {
         this.nodalLoadList = new Array();
         this.elementLoadList = new Array();
         this.prescribedBC = new Array();
+        this.eigenNumbers = [];
+        this.eigenVectors = [];
         this.label = label;
         this.domain = domain;
     }
@@ -813,201 +856,7 @@ export class LoadCase {
         return ans;
     }
 }
-export class Solver {
-    constructor() {
-        this.loadCases = new Array();
-        this.codeNumberGenerated = false;
-        this.nodeCodeNumbers = new Map();
-        this.domain = new Domain(this);
-        this.loadCases.push(new LoadCase("DefaultLC", this.domain));
-    }
-    getNodeLocationArray(num, dofs) {
-        var ans = [];
-        for (let i of dofs) {
-            ans = ans.concat(this.nodeCodeNumbers.get(num)[i]);
-        }
-        return ans;
-    }
-    getNodeDofIDs(num) {
-        let ans = [];
-        for (let d in this.nodeCodeNumbers.get(num)) {
-            ans.push(parseInt(d));
-        }
-        return ans;
-    }
-    generateCodeNumbers() {
-        var nodalDofs = new Map();
-        for (let [key, node] of this.domain.nodes) {
-            this.nodeCodeNumbers.set(key, {});
-            nodalDofs.set(key, new Set());
-        }
-        for (let [ie, elem] of this.domain.elements) {
-            for (let en of elem.nodes) {
-                var dofs = elem.getNodeDofs(en);
-                for (let d of dofs) {
-                    if (nodalDofs.has(en)) {
-                        nodalDofs.get(en).add(d);
-                    }
-                    else {
-                        console.log(en, en in nodalDofs, nodalDofs.get(en));
-                        throw new RangeError("Node label " + en + " does not exists");
-                    }
-                }
-            }
-        }
-        this.neq = 0;
-        this.pneq = 0;
-        for (let [num, node] of this.domain.nodes) {
-            for (let d of nodalDofs.get(num)) {
-                if (node.bcs.has(d)) {
-                    this.pneq++;
-                }
-                else {
-                    this.neq++;
-                }
-            }
-        }
-        var eq = 0;
-        var peq = this.neq;
-        for (let [num, node] of this.domain.nodes) {
-            for (let d of nodalDofs.get(num)) {
-                if (node.bcs.has(d)) {
-                    this.nodeCodeNumbers.get(num)[d] = peq++;
-                }
-                else {
-                    this.nodeCodeNumbers.get(num)[d] = eq++;
-                }
-            }
-        }
-        this.codeNumberGenerated = true;
-    }
-    assembleVecLC(f, fe, loc, lc) {
-        for (let i = 0; i < loc.length; i++) {
-            f.set([loc[i], lc], f.get([loc[i], lc]) + fe[i]);
-        }
-    }
-    assembleVec(f, fe, loc) {
-        for (let i = 0; i < loc.length; i++) {
-            f.set([loc[i]], f.get([loc[i]]) + fe[i]);
-        }
-    }
-    assemble() {
-        this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
-        for (let [num, el] of this.domain.elements) {
-            let estiff = el.computeStiffness();
-            let loc = el.getLocationArray();
-            let ndofs = math.size(loc)[0];
-            if (true) {
-                for (let r = 0; r < ndofs; r++) {
-                    let rc = loc[r];
-                    for (let c = 0; c < ndofs; c++) {
-                        let cc = loc[c];
-                        this.k.set([rc, cc], this.k.get([rc, cc]) + estiff.get([r, c]));
-                    }
-                }
-            }
-            else {
-                let acc = math.add(math.subset(this.k, math.index(loc, loc)), el.computeStiffness());
-                math.subset(this.k, math.index(loc, loc), acc);
-            }
-        }
-        this.f = math.zeros(this.neq + this.pneq, this.loadCases.length);
-        for (let i = 0; i < this.loadCases.length; i++) {
-            this.loadCases[i].r = math.zeros(this.neq + this.pneq);
-            let lc = this.loadCases[i];
-            for (let load of lc.nodalLoadList) {
-                this.assembleVecLC(this.f, load.getLoadVector(), load.getLocationArray(), i);
-            }
-            for (let load of lc.elementLoadList) {
-                this.assembleVecLC(this.f, load.getLoadVector(), load.getLocationArray(), i);
-            }
-            for (let dbc of lc.prescribedBC) {
-                this.assembleVec(lc.r, dbc.getNodePrescribedDisplacementVector(), dbc.getLocationArray());
-            }
-        }
-    }
-    solve() {
-        const startime = new Date();
-        if (!this.codeNumberGenerated) {
-            this.generateCodeNumbers();
-        }
-        this.assemble();
-        if (this.neq > 0) {
-            let unknowns = math.range(0, this.neq);
-            let prescribed = math.range(this.neq, this.neq + this.pneq);
-            for (let lc = 0; lc < this.loadCases.length; lc++) {
-                let rp = math.subset(this.loadCases[lc].r, math.index(prescribed));
-                let fp = math.multiply(math.subset(this.k, math.index(unknowns, prescribed)), rp);
-                let b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))), fp);
-                let ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)), b));
-                this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
-                this.loadCases[lc].R = math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru).toArray();
-                this.loadCases[lc].R = math.subtract(this.loadCases[lc].R, math.squeeze(math.subset(this.f, math.index(prescribed, [lc]))));
-            }
-        }
-        const endtime = new Date();
-        let timediff = (endtime.getTime() - startime.getTime()) / 1000;
-        console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");
-    }
-    assembleDyn() {
-        this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
-        this.m = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
-        this.loadCases[0].r = math.zeros(this.neq + this.pneq);
-        for (let [num, el] of this.domain.elements) {
-            let estiff = el.computeStiffness();
-            let emass = el.computeMassMatrix();
-            let loc = el.getLocationArray();
-            let ndofs = math.size(loc)[0];
-            for (let r = 0; r < ndofs; r++) {
-                let rc = loc[r];
-                for (let c = 0; c < ndofs; c++) {
-                    let cc = loc[c];
-                    this.k.set([rc, cc], this.k.get([rc, cc]) + estiff.get([r, c]));
-                    this.m.set([rc, cc], this.m.get([rc, cc]) + emass.get([r, c]));
-                }
-            }
-        }
-    }
-    solveDyn() {
-        const startime = new Date();
-        if (!this.codeNumberGenerated) {
-            this.generateCodeNumbers();
-        }
-        let unknowns = math.range(0, this.neq);
-        this.assembleDyn();
-        const kk = math.subset((this.k), math.index(unknowns, unknowns));
-        const mm = math.subset((this.m), math.index(unknowns, unknowns));
-        const mkinv = math.multiply(math.inv(kk), mm);
-        let omegas = [];
-        let vectors = [];
-        for (let i = 0; i < this.neq; i++) {
-            let tol = 1e-6;
-            let rho = 0;
-            let newrho = 999;
-            let x = math.ones(this.neq);
-            while (Math.abs(newrho - rho) / newrho > tol) {
-                rho = newrho;
-                const newx = math.squeeze(math.multiply(mkinv, x));
-                const divisor = math.multiply(math.multiply(math.transpose(newx), mm), newx);
-                newrho = math.multiply(math.multiply(math.transpose(newx), mm), x) / divisor;
-                x = math.divide(newx, Math.sqrt(divisor));
-                let dx = math.zeros(this.neq);
-                for (let j = 0; j < omegas.length; j++) {
-                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x);
-                    dx = math.add(dx, math.multiply(c, vectors[j]));
-                }
-                x = math.subtract(x, dx);
-            }
-            console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho) / (2 * Math.PI)}`);
-            x = math.squeeze(x);
-            omegas.push(Math.sqrt(newrho));
-            vectors.push(x);
-            if (i == 0)
-                this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq)), x);
-        }
-        const endtime = new Date();
-        let timediff = (endtime.getTime() - startime.getTime()) / 1000;
-        console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");
-    }
-}
+export * from './Solver';
+export * from './EigenValueDynamicSolver';
+export * from './LinearStaticSolver';
 //# sourceMappingURL=fem.js.map

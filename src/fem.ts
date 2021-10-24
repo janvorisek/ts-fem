@@ -1,4 +1,5 @@
 import { create, all, MathArray } from 'mathjs'
+import { Solver } from './Solver';
 
 const config = { }
 const math = create(all, config)
@@ -799,6 +800,7 @@ export class Beam2D extends Element {
         }
         return {u: u, w: w};
     }
+
     /**
      * Computes nseg+1 values of global deflections
      * @param lc reference to load case
@@ -806,6 +808,75 @@ export class Beam2D extends Element {
      */
     computeGlobalDefl(lc:LoadCase, nseg:number) {
         let ld = this.computeLocalDefl(lc, nseg);
+        let geo = this.computeGeo();
+        var c:number = geo.dx/geo.l;
+        var s:number = geo.dz/geo.l;
+        let ug = [];
+        let wg = [];
+        for (let i=0; i<=nseg; i++) {
+            ug.push(ld.u[i]*c-ld.w[i]*s);
+            wg.push(ld.w[i]*c+ld.u[i]*s);
+        }
+        return {u:ug, w:wg};
+    }
+
+    /**
+     * Computes element end displacement vector (in element local c.s.)
+     * @param r global vector of unknowns
+     */
+     computeEndDisplacementEigenMode (lc:LoadCase, ntheig: number) {
+        var t = this.computeT();
+        var loc = this.getLocationArray();
+        var rloc = math.multiply(t, math.subset(lc.eigenVectors[ntheig], math.index(loc)));
+
+        if (this.hasHinges()) {
+            var stiffrec = this.computeLocalStiffnessMtrx(true);
+            let bl = math.zeros(6);
+            if (this.hasHinges()) {
+                // re[ix_(b)] = dot(linalg.inv(kbb), -bl[ix_(b)] - dot(kab.transpose(), re[ix_(a)] ) )
+                
+                rloc = math.subset(rloc, math.index(stiffrec.b), 
+                            math.multiply(math.inv(stiffrec.kbb), 
+                                          math.multiply(math.add(math.subset(bl,math.index(stiffrec.b)),
+                                                                 math.squeeze(math.multiply(math.transpose(stiffrec.kab),
+                                                                                            math.subset(rloc, math.index(stiffrec.a))))),
+                                                        -1.0)));
+            }
+        } 
+        return rloc;
+    }
+
+    /**
+     * Computes nseg+1 values of local deflections
+     * @param lc reference to load case
+     * @param nseg deflection will be evaluated in nseg+1 points generated along the element 
+     */
+    computeLocalEigenMode(lc:LoadCase, ntheig: number, nseg:number) {
+        let rl = this.computeEndDisplacementEigenMode(lc, ntheig);
+        let u:number[] = [];
+        let w:number[] = [];
+        let geo = this.computeGeo();
+        let l = geo.l;
+
+        for (let iseg = 0; iseg<= nseg; iseg++) {
+            let xl=iseg/nseg; // [0,1]
+            // components from end displacements
+            let wl = (1.0-3.0*xl*xl+2.0*xl*xl*xl)*rl.get([1])+l*(-xl+2.0*xl*xl-xl*xl*xl)*rl.get([2])+(3.0*xl*xl-2.0*xl*xl*xl)*rl.get([4])+l*(xl*xl-xl*xl*xl)*rl.get([5]);
+            let ul = (1.-xl)*rl.get([0])+xl*rl.get([3]);
+            u.push(ul);
+            w.push(wl);
+        }
+        return {u: u, w: w};
+    }
+
+    /**
+     * Computes nseg+1 values of global deflections
+     * @param lc reference to load case
+     * @param ntheig n-th eigen value
+     * @param nseg deflection will be evaluated in nseg+1 points generated along the element 
+     */
+     computeGlobalEigenMode(lc:LoadCase, ntheig: number, nseg:number) {
+        let ld = this.computeLocalEigenMode(lc, ntheig, nseg);
         let geo = this.computeGeo();
         var c:number = geo.dx/geo.l;
         var s:number = geo.dz/geo.l;
@@ -1212,6 +1283,9 @@ export class LoadCase {
     r: math.Matrix | number[] | number[][];
     // vector of reactions
     R: math.Matrix | number[] | number[][];
+    // omegas
+    eigenNumbers: number[] = [];
+    eigenVectors: math.Matrix[] = [];
 
     /**
      * Creates a new loadcase
@@ -1253,305 +1327,6 @@ export class LoadCase {
     }
 }
 
-/**
- * Class representing linear elastic solver.
- */
-export class Solver {
-    domain:Domain;
-    neq: number; // number of unknowns
-    pneq: number; // number of prescribed unknowns
-    k: any;
-    m: any;
-    f: math.Matrix | number[] | number[][];
-    loadCases = new Array<LoadCase>();
-    codeNumberGenerated:boolean = false;
-
-    constructor () {
-        this.domain = new Domain(this);
-        this.loadCases.push(new LoadCase("DefaultLC", this.domain));
-    }
-    // code numbers assigned to supported as well as free DOFs
-    nodeCodeNumbers = new Map<number, {[code:number] : number}>();
-
-    getNodeLocationArray (num:number, dofs:Array<DofID>) {
-        var ans = [];
-        //console.log("Node:", num, "Locatioan Array dofs:", dofs);
-        for (let i of dofs) {
-            //console.log(num, i, this.nodeCodeNumbers.get(num)[i]);
-            ans = ans.concat(this.nodeCodeNumbers.get(num)[i]);
-        }
-        return ans;
-    }
-    getNodeDofIDs (num:number) : number[] {
-        let ans:number[]=[];
-        for (let d in this.nodeCodeNumbers.get(num)) {
-            ans.push(parseInt(d));
-        }
-        return ans;
-    }
-
-    generateCodeNumbers () {
-        var nodalDofs = new Map<number, Set<DofID>>();
-        for (let [key, node] of this.domain.nodes) {
-            this.nodeCodeNumbers.set(key, {});
-            nodalDofs.set(key, new Set<DofID>());
-        }
-        // compile list of DOFs needed in nodes from element requirements
-        for (let [ie, elem] of this.domain.elements) {
-            for (let en of elem.nodes) {
-                var dofs = elem.getNodeDofs(en);
-                for (let d of dofs){
-                    if (nodalDofs.has(en)) {
-                        nodalDofs.get(en).add(d);
-                    } else {
-                        console.log(en, en in nodalDofs, nodalDofs.get(en));
-                        throw new RangeError ("Node label "+en+" does not exists");
-                    }
-                }
-            }
-        }
-        //console.log(nodalDofs);
-        // compute number of unknown and prescribed DOFs
-        this.neq = 0;
-        this.pneq = 0;
-        for (let [num, node] of this.domain.nodes) {
-            for (let d of nodalDofs.get(num)) {
-                if (node.bcs.has(d)) {
-                    this.pneq++;
-                } else {
-                    this.neq++;
-                }
-            }
-        } 
-        
-        // assign equation (code) numbers to dofs
-        var eq:number = 0;
-        var peq: number = this.neq;
-        for (let [num, node] of this.domain.nodes) {
-            for (let d of nodalDofs.get(num)){
-                if (node.bcs.has(d)) {
-                    this.nodeCodeNumbers.get(num)[d]=peq++;
-                } else {
-                    this.nodeCodeNumbers.get(num)[d]=eq++;
-                }
-            }
-        }
-        //console.log("Number of equations: ",this.neq, ", number of prescribved: ", this.pneq);
-        //console.log(this.nodeCodeNumbers);
-        this.codeNumberGenerated = true;
-    }
-
-    assembleVecLC (f:any, fe:number[], loc:number[], lc:number) {
-        for (let i=0; i<loc.length; i++) {
-            f.set([loc[i],lc], f.get([loc[i],lc])+fe[i]);      
-        }
-    }
-    assembleVec (f:any, fe:number[], loc:number[]) {
-        for (let i=0; i<loc.length; i++) {
-            f.set([loc[i]], f.get([loc[i]]) +fe[i]);      
-        }
-    }
-
-    
-    assemble () {
-        this.k = math.zeros(this.neq+this.pneq, this.neq+this.pneq); 
-        
-        // assemble stifness matrix
-        for (let [num, el] of this.domain.elements) {
-            let estiff = el.computeStiffness();
-            let loc = el.getLocationArray() as [];
-            let ndofs = math.size(loc)[0];
-            //console.log("assembling element ", num);
-            //console.log("loc[",math.size(loc)[0],"]:", loc );
-            //console.log("Element ", num, "loc:", loc, "k:", estiff);
-
-            if (true) {    
-            for (let r = 0; r< ndofs; r++) {
-                let rc = loc[r];
-                for (let c = 0; c< ndofs; c++) {
-                    let cc = loc[c];
-                    this.k.set([rc,cc],  this.k.get([rc,cc])+estiff.get([r,c]));
-                }
-            }
-            } else {
-            //console.log("El: ", num, "loc:", loc, "ke:", el.computeStiffness());
-            let acc = math.add(math.subset(this.k, math.index(loc,loc)), el.computeStiffness());
-            //console.log("add:", acc);
-            //console.log("indx:", math.index(loc,loc));
-            
-            math.subset(this.k, math.index(loc, loc), acc);
-            }
-        }
-        //console.log("k=", this.k);
-
-        this.f = math.zeros(this.neq+this.pneq, this.loadCases.length);
-        for (let i=0; i< this.loadCases.length; i++) {
-            this.loadCases[i].r = math.zeros(this.neq+this.pneq);
-            let lc = this.loadCases[i];
-            for (let load of lc.nodalLoadList) {
-                // assemble load
-                //math.subset(this.f, math.index(load.getLocationArray()), load.getLoadVector());
-                this.assembleVecLC (this.f, load.getLoadVector(), load.getLocationArray(),i);
-                //console.log("nodal load:", load.getLoadVector(), "codes:", load.getLocationArray(), "result:", this.f);
-            }
-
-            for (let load of lc.elementLoadList) {
-                // assemble load
-                //math.subset(this.f, math.index(load.getLocationArray()), load.getLoadVector());
-                //console.log("element load:", load.getLoadVector(), "codes:", load.getLocationArray());
-                this.assembleVecLC (this.f, load.getLoadVector(), load.getLocationArray(),i);
-            }
-
-            // assemble prescribed displacement vector
-            for (let dbc of lc.prescribedBC) {
-                this.assembleVec (lc.r, dbc.getNodePrescribedDisplacementVector(), dbc.getLocationArray());
-            }
-
-        }
-
-    }
-
-    solve() {
-        const startime = new Date();
-        if (!this.codeNumberGenerated) {
-            this.generateCodeNumbers();
-        }
-
-        this.assemble();
-        if (this.neq > 0) {
-            let unknowns = math.range(0, this.neq);
-            let prescribed = math.range(this.neq, this.neq+this.pneq);
-            // solve linear system 
-            //console.log("unknowns=", unknowns);
-            //console.log("kuu=", math.subset(this.k, math.index(unknowns, unknowns)));
-            //console.log("fu=", math.subset(this.f, math.index(unknowns, math.range(0, this.loadCases.length))));
-
-        
-            for (let lc=0; lc<this.loadCases.length; lc++) {
-                let rp = math.subset(this.loadCases[lc].r, math.index(prescribed));
-                let fp = math.multiply (math.subset(this.k, math.index(unknowns, prescribed)), rp) as math.Matrix;
-                //console.log('fp', fp);
-                //console.log('fsubset', math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))));
-                let b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))),fp) as math.Matrix;
-                let ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)),b));
-                                     
-                //this.loadCases[lc].r = math.zeros(this.neq+this.pneq);
-                this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
-
-                // evaluate reactions
-                this.loadCases[lc].R = math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru).toArray();
-                // add contributions from elements
-                this.loadCases[lc].R = math.subtract (this.loadCases[lc].R, math.squeeze(math.subset(this.f, math.index(prescribed,[lc])))) as math.Matrix;
-                //console.log("lc:", lc, " r:", this.loadCases[lc].r, " R:", this.loadCases[lc].R);
-        
-            }
-        }
-        const endtime = new Date();
-        let timediff = (endtime.getTime()-startime.getTime())/1000;
-        console.log("Solution took ", Math.round(timediff*100)/100, " [sec]");
-    }
-
-    assembleDyn () {
-        this.k = math.zeros(this.neq+this.pneq, this.neq+this.pneq);
-        this.m = math.zeros(this.neq+this.pneq, this.neq+this.pneq);
-
-        this.loadCases[0].r = math.zeros(this.neq+this.pneq);
-        
-        // assemble stifness matrix
-        for (let [num, el] of this.domain.elements) {
-            let estiff = el.computeStiffness();
-            let emass = el.computeMassMatrix();
-            let loc = el.getLocationArray() as [];
-            let ndofs = math.size(loc)[0];
-  
-            for (let r = 0; r< ndofs; r++) {
-                let rc = loc[r];
-                for (let c = 0; c< ndofs; c++) {
-                    let cc = loc[c];
-                    this.k.set([rc,cc],  this.k.get([rc,cc])+estiff.get([r,c]));
-                    this.m.set([rc,cc],  this.m.get([rc,cc])+emass.get([r,c]));
-                }
-            }
-        }
-    }
-    
-    solveDyn() {
-        const startime = new Date();
-        if (!this.codeNumberGenerated) {
-            this.generateCodeNumbers();
-        }
-
-        let unknowns = math.range(0, this.neq);
-        this.assembleDyn();
-
-        const kk = math.subset((this.k), math.index(unknowns, unknowns)) as math.Matrix;
-        const mm = math.subset((this.m), math.index(unknowns, unknowns)) as math.Matrix;
-        const mkinv = math.multiply(math.inv(kk), mm);
-
-        let omegas = [];
-        let vectors = [];
-
-
-        for(let i =0; i < this.neq; i++) {
-            //console.log("hledam f " + i)
-            let tol = 1e-6;
-            let rho = 0;
-            let newrho = 999;
-
-            // first one
-            //let x = math.zeros(this.neq, 1) as math.Matrix;
-            //x.set([this.neq-1, 0], 1.0);
-            //console.log(x)
-            let x = math.ones(this.neq) as math.Matrix;
-            
-            while(Math.abs(newrho-rho)/newrho > tol) {
-                rho = newrho;
-
-                const newx =  math.squeeze(math.multiply(mkinv, x)) as math.Matrix;
-                const divisor = (math.multiply(math.multiply(math.transpose(newx), mm),newx) as math.Matrix) as unknown as number;
-                newrho = (math.multiply(math.multiply(math.transpose(newx), mm),x) as math.Matrix) as unknown as number / divisor;
-                
-                // normovani
-                x = math.divide(newx, Math.sqrt(divisor)) as math.Matrix;
-
-                let dx = math.zeros(this.neq) as math.Matrix;
-                for(let j =0; j < omegas.length; j++) {
-                    const c = math.multiply(math.multiply(math.transpose(vectors[j]), mm), x) as number;
-                    dx = math.add(dx, math.multiply(c, vectors[j])) as math.Matrix;
-                }
-                x = math.subtract(x, dx) as math.Matrix;
-            }
-
-            console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho)/(2*Math.PI)}`)
-            x =math.squeeze(x)
-            
-            omegas.push(Math.sqrt(newrho));
-            vectors.push(x);
-
-            // Solved
-            if(i == 0)
-               this.loadCases[0].r = math.subset(this.loadCases[0].r, math.index(math.range(0, this.neq)), x);
-        }
-
-        // test determinant
-        //console.log(math.multiply(math.subtract(kk, math.multiply(newrho, mm) as math.Matrix), x));
-        //console.log(math.det(math.subtract(kk, math.multiply(newrho, mm) as math.Matrix) as math.Matrix));
-
-        // stejny vysledek, spatne matice M nebo K???
-
-        //console.log(math.eigs(math.multiply(math.inv(mm), kk)));
-
-        //console.log(math.subset((this.k), math.index(unknowns, unknowns)))
-        //console.log(this.m)
-        
-        //console.log(math.det(math.subset((this.m), math.index(unknowns, unknowns))))
-        //console.log(math.subset(math.multiply(math.inv(this.m),(this.k)), math.index(unknowns, unknowns)))
-        //const eigs = math.eigs(math.subset(math.multiply(math.inv(this.m),(this.k)), math.index(unknowns, unknowns)));
-        
-        const endtime = new Date();
-        let timediff = (endtime.getTime()-startime.getTime())/1000;
-        console.log("Solution took ", Math.round(timediff*100)/100, " [sec]");
-    }
-}
-
-
+export * from  './Solver';
+export * from  './EigenValueDynamicSolver';
+export * from  './LinearStaticSolver';

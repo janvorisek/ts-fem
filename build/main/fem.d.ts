@@ -1,4 +1,5 @@
 import { MathArray } from 'mathjs';
+import { Solver } from './Solver';
 export declare enum DofID {
     Dx = 0,
     Dy = 1,
@@ -161,6 +162,15 @@ export declare class Beam2D extends Element {
         u: any[];
         w: any[];
     };
+    computeEndDisplacementEigenMode(lc: LoadCase, ntheig: number): import("mathjs").Matrix;
+    computeLocalEigenMode(lc: LoadCase, ntheig: number, nseg: number): {
+        u: number[];
+        w: number[];
+    };
+    computeGlobalEigenMode(lc: LoadCase, ntheig: number, nseg: number): {
+        u: any[];
+        w: any[];
+    };
     computeNormalForce(lc: LoadCase, nseg: number): {
         x: any[];
         N: any[];
@@ -258,33 +268,14 @@ export declare class LoadCase {
     prescribedBC: PrescribedDisplacement[];
     r: math.Matrix | number[] | number[][];
     R: math.Matrix | number[] | number[][];
+    eigenNumbers: number[];
+    eigenVectors: math.Matrix[];
     constructor(label: string, domain: Domain);
     getElementLoadsOnElement(e: number): Array<BeamElementLoad>;
     createNodalLoad(node: number, values?: EnumDictionary<DofID, number>): NodalLoad;
     createBeamElementUniformEdgeLoad(elem: number, values: number[], lcs: boolean): BeamElementUniformEdgeLoad;
     createPrescribedDisplacement(target: number, values: EnumDictionary<DofID, number>): PrescribedDisplacement;
 }
-export declare class Solver {
-    domain: Domain;
-    neq: number;
-    pneq: number;
-    k: any;
-    m: any;
-    f: math.Matrix | number[] | number[][];
-    loadCases: LoadCase[];
-    codeNumberGenerated: boolean;
-    constructor();
-    nodeCodeNumbers: Map<number, {
-        [code: number]: number;
-    }>;
-    getNodeLocationArray(num: number, dofs: Array<DofID>): any[];
-    getNodeDofIDs(num: number): number[];
-    generateCodeNumbers(): void;
-    assembleVecLC(f: any, fe: number[], loc: number[], lc: number): void;
-    assembleVec(f: any, fe: number[], loc: number[]): void;
-    assemble(): void;
-    solve(): void;
-    assembleDyn(): void;
-    solveDyn(): void;
-}
-export {};
+export * from './Solver';
+export * from './EigenValueDynamicSolver';
+export * from './LinearStaticSolver';
