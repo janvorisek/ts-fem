@@ -668,6 +668,17 @@ export class Beam2D extends Element {
             [0, 54, -13*l, 0, 156, 22*l],
             [0, 13*l, -3*l*l, 0, 22*l, 4*l*l]
         ]))
+
+
+        /*const alpha = 1/78;
+        return math.multiply(mat.d*cs.a*l, math.matrix([
+            [1/2, 0, 0, 0, 0, 0],
+            [0, 1/2, 0, 0, 0, 0],
+            [0, 0, alpha*l2, 0, 0, 0],
+            [0, 0, 0, 1/2, 0, 0],
+            [0, 0, 0, 0, 1/2, 0],
+            [0, 0, 0, 0, 0, alpha*l2]
+        ]))*/
     }
 
     /**
