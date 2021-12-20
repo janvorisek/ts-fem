@@ -218,13 +218,22 @@ export class Node {
             this.updateLcs (params.lcs);
         }
     }
+
     getLocationArray (dofs:Array<DofID>) {
         return this.domain.solver.getNodeLocationArray(this.label, dofs);
     }
+
     getUnknowns (lc:LoadCase, dofs:Array<DofID>) {
         let cn = this.getLocationArray(dofs);
         return math.subset(lc.r, math.index(cn));
     }
+
+    getEigenValueUnknowns(lc:LoadCase, dofs:Array<DofID>, ev: number) {
+        let cn = this.getLocationArray(dofs);
+
+        return math.subset(lc.eigenVectors[ev], math.index(cn));
+    }
+
     /**
      * Returns receiver transformation matrix (from nodal to global c.s., ie. rg=t*r_n)
      * @param dofs dofs mask to consider

@@ -99,6 +99,10 @@ export class Node {
         let cn = this.getLocationArray(dofs);
         return math.subset(lc.r, math.index(cn));
     }
+    getEigenValueUnknowns(lc, dofs, ev) {
+        let cn = this.getLocationArray(dofs);
+        return math.subset(lc.eigenVectors[ev], math.index(cn));
+    }
     getTransformationMtrx(dofs) {
         let size = dofs.length;
         if (this.lcs == undefined) {

@@ -73,6 +73,7 @@ export declare class Node {
     }): void;
     getLocationArray(dofs: Array<DofID>): any[];
     getUnknowns(lc: LoadCase, dofs: Array<DofID>): number[] | number[][] | import("mathjs").Matrix;
+    getEigenValueUnknowns(lc: LoadCase, dofs: Array<DofID>, ev: number): import("mathjs").Matrix;
     getTransformationMtrx(dofs: Array<DofID>): number | number[] | number[][] | import("mathjs").Matrix;
     updateLcs(lcs?: {
         locx: number[];
