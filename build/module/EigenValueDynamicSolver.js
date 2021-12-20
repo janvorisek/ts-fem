@@ -57,12 +57,6 @@ export class EigenValueDynamicSolver extends Solver {
                 dx = math.add(dx, math.multiply(c, evs[j]));
             }
             x = math.subtract(x, dx);
-            x.set([0], 1.5772135732480559);
-            x.set([1], 2.047126243079172e-8);
-            x.set([2], -0.000019010897757014402);
-            x.set([3], 1.5773875149616394);
-            x.set([4], -3.098147895542957e-8);
-            x.set([5], 1.5775614488843603);
             while (Math.abs(newrho - rho) / newrho > tol && nits < 100) {
                 rho = newrho;
                 const newx = math.squeeze(math.multiply(mkinv, x));
