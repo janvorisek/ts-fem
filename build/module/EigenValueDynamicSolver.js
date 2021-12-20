@@ -57,7 +57,7 @@ export class EigenValueDynamicSolver extends Solver {
                 dx = math.add(dx, math.multiply(c, evs[j]));
             }
             x = math.subtract(x, dx);
-            while (Math.abs(newrho - rho) / newrho > tol && nits < 100) {
+            while ((Math.abs(newrho - rho) / newrho > tol && nits < 100) || nits < 3) {
                 rho = newrho;
                 const newx = math.squeeze(math.multiply(mkinv, x));
                 const divisor = math.multiply(math.multiply(math.transpose(newx), mm), newx);
@@ -81,11 +81,16 @@ export class EigenValueDynamicSolver extends Solver {
         for (let i of this.loadCases[0].eigenNumbers) {
             console.log(`omega=${Math.sqrt(i)}, f=${Math.sqrt(i) / (2 * Math.PI)}`);
         }
+        const indices = Array.from(this.loadCases[0].eigenNumbers.keys());
+        indices.sort((a, b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b]);
+        this.loadCases[0].eigenNumbers = indices.map(i => this.loadCases[0].eigenNumbers[i]),
+            this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i]);
         const maxOmega = math.max(this.loadCases[0].eigenNumbers);
         const ldl = luqr.luqr.decomposeLDL(math.subtract(kk, math.multiply(maxOmega, mm)).toArray());
         var nneg = ldl.d.filter(function (e) {
             return e < 0.0;
         }).length;
+        console.log('Sturm control sequence: ' + nneg);
         const endtime = new Date();
         let timediff = (endtime.getTime() - startime.getTime()) / 1000;
         console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");

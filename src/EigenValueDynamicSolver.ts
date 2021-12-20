@@ -78,7 +78,7 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             let dx = math.zeros(this.neq) as math.Matrix;
             for(let j =0; j < evs.length; j++) {
                 const c = math.multiply(math.multiply(math.transpose(evs[j]), mm), x) as unknown as number;
-                dx = math.add(dx, math.multiply(c, evs[j])) as math.Matrix;
+                dx = math.add(dx, math.multiply(c, evs[j])) as math.Matrix ;
             }
             x = math.subtract(x, dx) as math.Matrix;
 
@@ -89,7 +89,7 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             x.set([4], -3.098147895542957e-8);
             x.set([5], 1.5775614488843603);*/
 
-            while(Math.abs(newrho-rho)/newrho > tol && nits < 100) {
+            while((Math.abs(newrho-rho)/newrho > tol && nits < 100) || nits < 3) {
                 rho = newrho;
 
                 const newx =  math.squeeze(math.multiply(mkinv, x)) as math.Matrix;
@@ -124,14 +124,14 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             this.loadCases[0].eigenVectors.push(fullvec);
         }
 
-        /*const indices = Array.from(this.loadCases[0].eigenNumbers.keys())
-        indices.sort( (a,b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b] )
-        this.loadCases[0].eigenNumbers = indices.map(i => this.loadCases[0].eigenNumbers[i]),
-        this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i])*/
-
         for(let i of this.loadCases[0].eigenNumbers) {
             console.log(`omega=${Math.sqrt(i)}, f=${Math.sqrt(i)/(2*Math.PI)}`)
         }
+
+        const indices = Array.from(this.loadCases[0].eigenNumbers.keys())
+        indices.sort( (a,b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b] )
+        this.loadCases[0].eigenNumbers = indices.map(i => this.loadCases[0].eigenNumbers[i]),
+        this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i])
 
         // Sturm sequence control
         const maxOmega = math.max(this.loadCases[0].eigenNumbers);
@@ -141,6 +141,8 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
         var nneg = ldl.d.filter(function(e) {
             return e < 0.0;
           }).length;
+
+          console.log('Sturm control sequence: ' + nneg)
 
         const endtime = new Date();
         let timediff = (endtime.getTime()-startime.getTime())/1000;
