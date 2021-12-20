@@ -5,7 +5,7 @@
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bpatzak/fem.ts"
+    "url": "https://github.com/janvorisek/ts-fem"
   },
   "main": "build/main/fem.js",
   "typings": "build/main/fem.d.ts",
@@ -20,8 +20,8 @@
   "dependencies": {
     "canvas": "^2.6.1",
     "chai": "^4.2.0",
-    "mathjs": "^7.1.0",
-    "@types/mathjs": "^6.0.5",
+    "luqr": "^0.3.0",
+    "mathjs": "^9.5.1",
     "mocha": "^8.1.1",
     "typescript": "^4.0.2"
   },

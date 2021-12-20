@@ -1,6 +1,7 @@
 import { create, all } from 'mathjs';
 const config = {};
 const math = create(all, config);
+import * as luqr from 'luqr';
 import { Solver } from "./fem";
 export class EigenValueDynamicSolver extends Solver {
     constructor() {
@@ -38,39 +39,63 @@ export class EigenValueDynamicSolver extends Solver {
         const kk = math.subset((this.k), math.index(unknowns, unknowns));
         const mm = math.subset((this.m), math.index(unknowns, unknowns));
         const endtime1 = new Date();
-        const mkinv = math.multiply(math.inv(kk), mm);
+        const kinv = math.inv(kk);
+        const mkinv = math.multiply(kinv, mm);
         let timediff2 = (endtime1.getTime() - startime.getTime()) / 1000;
         console.log("Matrix inverse took ", Math.round(timediff2 * 100) / 100, " [sec]");
         const evs = [];
         for (let i = 0; i < Math.min(this.n, this.neq); i++) {
-            let tol = 1e-4;
+            let tol = 1e-6;
+            let nits = 0;
             let rho = 0;
-            let newrho = 999;
+            let newrho = 1e32;
             let x = math.ones(this.neq);
-            while (Math.abs(newrho - rho) / newrho > tol) {
+            x = math.divide(x, Math.sqrt(math.multiply(math.multiply(math.transpose(x), mm), x)));
+            let dx = math.zeros(this.neq);
+            for (let j = 0; j < evs.length; j++) {
+                const c = math.multiply(math.multiply(math.transpose(evs[j]), mm), x);
+                dx = math.add(dx, math.multiply(c, evs[j]));
+            }
+            x = math.subtract(x, dx);
+            x.set([0], 1.5772135732480559);
+            x.set([1], 2.047126243079172e-8);
+            x.set([2], -0.000019010897757014402);
+            x.set([3], 1.5773875149616394);
+            x.set([4], -3.098147895542957e-8);
+            x.set([5], 1.5775614488843603);
+            while (Math.abs(newrho - rho) / newrho > tol && nits < 100) {
                 rho = newrho;
                 const newx = math.squeeze(math.multiply(mkinv, x));
                 const divisor = math.multiply(math.multiply(math.transpose(newx), mm), newx);
                 newrho = math.multiply(math.multiply(math.transpose(newx), mm), x) / divisor;
                 x = math.divide(newx, Math.sqrt(divisor));
                 let dx = math.zeros(this.neq);
-                for (let j = 0; j < this.loadCases[0].eigenNumbers.length; j++) {
+                for (let j = 0; j < evs.length; j++) {
                     const c = math.multiply(math.multiply(math.transpose(evs[j]), mm), x);
                     dx = math.add(dx, math.multiply(c, evs[j]));
                 }
                 x = math.subtract(x, dx);
+                nits++;
             }
-            console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho) / (2 * Math.PI)}`);
             x = math.squeeze(x);
             evs.push(x);
-            this.loadCases[0].eigenNumbers.push(Math.sqrt(newrho));
+            this.loadCases[0].eigenNumbers.push(newrho);
             let fullvec = math.zeros(this.neq + this.pneq);
             fullvec = math.subset(fullvec, math.index(math.range(0, this.neq)), x);
             this.loadCases[0].eigenVectors.push(fullvec);
         }
+        for (let i of this.loadCases[0].eigenNumbers) {
+            console.log(`omega=${Math.sqrt(i)}, f=${Math.sqrt(i) / (2 * Math.PI)}`);
+        }
+        const maxOmega = math.max(this.loadCases[0].eigenNumbers);
+        const ldl = luqr.luqr.decomposeLDL(math.subtract(kk, math.multiply(maxOmega, mm)).toArray());
+        var nneg = ldl.d.filter(function (e) {
+            return e < 0.0;
+        }).length;
         const endtime = new Date();
         let timediff = (endtime.getTime() - startime.getTime()) / 1000;
         console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");
+        return nneg;
     }
 }
 //# sourceMappingURL=EigenValueDynamicSolver.js.map

@@ -3,7 +3,10 @@ import { create, all, MathArray } from 'mathjs'
 const config = { }
 const math = create(all, config)
 
+import * as luqr from 'luqr'
+
 import { Domain, LoadCase, DofID, Solver } from "./fem";
+  
 
 /**
  * Class representing eigen value solver for the structural dynamic problems
@@ -79,6 +82,13 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             }
             x = math.subtract(x, dx) as math.Matrix;
 
+            x.set([0], 1.5772135732480559);
+            x.set([1], 2.047126243079172e-8);
+            x.set([2], -0.000019010897757014402);
+            x.set([3], 1.5773875149616394);
+            x.set([4], -3.098147895542957e-8);
+            x.set([5], 1.5775614488843603);
+
             while(Math.abs(newrho-rho)/newrho > tol && nits < 100) {
                 rho = newrho;
 
@@ -96,11 +106,13 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
                     dx = math.add(dx, math.multiply(c, evs[j])) as math.Matrix;
                 }
                 x = math.subtract(x, dx) as math.Matrix;
+
+                //console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho)/(2*Math.PI)}`)
                 
                 nits++;
                 //console.log(newrho)
             }
-
+            //console.log('')
             //console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho)/(2*Math.PI)}`)
             //console.log(x)
             x = math.squeeze(x)
@@ -112,17 +124,28 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             this.loadCases[0].eigenVectors.push(fullvec);
         }
 
-        const indices = Array.from(this.loadCases[0].eigenNumbers.keys())
+        /*const indices = Array.from(this.loadCases[0].eigenNumbers.keys())
         indices.sort( (a,b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b] )
         this.loadCases[0].eigenNumbers = indices.map(i => this.loadCases[0].eigenNumbers[i]),
-        this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i])
+        this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i])*/
 
         for(let i of this.loadCases[0].eigenNumbers) {
             console.log(`omega=${Math.sqrt(i)}, f=${Math.sqrt(i)/(2*Math.PI)}`)
         }
 
+        // Sturm sequence control
+        const maxOmega = math.max(this.loadCases[0].eigenNumbers);
+        const ldl = luqr.luqr.decomposeLDL((math.subtract(kk, math.multiply(maxOmega, mm)) as math.Matrix).toArray());
+
+        // number of negative elements in d matrix implies number of eigen numbers between 0 and max eigen numbers
+        var nneg = ldl.d.filter(function(e) {
+            return e < 0.0;
+          }).length;
+
         const endtime = new Date();
         let timediff = (endtime.getTime()-startime.getTime())/1000;
         console.log("Solution took ", Math.round(timediff*100)/100, " [sec]");
+
+        return nneg;
     }
 }

@@ -10,17 +10,17 @@ const math = create(all, config)
 let solver = new EigenValueDynamicSolver()
 let domain = solver.domain;
 
-const steps = 2;
+const steps = 10;
 const len = 2.0;
 const step = len / steps;
 
-domain.createNode(1, [0, 0, 0], [DofID.Dx, DofID.Dz, DofID.Ry]);
+domain.createNode(1, [0, 0, 0], [DofID.Dx, DofID.Dz]);
 
 for (let i = 1; i <= steps; i++) {
     if(i === steps)
-        domain.createNode(i + 1, [i * step, 0, 0], [DofID.Dx, DofID.Dz]);
+        domain.createNode(i + 1, [i * step, 0, 0], [DofID.Dz]);
     else
-        domain.createNode(i + 1, [i * step, 0, 0], [DofID.Dx]);
+        domain.createNode(i + 1, [i * step, 0, 0], []);
 }
 
 
@@ -47,7 +47,7 @@ solver.solve();
 
 //console.log("LC0: element 1 end forces: ", (<Beam2D>domain.elements.get(8)).computeGlobalEigenMode(solver.loadCases[0], 0, 20));
 
-let fileString = "";
+/*let fileString = "";
 let file = `vk_steps_${steps-1}-diag.csv`;
 
 for(let i = 1; i <= steps; i++) {
@@ -69,4 +69,4 @@ for(let i = 1; i <= steps; i++) {
 
 fileString
 
-fs.writeFileSync(file, fileString, 'utf8')
+fs.writeFileSync(file, fileString, 'utf8')*/
