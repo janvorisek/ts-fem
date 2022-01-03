@@ -30,6 +30,7 @@ export class EigenValueDynamicSolver extends Solver {
         }
     }
     solve() {
+        this.loadCases[0].solved = false;
         const startime = new Date();
         if (!this.codeNumberGenerated) {
             this.generateCodeNumbers();
@@ -44,12 +45,17 @@ export class EigenValueDynamicSolver extends Solver {
         let timediff2 = (endtime1.getTime() - startime.getTime()) / 1000;
         console.log("Matrix inverse took ", Math.round(timediff2 * 100) / 100, " [sec]");
         const evs = [];
-        for (let i = 0; i < Math.min(this.n, this.neq); i++) {
-            let tol = 1e-6;
+        const neigstofind = Math.min(Math.min(this.n * 2, this.n + 8), this.neq);
+        for (let i = 0; i < neigstofind; i++) {
+            let tol = 1e-12;
             let nits = 0;
             let rho = 0;
             let newrho = 1e32;
             let x = math.ones(this.neq);
+            if (i > 0) {
+                const max = evs[i - 1]._data.reduce((a, b, i) => Math.abs(a[0]) < Math.abs(b) ? [b, i] : a, [Number.MIN_VALUE, -1]);
+                x.set([max[1]], 0.0);
+            }
             x = math.divide(x, Math.sqrt(math.multiply(math.multiply(math.transpose(x), mm), x)));
             let dx = math.zeros(this.neq);
             for (let j = 0; j < evs.length; j++) {
@@ -60,12 +66,12 @@ export class EigenValueDynamicSolver extends Solver {
             while ((Math.abs(newrho - rho) / newrho > tol && nits < 100) || nits < 3) {
                 rho = newrho;
                 const newx = math.squeeze(math.multiply(mkinv, x));
-                const divisor = math.multiply(math.multiply(math.transpose(newx), mm), newx);
-                newrho = math.multiply(math.multiply(math.transpose(newx), mm), x) / divisor;
+                const divisor = math.dot(newx, math.multiply(mm, newx));
+                newrho = math.dot(newx, math.multiply(mm, x)) / divisor;
                 x = math.divide(newx, Math.sqrt(divisor));
                 let dx = math.zeros(this.neq);
                 for (let j = 0; j < evs.length; j++) {
-                    const c = math.multiply(math.multiply(math.transpose(evs[j]), mm), x);
+                    const c = math.dot(evs[j], math.multiply(mm, x));
                     dx = math.add(dx, math.multiply(c, evs[j]));
                 }
                 x = math.subtract(x, dx);
@@ -78,22 +84,29 @@ export class EigenValueDynamicSolver extends Solver {
             fullvec = math.subset(fullvec, math.index(math.range(0, this.neq)), x);
             this.loadCases[0].eigenVectors.push(fullvec);
         }
-        for (let i of this.loadCases[0].eigenNumbers) {
-            console.log(`omega=${Math.sqrt(i)}, f=${Math.sqrt(i) / (2 * Math.PI)}`);
-        }
         const indices = Array.from(this.loadCases[0].eigenNumbers.keys());
         indices.sort((a, b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b]);
         this.loadCases[0].eigenNumbers = indices.map(i => this.loadCases[0].eigenNumbers[i]),
             this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i]);
-        const maxOmega = math.max(this.loadCases[0].eigenNumbers);
+        for (let i of this.loadCases[0].eigenNumbers) {
+            console.log(`omega2=${i}, f=${Math.sqrt(i) / (2 * Math.PI)}`);
+        }
+        const nwantedeigs = Math.min(this.n, this.neq);
+        const maxOmega = this.loadCases[0].eigenNumbers[nwantedeigs - 1];
         const ldl = luqr.luqr.decomposeLDL(math.subtract(kk, math.multiply(maxOmega, mm)).toArray());
-        var nneg = ldl.d.filter(function (e) {
-            return e < 0.0;
-        }).length;
-        console.log('Sturm control sequence: ' + nneg);
+        if (ldl) {
+            var nneg = ldl.d.filter(function (e) {
+                return e < 1e-6;
+            }).length;
+            const missing = nneg - nwantedeigs + 1;
+            console.log('Sturm control sequence: ' + nneg + ', found ' + nwantedeigs + ' (' + neigstofind + '), missing ' + missing);
+        }
         const endtime = new Date();
         let timediff = (endtime.getTime() - startime.getTime()) / 1000;
         console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");
+        this.loadCases[0].solved = true;
+        if (!ldl)
+            return this.n;
         return nneg;
     }
 }

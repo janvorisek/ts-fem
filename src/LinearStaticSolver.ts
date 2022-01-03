@@ -84,6 +84,7 @@ import { Solver } from './fem';
 
         
             for (let lc=0; lc<this.loadCases.length; lc++) {
+                this.loadCases[lc].solved = false;
                 let rp = math.subset(this.loadCases[lc].r, math.index(prescribed));
                 let fp = math.multiply (math.subset(this.k, math.index(unknowns, prescribed)), rp) as math.Matrix;
                 //console.log('fp', fp);
@@ -99,7 +100,7 @@ import { Solver } from './fem';
                 // add contributions from elements
                 this.loadCases[lc].R = math.subtract (this.loadCases[lc].R, math.squeeze(math.subset(this.f, math.index(prescribed,[lc])))) as math.Matrix;
                 //console.log("lc:", lc, " r:", this.loadCases[lc].r, " R:", this.loadCases[lc].R);
-        
+                this.loadCases[lc].solved = true;
             }
         }
         const endtime = new Date();

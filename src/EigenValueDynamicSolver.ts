@@ -1,4 +1,4 @@
-import { create, all, MathArray } from 'mathjs'
+import { create, all, MathArray, eigs } from 'mathjs'
 
 const config = { }
 const math = create(all, config)
@@ -47,6 +47,8 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
     }
     
     solve() {
+        this.loadCases[0].solved = false;
+
         const startime = new Date();
         if (!this.codeNumberGenerated) {
             this.generateCodeNumbers();
@@ -65,20 +67,30 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
         console.log("Matrix inverse took ", Math.round(timediff2*100)/100, " [sec]");
 
         const evs = [];
+        const neigstofind = Math.min(Math.min(this.n * 2, this.n + 8), this.neq);
 
-        for(let i =0; i < Math.min(this.n, this.neq); i++) {
-            let tol = 1e-6;
+        for(let i =0; i < neigstofind; i++) {
+            let tol = 1e-12;
             let nits = 0;
             let rho = 0;
             let newrho = 1e32;
 
             let x = math.ones(this.neq) as math.Matrix;
+
+            if(i > 0) {
+                const max = evs[i-1]._data.reduce((a,b,i) => Math.abs(a[0]) < Math.abs(b) ? [b,i] : a, [Number.MIN_VALUE,-1])
+
+                x.set([max[1]], 0.0);
+            }
+
+            //normovani
             x = math.divide(x, Math.sqrt((math.multiply(math.multiply(math.transpose(x), mm),x) as math.Matrix) as unknown as number)) as math.Matrix;
+            
             // gramm schmidt
             let dx = math.zeros(this.neq) as math.Matrix;
             for(let j =0; j < evs.length; j++) {
                 const c = math.multiply(math.multiply(math.transpose(evs[j]), mm), x) as unknown as number;
-                dx = math.add(dx, math.multiply(c, evs[j])) as math.Matrix ;
+                dx = math.add(dx, math.multiply(c, evs[j])) as math.Matrix ;    
             }
             x = math.subtract(x, dx) as math.Matrix;
 
@@ -93,8 +105,8 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
                 rho = newrho;
 
                 const newx =  math.squeeze(math.multiply(mkinv, x)) as math.Matrix;
-                const divisor = (math.multiply(math.multiply(math.transpose(newx), mm),newx) as math.Matrix) as unknown as number;
-                newrho = (math.multiply(math.multiply(math.transpose(newx), mm),x) as math.Matrix) as unknown as number / divisor;
+                const divisor = math.dot(newx, math.multiply(mm,newx));
+                newrho = math.dot(newx, math.multiply(mm, x) as math.Matrix) / divisor;
                 
                 // normovani
                 x = math.divide(newx, Math.sqrt(divisor)) as math.Matrix;
@@ -102,16 +114,18 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
                 // gramm schmidt
                 let dx = math.zeros(this.neq) as math.Matrix;
                 for(let j =0; j < evs.length; j++) {
-                    const c = math.multiply(math.multiply(math.transpose(evs[j]), mm), x) as unknown as number;
+                    const c = math.dot(evs[j], math.multiply(mm, x));
                     dx = math.add(dx, math.multiply(c, evs[j])) as math.Matrix;
                 }
+                
                 x = math.subtract(x, dx) as math.Matrix;
 
                 //console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho)/(2*Math.PI)}`)
-                
+
                 nits++;
                 //console.log(newrho)
             }
+            //onsole.log('end')
             //console.log('')
             //console.log(`omega=${Math.sqrt(newrho)}, f=${Math.sqrt(newrho)/(2*Math.PI)}`)
             //console.log(x)
@@ -124,29 +138,47 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             this.loadCases[0].eigenVectors.push(fullvec);
         }
 
-        for(let i of this.loadCases[0].eigenNumbers) {
-            console.log(`omega=${Math.sqrt(i)}, f=${Math.sqrt(i)/(2*Math.PI)}`)
-        }
+        /*console.log('kontrola ortogonality');
+        for(let i =0; i < evs.length; i++) {
+            for(let j =i+1; j < evs.length; j++) {
+                const err = math.multiply(math.transpose(evs[i]), evs[j]) as unknown as number;
+                console.log(`${i}-${j} err=${err}`)
+            }
+        }*/
 
         const indices = Array.from(this.loadCases[0].eigenNumbers.keys())
         indices.sort( (a,b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b] )
         this.loadCases[0].eigenNumbers = indices.map(i => this.loadCases[0].eigenNumbers[i]),
         this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i])
 
+        for(let i of this.loadCases[0].eigenNumbers) {
+            console.log(`omega2=${i}, f=${Math.sqrt(i)/(2*Math.PI)}`)
+        }
+
         // Sturm sequence control
-        const maxOmega = math.max(this.loadCases[0].eigenNumbers);
+        const nwantedeigs = Math.min(this.n, this.neq);
+        const maxOmega = this.loadCases[0].eigenNumbers[nwantedeigs-1];
         const ldl = luqr.luqr.decomposeLDL((math.subtract(kk, math.multiply(maxOmega, mm)) as math.Matrix).toArray());
 
         // number of negative elements in d matrix implies number of eigen numbers between 0 and max eigen numbers
-        var nneg = ldl.d.filter(function(e) {
-            return e < 0.0;
-          }).length;
 
-          console.log('Sturm control sequence: ' + nneg)
+        if(ldl) {
+            var nneg = ldl.d.filter(function(e) {
+                return e < 1e-6;
+            }).length;
+
+            const missing = nneg - nwantedeigs + 1;
+            //console.log(ldl.d)
+            console.log('Sturm control sequence: ' + nneg + ', found ' + nwantedeigs + ' ('+neigstofind+'), missing ' + missing)
+        }
 
         const endtime = new Date();
         let timediff = (endtime.getTime()-startime.getTime())/1000;
         console.log("Solution took ", Math.round(timediff*100)/100, " [sec]");
+
+        this.loadCases[0].solved = true;
+
+        if(!ldl) return this.n;
 
         return nneg;
     }

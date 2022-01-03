@@ -1300,12 +1300,14 @@ export class LoadCase {
     elementLoadList = new Array<BeamElementUniformEdgeLoad>();
     prescribedBC = new Array<PrescribedDisplacement>();
     // solution vector 
-    r: math.Matrix | number[] | number[][];
+    r: math.Matrix | number[] | number[][] = math.zeros(0);
     // vector of reactions
-    R: math.Matrix | number[] | number[][];
+    R: math.Matrix | number[] | number[][] = math.zeros(0);
     // omegas
     eigenNumbers: number[] = [];
     eigenVectors: math.Matrix[] = [];
+
+    solved = false;
 
     /**
      * Creates a new loadcase
@@ -1319,7 +1321,7 @@ export class LoadCase {
      * Returns list of applied element loads on element with given number
      * param e element number
      */
-    getElementLoadsOnElement (e:number) : Array<BeamElementLoad> {
+    getElementLoadsOnElement     (e:number) : Array<BeamElementLoad> {
         let ans = [];
         for (let l of this.elementLoadList) {
             if (l.target == e) {

@@ -51,6 +51,7 @@ class LinearStaticSolver extends fem_1.Solver {
             let unknowns = math.range(0, this.neq);
             let prescribed = math.range(this.neq, this.neq + this.pneq);
             for (let lc = 0; lc < this.loadCases.length; lc++) {
+                this.loadCases[lc].solved = false;
                 let rp = math.subset(this.loadCases[lc].r, math.index(prescribed));
                 let fp = math.multiply(math.subset(this.k, math.index(unknowns, prescribed)), rp);
                 let b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))), fp);
@@ -58,6 +59,7 @@ class LinearStaticSolver extends fem_1.Solver {
                 this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
                 this.loadCases[lc].R = math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru).toArray();
                 this.loadCases[lc].R = math.subtract(this.loadCases[lc].R, math.squeeze(math.subset(this.f, math.index(prescribed, [lc]))));
+                this.loadCases[lc].solved = true;
             }
         }
         const endtime = new Date();

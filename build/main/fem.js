@@ -854,8 +854,11 @@ class LoadCase {
         this.nodalLoadList = new Array();
         this.elementLoadList = new Array();
         this.prescribedBC = new Array();
+        this.r = math.zeros(0);
+        this.R = math.zeros(0);
         this.eigenNumbers = [];
         this.eigenVectors = [];
+        this.solved = false;
         this.label = label;
         this.domain = domain;
     }

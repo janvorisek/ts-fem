@@ -271,6 +271,7 @@ export declare class LoadCase {
     R: math.Matrix | number[] | number[][];
     eigenNumbers: number[];
     eigenVectors: math.Matrix[];
+    solved: boolean;
     constructor(label: string, domain: Domain);
     getElementLoadsOnElement(e: number): Array<BeamElementLoad>;
     createNodalLoad(node: number, values?: EnumDictionary<DofID, number>): NodalLoad;
