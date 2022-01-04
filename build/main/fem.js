@@ -260,6 +260,7 @@ exports.Element = Element;
 class Beam2D extends Element {
     constructor(label, domain, nodes, mat, cs, hinges = [false, false]) {
         super(label, domain, nodes, mat, cs);
+        this.diagonalMassMatrix = false;
         this.hinges = hinges;
     }
     change2(params) {
@@ -409,13 +410,23 @@ class Beam2D extends Element {
         var l = geo.l;
         var l2 = l * l;
         var l3 = l2 * l;
-        return math.multiply(mat.d * cs.a * l / 420, math.matrix([
-            [140, 0, 0, 70, 0, 0],
-            [0, 156, -22 * l, 0, 54, 13 * l],
-            [0, -22 * l, 4 * l * l, 0, -13 * l, -3 * l * l],
-            [70, 0, 0, 140, 0, 0],
-            [0, 54, -13 * l, 0, 156, 22 * l],
-            [0, 13 * l, -3 * l * l, 0, 22 * l, 4 * l * l]
+        if (!this.diagonalMassMatrix)
+            return math.multiply(mat.d * cs.a * l / 420, math.matrix([
+                [140, 0, 0, 70, 0, 0],
+                [0, 156, -22 * l, 0, 54, 13 * l],
+                [0, -22 * l, 4 * l * l, 0, -13 * l, -3 * l * l],
+                [70, 0, 0, 140, 0, 0],
+                [0, 54, -13 * l, 0, 156, 22 * l],
+                [0, 13 * l, -3 * l * l, 0, 22 * l, 4 * l * l]
+            ]));
+        const alpha = 1 / 78;
+        return math.multiply(mat.d * cs.a * l, math.matrix([
+            [1 / 2, 0, 0, 0, 0, 0],
+            [0, 1 / 2, 0, 0, 0, 0],
+            [0, 0, alpha * l2, 0, 0, 0],
+            [0, 0, 0, 1 / 2, 0, 0],
+            [0, 0, 0, 0, 1 / 2, 0],
+            [0, 0, 0, 0, 0, alpha * l2]
         ]));
     }
     computeStiffness() {

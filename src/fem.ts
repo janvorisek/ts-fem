@@ -441,6 +441,8 @@ export class Element {
 export class Beam2D extends Element {
     hinges: [boolean, boolean]; // indicates element hinges
 
+    diagonalMassMatrix = false;
+
     /**
      * Constructor
      * @param label element label (num) 
@@ -669,17 +671,20 @@ export class Beam2D extends Element {
 
         return math.add(math.multiply((mat.d*cs.a*l)/((1+fi)*(1+fi)),M_CT), math.multiply(mat.d*cs.iy/((1+fi)*(1+fi)*l),M_CR));*/
 
-        return math.multiply(mat.d*cs.a*l/420, math.matrix([
-            [140, 0, 0, 70, 0, 0],
-            [0, 156, -22*l, 0, 54, 13*l],
-            [0, -22*l, 4*l*l, 0, -13*l, -3*l*l],
-            [70, 0, 0, 140, 0, 0],
-            [0, 54, -13*l, 0, 156, 22*l],
-            [0, 13*l, -3*l*l, 0, 22*l, 4*l*l]
-        ]))
+        // Consistent mass matrix
+        if(!this.diagonalMassMatrix)
+            return math.multiply(mat.d*cs.a*l/420, math.matrix([
+                [140, 0, 0, 70, 0, 0],
+                [0, 156, -22*l, 0, 54, 13*l],
+                [0, -22*l, 4*l*l, 0, -13*l, -3*l*l],
+                [70, 0, 0, 140, 0, 0],
+                [0, 54, -13*l, 0, 156, 22*l],
+                [0, 13*l, -3*l*l, 0, 22*l, 4*l*l]
+            ]))
 
 
-        /*const alpha = 1/78;
+        // Diagonal mass matrix
+        const alpha = 1/78;
         return math.multiply(mat.d*cs.a*l, math.matrix([
             [1/2, 0, 0, 0, 0, 0],
             [0, 1/2, 0, 0, 0, 0],
@@ -687,7 +692,7 @@ export class Beam2D extends Element {
             [0, 0, 0, 1/2, 0, 0],
             [0, 0, 0, 0, 1/2, 0],
             [0, 0, 0, 0, 0, alpha*l2]
-        ]))*/
+        ]))
     }
 
     /**
@@ -1321,7 +1326,7 @@ export class LoadCase {
      * Returns list of applied element loads on element with given number
      * param e element number
      */
-    getElementLoadsOnElement     (e:number) : Array<BeamElementLoad> {
+    getElementLoadsOnElement (e:number) : Array<BeamElementLoad> {
         let ans = [];
         for (let l of this.elementLoadList) {
             if (l.target == e) {

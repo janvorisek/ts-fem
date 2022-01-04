@@ -13,6 +13,7 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
  */
  export class EigenValueDynamicSolver extends Solver {
     n = 10;
+    tol = 1e-12;
     
     constructor() {
         super();
@@ -60,9 +61,10 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
         const kk = math.subset((this.k), math.index(unknowns, unknowns)) as math.Matrix;
         const mm = math.subset((this.m), math.index(unknowns, unknowns)) as math.Matrix;
 
-        const endtime1 = new Date();
         const kinv = math.inv(kk);
         const mkinv = math.multiply(kinv, mm);
+
+        const endtime1 = new Date();
         let timediff2 = (endtime1.getTime()-startime.getTime())/1000;
         console.log("Matrix inverse took ", Math.round(timediff2*100)/100, " [sec]");
 
@@ -70,7 +72,7 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
         const neigstofind = Math.min(Math.min(this.n * 2, this.n + 8), this.neq);
 
         for(let i =0; i < neigstofind; i++) {
-            let tol = 1e-12;
+            const startime2 = new Date();
             let nits = 0;
             let rho = 0;
             let newrho = 1e32;
@@ -101,7 +103,7 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             x.set([4], -3.098147895542957e-8);
             x.set([5], 1.5775614488843603);*/
 
-            while((Math.abs(newrho-rho)/newrho > tol && nits < 100) || nits < 3) {
+            while((Math.abs(newrho-rho)/newrho > this.tol && nits < 100) || nits < 3) {
                 rho = newrho;
 
                 const newx =  math.squeeze(math.multiply(mkinv, x)) as math.Matrix;
@@ -136,6 +138,10 @@ import { Domain, LoadCase, DofID, Solver } from "./fem";
             let fullvec = math.zeros(this.neq + this.pneq);
             fullvec = math.subset(fullvec, math.index(math.range(0, this.neq)), x) as math.Matrix;
             this.loadCases[0].eigenVectors.push(fullvec);
+
+            const endtime3 = new Date();
+            let timediff3 = (endtime3.getTime()-startime2.getTime())/1000;
+            console.log("Mode " + (i+1) + " took ", Math.round(timediff3*100)/100, " [sec]");
         }
 
         /*console.log('kontrola ortogonality');

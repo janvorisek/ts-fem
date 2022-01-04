@@ -10,6 +10,7 @@ class EigenValueDynamicSolver extends fem_1.Solver {
     constructor() {
         super();
         this.n = 10;
+        this.tol = 1e-12;
     }
     assemble() {
         this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
@@ -42,15 +43,15 @@ class EigenValueDynamicSolver extends fem_1.Solver {
         this.assemble();
         const kk = math.subset((this.k), math.index(unknowns, unknowns));
         const mm = math.subset((this.m), math.index(unknowns, unknowns));
-        const endtime1 = new Date();
         const kinv = math.inv(kk);
         const mkinv = math.multiply(kinv, mm);
+        const endtime1 = new Date();
         let timediff2 = (endtime1.getTime() - startime.getTime()) / 1000;
         console.log("Matrix inverse took ", Math.round(timediff2 * 100) / 100, " [sec]");
         const evs = [];
         const neigstofind = Math.min(Math.min(this.n * 2, this.n + 8), this.neq);
         for (let i = 0; i < neigstofind; i++) {
-            let tol = 1e-12;
+            const startime2 = new Date();
             let nits = 0;
             let rho = 0;
             let newrho = 1e32;
@@ -66,7 +67,7 @@ class EigenValueDynamicSolver extends fem_1.Solver {
                 dx = math.add(dx, math.multiply(c, evs[j]));
             }
             x = math.subtract(x, dx);
-            while ((Math.abs(newrho - rho) / newrho > tol && nits < 100) || nits < 3) {
+            while ((Math.abs(newrho - rho) / newrho > this.tol && nits < 100) || nits < 3) {
                 rho = newrho;
                 const newx = math.squeeze(math.multiply(mkinv, x));
                 const divisor = math.dot(newx, math.multiply(mm, newx));
@@ -86,6 +87,9 @@ class EigenValueDynamicSolver extends fem_1.Solver {
             let fullvec = math.zeros(this.neq + this.pneq);
             fullvec = math.subset(fullvec, math.index(math.range(0, this.neq)), x);
             this.loadCases[0].eigenVectors.push(fullvec);
+            const endtime3 = new Date();
+            let timediff3 = (endtime3.getTime() - startime2.getTime()) / 1000;
+            console.log("Mode " + (i + 1) + " took ", Math.round(timediff3 * 100) / 100, " [sec]");
         }
         const indices = Array.from(this.loadCases[0].eigenNumbers.keys());
         indices.sort((a, b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b]);

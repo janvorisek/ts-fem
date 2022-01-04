@@ -116,6 +116,7 @@ export declare class Element {
 }
 export declare class Beam2D extends Element {
     hinges: [boolean, boolean];
+    diagonalMassMatrix: boolean;
     constructor(label: number, domain: Domain, nodes: Array<number>, mat: number, cs: number, hinges?: [boolean, boolean]);
     change2(params: {
         label?: number;
