@@ -18,7 +18,6 @@
     "browser-build": "tsc && tsc -p tsconfig.browser.json"
   },
   "dependencies": {
-    "canvas": "^2.6.1",
     "chai": "^4.2.0",
     "luqr": "^0.3.0",
     "mathjs": "^9.5.1",
