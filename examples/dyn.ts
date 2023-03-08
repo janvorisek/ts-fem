@@ -10,15 +10,15 @@ const math = create(all, config)
 let solver = new EigenValueDynamicSolver()
 let domain = solver.domain;
 
-const steps = 10;
+const steps = 1;
 const len = 2.0;
 const step = len / steps;
 
-domain.createNode(1, [0, 0, 0], [DofID.Dx, DofID.Dz]);
+domain.createNode(1, [0, 0, 0], [DofID.Dx, DofID.Dz, DofID.Ry]);
 
 for (let i = 1; i <= steps; i++) {
     if(i === steps)
-        domain.createNode(i + 1, [i * step, 0, 0], [DofID.Dz]);
+        domain.createNode(i + 1, [i * step, 0, 0], []);
     else
         domain.createNode(i + 1, [i * step, 0, 0], []);
 }
