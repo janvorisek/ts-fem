@@ -1,13 +1,13 @@
-import { create, all } from 'mathjs';
+import { create, all } from "mathjs";
 const config = {};
 const math = create(all, config);
-import * as luqr from 'luqr';
+import * as luqr from "luqr";
 import { Solver } from "./fem";
 export class EigenValueDynamicSolver extends Solver {
+    n = 10;
+    tol = 1e-12;
     constructor() {
         super();
-        this.n = 10;
-        this.tol = 1e-12;
     }
     assemble() {
         this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
@@ -38,8 +38,8 @@ export class EigenValueDynamicSolver extends Solver {
         }
         let unknowns = math.range(0, this.neq);
         this.assemble();
-        const kk = math.subset((this.k), math.index(unknowns, unknowns));
-        const mm = math.subset((this.m), math.index(unknowns, unknowns));
+        const kk = math.subset(this.k, math.index(unknowns, unknowns));
+        const mm = math.subset(this.m, math.index(unknowns, unknowns));
         const kinv = math.inv(kk);
         const mkinv = math.multiply(kinv, mm);
         const endtime1 = new Date();
@@ -54,7 +54,7 @@ export class EigenValueDynamicSolver extends Solver {
             let newrho = 1e32;
             let x = math.ones(this.neq);
             if (i > 0) {
-                const max = evs[i - 1]._data.reduce((a, b, i) => Math.abs(a[0]) < Math.abs(b) ? [b, i] : a, [Number.MIN_VALUE, -1]);
+                const max = evs[i - 1]._data.reduce((a, b, i) => (Math.abs(a[0]) < Math.abs(b) ? [b, i] : a), [Number.MIN_VALUE, -1]);
                 x.set([max[1]], 0.0);
             }
             x = math.divide(x, Math.sqrt(math.multiply(math.multiply(math.transpose(x), mm), x)));
@@ -64,7 +64,8 @@ export class EigenValueDynamicSolver extends Solver {
                 dx = math.add(dx, math.multiply(c, evs[j]));
             }
             x = math.subtract(x, dx);
-            while ((Math.abs(newrho - rho) / newrho > this.tol && nits < 100) || nits < 3) {
+            while ((Math.abs(newrho - rho) / newrho > this.tol && nits < 100) ||
+                nits < 3) {
                 rho = newrho;
                 const newx = math.squeeze(math.multiply(mkinv, x));
                 const divisor = math.dot(newx, math.multiply(mm, newx));
@@ -90,8 +91,8 @@ export class EigenValueDynamicSolver extends Solver {
         }
         const indices = Array.from(this.loadCases[0].eigenNumbers.keys());
         indices.sort((a, b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b]);
-        this.loadCases[0].eigenNumbers = indices.map(i => this.loadCases[0].eigenNumbers[i]),
-            this.loadCases[0].eigenVectors = indices.map(i => this.loadCases[0].eigenVectors[i]);
+        (this.loadCases[0].eigenNumbers = indices.map((i) => this.loadCases[0].eigenNumbers[i])),
+            (this.loadCases[0].eigenVectors = indices.map((i) => this.loadCases[0].eigenVectors[i]));
         for (let i of this.loadCases[0].eigenNumbers) {
             console.log(`omega2=${i}, f=${Math.sqrt(i) / (2 * Math.PI)}`);
         }
@@ -103,7 +104,14 @@ export class EigenValueDynamicSolver extends Solver {
                 return e < 1e-6;
             }).length;
             const missing = nneg - nwantedeigs + 1;
-            console.log('Sturm control sequence: ' + nneg + ', found ' + nwantedeigs + ' (' + neigstofind + '), missing ' + missing);
+            console.log("Sturm control sequence: " +
+                nneg +
+                ", found " +
+                nwantedeigs +
+                " (" +
+                neigstofind +
+                "), missing " +
+                missing);
         }
         const endtime = new Date();
         let timediff = (endtime.getTime() - startime.getTime()) / 1000;

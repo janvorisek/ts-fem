@@ -1,12 +1,18 @@
 import { Domain, LoadCase } from "./fem";
 export class Solver {
+    domain;
+    neq;
+    pneq;
+    k;
+    m;
+    f;
+    loadCases = new Array();
+    codeNumberGenerated = false;
     constructor() {
-        this.loadCases = new Array();
-        this.codeNumberGenerated = false;
-        this.nodeCodeNumbers = new Map();
         this.domain = new Domain(this);
         this.loadCases.push(new LoadCase("DefaultLC", this.domain));
     }
+    nodeCodeNumbers = new Map();
     getNodeLocationArray(num, dofs) {
         var ans = [];
         for (let i of dofs) {

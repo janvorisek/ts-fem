@@ -5,7 +5,7 @@ export declare abstract class Solver {
     pneq: number;
     k: any;
     m: any;
-    f: math.Matrix | number[] | number[][];
+    f: math.MathCollection | number[] | number[][];
     loadCases: LoadCase[];
     codeNumberGenerated: boolean;
     constructor();

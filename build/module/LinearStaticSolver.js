@@ -1,7 +1,7 @@
-import { create, all } from 'mathjs';
+import { create, all } from "mathjs";
 const config = {};
 const math = create(all, config);
-import { Solver } from './fem';
+import { Solver } from "./fem";
 export class LinearStaticSolver extends Solver {
     assemble() {
         this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
@@ -54,7 +54,9 @@ export class LinearStaticSolver extends Solver {
                 let b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))), fp);
                 let ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)), b));
                 this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
-                this.loadCases[lc].R = math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru).toArray();
+                this.loadCases[lc].R = math
+                    .multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru)
+                    .toArray();
                 this.loadCases[lc].R = math.subtract(this.loadCases[lc].R, math.squeeze(math.subset(this.f, math.index(prescribed, [lc]))));
                 this.loadCases[lc].solved = true;
             }

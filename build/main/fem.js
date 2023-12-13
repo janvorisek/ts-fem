@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -13,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoadCase = exports.Domain = exports.PrescribedDisplacement = exports.BeamElementUniformEdgeLoad = exports.BeamElementLoad = exports.NodalLoad = exports.Load = exports.Beam2D = exports.Element = exports.Node = exports.CrossSection = exports.Material = exports.DofID = void 0;
 const mathjs_1 = require("mathjs");
 const config = {};
-const math = mathjs_1.create(mathjs_1.all, config);
+const math = (0, mathjs_1.create)(mathjs_1.all, config);
 var DofID;
 (function (DofID) {
     DofID[DofID["Dx"] = 0] = "Dx";
@@ -22,8 +26,7 @@ var DofID;
     DofID[DofID["Rx"] = 3] = "Rx";
     DofID[DofID["Ry"] = 4] = "Ry";
     DofID[DofID["Rz"] = 5] = "Rz";
-})(DofID = exports.DofID || (exports.DofID = {}));
-;
+})(DofID || (exports.DofID = DofID = {}));
 const MaterialParametersDefaults = { e: 1.0, g: 1.0, alpha: 1.0, d: 1.0 };
 class Material {
     constructor(label, params = {}) {
@@ -133,7 +136,7 @@ class Node {
                     case DofID.Dz:
                         for (let j = 0; j < size; j++) {
                             let id2 = dofs[j];
-                            if ((id2 == DofID.Dx) || (id2 == DofID.Dy) || (id2 == DofID.Dz)) {
+                            if (id2 == DofID.Dx || id2 == DofID.Dy || id2 == DofID.Dz) {
                                 ans[i][j] = this.lcs[id2][id];
                             }
                         }
@@ -143,7 +146,7 @@ class Node {
                     case DofID.Rz:
                         for (let j = 0; j < size; j++) {
                             let id2 = dofs[j];
-                            if ((id2 == DofID.Rx) || (id2 == DofID.Ry) || (id2 == DofID.Rz)) {
+                            if (id2 == DofID.Rx || id2 == DofID.Ry || id2 == DofID.Rz) {
                                 ans[i][j] = this.lcs[id2 - DofID.Rx][id - DofID.Rx];
                             }
                         }
@@ -160,20 +163,27 @@ class Node {
             this.lcs = undefined;
         }
         else {
-            this.lcs = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+            this.lcs = [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0],
+            ];
             let e1norm = math.norm(lcs.locx);
             let e2norm = math.norm(lcs.locy);
             for (let j = 0; j < 3; j++) {
                 this.lcs[0][j] = lcs.locx[j] / e1norm;
                 this.lcs[1][j] = lcs.locy[j] / e2norm;
             }
-            this.lcs[2][0] = this.lcs[0][1] * this.lcs[1][2] - this.lcs[0][2] * this.lcs[1][1];
-            this.lcs[2][1] = this.lcs[0][2] * this.lcs[1][0] - this.lcs[0][0] * this.lcs[1][2];
-            this.lcs[2][2] = this.lcs[0][0] * this.lcs[1][1] - this.lcs[0][1] * this.lcs[1][0];
+            this.lcs[2][0] =
+                this.lcs[0][1] * this.lcs[1][2] - this.lcs[0][2] * this.lcs[1][1];
+            this.lcs[2][1] =
+                this.lcs[0][2] * this.lcs[1][0] - this.lcs[0][0] * this.lcs[1][2];
+            this.lcs[2][2] =
+                this.lcs[0][0] * this.lcs[1][1] - this.lcs[0][1] * this.lcs[1][0];
         }
     }
     hasLcs() {
-        return (this.lcs != undefined);
+        return this.lcs != undefined;
     }
     getReactions(lc, inGlobalCS = false) {
         if (inGlobalCS && this.hasLcs()) {
@@ -182,14 +192,17 @@ class Node {
             let R = [];
             for (let i = 0; i < sdofs.length; i++) {
                 if (this.bcs.has(sdofs[i])) {
-                    R.push(math.subset(lc.R, math.index([cn[i] - this.domain.solver.neq])));
+                    R.push((math.subset(lc.R, math.index([cn[i] - this.domain.solver.neq]))));
                 }
                 else {
                     R.push(0.0);
                 }
             }
             let t = this.getTransformationMtrx(sdofs);
-            return { dofs: sdofs, values: math.multiply(t, R).toArray() };
+            return {
+                dofs: sdofs,
+                values: math.multiply(t, R).toArray(),
+            };
         }
         else {
             if (this.bcs.size > 0) {
@@ -197,7 +210,7 @@ class Node {
                 let cn = this.getLocationArray(sdofs);
                 let ccn = math.subtract(cn, this.domain.solver.neq);
                 let R = math.subset(lc.R, math.index(ccn));
-                if (math.typeOf(R) === 'number') {
+                if (math.typeOf(R) === "number") {
                     return { dofs: sdofs, values: [R] };
                 }
                 else {
@@ -249,12 +262,16 @@ class Element {
     getCS() {
         return this.domain.getCS(this.cs);
     }
-    getNodeDofs(node) { return []; }
+    getNodeDofs(node) {
+        return [];
+    }
     computeStiffness() { }
     computeMassMatrix() { }
     getLocationArray() { }
     computeGeo() { }
-    computeT() { return math.matrix(); }
+    computeT() {
+        return math.matrix();
+    }
 }
 exports.Element = Element;
 class Beam2D extends Element {
@@ -286,7 +303,11 @@ class Beam2D extends Element {
     getLocationArray() {
         var loc = Array();
         for (let n of this.nodes) {
-            loc = loc.concat(this.domain.solver.getNodeLocationArray(n, [DofID.Dx, DofID.Dz, DofID.Ry]));
+            loc = loc.concat(this.domain.solver.getNodeLocationArray(n, [
+                DofID.Dx,
+                DofID.Dz,
+                DofID.Ry,
+            ]));
         }
         return loc;
     }
@@ -298,21 +319,30 @@ class Beam2D extends Element {
         var l = Math.sqrt(dx * dx + dz * dz);
         return { l: l, dx: dx, dz: dz };
     }
-    hasHinges() { return this.hinges[0] || this.hinges[1]; }
+    hasHinges() {
+        return this.hinges[0] || this.hinges[1];
+    }
     computeT() {
         var geo = this.computeGeo();
         var c = geo.dx / geo.l;
         var s = geo.dz / geo.l;
-        var t = math.matrix([[c, s, 0., 0., 0., 0.],
-            [-s, c, 0., 0., 0., 0.],
-            [0., 0., 1., 0., 0., 0.],
-            [0., 0., 0., c, s, 0.],
-            [0., 0., 0., -s, c, 0.],
-            [0., 0., 0., 0., 0., 1.]]);
-        if (this.domain.getNode(this.nodes[0]).hasLcs() || this.domain.getNode(this.nodes[1]).hasLcs()) {
+        var t = math.matrix([
+            [c, s, 0, 0, 0, 0],
+            [-s, c, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0, 0],
+            [0, 0, 0, c, s, 0],
+            [0, 0, 0, -s, c, 0],
+            [0, 0, 0, 0, 0, 1],
+        ]);
+        if (this.domain.getNode(this.nodes[0]).hasLcs() ||
+            this.domain.getNode(this.nodes[1]).hasLcs()) {
             let T_n2g = math.zeros(6);
-            T_n2g = math.subset(T_n2g, math.index([0, 1, 2], [0, 1, 2]), this.domain.getNode(this.nodes[0]).getTransformationMtrx(this.getNodeDofs(this.nodes[0])));
-            T_n2g = math.subset(T_n2g, math.index([3, 4, 5], [3, 4, 5]), this.domain.getNode(this.nodes[1]).getTransformationMtrx(this.getNodeDofs(this.nodes[1])));
+            T_n2g = math.subset(T_n2g, math.index([0, 1, 2], [0, 1, 2]), this.domain
+                .getNode(this.nodes[0])
+                .getTransformationMtrx(this.getNodeDofs(this.nodes[0])));
+            T_n2g = math.subset(T_n2g, math.index([3, 4, 5], [3, 4, 5]), this.domain
+                .getNode(this.nodes[1])
+                .getTransformationMtrx(this.getNodeDofs(this.nodes[1])));
             t = math.multiply(t, T_n2g);
         }
         return t;
@@ -326,14 +356,44 @@ class Beam2D extends Element {
         var l = geo.l;
         var l2 = l * l;
         var l3 = l2 * l;
-        var fi = 12. * eiy / (cs.k * mat.g * cs.a * l * l);
-        var fi1 = 1. + fi;
-        var answer = math.matrix([[ea / l, 0., 0., -ea / l, 0., 0.],
-            [0., 12. * eiy / l3 / fi1, -6. * eiy / l2 / fi1, 0., -12. * eiy / l3 / fi1, -6. * eiy / l2 / fi1],
-            [0., -6. * eiy / l2 / fi1, (4. + fi) * eiy / l / fi1, 0., 6. * eiy / l2 / fi1, (2. - fi) * eiy / l / fi1],
-            [-ea / l, 0., 0., ea / l, 0., 0.],
-            [0., -12. * eiy / l3 / fi1, 6. * eiy / l2 / fi1, 0., 12. * eiy / l3 / fi1, 6. * eiy / l2 / fi1],
-            [0., -6. * eiy / l2 / fi1, (2. - fi) * eiy / l / fi1, 0., 6. * eiy / l2 / fi1, (4. + fi) * eiy / l / fi1]]);
+        var fi = (12 * eiy) / (cs.k * mat.g * cs.a * l * l);
+        var fi1 = 1 + fi;
+        var answer = math.matrix([
+            [ea / l, 0, 0, -ea / l, 0, 0],
+            [
+                0,
+                (12 * eiy) / l3 / fi1,
+                (-6 * eiy) / l2 / fi1,
+                0,
+                (-12 * eiy) / l3 / fi1,
+                (-6 * eiy) / l2 / fi1,
+            ],
+            [
+                0,
+                (-6 * eiy) / l2 / fi1,
+                ((4 + fi) * eiy) / l / fi1,
+                0,
+                (6 * eiy) / l2 / fi1,
+                ((2 - fi) * eiy) / l / fi1,
+            ],
+            [-ea / l, 0, 0, ea / l, 0, 0],
+            [
+                0,
+                (-12 * eiy) / l3 / fi1,
+                (6 * eiy) / l2 / fi1,
+                0,
+                (12 * eiy) / l3 / fi1,
+                (6 * eiy) / l2 / fi1,
+            ],
+            [
+                0,
+                (-6 * eiy) / l2 / fi1,
+                ((2 - fi) * eiy) / l / fi1,
+                0,
+                (6 * eiy) / l2 / fi1,
+                ((4 + fi) * eiy) / l / fi1,
+            ],
+        ]);
         if (this.hasHinges()) {
             if (this.hinges[0] && this.hinges[1]) {
                 var a = [0, 1, 3, 4];
@@ -360,7 +420,7 @@ class Beam2D extends Element {
                     b: b,
                     kaa: kaa,
                     kab: kab,
-                    kbb: kbb
+                    kbb: kbb,
                 };
             }
             else {
@@ -376,15 +436,31 @@ class Beam2D extends Element {
         var l = geo.l;
         var l2 = l * l;
         var c = N / l;
-        var fi = 12. * mat.e * cs.iy / (cs.k * mat.g * cs.a * l * l);
+        var fi = (12 * mat.e * cs.iy) / (cs.k * mat.g * cs.a * l * l);
         var fi2 = fi * fi;
-        var answer = math.matrix([[0., 0., 0., 0., 0., 0.],
-            [0., 6. / 5. + 2 * fi + fi2, -l / 10., 0., -6. / 5 - 2 * fi - fi2, -l / 10.],
-            [0., -l / 10., 2. * l2 / 15. + l2 * fi / 6. + l2 * fi2 / 12., 0., l / 10., -l2 / 30. - l2 * fi / 6. - l2 * fi2 / 12.],
-            [0., 0., 0., 0., 0., 0.],
-            [0., -6. / 5. - 2 * fi - fi2, l / 10., 0., 6. / 5. + 2 * fi + fi2, l / 10.],
-            [0., -l / 10., -l2 / 30. - l2 * fi / 6. - l2 * fi2 / 12., 0., l / 10., 2 * l2 / 15. + l2 * fi / 6. + l2 * fi2 / 12.]]);
-        math.multiply(answer, c / (1. + fi) / (1. + fi));
+        var answer = math.matrix([
+            [0, 0, 0, 0, 0, 0],
+            [0, 6 / 5 + 2 * fi + fi2, -l / 10, 0, -6 / 5 - 2 * fi - fi2, -l / 10],
+            [
+                0,
+                -l / 10,
+                (2 * l2) / 15 + (l2 * fi) / 6 + (l2 * fi2) / 12,
+                0,
+                l / 10,
+                -l2 / 30 - (l2 * fi) / 6 - (l2 * fi2) / 12,
+            ],
+            [0, 0, 0, 0, 0, 0],
+            [0, -6 / 5 - 2 * fi - fi2, l / 10, 0, 6 / 5 + 2 * fi + fi2, l / 10],
+            [
+                0,
+                -l / 10,
+                -l2 / 30 - (l2 * fi) / 6 - (l2 * fi2) / 12,
+                0,
+                l / 10,
+                (2 * l2) / 15 + (l2 * fi) / 6 + (l2 * fi2) / 12,
+            ],
+        ]);
+        math.multiply(answer, c / (1 + fi) / (1 + fi));
         var cc = Math.min(Math.abs(answer[1][1]), Math.abs(answer[2][2])) / 1000.0;
         answer[0][0] = cc;
         answer[0][3] = -cc;
@@ -411,13 +487,13 @@ class Beam2D extends Element {
         var l2 = l * l;
         var l3 = l2 * l;
         if (!this.diagonalMassMatrix)
-            return math.multiply(mat.d * cs.a * l / 420, math.matrix([
+            return math.multiply((mat.d * cs.a * l) / 420, math.matrix([
                 [140, 0, 0, 70, 0, 0],
                 [0, 156, -22 * l, 0, 54, 13 * l],
                 [0, -22 * l, 4 * l * l, 0, -13 * l, -3 * l * l],
                 [70, 0, 0, 140, 0, 0],
                 [0, 54, -13 * l, 0, 156, 22 * l],
-                [0, 13 * l, -3 * l * l, 0, 22 * l, 4 * l * l]
+                [0, 13 * l, -3 * l * l, 0, 22 * l, 4 * l * l],
             ]));
         const alpha = 1 / 78;
         return math.multiply(mat.d * cs.a * l, math.matrix([
@@ -426,7 +502,7 @@ class Beam2D extends Element {
             [0, 0, alpha * l2, 0, 0, 0],
             [0, 0, 0, 1 / 2, 0, 0],
             [0, 0, 0, 0, 1 / 2, 0],
-            [0, 0, 0, 0, 0, alpha * l2]
+            [0, 0, 0, 0, 0, alpha * l2],
         ]));
     }
     computeStiffness() {
@@ -480,7 +556,9 @@ class Beam2D extends Element {
             if (stiffrec.b.length == 1) {
                 let blv = bl.get(stiffrec.b);
                 for (let i = 0; i < stiffrec.a.length; i++) {
-                    fe.set([stiffrec.a[i]], fe.get([stiffrec.a[i]]) + bl.get([stiffrec.a[i]]) - h1.get([i, 0]) * blv);
+                    fe.set([stiffrec.a[i]], fe.get([stiffrec.a[i]]) +
+                        bl.get([stiffrec.a[i]]) -
+                        h1.get([i, 0]) * blv);
                 }
             }
             else {
@@ -502,8 +580,11 @@ class Beam2D extends Element {
         let eloads = lc.getElementLoadsOnElement(this.label);
         for (let iseg = 0; iseg <= nseg; iseg++) {
             let xl = iseg / nseg;
-            let wl = (1.0 - 3.0 * xl * xl + 2.0 * xl * xl * xl) * rl.get([1]) + l * (-xl + 2.0 * xl * xl - xl * xl * xl) * rl.get([2]) + (3.0 * xl * xl - 2.0 * xl * xl * xl) * rl.get([4]) + l * (xl * xl - xl * xl * xl) * rl.get([5]);
-            let ul = (1. - xl) * rl.get([0]) + xl * rl.get([3]);
+            let wl = (1.0 - 3.0 * xl * xl + 2.0 * xl * xl * xl) * rl.get([1]) +
+                l * (-xl + 2.0 * xl * xl - xl * xl * xl) * rl.get([2]) +
+                (3.0 * xl * xl - 2.0 * xl * xl * xl) * rl.get([4]) +
+                l * (xl * xl - xl * xl * xl) * rl.get([5]);
+            let ul = (1 - xl) * rl.get([0]) + xl * rl.get([3]);
             for (let load of eloads) {
                 let c = load.computeBeamDeflectionContrib(xl);
                 wl += c.w;
@@ -548,8 +629,11 @@ class Beam2D extends Element {
         let l = geo.l;
         for (let iseg = 0; iseg <= nseg; iseg++) {
             let xl = iseg / nseg;
-            let wl = (1.0 - 3.0 * xl * xl + 2.0 * xl * xl * xl) * rl.get([1]) + l * (-xl + 2.0 * xl * xl - xl * xl * xl) * rl.get([2]) + (3.0 * xl * xl - 2.0 * xl * xl * xl) * rl.get([4]) + l * (xl * xl - xl * xl * xl) * rl.get([5]);
-            let ul = (1. - xl) * rl.get([0]) + xl * rl.get([3]);
+            let wl = (1.0 - 3.0 * xl * xl + 2.0 * xl * xl * xl) * rl.get([1]) +
+                l * (-xl + 2.0 * xl * xl - xl * xl * xl) * rl.get([2]) +
+                (3.0 * xl * xl - 2.0 * xl * xl * xl) * rl.get([4]) +
+                l * (xl * xl - xl * xl * xl) * rl.get([5]);
+            let ul = (1 - xl) * rl.get([0]) + xl * rl.get([3]);
             u.push(ul);
             w.push(wl);
         }
@@ -575,7 +659,7 @@ class Beam2D extends Element {
         let N = [];
         let eloads = lc.getElementLoadsOnElement(this.label);
         for (let iseg = 0; iseg <= nseg; iseg++) {
-            let xi = geo.l * iseg / nseg;
+            let xi = (geo.l * iseg) / nseg;
             let Ni = -F.get([0]);
             for (let load of eloads) {
                 Ni += load.computeBeamNContrib(xi);
@@ -592,7 +676,7 @@ class Beam2D extends Element {
         let V = [];
         let eloads = lc.getElementLoadsOnElement(this.label);
         for (let iseg = 0; iseg <= nseg; iseg++) {
-            let xi = geo.l * iseg / nseg;
+            let xi = (geo.l * iseg) / nseg;
             let Vi = -F.get([1]);
             for (let load of eloads) {
                 Vi += load.computeBeamVContrib(xi);
@@ -609,7 +693,7 @@ class Beam2D extends Element {
         let M = [];
         let eloads = lc.getElementLoadsOnElement(this.label);
         for (let iseg = 0; iseg <= nseg; iseg++) {
-            let xi = geo.l * iseg / nseg;
+            let xi = (geo.l * iseg) / nseg;
             let Mi = -F.get([2]) - F.get([1]) * xi;
             for (let load of eloads) {
                 Mi += load.computeBeamMContrib(xi);
@@ -629,7 +713,9 @@ class Load {
     getLoadVector() {
         return [];
     }
-    getLocationArray() { return []; }
+    getLocationArray() {
+        return [];
+    }
 }
 exports.Load = Load;
 class NodalLoad extends Load {
@@ -660,15 +746,21 @@ class NodalLoad extends Load {
 }
 exports.NodalLoad = NodalLoad;
 class BeamElementLoad extends Load {
-    getLoadVectorForClampedBeam() { return []; }
-    computeBeamDeflectionContrib(xl) { return { u: 0, w: 0 }; }
-    ;
-    computeBeamNContrib(x) { return 0; }
-    ;
-    computeBeamVContrib(x) { return 0; }
-    ;
-    computeBeamMContrib(x) { return 0; }
-    ;
+    getLoadVectorForClampedBeam() {
+        return [];
+    }
+    computeBeamDeflectionContrib(xl) {
+        return { u: 0, w: 0 };
+    }
+    computeBeamNContrib(x) {
+        return 0;
+    }
+    computeBeamVContrib(x) {
+        return 0;
+    }
+    computeBeamMContrib(x) {
+        return 0;
+    }
 }
 exports.BeamElementLoad = BeamElementLoad;
 class BeamElementUniformEdgeLoad extends BeamElementLoad {
@@ -707,7 +799,7 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
         if (!this.lcs) {
             return {
                 fx: fx * cos + fz * sin,
-                fz: -fx * sin + fz * cos
+                fz: -fx * sin + fz * cos,
             };
         }
         else {
@@ -720,7 +812,14 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
         let fx = f.fx;
         let fz = f.fz;
         let l = geo.l;
-        return [-0.5 * l * fx, -0.5 * l * fz, +1 / 12. * fz * l * l, -0.5 * l * fx, -0.5 * l * fz, -1 / 12. * fz * l * l];
+        return [
+            -0.5 * l * fx,
+            -0.5 * l * fz,
+            (+1 / 12) * fz * l * l,
+            -0.5 * l * fx,
+            -0.5 * l * fz,
+            (-1 / 12) * fz * l * l,
+        ];
     }
     getLocationArray() {
         return this.domain.elements.get(this.target).getLocationArray();
@@ -738,16 +837,22 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
                 for (let i = 0; i < stiffrec.a.length; i++) {
                     ans[stiffrec.a[i]] = f[stiffrec.a[i]] - h1.get([i, 0]) * flv;
                 }
-                return math.multiply(math.multiply(math.transpose(t), ans), -1.0).toArray();
+                return math
+                    .multiply(math.multiply(math.transpose(t), ans), -1.0)
+                    .toArray();
             }
             else {
                 let help = math.subtract(math.subset(f, math.index(stiffrec.a)), math.multiply(h1, math.subset(f, math.index(stiffrec.b))));
                 ans = math.subset(ans, math.index(stiffrec.a), help);
-                return math.multiply(math.multiply(math.transpose(t), ans), -1.0).toArray();
+                return math
+                    .multiply(math.multiply(math.transpose(t), ans), -1.0)
+                    .toArray();
             }
         }
         else {
-            return math.multiply(math.multiply(math.transpose(t), f), -1.0).toArray();
+            return math
+                .multiply(math.multiply(math.transpose(t), f), -1.0)
+                .toArray();
         }
     }
     computeBeamDeflectionContrib(xl) {
@@ -755,7 +860,13 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
         let elem = this.domain.elements.get(this.target);
         let geo = elem.computeGeo();
         let l = geo.l;
-        let w = f.fz * l * l * l * l * (xl * xl * xl * xl / 24. - xl * xl * xl / 12. + xl * xl / 24.) / (elem.getMaterial().e * elem.getCS().iy);
+        let w = (f.fz *
+            l *
+            l *
+            l *
+            l *
+            ((xl * xl * xl * xl) / 24 - (xl * xl * xl) / 12 + (xl * xl) / 24)) /
+            (elem.getMaterial().e * elem.getCS().iy);
         let u = 0.0;
         return { u: u, w: w };
     }
@@ -769,7 +880,7 @@ class BeamElementUniformEdgeLoad extends BeamElementLoad {
     }
     computeBeamMContrib(x) {
         let f = this.getLocalIntensities();
-        return -f.fz * x * x / 2.0;
+        return (-f.fz * x * x) / 2.0;
     }
 }
 exports.BeamElementUniformEdgeLoad = BeamElementUniformEdgeLoad;
@@ -900,6 +1011,5 @@ class LoadCase {
 }
 exports.LoadCase = LoadCase;
 __exportStar(require("./Solver"), exports);
-__exportStar(require("./EigenValueDynamicSolver"), exports);
 __exportStar(require("./LinearStaticSolver"), exports);
 //# sourceMappingURL=fem.js.map

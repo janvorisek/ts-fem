@@ -1,5 +1,5 @@
-import { MathArray } from 'mathjs';
-import { Solver } from './Solver';
+import { MathArray } from "mathjs";
+import { Solver } from "./Solver";
 export declare enum DofID {
     Dx = 0,
     Dy = 1,
@@ -8,10 +8,10 @@ export declare enum DofID {
     Ry = 4,
     Rz = 5
 }
-declare type EnumDictionary<T extends string | symbol | number, U> = {
+type EnumDictionary<T extends string | symbol | number, U> = {
     [K in T]?: U;
 };
-declare type EnumSet<T> = Set<T>;
+type EnumSet<T> = Set<T>;
 export interface MaterialParameters {
     e?: number;
     g?: number;
@@ -72,9 +72,9 @@ export declare class Node {
         };
     }): void;
     getLocationArray(dofs: Array<DofID>): any[];
-    getUnknowns(lc: LoadCase, dofs: Array<DofID>): number[] | number[][] | import("mathjs").Matrix;
+    getUnknowns(lc: LoadCase, dofs: Array<DofID>): number[] | import("mathjs").MathCollection | number[][];
     getEigenValueUnknowns(lc: LoadCase, dofs: Array<DofID>, ev: number): import("mathjs").Matrix;
-    getTransformationMtrx(dofs: Array<DofID>): number | number[] | number[][] | import("mathjs").Matrix;
+    getTransformationMtrx(dofs: Array<DofID>): number | import("mathjs").MathCollection;
     updateLcs(lcs?: {
         locx: number[];
         locy: number[];
@@ -85,10 +85,10 @@ export declare class Node {
         values: MathArray;
     } | {
         dofs: DofID[];
-        values: (number[] | number[][] | import("mathjs").Matrix)[];
+        values: (number[] | import("mathjs").MathCollection | number[][])[];
     } | {
         dofs: DofID[];
-        values: number[] | number[][] | import("mathjs").Matrix;
+        values: number[] | import("mathjs").MathCollection | number[][];
     };
 }
 export declare class Element {
@@ -135,22 +135,22 @@ export declare class Beam2D extends Element {
     hasHinges(): boolean;
     computeT(): math.Matrix;
     computeLocalStiffnessMtrx(retCondenseSubMats?: boolean): {
-        answer: number[] | number[][] | import("mathjs").Matrix;
+        answer: import("mathjs").MathCollection;
         a: number[];
         b: number[];
         kaa: import("mathjs").Matrix;
         kab: import("mathjs").Matrix;
         kbb: import("mathjs").Matrix;
     } | {
-        answer: number[] | number[][] | import("mathjs").Matrix;
+        answer: import("mathjs").MathCollection;
         a?: undefined;
         b?: undefined;
         kaa?: undefined;
         kab?: undefined;
         kbb?: undefined;
     };
-    computeLocalInitialStressMtrx(N: number): number[] | number[][] | import("mathjs").Matrix;
-    computeLocalMassMatrix(retCondenseSubMats?: boolean): import("mathjs").MathType;
+    computeLocalInitialStressMtrx(N: number): import("mathjs").MathCollection;
+    computeLocalMassMatrix(retCondenseSubMats?: boolean): import("mathjs").Matrix;
     computeStiffness(): import("mathjs").Matrix;
     computeMassMatrix(): import("mathjs").Matrix;
     computeInitialStressMatrix(N: number): import("mathjs").Matrix;
@@ -268,8 +268,8 @@ export declare class LoadCase {
     nodalLoadList: NodalLoad[];
     elementLoadList: BeamElementUniformEdgeLoad[];
     prescribedBC: PrescribedDisplacement[];
-    r: math.Matrix | number[] | number[][];
-    R: math.Matrix | number[] | number[][];
+    r: math.MathCollection | number[] | number[][];
+    R: math.MathCollection | number[] | number[][];
     eigenNumbers: number[];
     eigenVectors: math.Matrix[];
     solved: boolean;
@@ -279,6 +279,5 @@ export declare class LoadCase {
     createBeamElementUniformEdgeLoad(elem: number, values: number[], lcs: boolean): BeamElementUniformEdgeLoad;
     createPrescribedDisplacement(target: number, values: EnumDictionary<DofID, number>): PrescribedDisplacement;
 }
-export * from './Solver';
-export * from './EigenValueDynamicSolver';
-export * from './LinearStaticSolver';
+export * from "./Solver";
+export * from "./LinearStaticSolver";

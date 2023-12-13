@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LinearStaticSolver = void 0;
 const mathjs_1 = require("mathjs");
 const config = {};
-const math = mathjs_1.create(mathjs_1.all, config);
+const math = (0, mathjs_1.create)(mathjs_1.all, config);
 const fem_1 = require("./fem");
 class LinearStaticSolver extends fem_1.Solver {
     assemble() {
@@ -57,7 +57,9 @@ class LinearStaticSolver extends fem_1.Solver {
                 let b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))), fp);
                 let ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)), b));
                 this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
-                this.loadCases[lc].R = math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru).toArray();
+                this.loadCases[lc].R = math
+                    .multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru)
+                    .toArray();
                 this.loadCases[lc].R = math.subtract(this.loadCases[lc].R, math.squeeze(math.subset(this.f, math.index(prescribed, [lc]))));
                 this.loadCases[lc].solved = true;
             }

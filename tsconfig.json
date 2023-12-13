@@ -9,6 +9,8 @@
         "target": "es6",
         "sourceMap": true,
         "removeComments": true,
+        "noEmit": false,
+        "noEmitOnError": false
     },
     "include": [
         "./src/**/*"
