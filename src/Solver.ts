@@ -1,4 +1,5 @@
-import { DofID, Domain, LoadCase } from "./fem";
+import * as math from "mathjs";
+import { DofID, Domain, LabelType, LoadCase } from "./fem";
 
 /**
  * Class representing linear elastic solver.
@@ -7,8 +8,8 @@ export abstract class Solver {
   domain: Domain;
   neq: number; // number of unknowns
   pneq: number; // number of prescribed unknowns
-  k: any;
-  m: any;
+  k: math.Matrix;
+  m: math.Matrix;
   f: math.MathCollection | number[] | number[][];
   loadCases = new Array<LoadCase>();
   codeNumberGenerated: boolean = false;
@@ -18,36 +19,36 @@ export abstract class Solver {
     this.loadCases.push(new LoadCase("DefaultLC", this.domain));
   }
   // code numbers assigned to supported as well as free DOFs
-  nodeCodeNumbers = new Map<number, { [code: number]: number }>();
+  nodeCodeNumbers = new Map<LabelType, { [code: number]: number }>();
 
-  getNodeLocationArray(num: number, dofs: Array<DofID>) {
-    var ans = [];
+  getNodeLocationArray(num: LabelType, dofs: Array<DofID>) {
+    let ans = [];
     //console.log("Node:", num, "Locatioan Array dofs:", dofs);
-    for (let i of dofs) {
+    for (const i of dofs) {
       //console.log(num, i, this.nodeCodeNumbers.get(num)[i]);
       ans = ans.concat(this.nodeCodeNumbers.get(num)[i]);
     }
     return ans;
   }
-  getNodeDofIDs(num: number): number[] {
-    let ans: number[] = [];
-    for (let d in this.nodeCodeNumbers.get(num)) {
+  getNodeDofIDs(num: LabelType): number[] {
+    const ans: number[] = [];
+    for (const d in this.nodeCodeNumbers.get(num)) {
       ans.push(parseInt(d));
     }
     return ans;
   }
 
   generateCodeNumbers() {
-    var nodalDofs = new Map<number, Set<DofID>>();
-    for (let [key, node] of this.domain.nodes) {
+    const nodalDofs = new Map<LabelType, Set<DofID>>();
+    for (const [key, node] of this.domain.nodes) {
       this.nodeCodeNumbers.set(key, {});
       nodalDofs.set(key, new Set<DofID>());
     }
     // compile list of DOFs needed in nodes from element requirements
-    for (let [ie, elem] of this.domain.elements) {
-      for (let en of elem.nodes) {
-        var dofs = elem.getNodeDofs(en);
-        for (let d of dofs) {
+    for (const [ie, elem] of this.domain.elements) {
+      for (const en of elem.nodes) {
+        const dofs = elem.getNodeDofs(en);
+        for (const d of dofs) {
           if (nodalDofs.has(en)) {
             nodalDofs.get(en).add(d);
           } else {
@@ -61,8 +62,8 @@ export abstract class Solver {
     // compute number of unknown and prescribed DOFs
     this.neq = 0;
     this.pneq = 0;
-    for (let [num, node] of this.domain.nodes) {
-      for (let d of nodalDofs.get(num)) {
+    for (const [num, node] of this.domain.nodes) {
+      for (const d of nodalDofs.get(num)) {
         if (node.bcs.has(d)) {
           this.pneq++;
         } else {
@@ -72,10 +73,10 @@ export abstract class Solver {
     }
 
     // assign equation (code) numbers to dofs
-    var eq: number = 0;
-    var peq: number = this.neq;
-    for (let [num, node] of this.domain.nodes) {
-      for (let d of nodalDofs.get(num)) {
+    let eq: number = 0;
+    let peq: number = this.neq;
+    for (const [num, node] of this.domain.nodes) {
+      for (const d of nodalDofs.get(num)) {
         if (node.bcs.has(d)) {
           this.nodeCodeNumbers.get(num)[d] = peq++;
         } else {
@@ -88,12 +89,12 @@ export abstract class Solver {
     this.codeNumberGenerated = true;
   }
 
-  assembleVecLC(f: any, fe: number[], loc: number[], lc: number) {
+  assembleVecLC(f: math.Matrix, fe: number[], loc: number[], lc: number) {
     for (let i = 0; i < loc.length; i++) {
       f.set([loc[i], lc], f.get([loc[i], lc]) + fe[i]);
     }
   }
-  assembleVec(f: any, fe: number[], loc: number[]) {
+  assembleVec(f: math.Matrix, fe: number[], loc: number[]) {
     for (let i = 0; i < loc.length; i++) {
       f.set([loc[i]], f.get([loc[i]]) + fe[i]);
     }

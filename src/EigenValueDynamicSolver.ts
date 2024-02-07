@@ -1,7 +1,4 @@
-import { create, all, MathArray, eigs } from "mathjs";
-
-const config = {};
-const math = create(all, config);
+import * as math from "mathjs";
 
 import * as luqr from "luqr";
 
@@ -19,24 +16,24 @@ export class EigenValueDynamicSolver extends Solver {
   }
 
   assemble() {
-    this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
-    this.m = math.zeros(this.neq + this.pneq, this.neq + this.pneq);
+    this.k = math.zeros(this.neq + this.pneq, this.neq + this.pneq) as math.Matrix;
+    this.m = math.zeros(this.neq + this.pneq, this.neq + this.pneq) as math.Matrix;
 
-    this.loadCases[0].r = math.zeros(this.neq + this.pneq);
+    this.loadCases[0].r = math.zeros(this.neq + this.pneq) as math.Matrix;
     this.loadCases[0].eigenVectors = [];
     this.loadCases[0].eigenNumbers = [];
 
     // assemble stifness matrix
-    for (let [num, el] of this.domain.elements) {
-      let estiff = el.computeStiffness();
-      let emass = el.computeMassMatrix();
-      let loc = el.getLocationArray() as [];
-      let ndofs = math.size(loc)[0];
+    for (const [num, el] of this.domain.elements) {
+      const estiff = el.computeStiffness();
+      const emass = el.computeMassMatrix();
+      const loc = el.getLocationArray() as [];
+      const ndofs = math.size(loc)[0];
 
       for (let r = 0; r < ndofs; r++) {
-        let rc = loc[r];
+        const rc = loc[r];
         for (let c = 0; c < ndofs; c++) {
-          let cc = loc[c];
+          const cc = loc[c];
           this.k.set([rc, cc], this.k.get([rc, cc]) + estiff.get([r, c]));
           this.m.set([rc, cc], this.m.get([rc, cc]) + emass.get([r, c]));
         }
@@ -52,7 +49,7 @@ export class EigenValueDynamicSolver extends Solver {
       this.generateCodeNumbers();
     }
 
-    let unknowns = math.range(0, this.neq);
+    const unknowns = math.range(0, this.neq);
     this.assemble();
 
     const kk = math.subset(
@@ -68,7 +65,7 @@ export class EigenValueDynamicSolver extends Solver {
     const mkinv = math.multiply(kinv, mm);
 
     const endtime1 = new Date();
-    let timediff2 = (endtime1.getTime() - startime.getTime()) / 1000;
+    const timediff2 = (endtime1.getTime() - startime.getTime()) / 1000;
     console.log(
       "Matrix inverse took ",
       Math.round(timediff2 * 100) / 100,
@@ -168,7 +165,7 @@ export class EigenValueDynamicSolver extends Solver {
       this.loadCases[0].eigenVectors.push(fullvec);
 
       const endtime3 = new Date();
-      let timediff3 = (endtime3.getTime() - startime2.getTime()) / 1000;
+      const timediff3 = (endtime3.getTime() - startime2.getTime()) / 1000;
       console.log(
         "Mode " + (i + 1) + " took ",
         Math.round(timediff3 * 100) / 100,
@@ -192,11 +189,11 @@ export class EigenValueDynamicSolver extends Solver {
     (this.loadCases[0].eigenNumbers = indices.map(
       (i) => this.loadCases[0].eigenNumbers[i]
     )),
-      (this.loadCases[0].eigenVectors = indices.map(
-        (i) => this.loadCases[0].eigenVectors[i]
-      ));
+    (this.loadCases[0].eigenVectors = indices.map(
+      (i) => this.loadCases[0].eigenVectors[i]
+    ));
 
-    for (let i of this.loadCases[0].eigenNumbers) {
+    for (const i of this.loadCases[0].eigenNumbers) {
       console.log(`omega2=${i}, f=${Math.sqrt(i) / (2 * Math.PI)}`);
     }
 
@@ -229,7 +226,7 @@ export class EigenValueDynamicSolver extends Solver {
     }
 
     const endtime = new Date();
-    let timediff = (endtime.getTime() - startime.getTime()) / 1000;
+    const timediff = (endtime.getTime() - startime.getTime()) / 1000;
     console.log("Solution took ", Math.round(timediff * 100) / 100, " [sec]");
 
     this.loadCases[0].solved = true;

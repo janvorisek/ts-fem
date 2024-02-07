@@ -1,5 +1,4 @@
 # fem.ts
-[![Build Status](https://travis-ci.com/bpatzak/fem.ts.svg?token=xkzxvDWYksj2JpdJuNhi&branch=master)](https://travis-ci.com/bpatzak/fem.ts)
 
 Typescript finite element module. 
 
@@ -14,7 +13,7 @@ Typescript finite element module.
 * Prescribed displacements   
 
 ## Getting started
-```typescript
+```ts
 import {Beam2D, Material, CrossSection, Domain, DofID, Node, Element, Solver, BeamElementUniformEdgeLoad} from '../src/fem';
 // Setup model of cantilever beam (in xz plane)
 let solver = new Solver();
