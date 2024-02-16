@@ -52,17 +52,17 @@ export class LoadCase {
   }
 
   //class factory
-  createNodalLoad(node: number, values: EnumDictionary<DofID, number> = {}) {
+  createNodalLoad(node: LabelType, values: EnumDictionary<DofID, number> = {}) {
     const ans = new NodalLoad(node, this.domain, values);
     this.nodalLoadList.push(ans);
     return ans;
   }
-  createBeamElementUniformEdgeLoad(elem: number, values: number[], lcs: boolean) {
+  createBeamElementUniformEdgeLoad(elem: LabelType, values: number[], lcs: boolean) {
     const ans = new BeamElementUniformEdgeLoad(elem, this.domain, values, lcs);
     this.elementLoadList.push(ans);
     return ans;
   }
-  createPrescribedDisplacement(target: number, values: EnumDictionary<DofID, number>) {
+  createPrescribedDisplacement(target: LabelType, values: EnumDictionary<DofID, number>) {
     const ans = new PrescribedDisplacement(target, this.domain, values);
     this.prescribedBC.push(ans);
     return ans;

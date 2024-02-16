@@ -10,7 +10,7 @@ import { LabelType } from ".";
 export class BeamElementUniformEdgeLoad extends BeamElementLoad {
   values: number[]; // fx, fz intensities
   lcs: boolean; // true if values in element local c.s (along length)
-  constructor(elem: number, domain: Domain, values: number[], lcs: boolean) {
+  constructor(elem: LabelType, domain: Domain, values: number[], lcs: boolean) {
     super(elem, domain);
     this.values = values;
     this.lcs = lcs;
@@ -25,7 +25,7 @@ export class BeamElementUniformEdgeLoad extends BeamElementLoad {
     const fz = this.values[1]; // intensity in z-local
     if (this.lcs) {
       // transrform intensities to global
-      const geo = this.domain.elements.get(this.target).computeGeo();
+      const geo = this.domain.getElement(this.target).computeGeo();
       const cos = geo.dx / geo.l;
       const sin = geo.dz / geo.l;
       return { fx: fx * cos - fz * sin, fz: fx * sin + fz * cos, my: 0.0 };
@@ -36,7 +36,7 @@ export class BeamElementUniformEdgeLoad extends BeamElementLoad {
   getLocalIntensities() {
     const fx = this.values[0]; // intensity in x-local
     const fz = this.values[1]; // intensity in z-local
-    const geo = this.domain.elements.get(this.target).computeGeo();
+    const geo = this.domain.getElement(this.target).computeGeo();
     const l = geo.l;
     const dx = geo.dx;
     const dz = geo.dz;
@@ -55,7 +55,7 @@ export class BeamElementUniformEdgeLoad extends BeamElementLoad {
 
   // in local c.s
   getLoadVectorForClampedBeam(): Array<number> {
-    const geo = this.domain.elements.get(this.target).computeGeo();
+    const geo = this.domain.getElement(this.target).computeGeo();
     const f = this.getLocalIntensities();
     const fx = f.fx;
     const fz = f.fz;
@@ -65,11 +65,11 @@ export class BeamElementUniformEdgeLoad extends BeamElementLoad {
   }
 
   getLocationArray(): number[] {
-    return this.domain.elements.get(this.target).getLocationArray();
+    return this.domain.getElement(this.target).getLocationArray();
   }
 
   getLoadVector(): number[] {
-    const elem = <Beam2D>this.domain.elements.get(this.target);
+    const elem = <Beam2D>this.domain.getElement(this.target);
     const t = elem.computeT();
     const f = this.getLoadVectorForClampedBeam();
     if (elem.hasHinges()) {

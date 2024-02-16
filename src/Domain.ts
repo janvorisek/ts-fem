@@ -72,8 +72,7 @@ export class Domain {
   ) {
     const ans = new Beam2D(label, this, nodes, mat, cs, hinges);
 
-    // @ts-expect-error
-    this.elements.set(label, ans);
+    this.elements.set(label.toString(), ans);
     return ans;
   }
   createMaterial(label: LabelType, params: MaterialParameters = {}) {

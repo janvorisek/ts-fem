@@ -40,21 +40,6 @@ export abstract class Element {
     if (cs != undefined) this.cs = cs.toString();
   }
 
-  change2(params: { label: LabelType; nodes?: LabelType[]; mat?: LabelType; cs?: LabelType }) {
-    if (params.label != undefined) {
-      this.label = params.label.toString();
-    }
-    if (params.nodes != undefined) {
-      this.nodes = params.nodes.map((x) => x.toString());
-    }
-    if (params.mat != undefined) {
-      this.mat = params.mat.toString();
-    }
-    if (params.cs != undefined) {
-      this.cs = params.cs.toString();
-    }
-  }
-
   /**
    * Returns Material (object) associated to element
    */

@@ -32,25 +32,6 @@ export class Beam2D extends Element {
     this.hinges = hinges;
   }
 
-  // @ts-expect-error
-  change2(params: { label?: LabelType; nodes?: LabelType[]; mat?: number; cs?: number; hinges: [boolean, boolean] }) {
-    if (params.label != undefined) {
-      this.label = params.label.toString();
-    }
-    if (params.nodes != undefined) {
-      this.nodes = params.nodes.map((x) => x.toString());
-    }
-    if (params.mat != undefined) {
-      this.mat = params.mat.toString();
-    }
-    if (params.cs != undefined) {
-      this.cs = params.cs.toString();
-    }
-    if (params.hinges != undefined) {
-      this.hinges = params.hinges;
-    }
-  }
-
   getNodeDofs(node: LabelType): Array<DofID> {
     return [DofID.Dx, DofID.Dz, DofID.Ry];
   }
