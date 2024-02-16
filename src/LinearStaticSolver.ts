@@ -51,24 +51,50 @@ export class LinearStaticSolver extends Solver {
       this.generateCodeNumbers();
     }
 
+    const unknowns = math.range(0, this.neq);
+    const prescribed = math.range(this.neq, this.neq + this.pneq);
+
     this.assemble();
     if (this.neq > 0) {
-      const unknowns = math.range(0, this.neq);
-      const prescribed = math.range(this.neq, this.neq + this.pneq);
-
       for (let lc = 0; lc < this.loadCases.length; lc++) {
         this.loadCases[lc].solved = false;
 
         const rp = math.subset(this.loadCases[lc].r, math.index(prescribed));
         const fp = math.multiply(math.subset(this.k, math.index(unknowns, prescribed)), rp) as math.Matrix;
 
-        const b = math.subtract(math.squeeze(math.subset(this.f, math.index(unknowns, [lc]))), fp) as math.Matrix;
-        const ru = math.squeeze(math.lusolve(math.subset(this.k, math.index(unknowns, unknowns)), b));
+        let ksolve = math.subset(this.k, math.index(unknowns, unknowns));
+
+        if (typeof ksolve === "number") {
+          ksolve = math.matrix([[ksolve]]);
+        }
+
+        let bsolve = math.subset(this.f, math.index(unknowns, [lc]));
+
+        if (typeof bsolve === "number") {
+          bsolve = math.matrix([bsolve]);
+        }
+
+        const b = math.subtract(math.squeeze(bsolve), fp) as math.Matrix;
+        const ru = math.squeeze(math.lusolve(ksolve, b));
 
         this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
 
         // evaluate reactions
-        this.loadCases[lc].R = math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru);
+        this.loadCases[lc].R = math.squeeze(math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru));
+
+        // add contributions from elements
+        this.loadCases[lc].R = math.subtract(
+          this.loadCases[lc].R,
+          math.squeeze(math.subset(this.f, math.index(prescribed, [lc])))
+        ) as math.Matrix;
+
+        this.loadCases[lc].solved = true;
+      }
+    } else {
+      // Special case when nothing is solved
+      for (let lc = 0; lc < this.loadCases.length; lc++) {
+        // evaluate reactions
+        this.loadCases[lc].R = math.squeeze(math.multiply(this.k, this.loadCases[lc].r));
 
         // add contributions from elements
         this.loadCases[lc].R = math.subtract(
@@ -79,6 +105,7 @@ export class LinearStaticSolver extends Solver {
         this.loadCases[lc].solved = true;
       }
     }
+
     const endtime = new Date();
     const timediff = endtime.getTime() - startime.getTime();
     console.log("Solution took ", Math.round(timediff * 100) / 100, " [ms]");
