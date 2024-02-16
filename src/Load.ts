@@ -1,5 +1,5 @@
 import { Domain } from "./Domain";
-import { LabelType } from "./fem";
+import { LabelType } from ".";
 
 /**
  * Abstract class representing all loads

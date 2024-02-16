@@ -1,5 +1,5 @@
 import { Domain } from "./Domain";
-import { EnumDictionary, DofID, LabelType } from "./fem";
+import { EnumDictionary, DofID, LabelType } from ".";
 
 /** Class representing prescribed displacement TBD */
 export class PrescribedDisplacement {

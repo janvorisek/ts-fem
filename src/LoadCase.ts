@@ -4,8 +4,8 @@ import { BeamElementUniformEdgeLoad } from "./BeamElementUniformEdgeLoad";
 import { Domain } from "./Domain";
 import { NodalLoad } from "./NodalLoad";
 import { PrescribedDisplacement } from "./PrescribedDisplacement";
-import { DofID, LabelType } from "./fem";
-import { EnumDictionary } from "./fem";
+import { DofID, LabelType } from ".";
+import { EnumDictionary } from ".";
 
 /**
  * LoadCase represents a collection of loads. LoadCase stores also its solution vector.

@@ -1,6 +1,6 @@
 import * as math from "mathjs";
 import { Domain } from "./Domain";
-import { DofID, LabelType } from "./fem";
+import { DofID, LabelType } from ".";
 import { LoadCase } from "./LoadCase";
 
 /**

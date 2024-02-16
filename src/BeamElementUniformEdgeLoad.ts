@@ -2,7 +2,7 @@ import * as math from "mathjs";
 import { Beam2D } from "./Beam2D";
 import { BeamElementLoad } from "./BeamElementLoad";
 import { Domain } from "./Domain";
-import { LabelType } from "./fem";
+import { LabelType } from ".";
 
 /**
  * Implementation of Beam2d uniform load

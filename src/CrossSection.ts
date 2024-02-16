@@ -1,4 +1,4 @@
-import { LabelType } from "./fem";
+import { LabelType } from ".";
 
 // TODO: All parameters are optional now
 export interface CrossSectionParameters {

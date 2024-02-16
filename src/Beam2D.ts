@@ -1,7 +1,7 @@
 import * as math from "mathjs";
 import { Domain } from "./Domain";
 import { LoadCase } from "./LoadCase";
-import { DofID, LabelType } from "./fem";
+import { DofID, LabelType } from ".";
 import { Element } from "./Element";
 
 /**

@@ -1,4 +1,4 @@
-import { LabelType } from "./fem";
+import { LabelType } from ".";
 
 export interface MaterialParameters {
   e?: number;

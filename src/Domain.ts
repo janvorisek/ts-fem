@@ -2,7 +2,7 @@ import { Beam2D } from "./Beam2D";
 import { CrossSection, CrossSectionParameters } from "./CrossSection";
 import { Material, MaterialParameters } from "./Material";
 import { Solver } from "./Solver";
-import { DofID, LabelType } from "./fem";
+import { DofID, LabelType } from ".";
 import { Element } from "./Element";
 import { Node } from "./Node";
 

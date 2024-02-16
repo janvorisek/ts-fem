@@ -1,6 +1,6 @@
 import { Domain } from "./Domain";
 import { Load } from "./Load";
-import { EnumDictionary, DofID } from "./fem";
+import { EnumDictionary, DofID } from ".";
 
 /**
  * Implementation of concentrated nodal load

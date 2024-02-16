@@ -1,6 +1,6 @@
 import * as math from "mathjs";
 
-import { Solver } from "./fem";
+import { Solver } from ".";
 
 /**
  * Class representing linear elastic solver.

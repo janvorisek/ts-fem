@@ -2,7 +2,7 @@ import * as math from "mathjs";
 
 import * as luqr from "luqr";
 
-import { Domain, LoadCase, DofID, Solver } from "./fem";
+import { Domain, LoadCase, DofID, Solver } from ".";
 
 /**
  * Class representing eigen value solver for the structural dynamic problems
@@ -52,25 +52,15 @@ export class EigenValueDynamicSolver extends Solver {
     const unknowns = math.range(0, this.neq);
     this.assemble();
 
-    const kk = math.subset(
-      this.k,
-      math.index(unknowns, unknowns)
-    ) as math.Matrix;
-    const mm = math.subset(
-      this.m,
-      math.index(unknowns, unknowns)
-    ) as math.Matrix;
+    const kk = math.subset(this.k, math.index(unknowns, unknowns)) as math.Matrix;
+    const mm = math.subset(this.m, math.index(unknowns, unknowns)) as math.Matrix;
 
     const kinv = math.inv(kk);
     const mkinv = math.multiply(kinv, mm);
 
     const endtime1 = new Date();
     const timediff2 = (endtime1.getTime() - startime.getTime()) / 1000;
-    console.log(
-      "Matrix inverse took ",
-      Math.round(timediff2 * 100) / 100,
-      " [sec]"
-    );
+    console.log("Matrix inverse took ", Math.round(timediff2 * 100) / 100, " [sec]");
 
     const evs = [];
     const neigstofind = Math.min(Math.min(this.n * 2, this.n + 8), this.neq);
@@ -95,21 +85,13 @@ export class EigenValueDynamicSolver extends Solver {
       //normovani
       x = math.divide(
         x,
-        Math.sqrt(
-          math.multiply(
-            math.multiply(math.transpose(x), mm),
-            x
-          ) as math.Matrix as unknown as number
-        )
+        Math.sqrt(math.multiply(math.multiply(math.transpose(x), mm), x) as math.Matrix as unknown as number)
       ) as math.Matrix;
 
       // gramm schmidt
       let dx = math.zeros(this.neq) as math.Matrix;
       for (let j = 0; j < evs.length; j++) {
-        const c = math.multiply(
-          math.multiply(math.transpose(evs[j]), mm),
-          x
-        ) as unknown as number;
+        const c = math.multiply(math.multiply(math.transpose(evs[j]), mm), x) as unknown as number;
         dx = math.add(dx, math.multiply(c, evs[j])) as math.Matrix;
       }
       x = math.subtract(x, dx) as math.Matrix;
@@ -121,10 +103,7 @@ export class EigenValueDynamicSolver extends Solver {
             x.set([4], -3.098147895542957e-8);
             x.set([5], 1.5775614488843603);*/
 
-      while (
-        (Math.abs(newrho - rho) / newrho > this.tol && nits < 100) ||
-        nits < 3
-      ) {
+      while ((Math.abs(newrho - rho) / newrho > this.tol && nits < 100) || nits < 3) {
         rho = newrho;
 
         const newx = math.squeeze(math.multiply(mkinv, x)) as math.Matrix;
@@ -157,20 +136,12 @@ export class EigenValueDynamicSolver extends Solver {
 
       this.loadCases[0].eigenNumbers.push(newrho);
       let fullvec = math.zeros(this.neq + this.pneq);
-      fullvec = math.subset(
-        fullvec,
-        math.index(math.range(0, this.neq)),
-        x
-      ) as math.Matrix;
+      fullvec = math.subset(fullvec, math.index(math.range(0, this.neq)), x) as math.Matrix;
       this.loadCases[0].eigenVectors.push(fullvec);
 
       const endtime3 = new Date();
       const timediff3 = (endtime3.getTime() - startime2.getTime()) / 1000;
-      console.log(
-        "Mode " + (i + 1) + " took ",
-        Math.round(timediff3 * 100) / 100,
-        " [sec]"
-      );
+      console.log("Mode " + (i + 1) + " took ", Math.round(timediff3 * 100) / 100, " [sec]");
     }
 
     /*console.log('kontrola ortogonality');
@@ -182,16 +153,9 @@ export class EigenValueDynamicSolver extends Solver {
         }*/
 
     const indices = Array.from(this.loadCases[0].eigenNumbers.keys());
-    indices.sort(
-      (a, b) =>
-        this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b]
-    );
-    (this.loadCases[0].eigenNumbers = indices.map(
-      (i) => this.loadCases[0].eigenNumbers[i]
-    )),
-    (this.loadCases[0].eigenVectors = indices.map(
-      (i) => this.loadCases[0].eigenVectors[i]
-    ));
+    indices.sort((a, b) => this.loadCases[0].eigenNumbers[a] - this.loadCases[0].eigenNumbers[b]);
+    (this.loadCases[0].eigenNumbers = indices.map((i) => this.loadCases[0].eigenNumbers[i])),
+      (this.loadCases[0].eigenVectors = indices.map((i) => this.loadCases[0].eigenVectors[i]));
 
     for (const i of this.loadCases[0].eigenNumbers) {
       console.log(`omega2=${i}, f=${Math.sqrt(i) / (2 * Math.PI)}`);
@@ -200,9 +164,7 @@ export class EigenValueDynamicSolver extends Solver {
     // Sturm sequence control
     const nwantedeigs = Math.min(this.n, this.neq);
     const maxOmega = this.loadCases[0].eigenNumbers[nwantedeigs - 1];
-    const ldl = luqr.luqr.decomposeLDL(
-      (math.subtract(kk, math.multiply(maxOmega, mm)) as math.Matrix).toArray()
-    );
+    const ldl = luqr.luqr.decomposeLDL((math.subtract(kk, math.multiply(maxOmega, mm)) as math.Matrix).toArray());
 
     // number of negative elements in d matrix implies number of eigen numbers between 0 and max eigen numbers
 
@@ -214,14 +176,7 @@ export class EigenValueDynamicSolver extends Solver {
       const missing = nneg - nwantedeigs + 1;
       //console.log(ldl.d)
       console.log(
-        "Sturm control sequence: " +
-          nneg +
-          ", found " +
-          nwantedeigs +
-          " (" +
-          neigstofind +
-          "), missing " +
-          missing
+        "Sturm control sequence: " + nneg + ", found " + nwantedeigs + " (" + neigstofind + "), missing " + missing
       );
     }
 

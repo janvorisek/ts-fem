@@ -1,6 +1,6 @@
 import * as math from "mathjs";
 import { Domain } from "./Domain";
-import { DofID, LabelType } from "./fem";
+import { DofID, LabelType } from ".";
 
 /**
  * A class representing Finite Element
@@ -45,7 +45,7 @@ export abstract class Element {
       this.label = params.label.toString();
     }
     if (params.nodes != undefined) {
-      this.nodes = params.nodes;
+      this.nodes = params.nodes.map((x) => x.toString());
     }
     if (params.mat != undefined) {
       this.mat = params.mat.toString();

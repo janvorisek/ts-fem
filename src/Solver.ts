@@ -1,5 +1,5 @@
 import * as math from "mathjs";
-import { DofID, Domain, LabelType, LoadCase } from "./fem";
+import { DofID, Domain, LabelType, LoadCase } from ".";
 
 /**
  * Class representing linear elastic solver.

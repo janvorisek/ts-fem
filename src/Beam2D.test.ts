@@ -2,7 +2,7 @@ import * as math from "mathjs";
 
 import { expect, test } from "vitest";
 import { LinearStaticSolver } from "./LinearStaticSolver";
-import { DofID } from "./fem";
+import { DofID } from ".";
 
 test("Simple cantilever", () => {
   const solver = new LinearStaticSolver();

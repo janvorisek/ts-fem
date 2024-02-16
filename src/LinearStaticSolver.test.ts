@@ -2,7 +2,7 @@ import * as math from "mathjs";
 
 import { expect, test } from "vitest";
 import { LinearStaticSolver } from "./LinearStaticSolver";
-import { Beam2D, DofID } from "./fem";
+import { Beam2D, DofID } from ".";
 
 test("1 uknown - Cantilever-hinge", () => {
   const solver = new LinearStaticSolver();
