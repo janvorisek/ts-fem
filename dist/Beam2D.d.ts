@@ -18,13 +18,6 @@ export declare class Beam2D extends Element {
      * @param hinges array of two boolean values indicating if hinge is present at start or end
      */
     constructor(label: LabelType, domain: Domain, nodes: Array<LabelType>, mat: LabelType, cs: LabelType, hinges?: [boolean, boolean]);
-    change2(params: {
-        label?: LabelType;
-        nodes?: LabelType[];
-        mat?: number;
-        cs?: number;
-        hinges: [boolean, boolean];
-    }): void;
     getNodeDofs(node: LabelType): Array<DofID>;
     getLocationArray(): number[];
     /**

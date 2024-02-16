@@ -33,7 +33,7 @@ export declare class LoadCase {
      * param e element number
      */
     getElementLoadsOnElement(e: LabelType): Array<BeamElementLoad>;
-    createNodalLoad(node: number, values?: EnumDictionary<DofID, number>): NodalLoad;
-    createBeamElementUniformEdgeLoad(elem: number, values: number[], lcs: boolean): BeamElementUniformEdgeLoad;
-    createPrescribedDisplacement(target: number, values: EnumDictionary<DofID, number>): PrescribedDisplacement;
+    createNodalLoad(node: LabelType, values?: EnumDictionary<DofID, number>): NodalLoad;
+    createBeamElementUniformEdgeLoad(elem: LabelType, values: number[], lcs: boolean): BeamElementUniformEdgeLoad;
+    createPrescribedDisplacement(target: LabelType, values: EnumDictionary<DofID, number>): PrescribedDisplacement;
 }

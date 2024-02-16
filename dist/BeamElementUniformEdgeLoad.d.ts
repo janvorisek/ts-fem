@@ -7,7 +7,7 @@ import { LabelType } from ".";
 export declare class BeamElementUniformEdgeLoad extends BeamElementLoad {
     values: number[];
     lcs: boolean;
-    constructor(elem: number, domain: Domain, values: number[], lcs: boolean);
+    constructor(elem: LabelType, domain: Domain, values: number[], lcs: boolean);
     change(elem: LabelType, values: number[], lcs: boolean): void;
     getGlobalIntensities(): {
         fx: number;

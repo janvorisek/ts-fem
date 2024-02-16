@@ -26,12 +26,6 @@ export declare abstract class Element {
      * @param cs new cross section (number)
      */
     change(label: LabelType, nodes: Array<number>, mat: LabelType, cs: LabelType): void;
-    change2(params: {
-        label: LabelType;
-        nodes?: LabelType[];
-        mat?: LabelType;
-        cs?: LabelType;
-    }): void;
     /**
      * Returns Material (object) associated to element
      */
