@@ -564,6 +564,21 @@ export class Beam2D extends Element {
     }
     return { x: x, N: N };
   }
+
+  computeNormalForceAt(lc: LoadCase, xi: number) {
+    const F = this.computeEndForces(lc);
+
+    const eloads = lc.getElementLoadsOnElement(this.label);
+    let Ni = -F.get([0]);
+
+    // add contributions of loads
+    for (const load of eloads) {
+      Ni += load.computeBeamNContrib(xi);
+    }
+
+    return Ni;
+  }
+
   /**
    * Computes the values of shear force along element
    * @param lc load case reference
@@ -590,6 +605,21 @@ export class Beam2D extends Element {
     }
     return { x: x, V: V };
   }
+
+  computeShearForceAt(lc: LoadCase, xi: number) {
+    const F = this.computeEndForces(lc);
+
+    const eloads = lc.getElementLoadsOnElement(this.label);
+    let Vi = -F.get([1]);
+
+    // add contributions of loads
+    for (const load of eloads) {
+      Vi += load.computeBeamVContrib(xi);
+    }
+
+    return Vi;
+  }
+
   /**
    * Computes the values of bending moment along element
    * @param lc load case reference
@@ -615,5 +645,19 @@ export class Beam2D extends Element {
       M.push(Mi);
     }
     return { x: x, M: M };
+  }
+
+  computeBendingMomentAt(lc: LoadCase, xi: number) {
+    const F = this.computeEndForces(lc);
+
+    const eloads = lc.getElementLoadsOnElement(this.label);
+    let Mi = -F.get([2]) - F.get([1]) * xi;
+
+    // add contributions of loads
+    for (const load of eloads) {
+      Mi += load.computeBeamMContrib(xi);
+    }
+
+    return Mi;
   }
 }
