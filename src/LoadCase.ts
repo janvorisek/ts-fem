@@ -4,7 +4,7 @@ import { BeamElementUniformEdgeLoad } from "./BeamElementUniformEdgeLoad";
 import { Domain } from "./Domain";
 import { NodalLoad } from "./NodalLoad";
 import { PrescribedDisplacement } from "./PrescribedDisplacement";
-import { DofID, LabelType } from ".";
+import { BeamConcentratedLoad, DofID, LabelType } from ".";
 import { EnumDictionary } from ".";
 
 /**
@@ -17,7 +17,7 @@ export class LoadCase {
   bcMap: { [node: number]: PrescribedDisplacement } = {};
   // Array of loads applied
   nodalLoadList = new Array<NodalLoad>();
-  elementLoadList = new Array<BeamElementUniformEdgeLoad>();
+  elementLoadList = new Array<BeamElementLoad>();
   prescribedBC = new Array<PrescribedDisplacement>();
   // solution vector
   r: math.Matrix = math.zeros(0) as math.Matrix;
@@ -57,11 +57,19 @@ export class LoadCase {
     this.nodalLoadList.push(ans);
     return ans;
   }
+
   createBeamElementUniformEdgeLoad(elem: LabelType, values: number[], lcs: boolean) {
     const ans = new BeamElementUniformEdgeLoad(elem, this.domain, values, lcs);
     this.elementLoadList.push(ans);
     return ans;
   }
+
+  createBeamConcentratedLoad(elem: LabelType, values: number[], lcs: boolean) {
+    const ans = new BeamConcentratedLoad(elem, this.domain, values, lcs);
+    this.elementLoadList.push(ans);
+    return ans;
+  }
+
   createPrescribedDisplacement(target: LabelType, values: EnumDictionary<DofID, number>) {
     const ans = new PrescribedDisplacement(target, this.domain, values);
     this.prescribedBC.push(ans);
