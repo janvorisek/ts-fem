@@ -1,17 +1,17 @@
-var ka = Object.defineProperty;
-var ja = (r, e, n) => e in r ? ka(r, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : r[e] = n;
-var lr = (r, e, n) => (ja(r, typeof e != "symbol" ? e + "" : e, n), n);
-function Oe() {
-  return Oe = Object.assign ? Object.assign.bind() : function(r) {
-    for (var e = 1; e < arguments.length; e++) {
-      var n = arguments[e];
+var ja = Object.defineProperty;
+var eu = (e, t, n) => t in e ? ja(e, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : e[t] = n;
+var se = (e, t, n) => (eu(e, typeof t != "symbol" ? t + "" : t, n), n);
+function Ir() {
+  return Ir = Object.assign ? Object.assign.bind() : function(e) {
+    for (var t = 1; t < arguments.length; t++) {
+      var n = arguments[t];
       for (var i in n)
-        Object.prototype.hasOwnProperty.call(n, i) && (r[i] = n[i]);
+        Object.prototype.hasOwnProperty.call(n, i) && (e[i] = n[i]);
     }
-    return r;
-  }, Oe.apply(this, arguments);
+    return e;
+  }, Ir.apply(this, arguments);
 }
-var hi = {
+var pi = {
   // minimum relative difference between two compared values,
   // used by all comparison functions
   epsilon: 1e-12,
@@ -30,192 +30,192 @@ var hi = {
   // null = randomly seed
   randomSeed: null
 };
-function $r(r) {
-  return typeof r == "number";
+function Le(e) {
+  return typeof e == "number";
 }
-function Pr(r) {
-  return !r || typeof r != "object" || typeof r.constructor != "function" ? !1 : r.isBigNumber === !0 && typeof r.constructor.prototype == "object" && r.constructor.prototype.isBigNumber === !0 || typeof r.constructor.isDecimal == "function" && r.constructor.isDecimal(r) === !0;
+function Pe(e) {
+  return !e || typeof e != "object" || typeof e.constructor != "function" ? !1 : e.isBigNumber === !0 && typeof e.constructor.prototype == "object" && e.constructor.prototype.isBigNumber === !0 || typeof e.constructor.isDecimal == "function" && e.constructor.isDecimal(e) === !0;
 }
-function Gt(r) {
-  return r && typeof r == "object" && Object.getPrototypeOf(r).isComplex === !0 || !1;
+function Gt(e) {
+  return e && typeof e == "object" && Object.getPrototypeOf(e).isComplex === !0 || !1;
 }
-function Yt(r) {
-  return r && typeof r == "object" && Object.getPrototypeOf(r).isFraction === !0 || !1;
+function Yt(e) {
+  return e && typeof e == "object" && Object.getPrototypeOf(e).isFraction === !0 || !1;
 }
-function pi(r) {
-  return r && r.constructor.prototype.isUnit === !0 || !1;
+function di(e) {
+  return e && e.constructor.prototype.isUnit === !0 || !1;
 }
-function te(r) {
-  return typeof r == "string";
+function tr(e) {
+  return typeof e == "string";
 }
-var Mr = Array.isArray;
-function _r(r) {
-  return r && r.constructor.prototype.isMatrix === !0 || !1;
+var Me = Array.isArray;
+function _e(e) {
+  return e && e.constructor.prototype.isMatrix === !0 || !1;
 }
-function ot(r) {
-  return Array.isArray(r) || _r(r);
+function ot(e) {
+  return Array.isArray(e) || _e(e);
 }
-function di(r) {
-  return r && r.isDenseMatrix && r.constructor.prototype.isMatrix === !0 || !1;
+function mi(e) {
+  return e && e.isDenseMatrix && e.constructor.prototype.isMatrix === !0 || !1;
 }
-function mi(r) {
-  return r && r.isSparseMatrix && r.constructor.prototype.isMatrix === !0 || !1;
+function gi(e) {
+  return e && e.isSparseMatrix && e.constructor.prototype.isMatrix === !0 || !1;
 }
-function gi(r) {
-  return r && r.constructor.prototype.isRange === !0 || !1;
+function Di(e) {
+  return e && e.constructor.prototype.isRange === !0 || !1;
 }
-function wt(r) {
-  return r && r.constructor.prototype.isIndex === !0 || !1;
+function wt(e) {
+  return e && e.constructor.prototype.isIndex === !0 || !1;
 }
-function ru(r) {
-  return typeof r == "boolean";
+function ru(e) {
+  return typeof e == "boolean";
 }
-function eu(r) {
-  return r && r.constructor.prototype.isResultSet === !0 || !1;
+function tu(e) {
+  return e && e.constructor.prototype.isResultSet === !0 || !1;
 }
-function tu(r) {
-  return r && r.constructor.prototype.isHelp === !0 || !1;
+function nu(e) {
+  return e && e.constructor.prototype.isHelp === !0 || !1;
 }
-function nu(r) {
-  return typeof r == "function";
+function iu(e) {
+  return typeof e == "function";
 }
-function iu(r) {
-  return r instanceof Date;
+function au(e) {
+  return e instanceof Date;
 }
-function au(r) {
-  return r instanceof RegExp;
+function uu(e) {
+  return e instanceof RegExp;
 }
-function Di(r) {
-  return !!(r && typeof r == "object" && r.constructor === Object && !Gt(r) && !Yt(r));
+function yi(e) {
+  return !!(e && typeof e == "object" && e.constructor === Object && !Gt(e) && !Yt(e));
 }
-function uu(r) {
-  return r === null;
+function ou(e) {
+  return e === null;
 }
-function ou(r) {
-  return r === void 0;
+function su(e) {
+  return e === void 0;
 }
-function su(r) {
-  return r && r.isAccessorNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function fu(e) {
+  return e && e.isAccessorNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function fu(r) {
-  return r && r.isArrayNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function cu(e) {
+  return e && e.isArrayNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function cu(r) {
-  return r && r.isAssignmentNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function lu(e) {
+  return e && e.isAssignmentNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function lu(r) {
-  return r && r.isBlockNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function hu(e) {
+  return e && e.isBlockNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function vu(r) {
-  return r && r.isConditionalNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function vu(e) {
+  return e && e.isConditionalNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function hu(r) {
-  return r && r.isConstantNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function pu(e) {
+  return e && e.isConstantNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function pu(r) {
-  return r && r.isFunctionAssignmentNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function du(e) {
+  return e && e.isFunctionAssignmentNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function du(r) {
-  return r && r.isFunctionNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function mu(e) {
+  return e && e.isFunctionNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function mu(r) {
-  return r && r.isIndexNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function gu(e) {
+  return e && e.isIndexNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function gu(r) {
-  return r && r.isNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function Du(e) {
+  return e && e.isNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function Du(r) {
-  return r && r.isObjectNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function yu(e) {
+  return e && e.isObjectNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function yu(r) {
-  return r && r.isOperatorNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function wu(e) {
+  return e && e.isOperatorNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function wu(r) {
-  return r && r.isParenthesisNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function Au(e) {
+  return e && e.isParenthesisNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function Au(r) {
-  return r && r.isRangeNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function Eu(e) {
+  return e && e.isRangeNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function Eu(r) {
-  return r && r.isRelationalNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function Fu(e) {
+  return e && e.isRelationalNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function Fu(r) {
-  return r && r.isSymbolNode === !0 && r.constructor.prototype.isNode === !0 || !1;
+function Cu(e) {
+  return e && e.isSymbolNode === !0 && e.constructor.prototype.isNode === !0 || !1;
 }
-function Cu(r) {
-  return r && r.constructor.prototype.isChain === !0 || !1;
+function bu(e) {
+  return e && e.constructor.prototype.isChain === !0 || !1;
 }
-function fe(r) {
-  var e = typeof r;
-  return e === "object" ? r === null ? "null" : Pr(r) ? "BigNumber" : r.constructor && r.constructor.name ? r.constructor.name : "Object" : e;
+function lr(e) {
+  var t = typeof e;
+  return t === "object" ? e === null ? "null" : Pe(e) ? "BigNumber" : e.constructor && e.constructor.name ? e.constructor.name : "Object" : t;
 }
-function Fr(r) {
-  var e = typeof r;
-  if (e === "number" || e === "string" || e === "boolean" || r === null || r === void 0)
-    return r;
-  if (typeof r.clone == "function")
-    return r.clone();
-  if (Array.isArray(r))
-    return r.map(function(n) {
-      return Fr(n);
+function Ce(e) {
+  var t = typeof e;
+  if (t === "number" || t === "string" || t === "boolean" || e === null || e === void 0)
+    return e;
+  if (typeof e.clone == "function")
+    return e.clone();
+  if (Array.isArray(e))
+    return e.map(function(n) {
+      return Ce(n);
     });
-  if (r instanceof Date)
-    return new Date(r.valueOf());
-  if (Pr(r))
-    return r;
-  if (Di(r))
-    return bu(r, Fr);
-  throw new TypeError("Cannot clone: unknown type of value (value: ".concat(r, ")"));
+  if (e instanceof Date)
+    return new Date(e.valueOf());
+  if (Pe(e))
+    return e;
+  if (yi(e))
+    return Mu(e, Ce);
+  throw new TypeError("Cannot clone: unknown type of value (value: ".concat(e, ")"));
 }
-function bu(r, e) {
+function Mu(e, t) {
   var n = {};
-  for (var i in r)
-    Ye(r, i) && (n[i] = e(r[i]));
+  for (var i in e)
+    Yr(e, i) && (n[i] = t(e[i]));
   return n;
 }
-function Mu(r, e) {
-  for (var n in e)
-    Ye(e, n) && (r[n] = e[n]);
-  return r;
+function Su(e, t) {
+  for (var n in t)
+    Yr(t, n) && (e[n] = t[n]);
+  return e;
 }
-function Ie(r, e) {
-  var n, i, t;
-  if (Array.isArray(r)) {
-    if (!Array.isArray(e) || r.length !== e.length)
+function Or(e, t) {
+  var n, i, r;
+  if (Array.isArray(e)) {
+    if (!Array.isArray(t) || e.length !== t.length)
       return !1;
-    for (i = 0, t = r.length; i < t; i++)
-      if (!Ie(r[i], e[i]))
+    for (i = 0, r = e.length; i < r; i++)
+      if (!Or(e[i], t[i]))
         return !1;
     return !0;
   } else {
-    if (typeof r == "function")
-      return r === e;
-    if (r instanceof Object) {
-      if (Array.isArray(e) || !(e instanceof Object))
+    if (typeof e == "function")
+      return e === t;
+    if (e instanceof Object) {
+      if (Array.isArray(t) || !(t instanceof Object))
         return !1;
-      for (n in r)
-        if (!(n in e) || !Ie(r[n], e[n]))
-          return !1;
       for (n in e)
-        if (!(n in r))
+        if (!(n in t) || !Or(e[n], t[n]))
+          return !1;
+      for (n in t)
+        if (!(n in e))
           return !1;
       return !0;
     } else
-      return r === e;
+      return e === t;
   }
 }
-function Ye(r, e) {
-  return r && Object.hasOwnProperty.call(r, e);
+function Yr(e, t) {
+  return e && Object.hasOwnProperty.call(e, t);
 }
-function Su(r, e) {
-  for (var n = {}, i = 0; i < e.length; i++) {
-    var t = e[i], a = r[t];
-    a !== void 0 && (n[t] = a);
+function xu(e, t) {
+  for (var n = {}, i = 0; i < t.length; i++) {
+    var r = t[i], a = e[r];
+    a !== void 0 && (n[r] = a);
   }
   return n;
 }
-var Nu = ["Matrix", "Array"], xu = ["number", "BigNumber", "Fraction"], kr = function(e) {
-  if (e)
+var Nu = ["Matrix", "Array"], Bu = ["number", "BigNumber", "Fraction"], je = function(t) {
+  if (t)
     throw new Error(`The global config is readonly. 
 Please create a mathjs instance if you want to change the default configuration. 
 Example:
@@ -224,883 +224,883 @@ Example:
   const mathjs = create(all);
   mathjs.config({ number: 'BigNumber' });
 `);
-  return Object.freeze(hi);
+  return Object.freeze(pi);
 };
-Oe(kr, hi, {
+Ir(je, pi, {
   MATRIX_OPTIONS: Nu,
-  NUMBER_OPTIONS: xu
+  NUMBER_OPTIONS: Bu
 });
-function tn() {
+function nn() {
   return !0;
 }
-function ee() {
+function rr() {
   return !1;
 }
-function Be() {
+function Br() {
 }
-const nn = "Argument is not a typed-function.";
-function yi() {
-  function r(x) {
-    return typeof x == "object" && x !== null && x.constructor === Object;
+const an = "Argument is not a typed-function.";
+function wi() {
+  function e(N) {
+    return typeof N == "object" && N !== null && N.constructor === Object;
   }
-  const e = [{
+  const t = [{
     name: "number",
-    test: function(x) {
-      return typeof x == "number";
+    test: function(N) {
+      return typeof N == "number";
     }
   }, {
     name: "string",
-    test: function(x) {
-      return typeof x == "string";
+    test: function(N) {
+      return typeof N == "string";
     }
   }, {
     name: "boolean",
-    test: function(x) {
-      return typeof x == "boolean";
+    test: function(N) {
+      return typeof N == "boolean";
     }
   }, {
     name: "Function",
-    test: function(x) {
-      return typeof x == "function";
+    test: function(N) {
+      return typeof N == "function";
     }
   }, {
     name: "Array",
     test: Array.isArray
   }, {
     name: "Date",
-    test: function(x) {
-      return x instanceof Date;
+    test: function(N) {
+      return N instanceof Date;
     }
   }, {
     name: "RegExp",
-    test: function(x) {
-      return x instanceof RegExp;
+    test: function(N) {
+      return N instanceof RegExp;
     }
   }, {
     name: "Object",
-    test: r
+    test: e
   }, {
     name: "null",
-    test: function(x) {
-      return x === null;
+    test: function(N) {
+      return N === null;
     }
   }, {
     name: "undefined",
-    test: function(x) {
-      return x === void 0;
+    test: function(N) {
+      return N === void 0;
     }
   }], n = {
     name: "any",
-    test: tn,
+    test: nn,
     isAny: !0
   };
-  let i, t, a = 0, o = {
+  let i, r, a = 0, o = {
     createCount: 0
   };
-  function v(x) {
-    const _ = i.get(x);
+  function h(N) {
+    const _ = i.get(N);
     if (_)
       return _;
-    let $ = 'Unknown type "' + x + '"';
-    const R = x.toLowerCase();
-    let K;
-    for (K of t)
-      if (K.toLowerCase() === R) {
-        $ += '. Did you mean "' + K + '" ?';
+    let L = 'Unknown type "' + N + '"';
+    const R = N.toLowerCase();
+    let H;
+    for (H of r)
+      if (H.toLowerCase() === R) {
+        L += '. Did you mean "' + H + '" ?';
         break;
       }
-    throw new TypeError($);
+    throw new TypeError(L);
   }
-  function c(x) {
+  function c(N) {
     let _ = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "any";
-    const $ = _ ? v(_).index : t.length, R = [];
-    for (let Y = 0; Y < x.length; ++Y) {
-      if (!x[Y] || typeof x[Y].name != "string" || typeof x[Y].test != "function")
+    const L = _ ? h(_).index : r.length, R = [];
+    for (let Y = 0; Y < N.length; ++Y) {
+      if (!N[Y] || typeof N[Y].name != "string" || typeof N[Y].test != "function")
         throw new TypeError("Object with properties {name: string, test: function} expected");
-      const ar = x[Y].name;
-      if (i.has(ar))
-        throw new TypeError('Duplicate type name "' + ar + '"');
-      R.push(ar), i.set(ar, {
-        name: ar,
-        test: x[Y].test,
-        isAny: x[Y].isAny,
-        index: $ + Y,
+      const ae = N[Y].name;
+      if (i.has(ae))
+        throw new TypeError('Duplicate type name "' + ae + '"');
+      R.push(ae), i.set(ae, {
+        name: ae,
+        test: N[Y].test,
+        isAny: N[Y].isAny,
+        index: L + Y,
         conversionsTo: []
         // Newly added type can't have any conversions to it
       });
     }
-    const K = t.slice($);
-    t = t.slice(0, $).concat(R).concat(K);
-    for (let Y = $ + R.length; Y < t.length; ++Y)
-      i.get(t[Y]).index = Y;
+    const H = r.slice(L);
+    r = r.slice(0, L).concat(R).concat(H);
+    for (let Y = L + R.length; Y < r.length; ++Y)
+      i.get(r[Y]).index = Y;
   }
   function l() {
-    i = /* @__PURE__ */ new Map(), t = [], a = 0, c([n], !1);
+    i = /* @__PURE__ */ new Map(), r = [], a = 0, c([n], !1);
   }
-  l(), c(e);
+  l(), c(t);
   function s() {
-    let x;
-    for (x of t)
-      i.get(x).conversionsTo = [];
+    let N;
+    for (N of r)
+      i.get(N).conversionsTo = [];
     a = 0;
   }
-  function u(x) {
-    const _ = t.filter(($) => {
-      const R = i.get($);
-      return !R.isAny && R.test(x);
+  function u(N) {
+    const _ = r.filter((L) => {
+      const R = i.get(L);
+      return !R.isAny && R.test(N);
     });
     return _.length ? _ : ["any"];
   }
-  function f(x) {
-    return x && typeof x == "function" && "_typedFunctionData" in x;
+  function f(N) {
+    return N && typeof N == "function" && "_typedFunctionData" in N;
   }
-  function p(x, _, $) {
-    if (!f(x))
-      throw new TypeError(nn);
-    const R = $ && $.exact, K = Array.isArray(_) ? _.join(",") : _, Y = E(K), ar = m(Y);
-    if (!R || ar in x.signatures) {
-      const xr = x._typedFunctionData.signatureMap.get(ar);
-      if (xr)
-        return xr;
+  function p(N, _, L) {
+    if (!f(N))
+      throw new TypeError(an);
+    const R = L && L.exact, H = Array.isArray(_) ? _.join(",") : _, Y = A(H), ae = m(Y);
+    if (!R || ae in N.signatures) {
+      const Ne = N._typedFunctionData.signatureMap.get(ae);
+      if (Ne)
+        return Ne;
     }
-    const tr = Y.length;
-    let ir;
+    const te = Y.length;
+    let ie;
     if (R) {
-      ir = [];
-      let xr;
-      for (xr in x.signatures)
-        ir.push(x._typedFunctionData.signatureMap.get(xr));
+      ie = [];
+      let Ne;
+      for (Ne in N.signatures)
+        ie.push(N._typedFunctionData.signatureMap.get(Ne));
     } else
-      ir = x._typedFunctionData.signatures;
-    for (let xr = 0; xr < tr; ++xr) {
-      const Or = Y[xr], Rr = [];
-      let Kr;
-      for (Kr of ir) {
-        const Qr = b(Kr.params, xr);
-        if (!(!Qr || Or.restParam && !Qr.restParam)) {
-          if (!Qr.hasAny) {
-            const ne = g(Qr);
-            if (Or.types.some((ie) => !ne.has(ie.name)))
+      ie = N._typedFunctionData.signatures;
+    for (let Ne = 0; Ne < te; ++Ne) {
+      const Ie = Y[Ne], Re = [];
+      let Ke;
+      for (Ke of ie) {
+        const Xe = b(Ke.params, Ne);
+        if (!(!Xe || Ie.restParam && !Xe.restParam)) {
+          if (!Xe.hasAny) {
+            const ir = g(Xe);
+            if (Ie.types.some((ar) => !ir.has(ar.name)))
               continue;
           }
-          Rr.push(Kr);
+          Re.push(Ke);
         }
       }
-      if (ir = Rr, ir.length === 0)
+      if (ie = Re, ie.length === 0)
         break;
     }
-    let er;
-    for (er of ir)
-      if (er.params.length <= tr)
-        return er;
-    throw new TypeError("Signature not found (signature: " + (x.name || "unnamed") + "(" + m(Y, ", ") + "))");
+    let re;
+    for (re of ie)
+      if (re.params.length <= te)
+        return re;
+    throw new TypeError("Signature not found (signature: " + (N.name || "unnamed") + "(" + m(Y, ", ") + "))");
   }
-  function D(x, _, $) {
-    return p(x, _, $).implementation;
+  function D(N, _, L) {
+    return p(N, _, L).implementation;
   }
-  function h(x, _) {
-    const $ = v(_);
-    if ($.test(x))
-      return x;
-    const R = $.conversionsTo;
+  function v(N, _) {
+    const L = h(_);
+    if (L.test(N))
+      return N;
+    const R = L.conversionsTo;
     if (R.length === 0)
       throw new Error("There are no conversions to " + _ + " defined.");
-    for (let K = 0; K < R.length; K++)
-      if (v(R[K].from).test(x))
-        return R[K].convert(x);
-    throw new Error("Cannot convert " + x + " to " + _);
+    for (let H = 0; H < R.length; H++)
+      if (h(R[H].from).test(N))
+        return R[H].convert(N);
+    throw new Error("Cannot convert " + N + " to " + _);
   }
-  function m(x) {
+  function m(N) {
     let _ = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : ",";
-    return x.map(($) => $.name).join(_);
+    return N.map((L) => L.name).join(_);
   }
-  function d(x) {
-    const _ = x.indexOf("...") === 0, R = (_ ? x.length > 3 ? x.slice(3) : "any" : x).split("|").map((tr) => v(tr.trim()));
-    let K = !1, Y = _ ? "..." : "";
+  function d(N) {
+    const _ = N.indexOf("...") === 0, R = (_ ? N.length > 3 ? N.slice(3) : "any" : N).split("|").map((te) => h(te.trim()));
+    let H = !1, Y = _ ? "..." : "";
     return {
-      types: R.map(function(tr) {
-        return K = tr.isAny || K, Y += tr.name + "|", {
-          name: tr.name,
-          typeIndex: tr.index,
-          test: tr.test,
-          isAny: tr.isAny,
+      types: R.map(function(te) {
+        return H = te.isAny || H, Y += te.name + "|", {
+          name: te.name,
+          typeIndex: te.index,
+          test: te.test,
+          isAny: te.isAny,
           conversion: null,
           conversionIndex: -1
         };
       }),
       name: Y.slice(0, -1),
       // remove trailing '|' from above
-      hasAny: K,
+      hasAny: H,
       hasConversion: !1,
       restParam: _
     };
   }
-  function w(x) {
-    const _ = x.types.map((ar) => ar.name), $ = G(_);
-    let R = x.hasAny, K = x.name;
-    const Y = $.map(function(ar) {
-      const tr = v(ar.from);
-      return R = tr.isAny || R, K += "|" + ar.from, {
-        name: ar.from,
-        typeIndex: tr.index,
-        test: tr.test,
-        isAny: tr.isAny,
-        conversion: ar,
-        conversionIndex: ar.index
+  function w(N) {
+    const _ = N.types.map((ae) => ae.name), L = G(_);
+    let R = N.hasAny, H = N.name;
+    const Y = L.map(function(ae) {
+      const te = h(ae.from);
+      return R = te.isAny || R, H += "|" + ae.from, {
+        name: ae.from,
+        typeIndex: te.index,
+        test: te.test,
+        isAny: te.isAny,
+        conversion: ae,
+        conversionIndex: ae.index
       };
     });
     return {
-      types: x.types.concat(Y),
-      name: K,
+      types: N.types.concat(Y),
+      name: H,
       hasAny: R,
       hasConversion: Y.length > 0,
-      restParam: x.restParam
+      restParam: N.restParam
     };
   }
-  function g(x) {
-    return x.typeSet || (x.typeSet = /* @__PURE__ */ new Set(), x.types.forEach((_) => x.typeSet.add(_.name))), x.typeSet;
+  function g(N) {
+    return N.typeSet || (N.typeSet = /* @__PURE__ */ new Set(), N.types.forEach((_) => N.typeSet.add(_.name))), N.typeSet;
   }
-  function E(x) {
+  function A(N) {
     const _ = [];
-    if (typeof x != "string")
+    if (typeof N != "string")
       throw new TypeError("Signatures must be strings");
-    const $ = x.trim();
-    if ($ === "")
+    const L = N.trim();
+    if (L === "")
       return _;
-    const R = $.split(",");
-    for (let K = 0; K < R.length; ++K) {
-      const Y = d(R[K].trim());
-      if (Y.restParam && K !== R.length - 1)
-        throw new SyntaxError('Unexpected rest parameter "' + R[K] + '": only allowed for the last parameter');
+    const R = L.split(",");
+    for (let H = 0; H < R.length; ++H) {
+      const Y = d(R[H].trim());
+      if (Y.restParam && H !== R.length - 1)
+        throw new SyntaxError('Unexpected rest parameter "' + R[H] + '": only allowed for the last parameter');
       if (Y.types.length === 0)
         return null;
       _.push(Y);
     }
     return _;
   }
-  function F(x) {
-    const _ = X(x);
+  function F(N) {
+    const _ = X(N);
     return _ ? _.restParam : !1;
   }
-  function y(x) {
-    if (!x || x.types.length === 0)
-      return tn;
-    if (x.types.length === 1)
-      return v(x.types[0].name).test;
-    if (x.types.length === 2) {
-      const _ = v(x.types[0].name).test, $ = v(x.types[1].name).test;
-      return function(K) {
-        return _(K) || $(K);
+  function y(N) {
+    if (!N || N.types.length === 0)
+      return nn;
+    if (N.types.length === 1)
+      return h(N.types[0].name).test;
+    if (N.types.length === 2) {
+      const _ = h(N.types[0].name).test, L = h(N.types[1].name).test;
+      return function(H) {
+        return _(H) || L(H);
       };
     } else {
-      const _ = x.types.map(function($) {
-        return v($.name).test;
+      const _ = N.types.map(function(L) {
+        return h(L.name).test;
       });
       return function(R) {
-        for (let K = 0; K < _.length; K++)
-          if (_[K](R))
+        for (let H = 0; H < _.length; H++)
+          if (_[H](R))
             return !0;
         return !1;
       };
     }
   }
-  function C(x) {
-    let _, $, R;
-    if (F(x)) {
-      _ = Q(x).map(y);
-      const K = _.length, Y = y(X(x)), ar = function(tr) {
-        for (let ir = K; ir < tr.length; ir++)
-          if (!Y(tr[ir]))
+  function C(N) {
+    let _, L, R;
+    if (F(N)) {
+      _ = Q(N).map(y);
+      const H = _.length, Y = y(X(N)), ae = function(te) {
+        for (let ie = H; ie < te.length; ie++)
+          if (!Y(te[ie]))
             return !1;
         return !0;
       };
-      return function(ir) {
-        for (let er = 0; er < _.length; er++)
-          if (!_[er](ir[er]))
+      return function(ie) {
+        for (let re = 0; re < _.length; re++)
+          if (!_[re](ie[re]))
             return !1;
-        return ar(ir) && ir.length >= K + 1;
+        return ae(ie) && ie.length >= H + 1;
       };
     } else
-      return x.length === 0 ? function(Y) {
+      return N.length === 0 ? function(Y) {
         return Y.length === 0;
-      } : x.length === 1 ? ($ = y(x[0]), function(Y) {
-        return $(Y[0]) && Y.length === 1;
-      }) : x.length === 2 ? ($ = y(x[0]), R = y(x[1]), function(Y) {
-        return $(Y[0]) && R(Y[1]) && Y.length === 2;
-      }) : (_ = x.map(y), function(Y) {
-        for (let ar = 0; ar < _.length; ar++)
-          if (!_[ar](Y[ar]))
+      } : N.length === 1 ? (L = y(N[0]), function(Y) {
+        return L(Y[0]) && Y.length === 1;
+      }) : N.length === 2 ? (L = y(N[0]), R = y(N[1]), function(Y) {
+        return L(Y[0]) && R(Y[1]) && Y.length === 2;
+      }) : (_ = N.map(y), function(Y) {
+        for (let ae = 0; ae < _.length; ae++)
+          if (!_[ae](Y[ae]))
             return !1;
         return Y.length === _.length;
       });
   }
-  function b(x, _) {
-    return _ < x.length ? x[_] : F(x) ? X(x) : null;
+  function b(N, _) {
+    return _ < N.length ? N[_] : F(N) ? X(N) : null;
   }
-  function A(x, _) {
-    const $ = b(x, _);
-    return $ ? g($) : /* @__PURE__ */ new Set();
+  function E(N, _) {
+    const L = b(N, _);
+    return L ? g(L) : /* @__PURE__ */ new Set();
   }
-  function S(x) {
-    return x.conversion === null || x.conversion === void 0;
+  function S(N) {
+    return N.conversion === null || N.conversion === void 0;
   }
-  function M(x, _) {
-    const $ = /* @__PURE__ */ new Set();
-    return x.forEach((R) => {
-      const K = A(R.params, _);
+  function M(N, _) {
+    const L = /* @__PURE__ */ new Set();
+    return N.forEach((R) => {
+      const H = E(R.params, _);
       let Y;
-      for (Y of K)
-        $.add(Y);
-    }), $.has("any") ? ["any"] : Array.from($);
+      for (Y of H)
+        L.add(Y);
+    }), L.has("any") ? ["any"] : Array.from(L);
   }
-  function N(x, _, $) {
-    let R, K;
-    const Y = x || "unnamed";
-    let ar = $, tr;
-    for (tr = 0; tr < _.length; tr++) {
-      const Or = [];
-      if (ar.forEach((Rr) => {
-        const Kr = b(Rr.params, tr), Qr = y(Kr);
-        (tr < Rr.params.length || F(Rr.params)) && Qr(_[tr]) && Or.push(Rr);
-      }), Or.length === 0) {
-        if (K = M(ar, tr), K.length > 0) {
-          const Rr = u(_[tr]);
-          return R = new TypeError("Unexpected type of argument in function " + Y + " (expected: " + K.join(" or ") + ", actual: " + Rr.join(" | ") + ", index: " + tr + ")"), R.data = {
+  function x(N, _, L) {
+    let R, H;
+    const Y = N || "unnamed";
+    let ae = L, te;
+    for (te = 0; te < _.length; te++) {
+      const Ie = [];
+      if (ae.forEach((Re) => {
+        const Ke = b(Re.params, te), Xe = y(Ke);
+        (te < Re.params.length || F(Re.params)) && Xe(_[te]) && Ie.push(Re);
+      }), Ie.length === 0) {
+        if (H = M(ae, te), H.length > 0) {
+          const Re = u(_[te]);
+          return R = new TypeError("Unexpected type of argument in function " + Y + " (expected: " + H.join(" or ") + ", actual: " + Re.join(" | ") + ", index: " + te + ")"), R.data = {
             category: "wrongType",
             fn: Y,
-            index: tr,
-            actual: Rr,
-            expected: K
+            index: te,
+            actual: Re,
+            expected: H
           }, R;
         }
       } else
-        ar = Or;
+        ae = Ie;
     }
-    const ir = ar.map(function(Or) {
-      return F(Or.params) ? 1 / 0 : Or.params.length;
+    const ie = ae.map(function(Ie) {
+      return F(Ie.params) ? 1 / 0 : Ie.params.length;
     });
-    if (_.length < Math.min.apply(null, ir))
-      return K = M(ar, tr), R = new TypeError("Too few arguments in function " + Y + " (expected: " + K.join(" or ") + ", index: " + _.length + ")"), R.data = {
+    if (_.length < Math.min.apply(null, ie))
+      return H = M(ae, te), R = new TypeError("Too few arguments in function " + Y + " (expected: " + H.join(" or ") + ", index: " + _.length + ")"), R.data = {
         category: "tooFewArgs",
         fn: Y,
         index: _.length,
-        expected: K
+        expected: H
       }, R;
-    const er = Math.max.apply(null, ir);
-    if (_.length > er)
-      return R = new TypeError("Too many arguments in function " + Y + " (expected: " + er + ", actual: " + _.length + ")"), R.data = {
+    const re = Math.max.apply(null, ie);
+    if (_.length > re)
+      return R = new TypeError("Too many arguments in function " + Y + " (expected: " + re + ", actual: " + _.length + ")"), R.data = {
         category: "tooManyArgs",
         fn: Y,
         index: _.length,
-        expectedLength: er
+        expectedLength: re
       }, R;
-    const xr = [];
-    for (let Or = 0; Or < _.length; ++Or)
-      xr.push(u(_[Or]).join("|"));
-    return R = new TypeError('Arguments of type "' + xr.join(", ") + '" do not match any of the defined signatures of function ' + Y + "."), R.data = {
+    const Ne = [];
+    for (let Ie = 0; Ie < _.length; ++Ie)
+      Ne.push(u(_[Ie]).join("|"));
+    return R = new TypeError('Arguments of type "' + Ne.join(", ") + '" do not match any of the defined signatures of function ' + Y + "."), R.data = {
       category: "mismatch",
-      actual: xr
+      actual: Ne
     }, R;
   }
-  function O(x) {
-    let _ = t.length + 1;
-    for (let $ = 0; $ < x.types.length; $++)
-      S(x.types[$]) && (_ = Math.min(_, x.types[$].typeIndex));
+  function I(N) {
+    let _ = r.length + 1;
+    for (let L = 0; L < N.types.length; L++)
+      S(N.types[L]) && (_ = Math.min(_, N.types[L].typeIndex));
     return _;
   }
-  function T(x) {
+  function T(N) {
     let _ = a + 1;
-    for (let $ = 0; $ < x.types.length; $++)
-      S(x.types[$]) || (_ = Math.min(_, x.types[$].conversionIndex));
+    for (let L = 0; L < N.types.length; L++)
+      S(N.types[L]) || (_ = Math.min(_, N.types[L].conversionIndex));
     return _;
   }
-  function I(x, _) {
-    if (x.hasAny) {
+  function O(N, _) {
+    if (N.hasAny) {
       if (!_.hasAny)
         return 1;
     } else if (_.hasAny)
       return -1;
-    if (x.restParam) {
+    if (N.restParam) {
       if (!_.restParam)
         return 1;
     } else if (_.restParam)
       return -1;
-    if (x.hasConversion) {
+    if (N.hasConversion) {
       if (!_.hasConversion)
         return 1;
     } else if (_.hasConversion)
       return -1;
-    const $ = O(x) - O(_);
-    if ($ < 0)
+    const L = I(N) - I(_);
+    if (L < 0)
       return -1;
-    if ($ > 0)
+    if (L > 0)
       return 1;
-    const R = T(x) - T(_);
+    const R = T(N) - T(_);
     return R < 0 ? -1 : R > 0 ? 1 : 0;
   }
-  function B(x, _) {
-    const $ = x.params, R = _.params, K = X($), Y = X(R), ar = F($), tr = F(R);
-    if (ar && K.hasAny) {
-      if (!tr || !Y.hasAny)
+  function B(N, _) {
+    const L = N.params, R = _.params, H = X(L), Y = X(R), ae = F(L), te = F(R);
+    if (ae && H.hasAny) {
+      if (!te || !Y.hasAny)
         return 1;
-    } else if (tr && Y.hasAny)
+    } else if (te && Y.hasAny)
       return -1;
-    let ir = 0, er = 0, xr;
-    for (xr of $)
-      xr.hasAny && ++ir, xr.hasConversion && ++er;
-    let Or = 0, Rr = 0;
-    for (xr of R)
-      xr.hasAny && ++Or, xr.hasConversion && ++Rr;
-    if (ir !== Or)
-      return ir - Or;
-    if (ar && K.hasConversion) {
-      if (!tr || !Y.hasConversion)
+    let ie = 0, re = 0, Ne;
+    for (Ne of L)
+      Ne.hasAny && ++ie, Ne.hasConversion && ++re;
+    let Ie = 0, Re = 0;
+    for (Ne of R)
+      Ne.hasAny && ++Ie, Ne.hasConversion && ++Re;
+    if (ie !== Ie)
+      return ie - Ie;
+    if (ae && H.hasConversion) {
+      if (!te || !Y.hasConversion)
         return 1;
-    } else if (tr && Y.hasConversion)
+    } else if (te && Y.hasConversion)
       return -1;
-    if (er !== Rr)
-      return er - Rr;
-    if (ar) {
-      if (!tr)
+    if (re !== Re)
+      return re - Re;
+    if (ae) {
+      if (!te)
         return 1;
-    } else if (tr)
+    } else if (te)
       return -1;
-    const Kr = ($.length - R.length) * (ar ? -1 : 1);
-    if (Kr !== 0)
-      return Kr;
-    const Qr = [];
-    let ne = 0;
-    for (let xe = 0; xe < $.length; ++xe) {
-      const nt = I($[xe], R[xe]);
-      Qr.push(nt), ne += nt;
+    const Ke = (L.length - R.length) * (ae ? -1 : 1);
+    if (Ke !== 0)
+      return Ke;
+    const Xe = [];
+    let ir = 0;
+    for (let Nr = 0; Nr < L.length; ++Nr) {
+      const nt = O(L[Nr], R[Nr]);
+      Xe.push(nt), ir += nt;
     }
-    if (ne !== 0)
-      return ne;
-    let ie;
-    for (ie of Qr)
-      if (ie !== 0)
-        return ie;
+    if (ir !== 0)
+      return ir;
+    let ar;
+    for (ar of Xe)
+      if (ar !== 0)
+        return ar;
     return 0;
   }
-  function G(x) {
-    if (x.length === 0)
+  function G(N) {
+    if (N.length === 0)
       return [];
-    const _ = x.map(v);
-    x.length > 1 && _.sort((K, Y) => K.index - Y.index);
-    let $ = _[0].conversionsTo;
-    if (x.length === 1)
-      return $;
-    $ = $.concat([]);
-    const R = new Set(x);
-    for (let K = 1; K < _.length; ++K) {
+    const _ = N.map(h);
+    N.length > 1 && _.sort((H, Y) => H.index - Y.index);
+    let L = _[0].conversionsTo;
+    if (N.length === 1)
+      return L;
+    L = L.concat([]);
+    const R = new Set(N);
+    for (let H = 1; H < _.length; ++H) {
       let Y;
-      for (Y of _[K].conversionsTo)
-        R.has(Y.from) || ($.push(Y), R.add(Y.from));
+      for (Y of _[H].conversionsTo)
+        R.has(Y.from) || (L.push(Y), R.add(Y.from));
     }
-    return $;
+    return L;
   }
-  function q(x, _) {
-    let $ = _;
-    if (x.some((K) => K.hasConversion)) {
-      const K = F(x), Y = x.map(z);
-      $ = function() {
-        const tr = [], ir = K ? arguments.length - 1 : arguments.length;
-        for (let er = 0; er < ir; er++)
-          tr[er] = Y[er](arguments[er]);
-        return K && (tr[ir] = arguments[ir].map(Y[ir])), _.apply(this, tr);
+  function $(N, _) {
+    let L = _;
+    if (N.some((H) => H.hasConversion)) {
+      const H = F(N), Y = N.map(z);
+      L = function() {
+        const te = [], ie = H ? arguments.length - 1 : arguments.length;
+        for (let re = 0; re < ie; re++)
+          te[re] = Y[re](arguments[re]);
+        return H && (te[ie] = arguments[ie].map(Y[ie])), _.apply(this, te);
       };
     }
-    let R = $;
-    if (F(x)) {
-      const K = x.length - 1;
+    let R = L;
+    if (F(N)) {
+      const H = N.length - 1;
       R = function() {
-        return $.apply(this, J(arguments, 0, K).concat([J(arguments, K)]));
+        return L.apply(this, J(arguments, 0, H).concat([J(arguments, H)]));
       };
     }
     return R;
   }
-  function z(x) {
-    let _, $, R, K;
-    const Y = [], ar = [];
-    switch (x.types.forEach(function(tr) {
-      tr.conversion && (Y.push(v(tr.conversion.from).test), ar.push(tr.conversion.convert));
-    }), ar.length) {
+  function z(N) {
+    let _, L, R, H;
+    const Y = [], ae = [];
+    switch (N.types.forEach(function(te) {
+      te.conversion && (Y.push(h(te.conversion.from).test), ae.push(te.conversion.convert));
+    }), ae.length) {
       case 0:
-        return function(ir) {
-          return ir;
+        return function(ie) {
+          return ie;
         };
       case 1:
-        return _ = Y[0], R = ar[0], function(ir) {
-          return _(ir) ? R(ir) : ir;
+        return _ = Y[0], R = ae[0], function(ie) {
+          return _(ie) ? R(ie) : ie;
         };
       case 2:
-        return _ = Y[0], $ = Y[1], R = ar[0], K = ar[1], function(ir) {
-          return _(ir) ? R(ir) : $(ir) ? K(ir) : ir;
+        return _ = Y[0], L = Y[1], R = ae[0], H = ae[1], function(ie) {
+          return _(ie) ? R(ie) : L(ie) ? H(ie) : ie;
         };
       default:
-        return function(ir) {
-          for (let er = 0; er < ar.length; er++)
-            if (Y[er](ir))
-              return ar[er](ir);
-          return ir;
+        return function(ie) {
+          for (let re = 0; re < ae.length; re++)
+            if (Y[re](ie))
+              return ae[re](ie);
+          return ie;
         };
     }
   }
-  function V(x) {
-    function _($, R, K) {
-      if (R < $.length) {
-        const Y = $[R];
-        let ar = [];
+  function V(N) {
+    function _(L, R, H) {
+      if (R < L.length) {
+        const Y = L[R];
+        let ae = [];
         if (Y.restParam) {
-          const tr = Y.types.filter(S);
-          tr.length < Y.types.length && ar.push({
-            types: tr,
-            name: "..." + tr.map((ir) => ir.name).join("|"),
-            hasAny: tr.some((ir) => ir.isAny),
+          const te = Y.types.filter(S);
+          te.length < Y.types.length && ae.push({
+            types: te,
+            name: "..." + te.map((ie) => ie.name).join("|"),
+            hasAny: te.some((ie) => ie.isAny),
             hasConversion: !1,
             restParam: !0
-          }), ar.push(Y);
+          }), ae.push(Y);
         } else
-          ar = Y.types.map(function(tr) {
+          ae = Y.types.map(function(te) {
             return {
-              types: [tr],
-              name: tr.name,
-              hasAny: tr.isAny,
-              hasConversion: tr.conversion,
+              types: [te],
+              name: te.name,
+              hasAny: te.isAny,
+              hasConversion: te.conversion,
               restParam: !1
             };
           });
-        return j(ar, function(tr) {
-          return _($, R + 1, K.concat([tr]));
+        return j(ae, function(te) {
+          return _(L, R + 1, H.concat([te]));
         });
       } else
-        return [K];
+        return [H];
     }
-    return _(x, 0, []);
+    return _(N, 0, []);
   }
-  function H(x, _) {
-    const $ = Math.max(x.length, _.length);
-    for (let tr = 0; tr < $; tr++) {
-      const ir = A(x, tr), er = A(_, tr);
-      let xr = !1, Or;
-      for (Or of er)
-        if (ir.has(Or)) {
-          xr = !0;
+  function K(N, _) {
+    const L = Math.max(N.length, _.length);
+    for (let te = 0; te < L; te++) {
+      const ie = E(N, te), re = E(_, te);
+      let Ne = !1, Ie;
+      for (Ie of re)
+        if (ie.has(Ie)) {
+          Ne = !0;
           break;
         }
-      if (!xr)
+      if (!Ne)
         return !1;
     }
-    const R = x.length, K = _.length, Y = F(x), ar = F(_);
-    return Y ? ar ? R === K : K >= R : ar ? R >= K : R === K;
+    const R = N.length, H = _.length, Y = F(N), ae = F(_);
+    return Y ? ae ? R === H : H >= R : ae ? R >= H : R === H;
   }
-  function P(x) {
-    return x.map((_) => yr(_) ? pr(_.referToSelf.callback) : gr(_) ? fr(_.referTo.references, _.referTo.callback) : _);
+  function P(N) {
+    return N.map((_) => we(_) ? de(_.referToSelf.callback) : ge(_) ? le(_.referTo.references, _.referTo.callback) : _);
   }
-  function L(x, _, $) {
+  function q(N, _, L) {
     const R = [];
-    let K;
-    for (K of x) {
-      let Y = $[K];
+    let H;
+    for (H of N) {
+      let Y = L[H];
       if (typeof Y != "number")
-        throw new TypeError('No definition for referenced signature "' + K + '"');
+        throw new TypeError('No definition for referenced signature "' + H + '"');
       if (Y = _[Y], typeof Y != "function")
         return !1;
       R.push(Y);
     }
     return R;
   }
-  function Z(x, _, $) {
-    const R = P(x), K = new Array(R.length).fill(!1);
+  function Z(N, _, L) {
+    const R = P(N), H = new Array(R.length).fill(!1);
     let Y = !0;
     for (; Y; ) {
       Y = !1;
-      let ar = !0;
-      for (let tr = 0; tr < R.length; ++tr) {
-        if (K[tr])
+      let ae = !0;
+      for (let te = 0; te < R.length; ++te) {
+        if (H[te])
           continue;
-        const ir = R[tr];
-        if (yr(ir))
-          R[tr] = ir.referToSelf.callback($), R[tr].referToSelf = ir.referToSelf, K[tr] = !0, ar = !1;
-        else if (gr(ir)) {
-          const er = L(ir.referTo.references, R, _);
-          er ? (R[tr] = ir.referTo.callback.apply(this, er), R[tr].referTo = ir.referTo, K[tr] = !0, ar = !1) : Y = !0;
+        const ie = R[te];
+        if (we(ie))
+          R[te] = ie.referToSelf.callback(L), R[te].referToSelf = ie.referToSelf, H[te] = !0, ae = !1;
+        else if (ge(ie)) {
+          const re = q(ie.referTo.references, R, _);
+          re ? (R[te] = ie.referTo.callback.apply(this, re), R[te].referTo = ie.referTo, H[te] = !0, ae = !1) : Y = !0;
         }
       }
-      if (ar && Y)
+      if (ae && Y)
         throw new SyntaxError("Circular reference detected in resolving typed.referTo");
     }
     return R;
   }
-  function nr(x) {
+  function ne(N) {
     const _ = /\bthis(\(|\.signatures\b)/;
-    Object.keys(x).forEach(($) => {
-      const R = x[$];
+    Object.keys(N).forEach((L) => {
+      const R = N[L];
       if (_.test(R.toString()))
         throw new SyntaxError("Using `this` to self-reference a function is deprecated since typed-function@3. Use typed.referTo and typed.referToSelf instead.");
     });
   }
-  function k(x, _) {
+  function k(N, _) {
     if (o.createCount++, Object.keys(_).length === 0)
       throw new SyntaxError("No signatures provided");
-    o.warnAgainstDeprecatedThis && nr(_);
-    const $ = [], R = [], K = {}, Y = [];
-    let ar;
-    for (ar in _) {
-      if (!Object.prototype.hasOwnProperty.call(_, ar))
+    o.warnAgainstDeprecatedThis && ne(_);
+    const L = [], R = [], H = {}, Y = [];
+    let ae;
+    for (ae in _) {
+      if (!Object.prototype.hasOwnProperty.call(_, ae))
         continue;
-      const Nr = E(ar);
-      if (!Nr)
+      const xe = A(ae);
+      if (!xe)
         continue;
-      $.forEach(function(Ge) {
-        if (H(Ge, Nr))
-          throw new TypeError('Conflicting signatures "' + m(Ge) + '" and "' + m(Nr) + '".');
-      }), $.push(Nr);
-      const Hr = R.length;
-      R.push(_[ar]);
-      const Ha = Nr.map(w);
+      L.forEach(function(Gr) {
+        if (K(Gr, xe))
+          throw new TypeError('Conflicting signatures "' + m(Gr) + '" and "' + m(xe) + '".');
+      }), L.push(xe);
+      const We = R.length;
+      R.push(_[ae]);
+      const Wa = xe.map(w);
       let it;
-      for (it of V(Ha)) {
-        const Ge = m(it);
+      for (it of V(Wa)) {
+        const Gr = m(it);
         Y.push({
           params: it,
-          name: Ge,
-          fn: Hr
-        }), it.every((Wa) => !Wa.hasConversion) && (K[Ge] = Hr);
+          name: Gr,
+          fn: We
+        }), it.every((ka) => !ka.hasConversion) && (H[Gr] = We);
       }
     }
     Y.sort(B);
-    const tr = Z(R, K, Ze);
-    let ir;
-    for (ir in K)
-      Object.prototype.hasOwnProperty.call(K, ir) && (K[ir] = tr[K[ir]]);
-    const er = [], xr = /* @__PURE__ */ new Map();
-    for (ir of Y)
-      xr.has(ir.name) || (ir.fn = tr[ir.fn], er.push(ir), xr.set(ir.name, ir));
-    const Or = er[0] && er[0].params.length <= 2 && !F(er[0].params), Rr = er[1] && er[1].params.length <= 2 && !F(er[1].params), Kr = er[2] && er[2].params.length <= 2 && !F(er[2].params), Qr = er[3] && er[3].params.length <= 2 && !F(er[3].params), ne = er[4] && er[4].params.length <= 2 && !F(er[4].params), ie = er[5] && er[5].params.length <= 2 && !F(er[5].params), xe = Or && Rr && Kr && Qr && ne && ie;
-    for (let Nr = 0; Nr < er.length; ++Nr)
-      er[Nr].test = C(er[Nr].params);
-    const nt = Or ? y(er[0].params[0]) : ee, Ea = Rr ? y(er[1].params[0]) : ee, Fa = Kr ? y(er[2].params[0]) : ee, Ca = Qr ? y(er[3].params[0]) : ee, ba = ne ? y(er[4].params[0]) : ee, Ma = ie ? y(er[5].params[0]) : ee, Sa = Or ? y(er[0].params[1]) : ee, Na = Rr ? y(er[1].params[1]) : ee, xa = Kr ? y(er[2].params[1]) : ee, Ba = Qr ? y(er[3].params[1]) : ee, _a = ne ? y(er[4].params[1]) : ee, za = ie ? y(er[5].params[1]) : ee;
-    for (let Nr = 0; Nr < er.length; ++Nr)
-      er[Nr].implementation = q(er[Nr].params, er[Nr].fn);
-    const Ta = Or ? er[0].implementation : Be, Oa = Rr ? er[1].implementation : Be, Ia = Kr ? er[2].implementation : Be, $a = Qr ? er[3].implementation : Be, qa = ne ? er[4].implementation : Be, La = ie ? er[5].implementation : Be, Pa = Or ? er[0].params.length : -1, Ra = Rr ? er[1].params.length : -1, Ua = Kr ? er[2].params.length : -1, Va = Qr ? er[3].params.length : -1, Za = ne ? er[4].params.length : -1, Ga = ie ? er[5].params.length : -1, Ya = xe ? 6 : 0, Ja = er.length, Qa = er.map((Nr) => Nr.test), Xa = er.map((Nr) => Nr.implementation), Ka = function() {
-      for (let Hr = Ya; Hr < Ja; Hr++)
-        if (Qa[Hr](arguments))
-          return Xa[Hr].apply(this, arguments);
-      return o.onMismatch(x, arguments, er);
+    const te = Z(R, H, Zr);
+    let ie;
+    for (ie in H)
+      Object.prototype.hasOwnProperty.call(H, ie) && (H[ie] = te[H[ie]]);
+    const re = [], Ne = /* @__PURE__ */ new Map();
+    for (ie of Y)
+      Ne.has(ie.name) || (ie.fn = te[ie.fn], re.push(ie), Ne.set(ie.name, ie));
+    const Ie = re[0] && re[0].params.length <= 2 && !F(re[0].params), Re = re[1] && re[1].params.length <= 2 && !F(re[1].params), Ke = re[2] && re[2].params.length <= 2 && !F(re[2].params), Xe = re[3] && re[3].params.length <= 2 && !F(re[3].params), ir = re[4] && re[4].params.length <= 2 && !F(re[4].params), ar = re[5] && re[5].params.length <= 2 && !F(re[5].params), Nr = Ie && Re && Ke && Xe && ir && ar;
+    for (let xe = 0; xe < re.length; ++xe)
+      re[xe].test = C(re[xe].params);
+    const nt = Ie ? y(re[0].params[0]) : rr, Fa = Re ? y(re[1].params[0]) : rr, Ca = Ke ? y(re[2].params[0]) : rr, ba = Xe ? y(re[3].params[0]) : rr, Ma = ir ? y(re[4].params[0]) : rr, Sa = ar ? y(re[5].params[0]) : rr, xa = Ie ? y(re[0].params[1]) : rr, Na = Re ? y(re[1].params[1]) : rr, Ba = Ke ? y(re[2].params[1]) : rr, _a = Xe ? y(re[3].params[1]) : rr, za = ir ? y(re[4].params[1]) : rr, Ta = ar ? y(re[5].params[1]) : rr;
+    for (let xe = 0; xe < re.length; ++xe)
+      re[xe].implementation = $(re[xe].params, re[xe].fn);
+    const Ia = Ie ? re[0].implementation : Br, Oa = Re ? re[1].implementation : Br, La = Ke ? re[2].implementation : Br, $a = Xe ? re[3].implementation : Br, qa = ir ? re[4].implementation : Br, Pa = ar ? re[5].implementation : Br, Ra = Ie ? re[0].params.length : -1, Ua = Re ? re[1].params.length : -1, Va = Ke ? re[2].params.length : -1, Za = Xe ? re[3].params.length : -1, Ga = ir ? re[4].params.length : -1, Ya = ar ? re[5].params.length : -1, Ja = Nr ? 6 : 0, Qa = re.length, Xa = re.map((xe) => xe.test), Ha = re.map((xe) => xe.implementation), Ka = function() {
+      for (let We = Ja; We < Qa; We++)
+        if (Xa[We](arguments))
+          return Ha[We].apply(this, arguments);
+      return o.onMismatch(N, arguments, re);
     };
-    function Ze(Nr, Hr) {
-      return arguments.length === Pa && nt(Nr) && Sa(Hr) ? Ta.apply(this, arguments) : arguments.length === Ra && Ea(Nr) && Na(Hr) ? Oa.apply(this, arguments) : arguments.length === Ua && Fa(Nr) && xa(Hr) ? Ia.apply(this, arguments) : arguments.length === Va && Ca(Nr) && Ba(Hr) ? $a.apply(this, arguments) : arguments.length === Za && ba(Nr) && _a(Hr) ? qa.apply(this, arguments) : arguments.length === Ga && Ma(Nr) && za(Hr) ? La.apply(this, arguments) : Ka.apply(this, arguments);
+    function Zr(xe, We) {
+      return arguments.length === Ra && nt(xe) && xa(We) ? Ia.apply(this, arguments) : arguments.length === Ua && Fa(xe) && Na(We) ? Oa.apply(this, arguments) : arguments.length === Va && Ca(xe) && Ba(We) ? La.apply(this, arguments) : arguments.length === Za && ba(xe) && _a(We) ? $a.apply(this, arguments) : arguments.length === Ga && Ma(xe) && za(We) ? qa.apply(this, arguments) : arguments.length === Ya && Sa(xe) && Ta(We) ? Pa.apply(this, arguments) : Ka.apply(this, arguments);
     }
     try {
-      Object.defineProperty(Ze, "name", {
-        value: x
+      Object.defineProperty(Zr, "name", {
+        value: N
       });
     } catch {
     }
-    return Ze.signatures = K, Ze._typedFunctionData = {
-      signatures: er,
-      signatureMap: xr
-    }, Ze;
+    return Zr.signatures = H, Zr._typedFunctionData = {
+      signatures: re,
+      signatureMap: Ne
+    }, Zr;
   }
-  function U(x, _, $) {
-    throw N(x, _, $);
+  function U(N, _, L) {
+    throw x(N, _, L);
   }
-  function Q(x) {
-    return J(x, 0, x.length - 1);
+  function Q(N) {
+    return J(N, 0, N.length - 1);
   }
-  function X(x) {
-    return x[x.length - 1];
+  function X(N) {
+    return N[N.length - 1];
   }
-  function J(x, _, $) {
-    return Array.prototype.slice.call(x, _, $);
+  function J(N, _, L) {
+    return Array.prototype.slice.call(N, _, L);
   }
-  function ur(x, _) {
-    for (let $ = 0; $ < x.length; $++)
-      if (_(x[$]))
-        return x[$];
+  function ue(N, _) {
+    for (let L = 0; L < N.length; L++)
+      if (_(N[L]))
+        return N[L];
   }
-  function j(x, _) {
-    return Array.prototype.concat.apply([], x.map(_));
+  function j(N, _) {
+    return Array.prototype.concat.apply([], N.map(_));
   }
-  function or() {
-    const x = Q(arguments).map(($) => m(E($))), _ = X(arguments);
+  function oe() {
+    const N = Q(arguments).map((L) => m(A(L))), _ = X(arguments);
     if (typeof _ != "function")
       throw new TypeError("Callback function expected as last argument");
-    return fr(x, _);
+    return le(N, _);
   }
-  function fr(x, _) {
+  function le(N, _) {
     return {
       referTo: {
-        references: x,
+        references: N,
         callback: _
       }
     };
   }
-  function pr(x) {
-    if (typeof x != "function")
+  function de(N) {
+    if (typeof N != "function")
       throw new TypeError("Callback function expected as first argument");
     return {
       referToSelf: {
-        callback: x
+        callback: N
       }
     };
   }
-  function gr(x) {
-    return x && typeof x.referTo == "object" && Array.isArray(x.referTo.references) && typeof x.referTo.callback == "function";
+  function ge(N) {
+    return N && typeof N.referTo == "object" && Array.isArray(N.referTo.references) && typeof N.referTo.callback == "function";
   }
-  function yr(x) {
-    return x && typeof x.referToSelf == "object" && typeof x.referToSelf.callback == "function";
+  function we(N) {
+    return N && typeof N.referToSelf == "object" && typeof N.referToSelf.callback == "function";
   }
-  function cr(x, _) {
-    if (!x)
+  function he(N, _) {
+    if (!N)
       return _;
-    if (_ && _ !== x) {
-      const $ = new Error("Function names do not match (expected: " + x + ", actual: " + _ + ")");
-      throw $.data = {
+    if (_ && _ !== N) {
+      const L = new Error("Function names do not match (expected: " + N + ", actual: " + _ + ")");
+      throw L.data = {
         actual: _,
-        expected: x
-      }, $;
+        expected: N
+      }, L;
     }
-    return x;
+    return N;
   }
-  function Cr(x) {
+  function be(N) {
     let _;
-    for (const $ in x)
-      Object.prototype.hasOwnProperty.call(x, $) && (f(x[$]) || typeof x[$].signature == "string") && (_ = cr(_, x[$].name));
+    for (const L in N)
+      Object.prototype.hasOwnProperty.call(N, L) && (f(N[L]) || typeof N[L].signature == "string") && (_ = he(_, N[L].name));
     return _;
   }
-  function wr(x, _) {
-    let $;
-    for ($ in _)
-      if (Object.prototype.hasOwnProperty.call(_, $)) {
-        if ($ in x && _[$] !== x[$]) {
-          const R = new Error('Signature "' + $ + '" is defined twice');
+  function Ee(N, _) {
+    let L;
+    for (L in _)
+      if (Object.prototype.hasOwnProperty.call(_, L)) {
+        if (L in N && _[L] !== N[L]) {
+          const R = new Error('Signature "' + L + '" is defined twice');
           throw R.data = {
-            signature: $,
-            sourceFunction: _[$],
-            destFunction: x[$]
+            signature: L,
+            sourceFunction: _[L],
+            destFunction: N[L]
           }, R;
         }
-        x[$] = _[$];
+        N[L] = _[L];
       }
   }
-  const Sr = o;
-  o = function(x) {
-    const _ = typeof x == "string", $ = _ ? 1 : 0;
-    let R = _ ? x : "";
-    const K = {};
-    for (let Y = $; Y < arguments.length; ++Y) {
-      const ar = arguments[Y];
-      let tr = {}, ir;
-      if (typeof ar == "function" ? (ir = ar.name, typeof ar.signature == "string" ? tr[ar.signature] = ar : f(ar) && (tr = ar.signatures)) : r(ar) && (tr = ar, _ || (ir = Cr(ar))), Object.keys(tr).length === 0) {
-        const er = new TypeError("Argument to 'typed' at index " + Y + " is not a (typed) function, nor an object with signatures as keys and functions as values.");
-        throw er.data = {
+  const Se = o;
+  o = function(N) {
+    const _ = typeof N == "string", L = _ ? 1 : 0;
+    let R = _ ? N : "";
+    const H = {};
+    for (let Y = L; Y < arguments.length; ++Y) {
+      const ae = arguments[Y];
+      let te = {}, ie;
+      if (typeof ae == "function" ? (ie = ae.name, typeof ae.signature == "string" ? te[ae.signature] = ae : f(ae) && (te = ae.signatures)) : e(ae) && (te = ae, _ || (ie = be(ae))), Object.keys(te).length === 0) {
+        const re = new TypeError("Argument to 'typed' at index " + Y + " is not a (typed) function, nor an object with signatures as keys and functions as values.");
+        throw re.data = {
           index: Y,
-          argument: ar
-        }, er;
+          argument: ae
+        }, re;
       }
-      _ || (R = cr(R, ir)), wr(K, tr);
+      _ || (R = he(R, ie)), Ee(H, te);
     }
-    return k(R || "", K);
-  }, o.create = yi, o.createCount = Sr.createCount, o.onMismatch = U, o.throwMismatchError = U, o.createError = N, o.clear = l, o.clearConversions = s, o.addTypes = c, o._findType = v, o.referTo = or, o.referToSelf = pr, o.convert = h, o.findSignature = p, o.find = D, o.isTypedFunction = f, o.warnAgainstDeprecatedThis = !0, o.addType = function(x, _) {
-    let $ = "any";
-    _ !== !1 && i.has("Object") && ($ = "Object"), o.addTypes([x], $);
+    return k(R || "", H);
+  }, o.create = wi, o.createCount = Se.createCount, o.onMismatch = U, o.throwMismatchError = U, o.createError = x, o.clear = l, o.clearConversions = s, o.addTypes = c, o._findType = h, o.referTo = oe, o.referToSelf = de, o.convert = v, o.findSignature = p, o.find = D, o.isTypedFunction = f, o.warnAgainstDeprecatedThis = !0, o.addType = function(N, _) {
+    let L = "any";
+    _ !== !1 && i.has("Object") && (L = "Object"), o.addTypes([N], L);
   };
-  function Ur(x) {
-    if (!x || typeof x.from != "string" || typeof x.to != "string" || typeof x.convert != "function")
+  function Ue(N) {
+    if (!N || typeof N.from != "string" || typeof N.to != "string" || typeof N.convert != "function")
       throw new TypeError("Object with properties {from: string, to: string, convert: function} expected");
-    if (x.to === x.from)
-      throw new SyntaxError('Illegal to define conversion from "' + x.from + '" to itself.');
+    if (N.to === N.from)
+      throw new SyntaxError('Illegal to define conversion from "' + N.from + '" to itself.');
   }
-  return o.addConversion = function(x) {
-    Ur(x);
-    const _ = v(x.to);
-    if (_.conversionsTo.every(function($) {
-      return $.from !== x.from;
+  return o.addConversion = function(N) {
+    Ue(N);
+    const _ = h(N.to);
+    if (_.conversionsTo.every(function(L) {
+      return L.from !== N.from;
     }))
       _.conversionsTo.push({
-        from: x.from,
-        convert: x.convert,
+        from: N.from,
+        convert: N.convert,
         index: a++
       });
     else
-      throw new Error('There is already a conversion from "' + x.from + '" to "' + _.name + '"');
-  }, o.addConversions = function(x) {
-    x.forEach(o.addConversion);
-  }, o.removeConversion = function(x) {
-    Ur(x);
-    const _ = v(x.to), $ = ur(_.conversionsTo, (K) => K.from === x.from);
-    if (!$)
-      throw new Error("Attempt to remove nonexistent conversion from " + x.from + " to " + x.to);
-    if ($.convert !== x.convert)
+      throw new Error('There is already a conversion from "' + N.from + '" to "' + _.name + '"');
+  }, o.addConversions = function(N) {
+    N.forEach(o.addConversion);
+  }, o.removeConversion = function(N) {
+    Ue(N);
+    const _ = h(N.to), L = ue(_.conversionsTo, (H) => H.from === N.from);
+    if (!L)
+      throw new Error("Attempt to remove nonexistent conversion from " + N.from + " to " + N.to);
+    if (L.convert !== N.convert)
       throw new Error("Conversion to remove does not match existing conversion");
-    const R = _.conversionsTo.indexOf($);
+    const R = _.conversionsTo.indexOf(L);
     _.conversionsTo.splice(R, 1);
-  }, o.resolve = function(x, _) {
-    if (!f(x))
-      throw new TypeError(nn);
-    const $ = x._typedFunctionData.signatures;
-    for (let R = 0; R < $.length; ++R)
-      if ($[R].test(_))
-        return $[R];
+  }, o.resolve = function(N, _) {
+    if (!f(N))
+      throw new TypeError(an);
+    const L = N._typedFunctionData.signatures;
+    for (let R = 0; R < L.length; ++R)
+      if (L[R].test(_))
+        return L[R];
     return null;
   }, o;
 }
-const an = yi();
-function zr(r) {
-  return typeof r == "boolean" ? !0 : isFinite(r) ? r === Math.round(r) : !1;
+const un = wi();
+function ze(e) {
+  return typeof e == "boolean" ? !0 : isFinite(e) ? e === Math.round(e) : !1;
 }
-var Bu = Math.sign || function(r) {
-  return r > 0 ? 1 : r < 0 ? -1 : 0;
+var _u = Math.sign || function(e) {
+  return e > 0 ? 1 : e < 0 ? -1 : 0;
 };
-function Bt(r, e, n) {
+function Bt(e, t, n) {
   var i = {
     2: "0b",
     8: "0o",
     16: "0x"
-  }, t = i[e], a = "";
+  }, r = i[t], a = "";
   if (n) {
     if (n < 1)
       throw new Error("size must be in greater than 0");
-    if (!zr(n))
+    if (!ze(n))
       throw new Error("size must be an integer");
-    if (r > 2 ** (n - 1) - 1 || r < -(2 ** (n - 1)))
+    if (e > 2 ** (n - 1) - 1 || e < -(2 ** (n - 1)))
       throw new Error("Value must be in range [-2^".concat(n - 1, ", 2^").concat(n - 1, "-1]"));
-    if (!zr(r))
+    if (!ze(e))
       throw new Error("Value must be an integer");
-    r < 0 && (r = r + 2 ** n), a = "i".concat(n);
+    e < 0 && (e = e + 2 ** n), a = "i".concat(n);
   }
   var o = "";
-  return r < 0 && (r = -r, o = "-"), "".concat(o).concat(t).concat(r.toString(e)).concat(a);
+  return e < 0 && (e = -e, o = "-"), "".concat(o).concat(r).concat(e.toString(t)).concat(a);
 }
-function Ot(r, e) {
-  if (typeof e == "function")
-    return e(r);
-  if (r === 1 / 0)
+function It(e, t) {
+  if (typeof t == "function")
+    return t(e);
+  if (e === 1 / 0)
     return "Infinity";
-  if (r === -1 / 0)
+  if (e === -1 / 0)
     return "-Infinity";
-  if (isNaN(r))
+  if (isNaN(e))
     return "NaN";
-  var n = "auto", i, t;
-  if (e && (e.notation && (n = e.notation), $r(e) ? i = e : $r(e.precision) && (i = e.precision), e.wordSize && (t = e.wordSize, typeof t != "number")))
+  var n = "auto", i, r;
+  if (t && (t.notation && (n = t.notation), Le(t) ? i = t : Le(t.precision) && (i = t.precision), t.wordSize && (r = t.wordSize, typeof r != "number")))
     throw new Error('Option "wordSize" must be a number');
   switch (n) {
     case "fixed":
-      return zu(r, i);
+      return Tu(e, i);
     case "exponential":
-      return wi(r, i);
+      return Ai(e, i);
     case "engineering":
-      return _u(r, i);
+      return zu(e, i);
     case "bin":
-      return Bt(r, 2, t);
+      return Bt(e, 2, r);
     case "oct":
-      return Bt(r, 8, t);
+      return Bt(e, 8, r);
     case "hex":
-      return Bt(r, 16, t);
+      return Bt(e, 16, r);
     case "auto":
-      return Tu(r, i, e && e).replace(/((\.\d*?)(0+))($|e)/, function() {
+      return Iu(e, i, t && t).replace(/((\.\d*?)(0+))($|e)/, function() {
         var a = arguments[2], o = arguments[4];
         return a !== "." ? a + o : o;
       });
@@ -1108,153 +1108,153 @@ function Ot(r, e) {
       throw new Error('Unknown notation "' + n + '". Choose "auto", "exponential", "fixed", "bin", "oct", or "hex.');
   }
 }
-function At(r) {
-  var e = String(r).toLowerCase().match(/^(-?)(\d+\.?\d*)(e([+-]?\d+))?$/);
-  if (!e)
-    throw new SyntaxError("Invalid number " + r);
-  var n = e[1], i = e[2], t = parseFloat(e[4] || "0"), a = i.indexOf(".");
-  t += a !== -1 ? a - 1 : i.length - 1;
-  var o = i.replace(".", "").replace(/^0*/, function(v) {
-    return t -= v.length, "";
-  }).replace(/0*$/, "").split("").map(function(v) {
-    return parseInt(v);
+function At(e) {
+  var t = String(e).toLowerCase().match(/^(-?)(\d+\.?\d*)(e([+-]?\d+))?$/);
+  if (!t)
+    throw new SyntaxError("Invalid number " + e);
+  var n = t[1], i = t[2], r = parseFloat(t[4] || "0"), a = i.indexOf(".");
+  r += a !== -1 ? a - 1 : i.length - 1;
+  var o = i.replace(".", "").replace(/^0*/, function(h) {
+    return r -= h.length, "";
+  }).replace(/0*$/, "").split("").map(function(h) {
+    return parseInt(h);
   });
-  return o.length === 0 && (o.push(0), t++), {
+  return o.length === 0 && (o.push(0), r++), {
     sign: n,
     coefficients: o,
-    exponent: t
+    exponent: r
   };
 }
-function _u(r, e) {
-  if (isNaN(r) || !isFinite(r))
-    return String(r);
-  var n = At(r), i = Et(n, e), t = i.exponent, a = i.coefficients, o = t % 3 === 0 ? t : t < 0 ? t - 3 - t % 3 : t - t % 3;
-  if ($r(e))
-    for (; e > a.length || t - o + 1 > a.length; )
+function zu(e, t) {
+  if (isNaN(e) || !isFinite(e))
+    return String(e);
+  var n = At(e), i = Et(n, t), r = i.exponent, a = i.coefficients, o = r % 3 === 0 ? r : r < 0 ? r - 3 - r % 3 : r - r % 3;
+  if (Le(t))
+    for (; t > a.length || r - o + 1 > a.length; )
       a.push(0);
   else
-    for (var v = Math.abs(t - o) - (a.length - 1), c = 0; c < v; c++)
+    for (var h = Math.abs(r - o) - (a.length - 1), c = 0; c < h; c++)
       a.push(0);
-  for (var l = Math.abs(t - o), s = 1; l > 0; )
+  for (var l = Math.abs(r - o), s = 1; l > 0; )
     s++, l--;
-  var u = a.slice(s).join(""), f = $r(e) && u.length || u.match(/[1-9]/) ? "." + u : "", p = a.slice(0, s).join("") + f + "e" + (t >= 0 ? "+" : "") + o.toString();
+  var u = a.slice(s).join(""), f = Le(t) && u.length || u.match(/[1-9]/) ? "." + u : "", p = a.slice(0, s).join("") + f + "e" + (r >= 0 ? "+" : "") + o.toString();
   return i.sign + p;
 }
-function zu(r, e) {
-  if (isNaN(r) || !isFinite(r))
-    return String(r);
-  var n = At(r), i = typeof e == "number" ? Et(n, n.exponent + 1 + e) : n, t = i.coefficients, a = i.exponent + 1, o = a + (e || 0);
-  return t.length < o && (t = t.concat(ze(o - t.length))), a < 0 && (t = ze(-a + 1).concat(t), a = 1), a < t.length && t.splice(a, 0, a === 0 ? "0." : "."), i.sign + t.join("");
+function Tu(e, t) {
+  if (isNaN(e) || !isFinite(e))
+    return String(e);
+  var n = At(e), i = typeof t == "number" ? Et(n, n.exponent + 1 + t) : n, r = i.coefficients, a = i.exponent + 1, o = a + (t || 0);
+  return r.length < o && (r = r.concat(zr(o - r.length))), a < 0 && (r = zr(-a + 1).concat(r), a = 1), a < r.length && r.splice(a, 0, a === 0 ? "0." : "."), i.sign + r.join("");
 }
-function wi(r, e) {
-  if (isNaN(r) || !isFinite(r))
-    return String(r);
-  var n = At(r), i = e ? Et(n, e) : n, t = i.coefficients, a = i.exponent;
-  t.length < e && (t = t.concat(ze(e - t.length)));
-  var o = t.shift();
-  return i.sign + o + (t.length > 0 ? "." + t.join("") : "") + "e" + (a >= 0 ? "+" : "") + a;
+function Ai(e, t) {
+  if (isNaN(e) || !isFinite(e))
+    return String(e);
+  var n = At(e), i = t ? Et(n, t) : n, r = i.coefficients, a = i.exponent;
+  r.length < t && (r = r.concat(zr(t - r.length)));
+  var o = r.shift();
+  return i.sign + o + (r.length > 0 ? "." + r.join("") : "") + "e" + (a >= 0 ? "+" : "") + a;
 }
-function Tu(r, e, n) {
-  if (isNaN(r) || !isFinite(r))
-    return String(r);
-  var i = n && n.lowerExp !== void 0 ? n.lowerExp : -3, t = n && n.upperExp !== void 0 ? n.upperExp : 5, a = At(r), o = e ? Et(a, e) : a;
-  if (o.exponent < i || o.exponent >= t)
-    return wi(r, e);
-  var v = o.coefficients, c = o.exponent;
-  v.length < e && (v = v.concat(ze(e - v.length))), v = v.concat(ze(c - v.length + 1 + (v.length < e ? e - v.length : 0))), v = ze(-c).concat(v);
+function Iu(e, t, n) {
+  if (isNaN(e) || !isFinite(e))
+    return String(e);
+  var i = n && n.lowerExp !== void 0 ? n.lowerExp : -3, r = n && n.upperExp !== void 0 ? n.upperExp : 5, a = At(e), o = t ? Et(a, t) : a;
+  if (o.exponent < i || o.exponent >= r)
+    return Ai(e, t);
+  var h = o.coefficients, c = o.exponent;
+  h.length < t && (h = h.concat(zr(t - h.length))), h = h.concat(zr(c - h.length + 1 + (h.length < t ? t - h.length : 0))), h = zr(-c).concat(h);
   var l = c > 0 ? c : 0;
-  return l < v.length - 1 && v.splice(l + 1, 0, "."), o.sign + v.join("");
+  return l < h.length - 1 && h.splice(l + 1, 0, "."), o.sign + h.join("");
 }
-function Et(r, e) {
+function Et(e, t) {
   for (var n = {
-    sign: r.sign,
-    coefficients: r.coefficients,
-    exponent: r.exponent
-  }, i = n.coefficients; e <= 0; )
-    i.unshift(0), n.exponent++, e++;
-  if (i.length > e) {
-    var t = i.splice(e, i.length - e);
-    if (t[0] >= 5) {
-      var a = e - 1;
+    sign: e.sign,
+    coefficients: e.coefficients,
+    exponent: e.exponent
+  }, i = n.coefficients; t <= 0; )
+    i.unshift(0), n.exponent++, t++;
+  if (i.length > t) {
+    var r = i.splice(t, i.length - t);
+    if (r[0] >= 5) {
+      var a = t - 1;
       for (i[a]++; i[a] === 10; )
         i.pop(), a === 0 && (i.unshift(0), n.exponent++, a++), a--, i[a]++;
     }
   }
   return n;
 }
-function ze(r) {
-  for (var e = [], n = 0; n < r; n++)
-    e.push(0);
-  return e;
+function zr(e) {
+  for (var t = [], n = 0; n < e; n++)
+    t.push(0);
+  return t;
 }
-function Ou(r) {
-  return r.toExponential().replace(/e.*$/, "").replace(/^0\.?0*|\./, "").length;
+function Ou(e) {
+  return e.toExponential().replace(/e.*$/, "").replace(/^0\.?0*|\./, "").length;
 }
-var Iu = Number.EPSILON || 2220446049250313e-31;
-function we(r, e, n) {
+var Lu = Number.EPSILON || 2220446049250313e-31;
+function wr(e, t, n) {
   if (n == null)
-    return r === e;
-  if (r === e)
+    return e === t;
+  if (e === t)
     return !0;
-  if (isNaN(r) || isNaN(e))
+  if (isNaN(e) || isNaN(t))
     return !1;
-  if (isFinite(r) && isFinite(e)) {
-    var i = Math.abs(r - e);
-    return i <= Iu ? !0 : i <= Math.max(Math.abs(r), Math.abs(e)) * n;
+  if (isFinite(e) && isFinite(t)) {
+    var i = Math.abs(e - t);
+    return i <= Lu ? !0 : i <= Math.max(Math.abs(e), Math.abs(t)) * n;
   }
   return !1;
 }
-function _t(r, e, n) {
-  var i = r.constructor, t = new i(2), a = "";
+function _t(e, t, n) {
+  var i = e.constructor, r = new i(2), a = "";
   if (n) {
     if (n < 1)
       throw new Error("size must be in greater than 0");
-    if (!zr(n))
+    if (!ze(n))
       throw new Error("size must be an integer");
-    if (r.greaterThan(t.pow(n - 1).sub(1)) || r.lessThan(t.pow(n - 1).mul(-1)))
+    if (e.greaterThan(r.pow(n - 1).sub(1)) || e.lessThan(r.pow(n - 1).mul(-1)))
       throw new Error("Value must be in range [-2^".concat(n - 1, ", 2^").concat(n - 1, "-1]"));
-    if (!r.isInteger())
+    if (!e.isInteger())
       throw new Error("Value must be an integer");
-    r.lessThan(0) && (r = r.add(t.pow(n))), a = "i".concat(n);
+    e.lessThan(0) && (e = e.add(r.pow(n))), a = "i".concat(n);
   }
-  switch (e) {
+  switch (t) {
     case 2:
-      return "".concat(r.toBinary()).concat(a);
+      return "".concat(e.toBinary()).concat(a);
     case 8:
-      return "".concat(r.toOctal()).concat(a);
+      return "".concat(e.toOctal()).concat(a);
     case 16:
-      return "".concat(r.toHexadecimal()).concat(a);
+      return "".concat(e.toHexadecimal()).concat(a);
     default:
-      throw new Error("Base ".concat(e, " not supported "));
+      throw new Error("Base ".concat(t, " not supported "));
   }
 }
-function $u(r, e) {
-  if (typeof e == "function")
-    return e(r);
-  if (!r.isFinite())
-    return r.isNaN() ? "NaN" : r.gt(0) ? "Infinity" : "-Infinity";
-  var n = "auto", i, t;
-  if (e !== void 0 && (e.notation && (n = e.notation), typeof e == "number" ? i = e : e.precision !== void 0 && (i = e.precision), e.wordSize && (t = e.wordSize, typeof t != "number")))
+function $u(e, t) {
+  if (typeof t == "function")
+    return t(e);
+  if (!e.isFinite())
+    return e.isNaN() ? "NaN" : e.gt(0) ? "Infinity" : "-Infinity";
+  var n = "auto", i, r;
+  if (t !== void 0 && (t.notation && (n = t.notation), typeof t == "number" ? i = t : t.precision !== void 0 && (i = t.precision), t.wordSize && (r = t.wordSize, typeof r != "number")))
     throw new Error('Option "wordSize" must be a number');
   switch (n) {
     case "fixed":
-      return Lu(r, i);
+      return Pu(e, i);
     case "exponential":
-      return un(r, i);
+      return on(e, i);
     case "engineering":
-      return qu(r, i);
+      return qu(e, i);
     case "bin":
-      return _t(r, 2, t);
+      return _t(e, 2, r);
     case "oct":
-      return _t(r, 8, t);
+      return _t(e, 8, r);
     case "hex":
-      return _t(r, 16, t);
+      return _t(e, 16, r);
     case "auto": {
-      var a = e && e.lowerExp !== void 0 ? e.lowerExp : -3, o = e && e.upperExp !== void 0 ? e.upperExp : 5;
-      if (r.isZero())
+      var a = t && t.lowerExp !== void 0 ? t.lowerExp : -3, o = t && t.upperExp !== void 0 ? t.upperExp : 5;
+      if (e.isZero())
         return "0";
-      var v, c = r.toSignificantDigits(i), l = c.e;
-      return l >= a && l < o ? v = c.toFixed() : v = un(r, i), v.replace(/((\.\d*?)(0+))($|e)/, function() {
+      var h, c = e.toSignificantDigits(i), l = c.e;
+      return l >= a && l < o ? h = c.toFixed() : h = on(e, i), h.replace(/((\.\d*?)(0+))($|e)/, function() {
         var s = arguments[2], u = arguments[4];
         return s !== "." ? s + u : u;
       });
@@ -1263,55 +1263,55 @@ function $u(r, e) {
       throw new Error('Unknown notation "' + n + '". Choose "auto", "exponential", "fixed", "bin", "oct", or "hex.');
   }
 }
-function qu(r, e) {
-  var n = r.e, i = n % 3 === 0 ? n : n < 0 ? n - 3 - n % 3 : n - n % 3, t = r.mul(Math.pow(10, -i)), a = t.toPrecision(e);
+function qu(e, t) {
+  var n = e.e, i = n % 3 === 0 ? n : n < 0 ? n - 3 - n % 3 : n - n % 3, r = e.mul(Math.pow(10, -i)), a = r.toPrecision(t);
   if (a.indexOf("e") !== -1) {
-    var o = r.constructor;
+    var o = e.constructor;
     a = new o(a).toFixed();
   }
   return a + "e" + (n >= 0 ? "+" : "") + i.toString();
 }
-function un(r, e) {
-  return e !== void 0 ? r.toExponential(e - 1) : r.toExponential();
+function on(e, t) {
+  return t !== void 0 ? e.toExponential(t - 1) : e.toExponential();
 }
-function Lu(r, e) {
-  return r.toFixed(e);
+function Pu(e, t) {
+  return e.toFixed(t);
 }
-function Ir(r, e) {
-  var n = Pu(r, e);
-  return e && typeof e == "object" && "truncate" in e && n.length > e.truncate ? n.substring(0, e.truncate - 3) + "..." : n;
+function Oe(e, t) {
+  var n = Ru(e, t);
+  return t && typeof t == "object" && "truncate" in t && n.length > t.truncate ? n.substring(0, t.truncate - 3) + "..." : n;
 }
-function Pu(r, e) {
-  if (typeof r == "number")
-    return Ot(r, e);
-  if (Pr(r))
-    return $u(r, e);
-  if (Ru(r))
-    return !e || e.fraction !== "decimal" ? r.s * r.n + "/" + r.d : r.toString();
-  if (Array.isArray(r))
-    return Ai(r, e);
-  if (te(r))
-    return on(r);
-  if (typeof r == "function")
-    return r.syntax ? String(r.syntax) : "function";
-  if (r && typeof r == "object") {
-    if (typeof r.format == "function")
-      return r.format(e);
-    if (r && r.toString(e) !== {}.toString())
-      return r.toString(e);
-    var n = Object.keys(r).map((i) => on(i) + ": " + Ir(r[i], e));
+function Ru(e, t) {
+  if (typeof e == "number")
+    return It(e, t);
+  if (Pe(e))
+    return $u(e, t);
+  if (Uu(e))
+    return !t || t.fraction !== "decimal" ? e.s * e.n + "/" + e.d : e.toString();
+  if (Array.isArray(e))
+    return Ei(e, t);
+  if (tr(e))
+    return sn(e);
+  if (typeof e == "function")
+    return e.syntax ? String(e.syntax) : "function";
+  if (e && typeof e == "object") {
+    if (typeof e.format == "function")
+      return e.format(t);
+    if (e && e.toString(t) !== {}.toString())
+      return e.toString(t);
+    var n = Object.keys(e).map((i) => sn(i) + ": " + Oe(e[i], t));
     return "{" + n.join(", ") + "}";
   }
-  return String(r);
+  return String(e);
 }
-function on(r) {
-  for (var e = String(r), n = "", i = 0; i < e.length; ) {
-    var t = e.charAt(i);
-    n += t in sn ? sn[t] : t, i++;
+function sn(e) {
+  for (var t = String(e), n = "", i = 0; i < t.length; ) {
+    var r = t.charAt(i);
+    n += r in fn ? fn[r] : r, i++;
   }
   return '"' + n + '"';
 }
-var sn = {
+var fn = {
   '"': '\\"',
   "\\": "\\\\",
   "\b": "\\b",
@@ -1320,361 +1320,361 @@ var sn = {
   "\r": "\\r",
   "	": "\\t"
 };
-function Ai(r, e) {
-  if (Array.isArray(r)) {
-    for (var n = "[", i = r.length, t = 0; t < i; t++)
-      t !== 0 && (n += ", "), n += Ai(r[t], e);
+function Ei(e, t) {
+  if (Array.isArray(e)) {
+    for (var n = "[", i = e.length, r = 0; r < i; r++)
+      r !== 0 && (n += ", "), n += Ei(e[r], t);
     return n += "]", n;
   } else
-    return Ir(r, e);
+    return Oe(e, t);
 }
-function Ru(r) {
-  return r && typeof r == "object" && typeof r.s == "number" && typeof r.n == "number" && typeof r.d == "number" || !1;
+function Uu(e) {
+  return e && typeof e == "object" && typeof e.s == "number" && typeof e.n == "number" && typeof e.d == "number" || !1;
 }
-function Er(r, e, n) {
-  if (!(this instanceof Er))
+function Fe(e, t, n) {
+  if (!(this instanceof Fe))
     throw new SyntaxError("Constructor must be called with the new operator");
-  this.actual = r, this.expected = e, this.relation = n, this.message = "Dimension mismatch (" + (Array.isArray(r) ? "[" + r.join(", ") + "]" : r) + " " + (this.relation || "!=") + " " + (Array.isArray(e) ? "[" + e.join(", ") + "]" : e) + ")", this.stack = new Error().stack;
+  this.actual = e, this.expected = t, this.relation = n, this.message = "Dimension mismatch (" + (Array.isArray(e) ? "[" + e.join(", ") + "]" : e) + " " + (this.relation || "!=") + " " + (Array.isArray(t) ? "[" + t.join(", ") + "]" : t) + ")", this.stack = new Error().stack;
 }
-Er.prototype = new RangeError();
-Er.prototype.constructor = RangeError;
-Er.prototype.name = "DimensionError";
-Er.prototype.isDimensionError = !0;
-function be(r, e, n) {
-  if (!(this instanceof be))
+Fe.prototype = new RangeError();
+Fe.prototype.constructor = RangeError;
+Fe.prototype.name = "DimensionError";
+Fe.prototype.isDimensionError = !0;
+function br(e, t, n) {
+  if (!(this instanceof br))
     throw new SyntaxError("Constructor must be called with the new operator");
-  this.index = r, arguments.length < 3 ? (this.min = 0, this.max = e) : (this.min = e, this.max = n), this.min !== void 0 && this.index < this.min ? this.message = "Index out of range (" + this.index + " < " + this.min + ")" : this.max !== void 0 && this.index >= this.max ? this.message = "Index out of range (" + this.index + " > " + (this.max - 1) + ")" : this.message = "Index out of range (" + this.index + ")", this.stack = new Error().stack;
+  this.index = e, arguments.length < 3 ? (this.min = 0, this.max = t) : (this.min = t, this.max = n), this.min !== void 0 && this.index < this.min ? this.message = "Index out of range (" + this.index + " < " + this.min + ")" : this.max !== void 0 && this.index >= this.max ? this.message = "Index out of range (" + this.index + " > " + (this.max - 1) + ")" : this.message = "Index out of range (" + this.index + ")", this.stack = new Error().stack;
 }
-be.prototype = new RangeError();
-be.prototype.constructor = RangeError;
-be.prototype.name = "IndexError";
-be.prototype.isIndexError = !0;
-function qr(r) {
-  for (var e = []; Array.isArray(r); )
-    e.push(r.length), r = r[0];
-  return e;
+br.prototype = new RangeError();
+br.prototype.constructor = RangeError;
+br.prototype.name = "IndexError";
+br.prototype.isIndexError = !0;
+function $e(e) {
+  for (var t = []; Array.isArray(e); )
+    t.push(e.length), e = e[0];
+  return t;
 }
-function Ei(r, e, n) {
-  var i, t = r.length;
-  if (t !== e[n])
-    throw new Er(t, e[n]);
-  if (n < e.length - 1) {
+function Fi(e, t, n) {
+  var i, r = e.length;
+  if (r !== t[n])
+    throw new Fe(r, t[n]);
+  if (n < t.length - 1) {
     var a = n + 1;
-    for (i = 0; i < t; i++) {
-      var o = r[i];
+    for (i = 0; i < r; i++) {
+      var o = e[i];
       if (!Array.isArray(o))
-        throw new Er(e.length - 1, e.length, "<");
-      Ei(r[i], e, a);
+        throw new Fe(t.length - 1, t.length, "<");
+      Fi(e[i], t, a);
     }
   } else
-    for (i = 0; i < t; i++)
-      if (Array.isArray(r[i]))
-        throw new Er(e.length + 1, e.length, ">");
+    for (i = 0; i < r; i++)
+      if (Array.isArray(e[i]))
+        throw new Fe(t.length + 1, t.length, ">");
 }
-function fn(r, e) {
-  var n = e.length === 0;
+function cn(e, t) {
+  var n = t.length === 0;
   if (n) {
-    if (Array.isArray(r))
-      throw new Er(r.length, 0);
+    if (Array.isArray(e))
+      throw new Fe(e.length, 0);
   } else
-    Ei(r, e, 0);
+    Fi(e, t, 0);
 }
-function st(r, e) {
-  var n = r.isMatrix ? r._size : qr(r), i = e._sourceSize;
-  i.forEach((t, a) => {
-    if (t !== null && t !== n[a])
-      throw new Er(t, n[a]);
+function st(e, t) {
+  var n = e.isMatrix ? e._size : $e(e), i = t._sourceSize;
+  i.forEach((r, a) => {
+    if (r !== null && r !== n[a])
+      throw new Fe(r, n[a]);
   });
 }
-function Br(r, e) {
-  if (r !== void 0) {
-    if (!$r(r) || !zr(r))
-      throw new TypeError("Index must be an integer (value: " + r + ")");
-    if (r < 0 || typeof e == "number" && r >= e)
-      throw new be(r, e);
+function Be(e, t) {
+  if (e !== void 0) {
+    if (!Le(e) || !ze(e))
+      throw new TypeError("Index must be an integer (value: " + e + ")");
+    if (e < 0 || typeof t == "number" && e >= t)
+      throw new br(e, t);
   }
 }
-function $e(r) {
-  for (var e = 0; e < r._dimensions.length; ++e) {
-    var n = r._dimensions[e];
-    if (n._data && Mr(n._data)) {
+function Lr(e) {
+  for (var t = 0; t < e._dimensions.length; ++t) {
+    var n = e._dimensions[t];
+    if (n._data && Me(n._data)) {
       if (n._size[0] === 0)
         return !0;
     } else if (n.isRange) {
       if (n.start === n.end)
         return !0;
-    } else if (te(n) && n.length === 0)
+    } else if (tr(n) && n.length === 0)
       return !0;
   }
   return !1;
 }
-function ft(r, e, n) {
-  if (!Array.isArray(e))
+function ft(e, t, n) {
+  if (!Array.isArray(t))
     throw new TypeError("Array expected");
-  if (e.length === 0)
+  if (t.length === 0)
     throw new Error("Resizing to scalar is not supported");
-  e.forEach(function(t) {
-    if (!$r(t) || !zr(t) || t < 0)
-      throw new TypeError("Invalid size, must contain positive integers (size: " + Ir(e) + ")");
-  }), ($r(r) || Pr(r)) && (r = [r]);
+  t.forEach(function(r) {
+    if (!Le(r) || !ze(r) || r < 0)
+      throw new TypeError("Invalid size, must contain positive integers (size: " + Oe(t) + ")");
+  }), (Le(e) || Pe(e)) && (e = [e]);
   var i = n !== void 0 ? n : 0;
-  return It(r, e, 0, i), r;
+  return Ot(e, t, 0, i), e;
 }
-function It(r, e, n, i) {
-  var t, a, o = r.length, v = e[n], c = Math.min(o, v);
-  if (r.length = v, n < e.length - 1) {
+function Ot(e, t, n, i) {
+  var r, a, o = e.length, h = t[n], c = Math.min(o, h);
+  if (e.length = h, n < t.length - 1) {
     var l = n + 1;
-    for (t = 0; t < c; t++)
-      a = r[t], Array.isArray(a) || (a = [a], r[t] = a), It(a, e, l, i);
-    for (t = c; t < v; t++)
-      a = [], r[t] = a, It(a, e, l, i);
+    for (r = 0; r < c; r++)
+      a = e[r], Array.isArray(a) || (a = [a], e[r] = a), Ot(a, t, l, i);
+    for (r = c; r < h; r++)
+      a = [], e[r] = a, Ot(a, t, l, i);
   } else {
-    for (t = 0; t < c; t++)
-      for (; Array.isArray(r[t]); )
-        r[t] = r[t][0];
-    for (t = c; t < v; t++)
-      r[t] = i;
+    for (r = 0; r < c; r++)
+      for (; Array.isArray(e[r]); )
+        e[r] = e[r][0];
+    for (r = c; r < h; r++)
+      e[r] = i;
   }
 }
-function Jt(r, e) {
-  var n = $t(r), i = n.length;
-  if (!Array.isArray(r) || !Array.isArray(e))
+function Jt(e, t) {
+  var n = Lt(e), i = n.length;
+  if (!Array.isArray(e) || !Array.isArray(t))
     throw new TypeError("Array expected");
-  if (e.length === 0)
-    throw new Er(0, i, "!=");
-  e = Qt(e, i);
-  var t = Fi(e);
-  if (i !== t)
-    throw new Er(t, i, "!=");
+  if (t.length === 0)
+    throw new Fe(0, i, "!=");
+  t = Qt(t, i);
+  var r = Ci(t);
+  if (i !== r)
+    throw new Fe(r, i, "!=");
   try {
-    return Uu(n, e);
+    return Vu(n, t);
   } catch (a) {
-    throw a instanceof Er ? new Er(t, i, "!=") : a;
+    throw a instanceof Fe ? new Fe(r, i, "!=") : a;
   }
 }
-function Qt(r, e) {
-  var n = Fi(r), i = r.slice(), t = -1, a = r.indexOf(t), o = r.indexOf(t, a + 1) >= 0;
+function Qt(e, t) {
+  var n = Ci(e), i = e.slice(), r = -1, a = e.indexOf(r), o = e.indexOf(r, a + 1) >= 0;
   if (o)
     throw new Error("More than one wildcard in sizes");
-  var v = a >= 0, c = e % n === 0;
-  if (v)
+  var h = a >= 0, c = t % n === 0;
+  if (h)
     if (c)
-      i[a] = -e / n;
+      i[a] = -t / n;
     else
-      throw new Error("Could not replace wildcard, since " + e + " is no multiple of " + -n);
+      throw new Error("Could not replace wildcard, since " + t + " is no multiple of " + -n);
   return i;
 }
-function Fi(r) {
-  return r.reduce((e, n) => e * n, 1);
+function Ci(e) {
+  return e.reduce((t, n) => t * n, 1);
 }
-function Uu(r, e) {
-  for (var n = r, i, t = e.length - 1; t > 0; t--) {
-    var a = e[t];
+function Vu(e, t) {
+  for (var n = e, i, r = t.length - 1; r > 0; r--) {
+    var a = t[r];
     i = [];
-    for (var o = n.length / a, v = 0; v < o; v++)
-      i.push(n.slice(v * a, (v + 1) * a));
+    for (var o = n.length / a, h = 0; h < o; h++)
+      i.push(n.slice(h * a, (h + 1) * a));
     n = i;
   }
   return n;
 }
-function cn(r, e) {
-  for (var n = e || qr(r); Array.isArray(r) && r.length === 1; )
-    r = r[0], n.shift();
+function ln(e, t) {
+  for (var n = t || $e(e); Array.isArray(e) && e.length === 1; )
+    e = e[0], n.shift();
   for (var i = n.length; n[i - 1] === 1; )
     i--;
-  return i < n.length && (r = Ci(r, i, 0), n.length = i), r;
+  return i < n.length && (e = bi(e, i, 0), n.length = i), e;
 }
-function Ci(r, e, n) {
-  var i, t;
-  if (n < e) {
+function bi(e, t, n) {
+  var i, r;
+  if (n < t) {
     var a = n + 1;
-    for (i = 0, t = r.length; i < t; i++)
-      r[i] = Ci(r[i], e, a);
+    for (i = 0, r = e.length; i < r; i++)
+      e[i] = bi(e[i], t, a);
   } else
-    for (; Array.isArray(r); )
-      r = r[0];
-  return r;
+    for (; Array.isArray(e); )
+      e = e[0];
+  return e;
 }
-function bi(r, e, n, i) {
-  var t = i || qr(r);
+function Mi(e, t, n, i) {
+  var r = i || $e(e);
   if (n)
     for (var a = 0; a < n; a++)
-      r = [r], t.unshift(1);
-  for (r = Mi(r, e, 0); t.length < e; )
-    t.push(1);
-  return r;
+      e = [e], r.unshift(1);
+  for (e = Si(e, t, 0); r.length < t; )
+    r.push(1);
+  return e;
 }
-function Mi(r, e, n) {
-  var i, t;
-  if (Array.isArray(r)) {
+function Si(e, t, n) {
+  var i, r;
+  if (Array.isArray(e)) {
     var a = n + 1;
-    for (i = 0, t = r.length; i < t; i++)
-      r[i] = Mi(r[i], e, a);
+    for (i = 0, r = e.length; i < r; i++)
+      e[i] = Si(e[i], t, a);
   } else
-    for (var o = n; o < e; o++)
-      r = [r];
-  return r;
+    for (var o = n; o < t; o++)
+      e = [e];
+  return e;
 }
-function $t(r) {
-  if (!Array.isArray(r))
-    return r;
-  var e = [];
-  return r.forEach(function n(i) {
-    Array.isArray(i) ? i.forEach(n) : e.push(i);
-  }), e;
+function Lt(e) {
+  if (!Array.isArray(e))
+    return e;
+  var t = [];
+  return e.forEach(function n(i) {
+    Array.isArray(i) ? i.forEach(n) : t.push(i);
+  }), t;
 }
-function Je(r, e) {
-  for (var n, i = 0, t = 0; t < r.length; t++) {
-    var a = r[t], o = Array.isArray(a);
-    if (t === 0 && o && (i = a.length), o && a.length !== i)
+function Jr(e, t) {
+  for (var n, i = 0, r = 0; r < e.length; r++) {
+    var a = e[r], o = Array.isArray(a);
+    if (r === 0 && o && (i = a.length), o && a.length !== i)
       return;
-    var v = o ? Je(a, e) : e(a);
+    var h = o ? Jr(a, t) : t(a);
     if (n === void 0)
-      n = v;
-    else if (n !== v)
+      n = h;
+    else if (n !== h)
       return "mixed";
   }
   return n;
 }
-function Si(r, e, n, i) {
+function xi(e, t, n, i) {
   if (i < n) {
-    if (r.length !== e.length)
-      throw new Er(r.length, e.length);
-    for (var t = [], a = 0; a < r.length; a++)
-      t[a] = Si(r[a], e[a], n, i + 1);
-    return t;
+    if (e.length !== t.length)
+      throw new Fe(e.length, t.length);
+    for (var r = [], a = 0; a < e.length; a++)
+      r[a] = xi(e[a], t[a], n, i + 1);
+    return r;
   } else
-    return r.concat(e);
+    return e.concat(t);
 }
 function Ni() {
-  var r = Array.prototype.slice.call(arguments, 0, -1), e = Array.prototype.slice.call(arguments, -1);
-  if (r.length === 1)
-    return r[0];
-  if (r.length > 1)
-    return r.slice(1).reduce(function(n, i) {
-      return Si(n, i, e, 0);
-    }, r[0]);
+  var e = Array.prototype.slice.call(arguments, 0, -1), t = Array.prototype.slice.call(arguments, -1);
+  if (e.length === 1)
+    return e[0];
+  if (e.length > 1)
+    return e.slice(1).reduce(function(n, i) {
+      return xi(n, i, t, 0);
+    }, e[0]);
   throw new Error("Wrong number of arguments in function concat");
 }
-function Vu() {
-  for (var r = arguments.length, e = new Array(r), n = 0; n < r; n++)
-    e[n] = arguments[n];
-  for (var i = e.map((f) => f.length), t = Math.max(...i), a = new Array(t).fill(null), o = 0; o < e.length; o++)
-    for (var v = e[o], c = i[o], l = 0; l < c; l++) {
-      var s = t - c + l;
-      v[l] > a[s] && (a[s] = v[l]);
+function Zu() {
+  for (var e = arguments.length, t = new Array(e), n = 0; n < e; n++)
+    t[n] = arguments[n];
+  for (var i = t.map((f) => f.length), r = Math.max(...i), a = new Array(r).fill(null), o = 0; o < t.length; o++)
+    for (var h = t[o], c = i[o], l = 0; l < c; l++) {
+      var s = r - c + l;
+      h[l] > a[s] && (a[s] = h[l]);
     }
-  for (var u = 0; u < e.length; u++)
-    ct(e[u], a);
+  for (var u = 0; u < t.length; u++)
+    ct(t[u], a);
   return a;
 }
-function ct(r, e) {
-  for (var n = e.length, i = r.length, t = 0; t < i; t++) {
-    var a = n - i + t;
-    if (r[t] < e[a] && r[t] > 1 || r[t] > e[a])
-      throw new Error("shape missmatch: missmatch is found in arg with shape (".concat(r, ") not possible to broadcast dimension ").concat(i, " with size ").concat(r[t], " to size ").concat(e[a]));
+function ct(e, t) {
+  for (var n = t.length, i = e.length, r = 0; r < i; r++) {
+    var a = n - i + r;
+    if (e[r] < t[a] && e[r] > 1 || e[r] > t[a])
+      throw new Error("shape missmatch: missmatch is found in arg with shape (".concat(e, ") not possible to broadcast dimension ").concat(i, " with size ").concat(e[r], " to size ").concat(t[a]));
   }
 }
-function ln(r, e) {
-  var n = qr(r);
-  if (Ie(n, e))
-    return r;
-  ct(n, e);
-  var i = Vu(n, e), t = i.length, a = [...Array(t - n.length).fill(1), ...n], o = Gu(r);
-  n.length < t && (o = Jt(o, a), n = qr(o));
-  for (var v = 0; v < t; v++)
-    n[v] < i[v] && (o = Zu(o, i[v], v), n = qr(o));
+function hn(e, t) {
+  var n = $e(e);
+  if (Or(n, t))
+    return e;
+  ct(n, t);
+  var i = Zu(n, t), r = i.length, a = [...Array(r - n.length).fill(1), ...n], o = Yu(e);
+  n.length < r && (o = Jt(o, a), n = $e(o));
+  for (var h = 0; h < r; h++)
+    n[h] < i[h] && (o = Gu(o, i[h], h), n = $e(o));
   return o;
 }
-function Zu(r, e, n) {
-  return Ni(...Array(e).fill(r), n);
+function Gu(e, t, n) {
+  return Ni(...Array(t).fill(e), n);
 }
-function Gu(r) {
-  return Oe([], r);
+function Yu(e) {
+  return Ir([], e);
 }
-function rr(r, e, n, i) {
-  function t(a) {
-    var o = Su(a, e.map(Qu));
-    return Yu(r, e, a), n(o);
+function ee(e, t, n, i) {
+  function r(a) {
+    var o = xu(a, t.map(Xu));
+    return Ju(e, t, a), n(o);
   }
-  return t.isFactory = !0, t.fn = r, t.dependencies = e.slice().sort(), i && (t.meta = i), t;
+  return r.isFactory = !0, r.fn = e, r.dependencies = t.slice().sort(), i && (r.meta = i), r;
 }
-function Yu(r, e, n) {
-  var i = e.filter((a) => !Ju(a)).every((a) => n[a] !== void 0);
+function Ju(e, t, n) {
+  var i = t.filter((a) => !Qu(a)).every((a) => n[a] !== void 0);
   if (!i) {
-    var t = e.filter((a) => n[a] === void 0);
-    throw new Error('Cannot create function "'.concat(r, '", ') + "some dependencies are missing: ".concat(t.map((a) => '"'.concat(a, '"')).join(", "), "."));
+    var r = t.filter((a) => n[a] === void 0);
+    throw new Error('Cannot create function "'.concat(e, '", ') + "some dependencies are missing: ".concat(r.map((a) => '"'.concat(a, '"')).join(", "), "."));
   }
 }
-function Ju(r) {
-  return r && r[0] === "?";
+function Qu(e) {
+  return e && e[0] === "?";
 }
-function Qu(r) {
-  return r && r[0] === "?" ? r.slice(1) : r;
+function Xu(e) {
+  return e && e[0] === "?" ? e.slice(1) : e;
 }
-function xi(r, e) {
-  if (zi(r) && _i(r, e))
-    return r[e];
-  throw typeof r[e] == "function" && Ku(r, e) ? new Error('Cannot access method "' + e + '" as a property') : new Error('No access to property "' + e + '"');
+function Bi(e, t) {
+  if (Ti(e) && zi(e, t))
+    return e[t];
+  throw typeof e[t] == "function" && Ku(e, t) ? new Error('Cannot access method "' + t + '" as a property') : new Error('No access to property "' + t + '"');
 }
-function Bi(r, e, n) {
-  if (zi(r) && _i(r, e))
-    return r[e] = n, n;
-  throw new Error('No access to property "' + e + '"');
+function _i(e, t, n) {
+  if (Ti(e) && zi(e, t))
+    return e[t] = n, n;
+  throw new Error('No access to property "' + t + '"');
 }
-function Xu(r, e) {
-  return e in r;
+function Hu(e, t) {
+  return t in e;
 }
-function _i(r, e) {
-  return !r || typeof r != "object" ? !1 : Ye(Hu, e) ? !0 : !(e in Object.prototype || e in Function.prototype);
+function zi(e, t) {
+  return !e || typeof e != "object" ? !1 : Yr(Wu, t) ? !0 : !(t in Object.prototype || t in Function.prototype);
 }
-function Ku(r, e) {
-  return r == null || typeof r[e] != "function" || Ye(r, e) && Object.getPrototypeOf && e in Object.getPrototypeOf(r) ? !1 : Ye(Wu, e) ? !0 : !(e in Object.prototype || e in Function.prototype);
+function Ku(e, t) {
+  return e == null || typeof e[t] != "function" || Yr(e, t) && Object.getPrototypeOf && t in Object.getPrototypeOf(e) ? !1 : Yr(ku, t) ? !0 : !(t in Object.prototype || t in Function.prototype);
 }
-function zi(r) {
-  return typeof r == "object" && r && r.constructor === Object;
+function Ti(e) {
+  return typeof e == "object" && e && e.constructor === Object;
 }
-var Hu = {
+var Wu = {
   length: !0,
   name: !0
-}, Wu = {
+}, ku = {
   toString: !0,
   valueOf: !0,
   toLocaleString: !0
 };
-class ku {
-  constructor(e) {
-    this.wrappedObject = e;
+class ju {
+  constructor(t) {
+    this.wrappedObject = t;
   }
   keys() {
     return Object.keys(this.wrappedObject);
   }
-  get(e) {
-    return xi(this.wrappedObject, e);
+  get(t) {
+    return Bi(this.wrappedObject, t);
   }
-  set(e, n) {
-    return Bi(this.wrappedObject, e, n), this;
+  set(t, n) {
+    return _i(this.wrappedObject, t, n), this;
   }
-  has(e) {
-    return Xu(this.wrappedObject, e);
+  has(t) {
+    return Hu(this.wrappedObject, t);
   }
 }
-function ju(r) {
-  return r ? r instanceof Map || r instanceof ku || typeof r.set == "function" && typeof r.get == "function" && typeof r.keys == "function" && typeof r.has == "function" : !1;
+function eo(e) {
+  return e ? e instanceof Map || e instanceof ju || typeof e.set == "function" && typeof e.get == "function" && typeof e.keys == "function" && typeof e.has == "function" : !1;
 }
-var Ti = function() {
-  return Ti = an.create, an;
-}, ro = ["?BigNumber", "?Complex", "?DenseMatrix", "?Fraction"], eo = /* @__PURE__ */ rr("typed", ro, function(e) {
+var Ii = function() {
+  return Ii = un.create, un;
+}, ro = ["?BigNumber", "?Complex", "?DenseMatrix", "?Fraction"], to = /* @__PURE__ */ ee("typed", ro, function(t) {
   var {
     BigNumber: n,
     Complex: i,
-    DenseMatrix: t,
+    DenseMatrix: r,
     Fraction: a
-  } = e, o = Ti();
+  } = t, o = Ii();
   return o.clear(), o.addTypes([
     {
       name: "number",
-      test: $r
+      test: Le
     },
     {
       name: "Complex",
@@ -1682,7 +1682,7 @@ var Ti = function() {
     },
     {
       name: "BigNumber",
-      test: Pr
+      test: Pe
     },
     {
       name: "Fraction",
@@ -1690,7 +1690,7 @@ var Ti = function() {
     },
     {
       name: "Unit",
-      test: pi
+      test: di
     },
     // The following type matches a valid variable name, i.e., an alphanumeric
     // string starting with an alphabetic character. It is used (at least)
@@ -1698,35 +1698,35 @@ var Ti = function() {
     // what to differentiate over must (currently) be a variable.
     {
       name: "identifier",
-      test: (v) => te && /^(?:[A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0560-\u0588\u05D0-\u05EA\u05EF-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u0870-\u0887\u0889-\u088E\u08A0-\u08C9\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C5D\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D04-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E86-\u0E8A\u0E8C-\u0EA3\u0EA5\u0EA7-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u1711\u171F-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1878\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4C\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1C90-\u1CBA\u1CBD-\u1CBF\u1CE9-\u1CEC\u1CEE-\u1CF3\u1CF5\u1CF6\u1CFA\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312F\u3131-\u318E\u31A0-\u31BF\u31F0-\u31FF\u3400-\u4DBF\u4E00-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA7CA\uA7D0\uA7D1\uA7D3\uA7D5-\uA7D9\uA7F2-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA8FE\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB69\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF40\uDF42-\uDF49\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDD70-\uDD7A\uDD7C-\uDD8A\uDD8C-\uDD92\uDD94\uDD95\uDD97-\uDDA1\uDDA3-\uDDB1\uDDB3-\uDDB9\uDDBB\uDDBC\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67\uDF80-\uDF85\uDF87-\uDFB0\uDFB2-\uDFBA]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE35\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2\uDD00-\uDD23\uDE80-\uDEA9\uDEB0\uDEB1\uDF00-\uDF1C\uDF27\uDF30-\uDF45\uDF70-\uDF81\uDFB0-\uDFC4\uDFE0-\uDFF6]|\uD804[\uDC03-\uDC37\uDC71\uDC72\uDC75\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD44\uDD47\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE3F\uDE40\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC5F-\uDC61\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDEB8\uDF00-\uDF1A\uDF40-\uDF46]|\uD806[\uDC00-\uDC2B\uDCA0-\uDCDF\uDCFF-\uDD06\uDD09\uDD0C-\uDD13\uDD15\uDD16\uDD18-\uDD2F\uDD3F\uDD41\uDDA0-\uDDA7\uDDAA-\uDDD0\uDDE1\uDDE3\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE89\uDE9D\uDEB0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46\uDD60-\uDD65\uDD67\uDD68\uDD6A-\uDD89\uDD98\uDEE0-\uDEF2\uDF02\uDF04-\uDF10\uDF12-\uDF33\uDFB0]|\uD808[\uDC00-\uDF99]|\uD809[\uDC80-\uDD43]|\uD80B[\uDF90-\uDFF0]|[\uD80C\uD81C-\uD820\uD822\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879\uD880-\uD883\uD885-\uD887][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2F\uDC41-\uDC46]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE70-\uDEBE\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDE40-\uDE7F\uDF00-\uDF4A\uDF50\uDF93-\uDF9F\uDFE0\uDFE1\uDFE3]|\uD821[\uDC00-\uDFF7]|\uD823[\uDC00-\uDCD5\uDD00-\uDD08]|\uD82B[\uDFF0-\uDFF3\uDFF5-\uDFFB\uDFFD\uDFFE]|\uD82C[\uDC00-\uDD22\uDD32\uDD50-\uDD52\uDD55\uDD64-\uDD67\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD837[\uDF00-\uDF1E\uDF25-\uDF2A]|\uD838[\uDC30-\uDC6D\uDD00-\uDD2C\uDD37-\uDD3D\uDD4E\uDE90-\uDEAD\uDEC0-\uDEEB]|\uD839[\uDCD0-\uDCEB\uDFE0-\uDFE6\uDFE8-\uDFEB\uDFED\uDFEE\uDFF0-\uDFFE]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43\uDD4B]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDEDF\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF39\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uD884[\uDC00-\uDF4A\uDF50-\uDFFF]|\uD888[\uDC00-\uDFAF])(?:[0-9A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0560-\u0588\u05D0-\u05EA\u05EF-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u0870-\u0887\u0889-\u088E\u08A0-\u08C9\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C5D\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D04-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E86-\u0E8A\u0E8C-\u0EA3\u0EA5\u0EA7-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u1711\u171F-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1878\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4C\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1C90-\u1CBA\u1CBD-\u1CBF\u1CE9-\u1CEC\u1CEE-\u1CF3\u1CF5\u1CF6\u1CFA\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312F\u3131-\u318E\u31A0-\u31BF\u31F0-\u31FF\u3400-\u4DBF\u4E00-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA7CA\uA7D0\uA7D1\uA7D3\uA7D5-\uA7D9\uA7F2-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA8FE\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB69\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF40\uDF42-\uDF49\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDD70-\uDD7A\uDD7C-\uDD8A\uDD8C-\uDD92\uDD94\uDD95\uDD97-\uDDA1\uDDA3-\uDDB1\uDDB3-\uDDB9\uDDBB\uDDBC\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67\uDF80-\uDF85\uDF87-\uDFB0\uDFB2-\uDFBA]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE35\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2\uDD00-\uDD23\uDE80-\uDEA9\uDEB0\uDEB1\uDF00-\uDF1C\uDF27\uDF30-\uDF45\uDF70-\uDF81\uDFB0-\uDFC4\uDFE0-\uDFF6]|\uD804[\uDC03-\uDC37\uDC71\uDC72\uDC75\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD44\uDD47\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE3F\uDE40\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC5F-\uDC61\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDEB8\uDF00-\uDF1A\uDF40-\uDF46]|\uD806[\uDC00-\uDC2B\uDCA0-\uDCDF\uDCFF-\uDD06\uDD09\uDD0C-\uDD13\uDD15\uDD16\uDD18-\uDD2F\uDD3F\uDD41\uDDA0-\uDDA7\uDDAA-\uDDD0\uDDE1\uDDE3\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE89\uDE9D\uDEB0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46\uDD60-\uDD65\uDD67\uDD68\uDD6A-\uDD89\uDD98\uDEE0-\uDEF2\uDF02\uDF04-\uDF10\uDF12-\uDF33\uDFB0]|\uD808[\uDC00-\uDF99]|\uD809[\uDC80-\uDD43]|\uD80B[\uDF90-\uDFF0]|[\uD80C\uD81C-\uD820\uD822\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879\uD880-\uD883\uD885-\uD887][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2F\uDC41-\uDC46]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE70-\uDEBE\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDE40-\uDE7F\uDF00-\uDF4A\uDF50\uDF93-\uDF9F\uDFE0\uDFE1\uDFE3]|\uD821[\uDC00-\uDFF7]|\uD823[\uDC00-\uDCD5\uDD00-\uDD08]|\uD82B[\uDFF0-\uDFF3\uDFF5-\uDFFB\uDFFD\uDFFE]|\uD82C[\uDC00-\uDD22\uDD32\uDD50-\uDD52\uDD55\uDD64-\uDD67\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD837[\uDF00-\uDF1E\uDF25-\uDF2A]|\uD838[\uDC30-\uDC6D\uDD00-\uDD2C\uDD37-\uDD3D\uDD4E\uDE90-\uDEAD\uDEC0-\uDEEB]|\uD839[\uDCD0-\uDCEB\uDFE0-\uDFE6\uDFE8-\uDFEB\uDFED\uDFEE\uDFF0-\uDFFE]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43\uDD4B]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDEDF\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF39\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uD884[\uDC00-\uDF4A\uDF50-\uDFFF]|\uD888[\uDC00-\uDFAF])*$/.test(v)
+      test: (h) => tr && /^(?:[A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0560-\u0588\u05D0-\u05EA\u05EF-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u0870-\u0887\u0889-\u088E\u08A0-\u08C9\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C5D\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D04-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E86-\u0E8A\u0E8C-\u0EA3\u0EA5\u0EA7-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u1711\u171F-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1878\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4C\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1C90-\u1CBA\u1CBD-\u1CBF\u1CE9-\u1CEC\u1CEE-\u1CF3\u1CF5\u1CF6\u1CFA\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312F\u3131-\u318E\u31A0-\u31BF\u31F0-\u31FF\u3400-\u4DBF\u4E00-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA7CA\uA7D0\uA7D1\uA7D3\uA7D5-\uA7D9\uA7F2-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA8FE\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB69\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF40\uDF42-\uDF49\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDD70-\uDD7A\uDD7C-\uDD8A\uDD8C-\uDD92\uDD94\uDD95\uDD97-\uDDA1\uDDA3-\uDDB1\uDDB3-\uDDB9\uDDBB\uDDBC\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67\uDF80-\uDF85\uDF87-\uDFB0\uDFB2-\uDFBA]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE35\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2\uDD00-\uDD23\uDE80-\uDEA9\uDEB0\uDEB1\uDF00-\uDF1C\uDF27\uDF30-\uDF45\uDF70-\uDF81\uDFB0-\uDFC4\uDFE0-\uDFF6]|\uD804[\uDC03-\uDC37\uDC71\uDC72\uDC75\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD44\uDD47\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE3F\uDE40\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC5F-\uDC61\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDEB8\uDF00-\uDF1A\uDF40-\uDF46]|\uD806[\uDC00-\uDC2B\uDCA0-\uDCDF\uDCFF-\uDD06\uDD09\uDD0C-\uDD13\uDD15\uDD16\uDD18-\uDD2F\uDD3F\uDD41\uDDA0-\uDDA7\uDDAA-\uDDD0\uDDE1\uDDE3\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE89\uDE9D\uDEB0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46\uDD60-\uDD65\uDD67\uDD68\uDD6A-\uDD89\uDD98\uDEE0-\uDEF2\uDF02\uDF04-\uDF10\uDF12-\uDF33\uDFB0]|\uD808[\uDC00-\uDF99]|\uD809[\uDC80-\uDD43]|\uD80B[\uDF90-\uDFF0]|[\uD80C\uD81C-\uD820\uD822\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879\uD880-\uD883\uD885-\uD887][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2F\uDC41-\uDC46]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE70-\uDEBE\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDE40-\uDE7F\uDF00-\uDF4A\uDF50\uDF93-\uDF9F\uDFE0\uDFE1\uDFE3]|\uD821[\uDC00-\uDFF7]|\uD823[\uDC00-\uDCD5\uDD00-\uDD08]|\uD82B[\uDFF0-\uDFF3\uDFF5-\uDFFB\uDFFD\uDFFE]|\uD82C[\uDC00-\uDD22\uDD32\uDD50-\uDD52\uDD55\uDD64-\uDD67\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD837[\uDF00-\uDF1E\uDF25-\uDF2A]|\uD838[\uDC30-\uDC6D\uDD00-\uDD2C\uDD37-\uDD3D\uDD4E\uDE90-\uDEAD\uDEC0-\uDEEB]|\uD839[\uDCD0-\uDCEB\uDFE0-\uDFE6\uDFE8-\uDFEB\uDFED\uDFEE\uDFF0-\uDFFE]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43\uDD4B]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDEDF\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF39\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uD884[\uDC00-\uDF4A\uDF50-\uDFFF]|\uD888[\uDC00-\uDFAF])(?:[0-9A-Za-z\xAA\xB5\xBA\xC0-\xD6\xD8-\xF6\xF8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u037F\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u052F\u0531-\u0556\u0559\u0560-\u0588\u05D0-\u05EA\u05EF-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u0860-\u086A\u0870-\u0887\u0889-\u088E\u08A0-\u08C9\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0980\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u09FC\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C5D\u0C60\u0C61\u0C80\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D04-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D54-\u0D56\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E86-\u0E8A\u0E8C-\u0EA3\u0EA5\u0EA7-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F5\u13F8-\u13FD\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u1711\u171F-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1878\u1880-\u1884\u1887-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4C\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1C80-\u1C88\u1C90-\u1CBA\u1CBD-\u1CBF\u1CE9-\u1CEC\u1CEE-\u1CF3\u1CF5\u1CF6\u1CFA\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312F\u3131-\u318E\u31A0-\u31BF\u31F0-\u31FF\u3400-\u4DBF\u4E00-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA69D\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA7CA\uA7D0\uA7D1\uA7D3\uA7D5-\uA7D9\uA7F2-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA8FE\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uA9E0-\uA9E4\uA9E6-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uAB30-\uAB5A\uAB5C-\uAB69\uAB70-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]|\uD800[\uDC00-\uDC0B\uDC0D-\uDC26\uDC28-\uDC3A\uDC3C\uDC3D\uDC3F-\uDC4D\uDC50-\uDC5D\uDC80-\uDCFA\uDE80-\uDE9C\uDEA0-\uDED0\uDF00-\uDF1F\uDF2D-\uDF40\uDF42-\uDF49\uDF50-\uDF75\uDF80-\uDF9D\uDFA0-\uDFC3\uDFC8-\uDFCF]|\uD801[\uDC00-\uDC9D\uDCB0-\uDCD3\uDCD8-\uDCFB\uDD00-\uDD27\uDD30-\uDD63\uDD70-\uDD7A\uDD7C-\uDD8A\uDD8C-\uDD92\uDD94\uDD95\uDD97-\uDDA1\uDDA3-\uDDB1\uDDB3-\uDDB9\uDDBB\uDDBC\uDE00-\uDF36\uDF40-\uDF55\uDF60-\uDF67\uDF80-\uDF85\uDF87-\uDFB0\uDFB2-\uDFBA]|\uD802[\uDC00-\uDC05\uDC08\uDC0A-\uDC35\uDC37\uDC38\uDC3C\uDC3F-\uDC55\uDC60-\uDC76\uDC80-\uDC9E\uDCE0-\uDCF2\uDCF4\uDCF5\uDD00-\uDD15\uDD20-\uDD39\uDD80-\uDDB7\uDDBE\uDDBF\uDE00\uDE10-\uDE13\uDE15-\uDE17\uDE19-\uDE35\uDE60-\uDE7C\uDE80-\uDE9C\uDEC0-\uDEC7\uDEC9-\uDEE4\uDF00-\uDF35\uDF40-\uDF55\uDF60-\uDF72\uDF80-\uDF91]|\uD803[\uDC00-\uDC48\uDC80-\uDCB2\uDCC0-\uDCF2\uDD00-\uDD23\uDE80-\uDEA9\uDEB0\uDEB1\uDF00-\uDF1C\uDF27\uDF30-\uDF45\uDF70-\uDF81\uDFB0-\uDFC4\uDFE0-\uDFF6]|\uD804[\uDC03-\uDC37\uDC71\uDC72\uDC75\uDC83-\uDCAF\uDCD0-\uDCE8\uDD03-\uDD26\uDD44\uDD47\uDD50-\uDD72\uDD76\uDD83-\uDDB2\uDDC1-\uDDC4\uDDDA\uDDDC\uDE00-\uDE11\uDE13-\uDE2B\uDE3F\uDE40\uDE80-\uDE86\uDE88\uDE8A-\uDE8D\uDE8F-\uDE9D\uDE9F-\uDEA8\uDEB0-\uDEDE\uDF05-\uDF0C\uDF0F\uDF10\uDF13-\uDF28\uDF2A-\uDF30\uDF32\uDF33\uDF35-\uDF39\uDF3D\uDF50\uDF5D-\uDF61]|\uD805[\uDC00-\uDC34\uDC47-\uDC4A\uDC5F-\uDC61\uDC80-\uDCAF\uDCC4\uDCC5\uDCC7\uDD80-\uDDAE\uDDD8-\uDDDB\uDE00-\uDE2F\uDE44\uDE80-\uDEAA\uDEB8\uDF00-\uDF1A\uDF40-\uDF46]|\uD806[\uDC00-\uDC2B\uDCA0-\uDCDF\uDCFF-\uDD06\uDD09\uDD0C-\uDD13\uDD15\uDD16\uDD18-\uDD2F\uDD3F\uDD41\uDDA0-\uDDA7\uDDAA-\uDDD0\uDDE1\uDDE3\uDE00\uDE0B-\uDE32\uDE3A\uDE50\uDE5C-\uDE89\uDE9D\uDEB0-\uDEF8]|\uD807[\uDC00-\uDC08\uDC0A-\uDC2E\uDC40\uDC72-\uDC8F\uDD00-\uDD06\uDD08\uDD09\uDD0B-\uDD30\uDD46\uDD60-\uDD65\uDD67\uDD68\uDD6A-\uDD89\uDD98\uDEE0-\uDEF2\uDF02\uDF04-\uDF10\uDF12-\uDF33\uDFB0]|\uD808[\uDC00-\uDF99]|\uD809[\uDC80-\uDD43]|\uD80B[\uDF90-\uDFF0]|[\uD80C\uD81C-\uD820\uD822\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879\uD880-\uD883\uD885-\uD887][\uDC00-\uDFFF]|\uD80D[\uDC00-\uDC2F\uDC41-\uDC46]|\uD811[\uDC00-\uDE46]|\uD81A[\uDC00-\uDE38\uDE40-\uDE5E\uDE70-\uDEBE\uDED0-\uDEED\uDF00-\uDF2F\uDF40-\uDF43\uDF63-\uDF77\uDF7D-\uDF8F]|\uD81B[\uDE40-\uDE7F\uDF00-\uDF4A\uDF50\uDF93-\uDF9F\uDFE0\uDFE1\uDFE3]|\uD821[\uDC00-\uDFF7]|\uD823[\uDC00-\uDCD5\uDD00-\uDD08]|\uD82B[\uDFF0-\uDFF3\uDFF5-\uDFFB\uDFFD\uDFFE]|\uD82C[\uDC00-\uDD22\uDD32\uDD50-\uDD52\uDD55\uDD64-\uDD67\uDD70-\uDEFB]|\uD82F[\uDC00-\uDC6A\uDC70-\uDC7C\uDC80-\uDC88\uDC90-\uDC99]|\uD835[\uDC00-\uDC54\uDC56-\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDEA5\uDEA8-\uDEC0\uDEC2-\uDEDA\uDEDC-\uDEFA\uDEFC-\uDF14\uDF16-\uDF34\uDF36-\uDF4E\uDF50-\uDF6E\uDF70-\uDF88\uDF8A-\uDFA8\uDFAA-\uDFC2\uDFC4-\uDFCB]|\uD837[\uDF00-\uDF1E\uDF25-\uDF2A]|\uD838[\uDC30-\uDC6D\uDD00-\uDD2C\uDD37-\uDD3D\uDD4E\uDE90-\uDEAD\uDEC0-\uDEEB]|\uD839[\uDCD0-\uDCEB\uDFE0-\uDFE6\uDFE8-\uDFEB\uDFED\uDFEE\uDFF0-\uDFFE]|\uD83A[\uDC00-\uDCC4\uDD00-\uDD43\uDD4B]|\uD83B[\uDE00-\uDE03\uDE05-\uDE1F\uDE21\uDE22\uDE24\uDE27\uDE29-\uDE32\uDE34-\uDE37\uDE39\uDE3B\uDE42\uDE47\uDE49\uDE4B\uDE4D-\uDE4F\uDE51\uDE52\uDE54\uDE57\uDE59\uDE5B\uDE5D\uDE5F\uDE61\uDE62\uDE64\uDE67-\uDE6A\uDE6C-\uDE72\uDE74-\uDE77\uDE79-\uDE7C\uDE7E\uDE80-\uDE89\uDE8B-\uDE9B\uDEA1-\uDEA3\uDEA5-\uDEA9\uDEAB-\uDEBB]|\uD869[\uDC00-\uDEDF\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF39\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0]|\uD87E[\uDC00-\uDE1D]|\uD884[\uDC00-\uDF4A\uDF50-\uDFFF]|\uD888[\uDC00-\uDFAF])*$/.test(h)
     },
     {
       name: "string",
-      test: te
+      test: tr
     },
     {
       name: "Chain",
-      test: Cu
+      test: bu
     },
     {
       name: "Array",
-      test: Mr
+      test: Me
     },
     {
       name: "Matrix",
-      test: _r
+      test: _e
     },
     {
       name: "DenseMatrix",
-      test: di
-    },
-    {
-      name: "SparseMatrix",
       test: mi
     },
     {
-      name: "Range",
+      name: "SparseMatrix",
       test: gi
+    },
+    {
+      name: "Range",
+      test: Di
     },
     {
       name: "Index",
@@ -1738,47 +1738,47 @@ var Ti = function() {
     },
     {
       name: "ResultSet",
-      test: eu
-    },
-    {
-      name: "Help",
       test: tu
     },
     {
-      name: "function",
+      name: "Help",
       test: nu
     },
     {
-      name: "Date",
+      name: "function",
       test: iu
     },
     {
-      name: "RegExp",
+      name: "Date",
       test: au
     },
     {
-      name: "null",
+      name: "RegExp",
       test: uu
     },
     {
-      name: "undefined",
+      name: "null",
       test: ou
     },
     {
-      name: "AccessorNode",
+      name: "undefined",
       test: su
     },
     {
-      name: "ArrayNode",
+      name: "AccessorNode",
       test: fu
     },
     {
-      name: "AssignmentNode",
+      name: "ArrayNode",
       test: cu
     },
     {
-      name: "BlockNode",
+      name: "AssignmentNode",
       test: lu
+    },
+    {
+      name: "BlockNode",
+      test: hu
     },
     {
       name: "ConditionalNode",
@@ -1786,55 +1786,55 @@ var Ti = function() {
     },
     {
       name: "ConstantNode",
-      test: hu
-    },
-    {
-      name: "FunctionNode",
-      test: du
-    },
-    {
-      name: "FunctionAssignmentNode",
       test: pu
     },
     {
-      name: "IndexNode",
+      name: "FunctionNode",
       test: mu
     },
     {
-      name: "Node",
+      name: "FunctionAssignmentNode",
+      test: du
+    },
+    {
+      name: "IndexNode",
       test: gu
     },
     {
-      name: "ObjectNode",
+      name: "Node",
       test: Du
     },
     {
-      name: "OperatorNode",
+      name: "ObjectNode",
       test: yu
     },
     {
-      name: "ParenthesisNode",
+      name: "OperatorNode",
       test: wu
     },
     {
-      name: "RangeNode",
+      name: "ParenthesisNode",
       test: Au
     },
     {
-      name: "RelationalNode",
+      name: "RangeNode",
       test: Eu
     },
     {
-      name: "SymbolNode",
+      name: "RelationalNode",
       test: Fu
     },
     {
+      name: "SymbolNode",
+      test: Cu
+    },
+    {
       name: "Map",
-      test: ju
+      test: eo
     },
     {
       name: "Object",
-      test: Di
+      test: yi
     }
     // order 'Object' last, it matches on other classes too
   ]), o.addConversions([{
@@ -1956,7 +1956,7 @@ var Ti = function() {
     from: "Array",
     to: "Matrix",
     convert: function(c) {
-      return t || to(), new t(c);
+      return r || no(), new r(c);
     }
   }, {
     from: "Matrix",
@@ -1964,35 +1964,35 @@ var Ti = function() {
     convert: function(c) {
       return c.valueOf();
     }
-  }]), o.onMismatch = (v, c, l) => {
-    var s = o.createError(v, c, l);
+  }]), o.onMismatch = (h, c, l) => {
+    var s = o.createError(h, c, l);
     if (["wrongType", "mismatch"].includes(s.data.category) && c.length === 1 && ot(c[0]) && // check if the function can be unary:
     l.some((f) => !f.params.includes(","))) {
-      var u = new TypeError("Function '".concat(v, "' doesn't apply to matrices. To call it ") + "elementwise on a matrix 'M', try 'map(M, ".concat(v, ")'."));
+      var u = new TypeError("Function '".concat(h, "' doesn't apply to matrices. To call it ") + "elementwise on a matrix 'M', try 'map(M, ".concat(h, ")'."));
       throw u.data = s.data, u;
     }
     throw s;
-  }, o.onMismatch = (v, c, l) => {
-    var s = o.createError(v, c, l);
+  }, o.onMismatch = (h, c, l) => {
+    var s = o.createError(h, c, l);
     if (["wrongType", "mismatch"].includes(s.data.category) && c.length === 1 && ot(c[0]) && // check if the function can be unary:
     l.some((f) => !f.params.includes(","))) {
-      var u = new TypeError("Function '".concat(v, "' doesn't apply to matrices. To call it ") + "elementwise on a matrix 'M', try 'map(M, ".concat(v, ")'."));
+      var u = new TypeError("Function '".concat(h, "' doesn't apply to matrices. To call it ") + "elementwise on a matrix 'M', try 'map(M, ".concat(h, ")'."));
       throw u.data = s.data, u;
     }
     throw s;
   }, o;
 });
-function zt(r) {
-  throw new Error("Cannot convert value ".concat(r, " into a BigNumber: no class 'BigNumber' provided"));
+function zt(e) {
+  throw new Error("Cannot convert value ".concat(e, " into a BigNumber: no class 'BigNumber' provided"));
 }
-function at(r) {
-  throw new Error("Cannot convert value ".concat(r, " into a Complex number: no class 'Complex' provided"));
+function at(e) {
+  throw new Error("Cannot convert value ".concat(e, " into a Complex number: no class 'Complex' provided"));
 }
-function to() {
+function no() {
   throw new Error("Cannot convert array into a Matrix: no class 'DenseMatrix' provided");
 }
-function Tt(r) {
-  throw new Error("Cannot convert value ".concat(r, " into a Fraction, no class 'Fraction' provided."));
+function Tt(e) {
+  throw new Error("Cannot convert value ".concat(e, " into a Fraction, no class 'Fraction' provided."));
 }
 /*!
  *  decimal.js v10.4.3
@@ -2001,7 +2001,7 @@ function Tt(r) {
  *  Copyright (c) 2022 Michael Mclaughlin <M8ch88l@gmail.com>
  *  MIT Licence
  */
-var _e = 9e15, Ee = 1e9, qt = "0123456789abcdef", lt = "2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058", vt = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789", Lt = {
+var _r = 9e15, Er = 1e9, $t = "0123456789abcdef", lt = "2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058", ht = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789", qt = {
   // These values must be integers within the stated ranges (inclusive).
   // Most of these values can be changed at run-time using the `Decimal.config` method.
   // The maximum number of significant digits of the result of a calculation or base conversion.
@@ -2050,172 +2050,172 @@ var _e = 9e15, Ee = 1e9, qt = "0123456789abcdef", lt = "2.3025850929940456840179
   // 0 to EXP_LIMIT
   // The minimum exponent value, beneath which underflow to zero occurs.
   // JavaScript numbers: -324  (5e-324)
-  minE: -_e,
+  minE: -_r,
   // -1 to -EXP_LIMIT
   // The maximum exponent value, above which overflow to Infinity occurs.
   // JavaScript numbers: 308  (1.7976931348623157e+308)
-  maxE: _e,
+  maxE: _r,
   // 1 to EXP_LIMIT
   // Whether to use cryptographically-secure random number generation, if available.
   crypto: !1
   // true/false
-}, Oi, he, mr = !0, Ft = "[DecimalError] ", Ae = Ft + "Invalid argument: ", Ii = Ft + "Precision limit exceeded", $i = Ft + "crypto unavailable", qi = "[object Decimal]", Jr = Math.floor, Vr = Math.pow, no = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, io = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, ao = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, Li = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, ue = 1e7, hr = 7, uo = 9007199254740991, oo = lt.length - 1, Pt = vt.length - 1, W = { toStringTag: qi };
+}, Oi, pr, me = !0, Ft = "[DecimalError] ", Ar = Ft + "Invalid argument: ", Li = Ft + "Precision limit exceeded", $i = Ft + "crypto unavailable", qi = "[object Decimal]", Qe = Math.floor, Ve = Math.pow, io = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i, ao = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i, uo = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i, Pi = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i, or = 1e7, pe = 7, oo = 9007199254740991, so = lt.length - 1, Pt = ht.length - 1, W = { toStringTag: qi };
 W.absoluteValue = W.abs = function() {
-  var r = new this.constructor(this);
-  return r.s < 0 && (r.s = 1), vr(r);
+  var e = new this.constructor(this);
+  return e.s < 0 && (e.s = 1), ve(e);
 };
 W.ceil = function() {
-  return vr(new this.constructor(this), this.e + 1, 2);
+  return ve(new this.constructor(this), this.e + 1, 2);
 };
-W.clampedTo = W.clamp = function(r, e) {
-  var n, i = this, t = i.constructor;
-  if (r = new t(r), e = new t(e), !r.s || !e.s)
-    return new t(NaN);
-  if (r.gt(e))
-    throw Error(Ae + e);
-  return n = i.cmp(r), n < 0 ? r : i.cmp(e) > 0 ? e : new t(i);
+W.clampedTo = W.clamp = function(e, t) {
+  var n, i = this, r = i.constructor;
+  if (e = new r(e), t = new r(t), !e.s || !t.s)
+    return new r(NaN);
+  if (e.gt(t))
+    throw Error(Ar + t);
+  return n = i.cmp(e), n < 0 ? e : i.cmp(t) > 0 ? t : new r(i);
 };
-W.comparedTo = W.cmp = function(r) {
-  var e, n, i, t, a = this, o = a.d, v = (r = new a.constructor(r)).d, c = a.s, l = r.s;
-  if (!o || !v)
-    return !c || !l ? NaN : c !== l ? c : o === v ? 0 : !o ^ c < 0 ? 1 : -1;
-  if (!o[0] || !v[0])
-    return o[0] ? c : v[0] ? -l : 0;
+W.comparedTo = W.cmp = function(e) {
+  var t, n, i, r, a = this, o = a.d, h = (e = new a.constructor(e)).d, c = a.s, l = e.s;
+  if (!o || !h)
+    return !c || !l ? NaN : c !== l ? c : o === h ? 0 : !o ^ c < 0 ? 1 : -1;
+  if (!o[0] || !h[0])
+    return o[0] ? c : h[0] ? -l : 0;
   if (c !== l)
     return c;
-  if (a.e !== r.e)
-    return a.e > r.e ^ c < 0 ? 1 : -1;
-  for (i = o.length, t = v.length, e = 0, n = i < t ? i : t; e < n; ++e)
-    if (o[e] !== v[e])
-      return o[e] > v[e] ^ c < 0 ? 1 : -1;
-  return i === t ? 0 : i > t ^ c < 0 ? 1 : -1;
+  if (a.e !== e.e)
+    return a.e > e.e ^ c < 0 ? 1 : -1;
+  for (i = o.length, r = h.length, t = 0, n = i < r ? i : r; t < n; ++t)
+    if (o[t] !== h[t])
+      return o[t] > h[t] ^ c < 0 ? 1 : -1;
+  return i === r ? 0 : i > r ^ c < 0 ? 1 : -1;
 };
 W.cosine = W.cos = function() {
-  var r, e, n = this, i = n.constructor;
-  return n.d ? n.d[0] ? (r = i.precision, e = i.rounding, i.precision = r + Math.max(n.e, n.sd()) + hr, i.rounding = 1, n = so(i, Zi(i, n)), i.precision = r, i.rounding = e, vr(he == 2 || he == 3 ? n.neg() : n, r, e, !0)) : new i(1) : new i(NaN);
+  var e, t, n = this, i = n.constructor;
+  return n.d ? n.d[0] ? (e = i.precision, t = i.rounding, i.precision = e + Math.max(n.e, n.sd()) + pe, i.rounding = 1, n = fo(i, Gi(i, n)), i.precision = e, i.rounding = t, ve(pr == 2 || pr == 3 ? n.neg() : n, e, t, !0)) : new i(1) : new i(NaN);
 };
 W.cubeRoot = W.cbrt = function() {
-  var r, e, n, i, t, a, o, v, c, l, s = this, u = s.constructor;
+  var e, t, n, i, r, a, o, h, c, l, s = this, u = s.constructor;
   if (!s.isFinite() || s.isZero())
     return new u(s);
-  for (mr = !1, a = s.s * Vr(s.s * s, 1 / 3), !a || Math.abs(a) == 1 / 0 ? (n = Gr(s.d), r = s.e, (a = (r - n.length + 1) % 3) && (n += a == 1 || a == -2 ? "0" : "00"), a = Vr(n, 1 / 3), r = Jr((r + 1) / 3) - (r % 3 == (r < 0 ? -1 : 2)), a == 1 / 0 ? n = "5e" + r : (n = a.toExponential(), n = n.slice(0, n.indexOf("e") + 1) + r), i = new u(n), i.s = s.s) : i = new u(a.toString()), o = (r = u.precision) + 3; ; )
-    if (v = i, c = v.times(v).times(v), l = c.plus(s), i = Tr(l.plus(s).times(v), l.plus(c), o + 2, 1), Gr(v.d).slice(0, o) === (n = Gr(i.d)).slice(0, o))
-      if (n = n.slice(o - 3, o + 1), n == "9999" || !t && n == "4999") {
-        if (!t && (vr(v, r + 1, 0), v.times(v).times(v).eq(s))) {
-          i = v;
+  for (me = !1, a = s.s * Ve(s.s * s, 1 / 3), !a || Math.abs(a) == 1 / 0 ? (n = Ye(s.d), e = s.e, (a = (e - n.length + 1) % 3) && (n += a == 1 || a == -2 ? "0" : "00"), a = Ve(n, 1 / 3), e = Qe((e + 1) / 3) - (e % 3 == (e < 0 ? -1 : 2)), a == 1 / 0 ? n = "5e" + e : (n = a.toExponential(), n = n.slice(0, n.indexOf("e") + 1) + e), i = new u(n), i.s = s.s) : i = new u(a.toString()), o = (e = u.precision) + 3; ; )
+    if (h = i, c = h.times(h).times(h), l = c.plus(s), i = Te(l.plus(s).times(h), l.plus(c), o + 2, 1), Ye(h.d).slice(0, o) === (n = Ye(i.d)).slice(0, o))
+      if (n = n.slice(o - 3, o + 1), n == "9999" || !r && n == "4999") {
+        if (!r && (ve(h, e + 1, 0), h.times(h).times(h).eq(s))) {
+          i = h;
           break;
         }
-        o += 4, t = 1;
+        o += 4, r = 1;
       } else {
-        (!+n || !+n.slice(1) && n.charAt(0) == "5") && (vr(i, r + 1, 1), e = !i.times(i).times(i).eq(s));
+        (!+n || !+n.slice(1) && n.charAt(0) == "5") && (ve(i, e + 1, 1), t = !i.times(i).times(i).eq(s));
         break;
       }
-  return mr = !0, vr(i, r, u.rounding, e);
+  return me = !0, ve(i, e, u.rounding, t);
 };
 W.decimalPlaces = W.dp = function() {
-  var r, e = this.d, n = NaN;
-  if (e) {
-    if (r = e.length - 1, n = (r - Jr(this.e / hr)) * hr, r = e[r], r)
-      for (; r % 10 == 0; r /= 10)
+  var e, t = this.d, n = NaN;
+  if (t) {
+    if (e = t.length - 1, n = (e - Qe(this.e / pe)) * pe, e = t[e], e)
+      for (; e % 10 == 0; e /= 10)
         n--;
     n < 0 && (n = 0);
   }
   return n;
 };
-W.dividedBy = W.div = function(r) {
-  return Tr(this, new this.constructor(r));
+W.dividedBy = W.div = function(e) {
+  return Te(this, new this.constructor(e));
 };
-W.dividedToIntegerBy = W.divToInt = function(r) {
-  var e = this, n = e.constructor;
-  return vr(Tr(e, new n(r), 0, 1, 1), n.precision, n.rounding);
+W.dividedToIntegerBy = W.divToInt = function(e) {
+  var t = this, n = t.constructor;
+  return ve(Te(t, new n(e), 0, 1, 1), n.precision, n.rounding);
 };
-W.equals = W.eq = function(r) {
-  return this.cmp(r) === 0;
+W.equals = W.eq = function(e) {
+  return this.cmp(e) === 0;
 };
 W.floor = function() {
-  return vr(new this.constructor(this), this.e + 1, 3);
+  return ve(new this.constructor(this), this.e + 1, 3);
 };
-W.greaterThan = W.gt = function(r) {
-  return this.cmp(r) > 0;
+W.greaterThan = W.gt = function(e) {
+  return this.cmp(e) > 0;
 };
-W.greaterThanOrEqualTo = W.gte = function(r) {
-  var e = this.cmp(r);
-  return e == 1 || e === 0;
+W.greaterThanOrEqualTo = W.gte = function(e) {
+  var t = this.cmp(e);
+  return t == 1 || t === 0;
 };
 W.hyperbolicCosine = W.cosh = function() {
-  var r, e, n, i, t, a = this, o = a.constructor, v = new o(1);
+  var e, t, n, i, r, a = this, o = a.constructor, h = new o(1);
   if (!a.isFinite())
     return new o(a.s ? 1 / 0 : NaN);
   if (a.isZero())
-    return v;
-  n = o.precision, i = o.rounding, o.precision = n + Math.max(a.e, a.sd()) + 4, o.rounding = 1, t = a.d.length, t < 32 ? (r = Math.ceil(t / 3), e = (1 / bt(4, r)).toString()) : (r = 16, e = "2.3283064365386962890625e-10"), a = qe(o, 1, a.times(e), new o(1), !0);
-  for (var c, l = r, s = new o(8); l--; )
-    c = a.times(a), a = v.minus(c.times(s.minus(c.times(s))));
-  return vr(a, o.precision = n, o.rounding = i, !0);
+    return h;
+  n = o.precision, i = o.rounding, o.precision = n + Math.max(a.e, a.sd()) + 4, o.rounding = 1, r = a.d.length, r < 32 ? (e = Math.ceil(r / 3), t = (1 / bt(4, e)).toString()) : (e = 16, t = "2.3283064365386962890625e-10"), a = $r(o, 1, a.times(t), new o(1), !0);
+  for (var c, l = e, s = new o(8); l--; )
+    c = a.times(a), a = h.minus(c.times(s.minus(c.times(s))));
+  return ve(a, o.precision = n, o.rounding = i, !0);
 };
 W.hyperbolicSine = W.sinh = function() {
-  var r, e, n, i, t = this, a = t.constructor;
-  if (!t.isFinite() || t.isZero())
-    return new a(t);
-  if (e = a.precision, n = a.rounding, a.precision = e + Math.max(t.e, t.sd()) + 4, a.rounding = 1, i = t.d.length, i < 3)
-    t = qe(a, 2, t, t, !0);
+  var e, t, n, i, r = this, a = r.constructor;
+  if (!r.isFinite() || r.isZero())
+    return new a(r);
+  if (t = a.precision, n = a.rounding, a.precision = t + Math.max(r.e, r.sd()) + 4, a.rounding = 1, i = r.d.length, i < 3)
+    r = $r(a, 2, r, r, !0);
   else {
-    r = 1.4 * Math.sqrt(i), r = r > 16 ? 16 : r | 0, t = t.times(1 / bt(5, r)), t = qe(a, 2, t, t, !0);
-    for (var o, v = new a(5), c = new a(16), l = new a(20); r--; )
-      o = t.times(t), t = t.times(v.plus(o.times(c.times(o).plus(l))));
+    e = 1.4 * Math.sqrt(i), e = e > 16 ? 16 : e | 0, r = r.times(1 / bt(5, e)), r = $r(a, 2, r, r, !0);
+    for (var o, h = new a(5), c = new a(16), l = new a(20); e--; )
+      o = r.times(r), r = r.times(h.plus(o.times(c.times(o).plus(l))));
   }
-  return a.precision = e, a.rounding = n, vr(t, e, n, !0);
+  return a.precision = t, a.rounding = n, ve(r, t, n, !0);
 };
 W.hyperbolicTangent = W.tanh = function() {
-  var r, e, n = this, i = n.constructor;
-  return n.isFinite() ? n.isZero() ? new i(n) : (r = i.precision, e = i.rounding, i.precision = r + 7, i.rounding = 1, Tr(n.sinh(), n.cosh(), i.precision = r, i.rounding = e)) : new i(n.s);
+  var e, t, n = this, i = n.constructor;
+  return n.isFinite() ? n.isZero() ? new i(n) : (e = i.precision, t = i.rounding, i.precision = e + 7, i.rounding = 1, Te(n.sinh(), n.cosh(), i.precision = e, i.rounding = t)) : new i(n.s);
 };
 W.inverseCosine = W.acos = function() {
-  var r, e = this, n = e.constructor, i = e.abs().cmp(1), t = n.precision, a = n.rounding;
-  return i !== -1 ? i === 0 ? e.isNeg() ? ae(n, t, a) : new n(0) : new n(NaN) : e.isZero() ? ae(n, t + 4, a).times(0.5) : (n.precision = t + 6, n.rounding = 1, e = e.asin(), r = ae(n, t + 4, a).times(0.5), n.precision = t, n.rounding = a, r.minus(e));
+  var e, t = this, n = t.constructor, i = t.abs().cmp(1), r = n.precision, a = n.rounding;
+  return i !== -1 ? i === 0 ? t.isNeg() ? ur(n, r, a) : new n(0) : new n(NaN) : t.isZero() ? ur(n, r + 4, a).times(0.5) : (n.precision = r + 6, n.rounding = 1, t = t.asin(), e = ur(n, r + 4, a).times(0.5), n.precision = r, n.rounding = a, e.minus(t));
 };
 W.inverseHyperbolicCosine = W.acosh = function() {
-  var r, e, n = this, i = n.constructor;
-  return n.lte(1) ? new i(n.eq(1) ? 0 : NaN) : n.isFinite() ? (r = i.precision, e = i.rounding, i.precision = r + Math.max(Math.abs(n.e), n.sd()) + 4, i.rounding = 1, mr = !1, n = n.times(n).minus(1).sqrt().plus(n), mr = !0, i.precision = r, i.rounding = e, n.ln()) : new i(n);
+  var e, t, n = this, i = n.constructor;
+  return n.lte(1) ? new i(n.eq(1) ? 0 : NaN) : n.isFinite() ? (e = i.precision, t = i.rounding, i.precision = e + Math.max(Math.abs(n.e), n.sd()) + 4, i.rounding = 1, me = !1, n = n.times(n).minus(1).sqrt().plus(n), me = !0, i.precision = e, i.rounding = t, n.ln()) : new i(n);
 };
 W.inverseHyperbolicSine = W.asinh = function() {
-  var r, e, n = this, i = n.constructor;
-  return !n.isFinite() || n.isZero() ? new i(n) : (r = i.precision, e = i.rounding, i.precision = r + 2 * Math.max(Math.abs(n.e), n.sd()) + 6, i.rounding = 1, mr = !1, n = n.times(n).plus(1).sqrt().plus(n), mr = !0, i.precision = r, i.rounding = e, n.ln());
+  var e, t, n = this, i = n.constructor;
+  return !n.isFinite() || n.isZero() ? new i(n) : (e = i.precision, t = i.rounding, i.precision = e + 2 * Math.max(Math.abs(n.e), n.sd()) + 6, i.rounding = 1, me = !1, n = n.times(n).plus(1).sqrt().plus(n), me = !0, i.precision = e, i.rounding = t, n.ln());
 };
 W.inverseHyperbolicTangent = W.atanh = function() {
-  var r, e, n, i, t = this, a = t.constructor;
-  return t.isFinite() ? t.e >= 0 ? new a(t.abs().eq(1) ? t.s / 0 : t.isZero() ? t : NaN) : (r = a.precision, e = a.rounding, i = t.sd(), Math.max(i, r) < 2 * -t.e - 1 ? vr(new a(t), r, e, !0) : (a.precision = n = i - t.e, t = Tr(t.plus(1), new a(1).minus(t), n + r, 1), a.precision = r + 4, a.rounding = 1, t = t.ln(), a.precision = r, a.rounding = e, t.times(0.5))) : new a(NaN);
+  var e, t, n, i, r = this, a = r.constructor;
+  return r.isFinite() ? r.e >= 0 ? new a(r.abs().eq(1) ? r.s / 0 : r.isZero() ? r : NaN) : (e = a.precision, t = a.rounding, i = r.sd(), Math.max(i, e) < 2 * -r.e - 1 ? ve(new a(r), e, t, !0) : (a.precision = n = i - r.e, r = Te(r.plus(1), new a(1).minus(r), n + e, 1), a.precision = e + 4, a.rounding = 1, r = r.ln(), a.precision = e, a.rounding = t, r.times(0.5))) : new a(NaN);
 };
 W.inverseSine = W.asin = function() {
-  var r, e, n, i, t = this, a = t.constructor;
-  return t.isZero() ? new a(t) : (e = t.abs().cmp(1), n = a.precision, i = a.rounding, e !== -1 ? e === 0 ? (r = ae(a, n + 4, i).times(0.5), r.s = t.s, r) : new a(NaN) : (a.precision = n + 6, a.rounding = 1, t = t.div(new a(1).minus(t.times(t)).sqrt().plus(1)).atan(), a.precision = n, a.rounding = i, t.times(2)));
+  var e, t, n, i, r = this, a = r.constructor;
+  return r.isZero() ? new a(r) : (t = r.abs().cmp(1), n = a.precision, i = a.rounding, t !== -1 ? t === 0 ? (e = ur(a, n + 4, i).times(0.5), e.s = r.s, e) : new a(NaN) : (a.precision = n + 6, a.rounding = 1, r = r.div(new a(1).minus(r.times(r)).sqrt().plus(1)).atan(), a.precision = n, a.rounding = i, r.times(2)));
 };
 W.inverseTangent = W.atan = function() {
-  var r, e, n, i, t, a, o, v, c, l = this, s = l.constructor, u = s.precision, f = s.rounding;
+  var e, t, n, i, r, a, o, h, c, l = this, s = l.constructor, u = s.precision, f = s.rounding;
   if (l.isFinite()) {
     if (l.isZero())
       return new s(l);
     if (l.abs().eq(1) && u + 4 <= Pt)
-      return o = ae(s, u + 4, f).times(0.25), o.s = l.s, o;
+      return o = ur(s, u + 4, f).times(0.25), o.s = l.s, o;
   } else {
     if (!l.s)
       return new s(NaN);
     if (u + 4 <= Pt)
-      return o = ae(s, u + 4, f).times(0.5), o.s = l.s, o;
+      return o = ur(s, u + 4, f).times(0.5), o.s = l.s, o;
   }
-  for (s.precision = v = u + 10, s.rounding = 1, n = Math.min(28, v / hr + 2 | 0), r = n; r; --r)
+  for (s.precision = h = u + 10, s.rounding = 1, n = Math.min(28, h / pe + 2 | 0), e = n; e; --e)
     l = l.div(l.times(l).plus(1).sqrt().plus(1));
-  for (mr = !1, e = Math.ceil(v / hr), i = 1, c = l.times(l), o = new s(l), t = l; r !== -1; )
-    if (t = t.times(c), a = o.minus(t.div(i += 2)), t = t.times(c), o = a.plus(t.div(i += 2)), o.d[e] !== void 0)
-      for (r = e; o.d[r] === a.d[r] && r--; )
+  for (me = !1, t = Math.ceil(h / pe), i = 1, c = l.times(l), o = new s(l), r = l; e !== -1; )
+    if (r = r.times(c), a = o.minus(r.div(i += 2)), r = r.times(c), o = a.plus(r.div(i += 2)), o.d[t] !== void 0)
+      for (e = t; o.d[e] === a.d[e] && e--; )
         ;
-  return n && (o = o.times(2 << n - 1)), mr = !0, vr(o, s.precision = u, s.rounding = f, !0);
+  return n && (o = o.times(2 << n - 1)), me = !0, ve(o, s.precision = u, s.rounding = f, !0);
 };
 W.isFinite = function() {
   return !!this.d;
 };
 W.isInteger = W.isInt = function() {
-  return !!this.d && Jr(this.e / hr) > this.d.length - 2;
+  return !!this.d && Qe(this.e / pe) > this.d.length - 2;
 };
 W.isNaN = function() {
   return !this.s;
@@ -2229,59 +2229,59 @@ W.isPositive = W.isPos = function() {
 W.isZero = function() {
   return !!this.d && this.d[0] === 0;
 };
-W.lessThan = W.lt = function(r) {
-  return this.cmp(r) < 0;
+W.lessThan = W.lt = function(e) {
+  return this.cmp(e) < 0;
 };
-W.lessThanOrEqualTo = W.lte = function(r) {
-  return this.cmp(r) < 1;
+W.lessThanOrEqualTo = W.lte = function(e) {
+  return this.cmp(e) < 1;
 };
-W.logarithm = W.log = function(r) {
-  var e, n, i, t, a, o, v, c, l = this, s = l.constructor, u = s.precision, f = s.rounding, p = 5;
-  if (r == null)
-    r = new s(10), e = !0;
+W.logarithm = W.log = function(e) {
+  var t, n, i, r, a, o, h, c, l = this, s = l.constructor, u = s.precision, f = s.rounding, p = 5;
+  if (e == null)
+    e = new s(10), t = !0;
   else {
-    if (r = new s(r), n = r.d, r.s < 0 || !n || !n[0] || r.eq(1))
+    if (e = new s(e), n = e.d, e.s < 0 || !n || !n[0] || e.eq(1))
       return new s(NaN);
-    e = r.eq(10);
+    t = e.eq(10);
   }
   if (n = l.d, l.s < 0 || !n || !n[0] || l.eq(1))
     return new s(n && !n[0] ? -1 / 0 : l.s != 1 ? NaN : n ? 0 : 1 / 0);
-  if (e)
+  if (t)
     if (n.length > 1)
       a = !0;
     else {
-      for (t = n[0]; t % 10 === 0; )
-        t /= 10;
-      a = t !== 1;
+      for (r = n[0]; r % 10 === 0; )
+        r /= 10;
+      a = r !== 1;
     }
-  if (mr = !1, v = u + p, o = ye(l, v), i = e ? ht(s, v + 10) : ye(r, v), c = Tr(o, i, v, 1), Qe(c.d, t = u, f))
+  if (me = !1, h = u + p, o = yr(l, h), i = t ? vt(s, h + 10) : yr(e, h), c = Te(o, i, h, 1), Qr(c.d, r = u, f))
     do
-      if (v += 10, o = ye(l, v), i = e ? ht(s, v + 10) : ye(r, v), c = Tr(o, i, v, 1), !a) {
-        +Gr(c.d).slice(t + 1, t + 15) + 1 == 1e14 && (c = vr(c, u + 1, 0));
+      if (h += 10, o = yr(l, h), i = t ? vt(s, h + 10) : yr(e, h), c = Te(o, i, h, 1), !a) {
+        +Ye(c.d).slice(r + 1, r + 15) + 1 == 1e14 && (c = ve(c, u + 1, 0));
         break;
       }
-    while (Qe(c.d, t += 10, f));
-  return mr = !0, vr(c, u, f);
+    while (Qr(c.d, r += 10, f));
+  return me = !0, ve(c, u, f);
 };
-W.minus = W.sub = function(r) {
-  var e, n, i, t, a, o, v, c, l, s, u, f, p = this, D = p.constructor;
-  if (r = new D(r), !p.d || !r.d)
-    return !p.s || !r.s ? r = new D(NaN) : p.d ? r.s = -r.s : r = new D(r.d || p.s !== r.s ? p : NaN), r;
-  if (p.s != r.s)
-    return r.s = -r.s, p.plus(r);
-  if (l = p.d, f = r.d, v = D.precision, c = D.rounding, !l[0] || !f[0]) {
+W.minus = W.sub = function(e) {
+  var t, n, i, r, a, o, h, c, l, s, u, f, p = this, D = p.constructor;
+  if (e = new D(e), !p.d || !e.d)
+    return !p.s || !e.s ? e = new D(NaN) : p.d ? e.s = -e.s : e = new D(e.d || p.s !== e.s ? p : NaN), e;
+  if (p.s != e.s)
+    return e.s = -e.s, p.plus(e);
+  if (l = p.d, f = e.d, h = D.precision, c = D.rounding, !l[0] || !f[0]) {
     if (f[0])
-      r.s = -r.s;
+      e.s = -e.s;
     else if (l[0])
-      r = new D(p);
+      e = new D(p);
     else
       return new D(c === 3 ? -0 : 0);
-    return mr ? vr(r, v, c) : r;
+    return me ? ve(e, h, c) : e;
   }
-  if (n = Jr(r.e / hr), s = Jr(p.e / hr), l = l.slice(), a = s - n, a) {
-    for (u = a < 0, u ? (e = l, a = -a, o = f.length) : (e = f, n = s, o = l.length), i = Math.max(Math.ceil(v / hr), o) + 2, a > i && (a = i, e.length = 1), e.reverse(), i = a; i--; )
-      e.push(0);
-    e.reverse();
+  if (n = Qe(e.e / pe), s = Qe(p.e / pe), l = l.slice(), a = s - n, a) {
+    for (u = a < 0, u ? (t = l, a = -a, o = f.length) : (t = f, n = s, o = l.length), i = Math.max(Math.ceil(h / pe), o) + 2, a > i && (a = i, t.length = 1), t.reverse(), i = a; i--; )
+      t.push(0);
+    t.reverse();
   } else {
     for (i = l.length, o = f.length, u = i < o, u && (o = i), i = 0; i < o; i++)
       if (l[i] != f[i]) {
@@ -2290,13 +2290,13 @@ W.minus = W.sub = function(r) {
       }
     a = 0;
   }
-  for (u && (e = l, l = f, f = e, r.s = -r.s), o = l.length, i = f.length - o; i > 0; --i)
+  for (u && (t = l, l = f, f = t, e.s = -e.s), o = l.length, i = f.length - o; i > 0; --i)
     l[o++] = 0;
   for (i = f.length; i > a; ) {
     if (l[--i] < f[i]) {
-      for (t = i; t && l[--t] === 0; )
-        l[t] = ue - 1;
-      --l[t], l[i] += ue;
+      for (r = i; r && l[--r] === 0; )
+        l[r] = or - 1;
+      --l[r], l[i] += or;
     }
     l[i] -= f[i];
   }
@@ -2304,275 +2304,275 @@ W.minus = W.sub = function(r) {
     l.pop();
   for (; l[0] === 0; l.shift())
     --n;
-  return l[0] ? (r.d = l, r.e = Ct(l, n), mr ? vr(r, v, c) : r) : new D(c === 3 ? -0 : 0);
+  return l[0] ? (e.d = l, e.e = Ct(l, n), me ? ve(e, h, c) : e) : new D(c === 3 ? -0 : 0);
 };
-W.modulo = W.mod = function(r) {
-  var e, n = this, i = n.constructor;
-  return r = new i(r), !n.d || !r.s || r.d && !r.d[0] ? new i(NaN) : !r.d || n.d && !n.d[0] ? vr(new i(n), i.precision, i.rounding) : (mr = !1, i.modulo == 9 ? (e = Tr(n, r.abs(), 0, 3, 1), e.s *= r.s) : e = Tr(n, r, 0, i.modulo, 1), e = e.times(r), mr = !0, n.minus(e));
+W.modulo = W.mod = function(e) {
+  var t, n = this, i = n.constructor;
+  return e = new i(e), !n.d || !e.s || e.d && !e.d[0] ? new i(NaN) : !e.d || n.d && !n.d[0] ? ve(new i(n), i.precision, i.rounding) : (me = !1, i.modulo == 9 ? (t = Te(n, e.abs(), 0, 3, 1), t.s *= e.s) : t = Te(n, e, 0, i.modulo, 1), t = t.times(e), me = !0, n.minus(t));
 };
 W.naturalExponential = W.exp = function() {
   return Rt(this);
 };
 W.naturalLogarithm = W.ln = function() {
-  return ye(this);
+  return yr(this);
 };
 W.negated = W.neg = function() {
-  var r = new this.constructor(this);
-  return r.s = -r.s, vr(r);
+  var e = new this.constructor(this);
+  return e.s = -e.s, ve(e);
 };
-W.plus = W.add = function(r) {
-  var e, n, i, t, a, o, v, c, l, s, u = this, f = u.constructor;
-  if (r = new f(r), !u.d || !r.d)
-    return !u.s || !r.s ? r = new f(NaN) : u.d || (r = new f(r.d || u.s === r.s ? u : NaN)), r;
-  if (u.s != r.s)
-    return r.s = -r.s, u.minus(r);
-  if (l = u.d, s = r.d, v = f.precision, c = f.rounding, !l[0] || !s[0])
-    return s[0] || (r = new f(u)), mr ? vr(r, v, c) : r;
-  if (a = Jr(u.e / hr), i = Jr(r.e / hr), l = l.slice(), t = a - i, t) {
-    for (t < 0 ? (n = l, t = -t, o = s.length) : (n = s, i = a, o = l.length), a = Math.ceil(v / hr), o = a > o ? a + 1 : o + 1, t > o && (t = o, n.length = 1), n.reverse(); t--; )
+W.plus = W.add = function(e) {
+  var t, n, i, r, a, o, h, c, l, s, u = this, f = u.constructor;
+  if (e = new f(e), !u.d || !e.d)
+    return !u.s || !e.s ? e = new f(NaN) : u.d || (e = new f(e.d || u.s === e.s ? u : NaN)), e;
+  if (u.s != e.s)
+    return e.s = -e.s, u.minus(e);
+  if (l = u.d, s = e.d, h = f.precision, c = f.rounding, !l[0] || !s[0])
+    return s[0] || (e = new f(u)), me ? ve(e, h, c) : e;
+  if (a = Qe(u.e / pe), i = Qe(e.e / pe), l = l.slice(), r = a - i, r) {
+    for (r < 0 ? (n = l, r = -r, o = s.length) : (n = s, i = a, o = l.length), a = Math.ceil(h / pe), o = a > o ? a + 1 : o + 1, r > o && (r = o, n.length = 1), n.reverse(); r--; )
       n.push(0);
     n.reverse();
   }
-  for (o = l.length, t = s.length, o - t < 0 && (t = o, n = s, s = l, l = n), e = 0; t; )
-    e = (l[--t] = l[t] + s[t] + e) / ue | 0, l[t] %= ue;
-  for (e && (l.unshift(e), ++i), o = l.length; l[--o] == 0; )
+  for (o = l.length, r = s.length, o - r < 0 && (r = o, n = s, s = l, l = n), t = 0; r; )
+    t = (l[--r] = l[r] + s[r] + t) / or | 0, l[r] %= or;
+  for (t && (l.unshift(t), ++i), o = l.length; l[--o] == 0; )
     l.pop();
-  return r.d = l, r.e = Ct(l, i), mr ? vr(r, v, c) : r;
+  return e.d = l, e.e = Ct(l, i), me ? ve(e, h, c) : e;
 };
-W.precision = W.sd = function(r) {
-  var e, n = this;
-  if (r !== void 0 && r !== !!r && r !== 1 && r !== 0)
-    throw Error(Ae + r);
-  return n.d ? (e = Pi(n.d), r && n.e + 1 > e && (e = n.e + 1)) : e = NaN, e;
+W.precision = W.sd = function(e) {
+  var t, n = this;
+  if (e !== void 0 && e !== !!e && e !== 1 && e !== 0)
+    throw Error(Ar + e);
+  return n.d ? (t = Ri(n.d), e && n.e + 1 > t && (t = n.e + 1)) : t = NaN, t;
 };
 W.round = function() {
-  var r = this, e = r.constructor;
-  return vr(new e(r), r.e + 1, e.rounding);
+  var e = this, t = e.constructor;
+  return ve(new t(e), e.e + 1, t.rounding);
 };
 W.sine = W.sin = function() {
-  var r, e, n = this, i = n.constructor;
-  return n.isFinite() ? n.isZero() ? new i(n) : (r = i.precision, e = i.rounding, i.precision = r + Math.max(n.e, n.sd()) + hr, i.rounding = 1, n = co(i, Zi(i, n)), i.precision = r, i.rounding = e, vr(he > 2 ? n.neg() : n, r, e, !0)) : new i(NaN);
+  var e, t, n = this, i = n.constructor;
+  return n.isFinite() ? n.isZero() ? new i(n) : (e = i.precision, t = i.rounding, i.precision = e + Math.max(n.e, n.sd()) + pe, i.rounding = 1, n = lo(i, Gi(i, n)), i.precision = e, i.rounding = t, ve(pr > 2 ? n.neg() : n, e, t, !0)) : new i(NaN);
 };
 W.squareRoot = W.sqrt = function() {
-  var r, e, n, i, t, a, o = this, v = o.d, c = o.e, l = o.s, s = o.constructor;
-  if (l !== 1 || !v || !v[0])
-    return new s(!l || l < 0 && (!v || v[0]) ? NaN : v ? o : 1 / 0);
-  for (mr = !1, l = Math.sqrt(+o), l == 0 || l == 1 / 0 ? (e = Gr(v), (e.length + c) % 2 == 0 && (e += "0"), l = Math.sqrt(e), c = Jr((c + 1) / 2) - (c < 0 || c % 2), l == 1 / 0 ? e = "5e" + c : (e = l.toExponential(), e = e.slice(0, e.indexOf("e") + 1) + c), i = new s(e)) : i = new s(l.toString()), n = (c = s.precision) + 3; ; )
-    if (a = i, i = a.plus(Tr(o, a, n + 2, 1)).times(0.5), Gr(a.d).slice(0, n) === (e = Gr(i.d)).slice(0, n))
-      if (e = e.slice(n - 3, n + 1), e == "9999" || !t && e == "4999") {
-        if (!t && (vr(a, c + 1, 0), a.times(a).eq(o))) {
+  var e, t, n, i, r, a, o = this, h = o.d, c = o.e, l = o.s, s = o.constructor;
+  if (l !== 1 || !h || !h[0])
+    return new s(!l || l < 0 && (!h || h[0]) ? NaN : h ? o : 1 / 0);
+  for (me = !1, l = Math.sqrt(+o), l == 0 || l == 1 / 0 ? (t = Ye(h), (t.length + c) % 2 == 0 && (t += "0"), l = Math.sqrt(t), c = Qe((c + 1) / 2) - (c < 0 || c % 2), l == 1 / 0 ? t = "5e" + c : (t = l.toExponential(), t = t.slice(0, t.indexOf("e") + 1) + c), i = new s(t)) : i = new s(l.toString()), n = (c = s.precision) + 3; ; )
+    if (a = i, i = a.plus(Te(o, a, n + 2, 1)).times(0.5), Ye(a.d).slice(0, n) === (t = Ye(i.d)).slice(0, n))
+      if (t = t.slice(n - 3, n + 1), t == "9999" || !r && t == "4999") {
+        if (!r && (ve(a, c + 1, 0), a.times(a).eq(o))) {
           i = a;
           break;
         }
-        n += 4, t = 1;
+        n += 4, r = 1;
       } else {
-        (!+e || !+e.slice(1) && e.charAt(0) == "5") && (vr(i, c + 1, 1), r = !i.times(i).eq(o));
+        (!+t || !+t.slice(1) && t.charAt(0) == "5") && (ve(i, c + 1, 1), e = !i.times(i).eq(o));
         break;
       }
-  return mr = !0, vr(i, c, s.rounding, r);
+  return me = !0, ve(i, c, s.rounding, e);
 };
 W.tangent = W.tan = function() {
-  var r, e, n = this, i = n.constructor;
-  return n.isFinite() ? n.isZero() ? new i(n) : (r = i.precision, e = i.rounding, i.precision = r + 10, i.rounding = 1, n = n.sin(), n.s = 1, n = Tr(n, new i(1).minus(n.times(n)).sqrt(), r + 10, 0), i.precision = r, i.rounding = e, vr(he == 2 || he == 4 ? n.neg() : n, r, e, !0)) : new i(NaN);
+  var e, t, n = this, i = n.constructor;
+  return n.isFinite() ? n.isZero() ? new i(n) : (e = i.precision, t = i.rounding, i.precision = e + 10, i.rounding = 1, n = n.sin(), n.s = 1, n = Te(n, new i(1).minus(n.times(n)).sqrt(), e + 10, 0), i.precision = e, i.rounding = t, ve(pr == 2 || pr == 4 ? n.neg() : n, e, t, !0)) : new i(NaN);
 };
-W.times = W.mul = function(r) {
-  var e, n, i, t, a, o, v, c, l, s = this, u = s.constructor, f = s.d, p = (r = new u(r)).d;
-  if (r.s *= s.s, !f || !f[0] || !p || !p[0])
-    return new u(!r.s || f && !f[0] && !p || p && !p[0] && !f ? NaN : !f || !p ? r.s / 0 : r.s * 0);
-  for (n = Jr(s.e / hr) + Jr(r.e / hr), c = f.length, l = p.length, c < l && (a = f, f = p, p = a, o = c, c = l, l = o), a = [], o = c + l, i = o; i--; )
+W.times = W.mul = function(e) {
+  var t, n, i, r, a, o, h, c, l, s = this, u = s.constructor, f = s.d, p = (e = new u(e)).d;
+  if (e.s *= s.s, !f || !f[0] || !p || !p[0])
+    return new u(!e.s || f && !f[0] && !p || p && !p[0] && !f ? NaN : !f || !p ? e.s / 0 : e.s * 0);
+  for (n = Qe(s.e / pe) + Qe(e.e / pe), c = f.length, l = p.length, c < l && (a = f, f = p, p = a, o = c, c = l, l = o), a = [], o = c + l, i = o; i--; )
     a.push(0);
   for (i = l; --i >= 0; ) {
-    for (e = 0, t = c + i; t > i; )
-      v = a[t] + p[i] * f[t - i - 1] + e, a[t--] = v % ue | 0, e = v / ue | 0;
-    a[t] = (a[t] + e) % ue | 0;
+    for (t = 0, r = c + i; r > i; )
+      h = a[r] + p[i] * f[r - i - 1] + t, a[r--] = h % or | 0, t = h / or | 0;
+    a[r] = (a[r] + t) % or | 0;
   }
   for (; !a[--o]; )
     a.pop();
-  return e ? ++n : a.shift(), r.d = a, r.e = Ct(a, n), mr ? vr(r, u.precision, u.rounding) : r;
+  return t ? ++n : a.shift(), e.d = a, e.e = Ct(a, n), me ? ve(e, u.precision, u.rounding) : e;
 };
-W.toBinary = function(r, e) {
-  return Xt(this, 2, r, e);
+W.toBinary = function(e, t) {
+  return Xt(this, 2, e, t);
 };
-W.toDecimalPlaces = W.toDP = function(r, e) {
+W.toDecimalPlaces = W.toDP = function(e, t) {
   var n = this, i = n.constructor;
-  return n = new i(n), r === void 0 ? n : (Wr(r, 0, Ee), e === void 0 ? e = i.rounding : Wr(e, 0, 8), vr(n, r + n.e + 1, e));
+  return n = new i(n), e === void 0 ? n : (ke(e, 0, Er), t === void 0 ? t = i.rounding : ke(t, 0, 8), ve(n, e + n.e + 1, t));
 };
-W.toExponential = function(r, e) {
-  var n, i = this, t = i.constructor;
-  return r === void 0 ? n = le(i, !0) : (Wr(r, 0, Ee), e === void 0 ? e = t.rounding : Wr(e, 0, 8), i = vr(new t(i), r + 1, e), n = le(i, !0, r + 1)), i.isNeg() && !i.isZero() ? "-" + n : n;
+W.toExponential = function(e, t) {
+  var n, i = this, r = i.constructor;
+  return e === void 0 ? n = hr(i, !0) : (ke(e, 0, Er), t === void 0 ? t = r.rounding : ke(t, 0, 8), i = ve(new r(i), e + 1, t), n = hr(i, !0, e + 1)), i.isNeg() && !i.isZero() ? "-" + n : n;
 };
-W.toFixed = function(r, e) {
-  var n, i, t = this, a = t.constructor;
-  return r === void 0 ? n = le(t) : (Wr(r, 0, Ee), e === void 0 ? e = a.rounding : Wr(e, 0, 8), i = vr(new a(t), r + t.e + 1, e), n = le(i, !1, r + i.e + 1)), t.isNeg() && !t.isZero() ? "-" + n : n;
+W.toFixed = function(e, t) {
+  var n, i, r = this, a = r.constructor;
+  return e === void 0 ? n = hr(r) : (ke(e, 0, Er), t === void 0 ? t = a.rounding : ke(t, 0, 8), i = ve(new a(r), e + r.e + 1, t), n = hr(i, !1, e + i.e + 1)), r.isNeg() && !r.isZero() ? "-" + n : n;
 };
-W.toFraction = function(r) {
-  var e, n, i, t, a, o, v, c, l, s, u, f, p = this, D = p.d, h = p.constructor;
+W.toFraction = function(e) {
+  var t, n, i, r, a, o, h, c, l, s, u, f, p = this, D = p.d, v = p.constructor;
   if (!D)
-    return new h(p);
-  if (l = n = new h(1), i = c = new h(0), e = new h(i), a = e.e = Pi(D) - p.e - 1, o = a % hr, e.d[0] = Vr(10, o < 0 ? hr + o : o), r == null)
-    r = a > 0 ? e : l;
+    return new v(p);
+  if (l = n = new v(1), i = c = new v(0), t = new v(i), a = t.e = Ri(D) - p.e - 1, o = a % pe, t.d[0] = Ve(10, o < 0 ? pe + o : o), e == null)
+    e = a > 0 ? t : l;
   else {
-    if (v = new h(r), !v.isInt() || v.lt(l))
-      throw Error(Ae + v);
-    r = v.gt(e) ? a > 0 ? e : l : v;
+    if (h = new v(e), !h.isInt() || h.lt(l))
+      throw Error(Ar + h);
+    e = h.gt(t) ? a > 0 ? t : l : h;
   }
-  for (mr = !1, v = new h(Gr(D)), s = h.precision, h.precision = a = D.length * hr * 2; u = Tr(v, e, 0, 1, 1), t = n.plus(u.times(i)), t.cmp(r) != 1; )
-    n = i, i = t, t = l, l = c.plus(u.times(t)), c = t, t = e, e = v.minus(u.times(t)), v = t;
-  return t = Tr(r.minus(n), i, 0, 1, 1), c = c.plus(t.times(l)), n = n.plus(t.times(i)), c.s = l.s = p.s, f = Tr(l, i, a, 1).minus(p).abs().cmp(Tr(c, n, a, 1).minus(p).abs()) < 1 ? [l, i] : [c, n], h.precision = s, mr = !0, f;
+  for (me = !1, h = new v(Ye(D)), s = v.precision, v.precision = a = D.length * pe * 2; u = Te(h, t, 0, 1, 1), r = n.plus(u.times(i)), r.cmp(e) != 1; )
+    n = i, i = r, r = l, l = c.plus(u.times(r)), c = r, r = t, t = h.minus(u.times(r)), h = r;
+  return r = Te(e.minus(n), i, 0, 1, 1), c = c.plus(r.times(l)), n = n.plus(r.times(i)), c.s = l.s = p.s, f = Te(l, i, a, 1).minus(p).abs().cmp(Te(c, n, a, 1).minus(p).abs()) < 1 ? [l, i] : [c, n], v.precision = s, me = !0, f;
 };
-W.toHexadecimal = W.toHex = function(r, e) {
-  return Xt(this, 16, r, e);
+W.toHexadecimal = W.toHex = function(e, t) {
+  return Xt(this, 16, e, t);
 };
-W.toNearest = function(r, e) {
+W.toNearest = function(e, t) {
   var n = this, i = n.constructor;
-  if (n = new i(n), r == null) {
+  if (n = new i(n), e == null) {
     if (!n.d)
       return n;
-    r = new i(1), e = i.rounding;
+    e = new i(1), t = i.rounding;
   } else {
-    if (r = new i(r), e === void 0 ? e = i.rounding : Wr(e, 0, 8), !n.d)
-      return r.s ? n : r;
-    if (!r.d)
-      return r.s && (r.s = n.s), r;
+    if (e = new i(e), t === void 0 ? t = i.rounding : ke(t, 0, 8), !n.d)
+      return e.s ? n : e;
+    if (!e.d)
+      return e.s && (e.s = n.s), e;
   }
-  return r.d[0] ? (mr = !1, n = Tr(n, r, 0, e, 1).times(r), mr = !0, vr(n)) : (r.s = n.s, n = r), n;
+  return e.d[0] ? (me = !1, n = Te(n, e, 0, t, 1).times(e), me = !0, ve(n)) : (e.s = n.s, n = e), n;
 };
 W.toNumber = function() {
   return +this;
 };
-W.toOctal = function(r, e) {
-  return Xt(this, 8, r, e);
+W.toOctal = function(e, t) {
+  return Xt(this, 8, e, t);
 };
-W.toPower = W.pow = function(r) {
-  var e, n, i, t, a, o, v = this, c = v.constructor, l = +(r = new c(r));
-  if (!v.d || !r.d || !v.d[0] || !r.d[0])
-    return new c(Vr(+v, l));
-  if (v = new c(v), v.eq(1))
-    return v;
-  if (i = c.precision, a = c.rounding, r.eq(1))
-    return vr(v, i, a);
-  if (e = Jr(r.e / hr), e >= r.d.length - 1 && (n = l < 0 ? -l : l) <= uo)
-    return t = Ri(c, v, n, i), r.s < 0 ? new c(1).div(t) : vr(t, i, a);
-  if (o = v.s, o < 0) {
-    if (e < r.d.length - 1)
+W.toPower = W.pow = function(e) {
+  var t, n, i, r, a, o, h = this, c = h.constructor, l = +(e = new c(e));
+  if (!h.d || !e.d || !h.d[0] || !e.d[0])
+    return new c(Ve(+h, l));
+  if (h = new c(h), h.eq(1))
+    return h;
+  if (i = c.precision, a = c.rounding, e.eq(1))
+    return ve(h, i, a);
+  if (t = Qe(e.e / pe), t >= e.d.length - 1 && (n = l < 0 ? -l : l) <= oo)
+    return r = Ui(c, h, n, i), e.s < 0 ? new c(1).div(r) : ve(r, i, a);
+  if (o = h.s, o < 0) {
+    if (t < e.d.length - 1)
       return new c(NaN);
-    if (r.d[e] & 1 || (o = 1), v.e == 0 && v.d[0] == 1 && v.d.length == 1)
-      return v.s = o, v;
+    if (e.d[t] & 1 || (o = 1), h.e == 0 && h.d[0] == 1 && h.d.length == 1)
+      return h.s = o, h;
   }
-  return n = Vr(+v, l), e = n == 0 || !isFinite(n) ? Jr(l * (Math.log("0." + Gr(v.d)) / Math.LN10 + v.e + 1)) : new c(n + "").e, e > c.maxE + 1 || e < c.minE - 1 ? new c(e > 0 ? o / 0 : 0) : (mr = !1, c.rounding = v.s = 1, n = Math.min(12, (e + "").length), t = Rt(r.times(ye(v, i + n)), i), t.d && (t = vr(t, i + 5, 1), Qe(t.d, i, a) && (e = i + 10, t = vr(Rt(r.times(ye(v, e + n)), e), e + 5, 1), +Gr(t.d).slice(i + 1, i + 15) + 1 == 1e14 && (t = vr(t, i + 1, 0)))), t.s = o, mr = !0, c.rounding = a, vr(t, i, a));
+  return n = Ve(+h, l), t = n == 0 || !isFinite(n) ? Qe(l * (Math.log("0." + Ye(h.d)) / Math.LN10 + h.e + 1)) : new c(n + "").e, t > c.maxE + 1 || t < c.minE - 1 ? new c(t > 0 ? o / 0 : 0) : (me = !1, c.rounding = h.s = 1, n = Math.min(12, (t + "").length), r = Rt(e.times(yr(h, i + n)), i), r.d && (r = ve(r, i + 5, 1), Qr(r.d, i, a) && (t = i + 10, r = ve(Rt(e.times(yr(h, t + n)), t), t + 5, 1), +Ye(r.d).slice(i + 1, i + 15) + 1 == 1e14 && (r = ve(r, i + 1, 0)))), r.s = o, me = !0, c.rounding = a, ve(r, i, a));
 };
-W.toPrecision = function(r, e) {
-  var n, i = this, t = i.constructor;
-  return r === void 0 ? n = le(i, i.e <= t.toExpNeg || i.e >= t.toExpPos) : (Wr(r, 1, Ee), e === void 0 ? e = t.rounding : Wr(e, 0, 8), i = vr(new t(i), r, e), n = le(i, r <= i.e || i.e <= t.toExpNeg, r)), i.isNeg() && !i.isZero() ? "-" + n : n;
+W.toPrecision = function(e, t) {
+  var n, i = this, r = i.constructor;
+  return e === void 0 ? n = hr(i, i.e <= r.toExpNeg || i.e >= r.toExpPos) : (ke(e, 1, Er), t === void 0 ? t = r.rounding : ke(t, 0, 8), i = ve(new r(i), e, t), n = hr(i, e <= i.e || i.e <= r.toExpNeg, e)), i.isNeg() && !i.isZero() ? "-" + n : n;
 };
-W.toSignificantDigits = W.toSD = function(r, e) {
+W.toSignificantDigits = W.toSD = function(e, t) {
   var n = this, i = n.constructor;
-  return r === void 0 ? (r = i.precision, e = i.rounding) : (Wr(r, 1, Ee), e === void 0 ? e = i.rounding : Wr(e, 0, 8)), vr(new i(n), r, e);
+  return e === void 0 ? (e = i.precision, t = i.rounding) : (ke(e, 1, Er), t === void 0 ? t = i.rounding : ke(t, 0, 8)), ve(new i(n), e, t);
 };
 W.toString = function() {
-  var r = this, e = r.constructor, n = le(r, r.e <= e.toExpNeg || r.e >= e.toExpPos);
-  return r.isNeg() && !r.isZero() ? "-" + n : n;
+  var e = this, t = e.constructor, n = hr(e, e.e <= t.toExpNeg || e.e >= t.toExpPos);
+  return e.isNeg() && !e.isZero() ? "-" + n : n;
 };
 W.truncated = W.trunc = function() {
-  return vr(new this.constructor(this), this.e + 1, 1);
+  return ve(new this.constructor(this), this.e + 1, 1);
 };
 W.valueOf = W.toJSON = function() {
-  var r = this, e = r.constructor, n = le(r, r.e <= e.toExpNeg || r.e >= e.toExpPos);
-  return r.isNeg() ? "-" + n : n;
+  var e = this, t = e.constructor, n = hr(e, e.e <= t.toExpNeg || e.e >= t.toExpPos);
+  return e.isNeg() ? "-" + n : n;
 };
-function Gr(r) {
-  var e, n, i, t = r.length - 1, a = "", o = r[0];
-  if (t > 0) {
-    for (a += o, e = 1; e < t; e++)
-      i = r[e] + "", n = hr - i.length, n && (a += de(n)), a += i;
-    o = r[e], i = o + "", n = hr - i.length, n && (a += de(n));
+function Ye(e) {
+  var t, n, i, r = e.length - 1, a = "", o = e[0];
+  if (r > 0) {
+    for (a += o, t = 1; t < r; t++)
+      i = e[t] + "", n = pe - i.length, n && (a += mr(n)), a += i;
+    o = e[t], i = o + "", n = pe - i.length, n && (a += mr(n));
   } else if (o === 0)
     return "0";
   for (; o % 10 === 0; )
     o /= 10;
   return a + o;
 }
-function Wr(r, e, n) {
-  if (r !== ~~r || r < e || r > n)
-    throw Error(Ae + r);
+function ke(e, t, n) {
+  if (e !== ~~e || e < t || e > n)
+    throw Error(Ar + e);
 }
-function Qe(r, e, n, i) {
-  var t, a, o, v;
-  for (a = r[0]; a >= 10; a /= 10)
-    --e;
-  return --e < 0 ? (e += hr, t = 0) : (t = Math.ceil((e + 1) / hr), e %= hr), a = Vr(10, hr - e), v = r[t] % a | 0, i == null ? e < 3 ? (e == 0 ? v = v / 100 | 0 : e == 1 && (v = v / 10 | 0), o = n < 4 && v == 99999 || n > 3 && v == 49999 || v == 5e4 || v == 0) : o = (n < 4 && v + 1 == a || n > 3 && v + 1 == a / 2) && (r[t + 1] / a / 100 | 0) == Vr(10, e - 2) - 1 || (v == a / 2 || v == 0) && (r[t + 1] / a / 100 | 0) == 0 : e < 4 ? (e == 0 ? v = v / 1e3 | 0 : e == 1 ? v = v / 100 | 0 : e == 2 && (v = v / 10 | 0), o = (i || n < 4) && v == 9999 || !i && n > 3 && v == 4999) : o = ((i || n < 4) && v + 1 == a || !i && n > 3 && v + 1 == a / 2) && (r[t + 1] / a / 1e3 | 0) == Vr(10, e - 3) - 1, o;
+function Qr(e, t, n, i) {
+  var r, a, o, h;
+  for (a = e[0]; a >= 10; a /= 10)
+    --t;
+  return --t < 0 ? (t += pe, r = 0) : (r = Math.ceil((t + 1) / pe), t %= pe), a = Ve(10, pe - t), h = e[r] % a | 0, i == null ? t < 3 ? (t == 0 ? h = h / 100 | 0 : t == 1 && (h = h / 10 | 0), o = n < 4 && h == 99999 || n > 3 && h == 49999 || h == 5e4 || h == 0) : o = (n < 4 && h + 1 == a || n > 3 && h + 1 == a / 2) && (e[r + 1] / a / 100 | 0) == Ve(10, t - 2) - 1 || (h == a / 2 || h == 0) && (e[r + 1] / a / 100 | 0) == 0 : t < 4 ? (t == 0 ? h = h / 1e3 | 0 : t == 1 ? h = h / 100 | 0 : t == 2 && (h = h / 10 | 0), o = (i || n < 4) && h == 9999 || !i && n > 3 && h == 4999) : o = ((i || n < 4) && h + 1 == a || !i && n > 3 && h + 1 == a / 2) && (e[r + 1] / a / 1e3 | 0) == Ve(10, t - 3) - 1, o;
 }
-function ut(r, e, n) {
-  for (var i, t = [0], a, o = 0, v = r.length; o < v; ) {
-    for (a = t.length; a--; )
-      t[a] *= e;
-    for (t[0] += qt.indexOf(r.charAt(o++)), i = 0; i < t.length; i++)
-      t[i] > n - 1 && (t[i + 1] === void 0 && (t[i + 1] = 0), t[i + 1] += t[i] / n | 0, t[i] %= n);
+function ut(e, t, n) {
+  for (var i, r = [0], a, o = 0, h = e.length; o < h; ) {
+    for (a = r.length; a--; )
+      r[a] *= t;
+    for (r[0] += $t.indexOf(e.charAt(o++)), i = 0; i < r.length; i++)
+      r[i] > n - 1 && (r[i + 1] === void 0 && (r[i + 1] = 0), r[i + 1] += r[i] / n | 0, r[i] %= n);
   }
-  return t.reverse();
+  return r.reverse();
 }
-function so(r, e) {
-  var n, i, t;
-  if (e.isZero())
-    return e;
-  i = e.d.length, i < 32 ? (n = Math.ceil(i / 3), t = (1 / bt(4, n)).toString()) : (n = 16, t = "2.3283064365386962890625e-10"), r.precision += n, e = qe(r, 1, e.times(t), new r(1));
+function fo(e, t) {
+  var n, i, r;
+  if (t.isZero())
+    return t;
+  i = t.d.length, i < 32 ? (n = Math.ceil(i / 3), r = (1 / bt(4, n)).toString()) : (n = 16, r = "2.3283064365386962890625e-10"), e.precision += n, t = $r(e, 1, t.times(r), new e(1));
   for (var a = n; a--; ) {
-    var o = e.times(e);
-    e = o.times(o).minus(o).times(8).plus(1);
+    var o = t.times(t);
+    t = o.times(o).minus(o).times(8).plus(1);
   }
-  return r.precision -= n, e;
+  return e.precision -= n, t;
 }
-var Tr = /* @__PURE__ */ function() {
-  function r(i, t, a) {
-    var o, v = 0, c = i.length;
+var Te = /* @__PURE__ */ function() {
+  function e(i, r, a) {
+    var o, h = 0, c = i.length;
     for (i = i.slice(); c--; )
-      o = i[c] * t + v, i[c] = o % a | 0, v = o / a | 0;
-    return v && i.unshift(v), i;
+      o = i[c] * r + h, i[c] = o % a | 0, h = o / a | 0;
+    return h && i.unshift(h), i;
   }
-  function e(i, t, a, o) {
-    var v, c;
+  function t(i, r, a, o) {
+    var h, c;
     if (a != o)
       c = a > o ? 1 : -1;
     else
-      for (v = c = 0; v < a; v++)
-        if (i[v] != t[v]) {
-          c = i[v] > t[v] ? 1 : -1;
+      for (h = c = 0; h < a; h++)
+        if (i[h] != r[h]) {
+          c = i[h] > r[h] ? 1 : -1;
           break;
         }
     return c;
   }
-  function n(i, t, a, o) {
-    for (var v = 0; a--; )
-      i[a] -= v, v = i[a] < t[a] ? 1 : 0, i[a] = v * o + i[a] - t[a];
+  function n(i, r, a, o) {
+    for (var h = 0; a--; )
+      i[a] -= h, h = i[a] < r[a] ? 1 : 0, i[a] = h * o + i[a] - r[a];
     for (; !i[0] && i.length > 1; )
       i.shift();
   }
-  return function(i, t, a, o, v, c) {
-    var l, s, u, f, p, D, h, m, d, w, g, E, F, y, C, b, A, S, M, N, O = i.constructor, T = i.s == t.s ? 1 : -1, I = i.d, B = t.d;
-    if (!I || !I[0] || !B || !B[0])
-      return new O(
+  return function(i, r, a, o, h, c) {
+    var l, s, u, f, p, D, v, m, d, w, g, A, F, y, C, b, E, S, M, x, I = i.constructor, T = i.s == r.s ? 1 : -1, O = i.d, B = r.d;
+    if (!O || !O[0] || !B || !B[0])
+      return new I(
         // Return NaN if either NaN, or both Infinity or 0.
-        !i.s || !t.s || (I ? B && I[0] == B[0] : !B) ? NaN : (
+        !i.s || !r.s || (O ? B && O[0] == B[0] : !B) ? NaN : (
           // Return ±0 if x is 0 or y is ±Infinity, or return ±Infinity as y is 0.
-          I && I[0] == 0 || !B ? T * 0 : T / 0
+          O && O[0] == 0 || !B ? T * 0 : T / 0
         )
       );
-    for (c ? (p = 1, s = i.e - t.e) : (c = ue, p = hr, s = Jr(i.e / p) - Jr(t.e / p)), M = B.length, A = I.length, d = new O(T), w = d.d = [], u = 0; B[u] == (I[u] || 0); u++)
+    for (c ? (p = 1, s = i.e - r.e) : (c = or, p = pe, s = Qe(i.e / p) - Qe(r.e / p)), M = B.length, E = O.length, d = new I(T), w = d.d = [], u = 0; B[u] == (O[u] || 0); u++)
       ;
-    if (B[u] > (I[u] || 0) && s--, a == null ? (y = a = O.precision, o = O.rounding) : v ? y = a + (i.e - t.e) + 1 : y = a, y < 0)
+    if (B[u] > (O[u] || 0) && s--, a == null ? (y = a = I.precision, o = I.rounding) : h ? y = a + (i.e - r.e) + 1 : y = a, y < 0)
       w.push(1), D = !0;
     else {
       if (y = y / p + 2 | 0, u = 0, M == 1) {
-        for (f = 0, B = B[0], y++; (u < A || f) && y--; u++)
-          C = f * c + (I[u] || 0), w[u] = C / B | 0, f = C % B | 0;
-        D = f || u < A;
+        for (f = 0, B = B[0], y++; (u < E || f) && y--; u++)
+          C = f * c + (O[u] || 0), w[u] = C / B | 0, f = C % B | 0;
+        D = f || u < E;
       } else {
-        for (f = c / (B[0] + 1) | 0, f > 1 && (B = r(B, f, c), I = r(I, f, c), M = B.length, A = I.length), b = M, g = I.slice(0, M), E = g.length; E < M; )
-          g[E++] = 0;
-        N = B.slice(), N.unshift(0), S = B[0], B[1] >= c / 2 && ++S;
+        for (f = c / (B[0] + 1) | 0, f > 1 && (B = e(B, f, c), O = e(O, f, c), M = B.length, E = O.length), b = M, g = O.slice(0, M), A = g.length; A < M; )
+          g[A++] = 0;
+        x = B.slice(), x.unshift(0), S = B[0], B[1] >= c / 2 && ++S;
         do
-          f = 0, l = e(B, g, M, E), l < 0 ? (F = g[0], M != E && (F = F * c + (g[1] || 0)), f = F / S | 0, f > 1 ? (f >= c && (f = c - 1), h = r(B, f, c), m = h.length, E = g.length, l = e(h, g, m, E), l == 1 && (f--, n(h, M < m ? N : B, m, c))) : (f == 0 && (l = f = 1), h = B.slice()), m = h.length, m < E && h.unshift(0), n(g, h, E, c), l == -1 && (E = g.length, l = e(B, g, M, E), l < 1 && (f++, n(g, M < E ? N : B, E, c))), E = g.length) : l === 0 && (f++, g = [0]), w[u++] = f, l && g[0] ? g[E++] = I[b] || 0 : (g = [I[b]], E = 1);
-        while ((b++ < A || g[0] !== void 0) && y--);
+          f = 0, l = t(B, g, M, A), l < 0 ? (F = g[0], M != A && (F = F * c + (g[1] || 0)), f = F / S | 0, f > 1 ? (f >= c && (f = c - 1), v = e(B, f, c), m = v.length, A = g.length, l = t(v, g, m, A), l == 1 && (f--, n(v, M < m ? x : B, m, c))) : (f == 0 && (l = f = 1), v = B.slice()), m = v.length, m < A && v.unshift(0), n(g, v, A, c), l == -1 && (A = g.length, l = t(B, g, M, A), l < 1 && (f++, n(g, M < A ? x : B, A, c))), A = g.length) : l === 0 && (f++, g = [0]), w[u++] = f, l && g[0] ? g[A++] = O[b] || 0 : (g = [O[b]], A = 1);
+        while ((b++ < E || g[0] !== void 0) && y--);
         D = g[0] !== void 0;
       }
       w[0] || w.shift();
@@ -2582,267 +2582,267 @@ var Tr = /* @__PURE__ */ function() {
     else {
       for (u = 1, f = w[0]; f >= 10; f /= 10)
         u++;
-      d.e = u + s * p - 1, vr(d, v ? a + d.e + 1 : a, o, D);
+      d.e = u + s * p - 1, ve(d, h ? a + d.e + 1 : a, o, D);
     }
     return d;
   };
 }();
-function vr(r, e, n, i) {
-  var t, a, o, v, c, l, s, u, f, p = r.constructor;
-  r:
-    if (e != null) {
-      if (u = r.d, !u)
-        return r;
-      for (t = 1, v = u[0]; v >= 10; v /= 10)
-        t++;
-      if (a = e - t, a < 0)
-        a += hr, o = e, s = u[f = 0], c = s / Vr(10, t - o - 1) % 10 | 0;
-      else if (f = Math.ceil((a + 1) / hr), v = u.length, f >= v)
+function ve(e, t, n, i) {
+  var r, a, o, h, c, l, s, u, f, p = e.constructor;
+  e:
+    if (t != null) {
+      if (u = e.d, !u)
+        return e;
+      for (r = 1, h = u[0]; h >= 10; h /= 10)
+        r++;
+      if (a = t - r, a < 0)
+        a += pe, o = t, s = u[f = 0], c = s / Ve(10, r - o - 1) % 10 | 0;
+      else if (f = Math.ceil((a + 1) / pe), h = u.length, f >= h)
         if (i) {
-          for (; v++ <= f; )
+          for (; h++ <= f; )
             u.push(0);
-          s = c = 0, t = 1, a %= hr, o = a - hr + 1;
+          s = c = 0, r = 1, a %= pe, o = a - pe + 1;
         } else
-          break r;
+          break e;
       else {
-        for (s = v = u[f], t = 1; v >= 10; v /= 10)
-          t++;
-        a %= hr, o = a - hr + t, c = o < 0 ? 0 : s / Vr(10, t - o - 1) % 10 | 0;
+        for (s = h = u[f], r = 1; h >= 10; h /= 10)
+          r++;
+        a %= pe, o = a - pe + r, c = o < 0 ? 0 : s / Ve(10, r - o - 1) % 10 | 0;
       }
-      if (i = i || e < 0 || u[f + 1] !== void 0 || (o < 0 ? s : s % Vr(10, t - o - 1)), l = n < 4 ? (c || i) && (n == 0 || n == (r.s < 0 ? 3 : 2)) : c > 5 || c == 5 && (n == 4 || i || n == 6 && // Check whether the digit to the left of the rounding digit is odd.
-      (a > 0 ? o > 0 ? s / Vr(10, t - o) : 0 : u[f - 1]) % 10 & 1 || n == (r.s < 0 ? 8 : 7)), e < 1 || !u[0])
-        return u.length = 0, l ? (e -= r.e + 1, u[0] = Vr(10, (hr - e % hr) % hr), r.e = -e || 0) : u[0] = r.e = 0, r;
-      if (a == 0 ? (u.length = f, v = 1, f--) : (u.length = f + 1, v = Vr(10, hr - a), u[f] = o > 0 ? (s / Vr(10, t - o) % Vr(10, o) | 0) * v : 0), l)
+      if (i = i || t < 0 || u[f + 1] !== void 0 || (o < 0 ? s : s % Ve(10, r - o - 1)), l = n < 4 ? (c || i) && (n == 0 || n == (e.s < 0 ? 3 : 2)) : c > 5 || c == 5 && (n == 4 || i || n == 6 && // Check whether the digit to the left of the rounding digit is odd.
+      (a > 0 ? o > 0 ? s / Ve(10, r - o) : 0 : u[f - 1]) % 10 & 1 || n == (e.s < 0 ? 8 : 7)), t < 1 || !u[0])
+        return u.length = 0, l ? (t -= e.e + 1, u[0] = Ve(10, (pe - t % pe) % pe), e.e = -t || 0) : u[0] = e.e = 0, e;
+      if (a == 0 ? (u.length = f, h = 1, f--) : (u.length = f + 1, h = Ve(10, pe - a), u[f] = o > 0 ? (s / Ve(10, r - o) % Ve(10, o) | 0) * h : 0), l)
         for (; ; )
           if (f == 0) {
             for (a = 1, o = u[0]; o >= 10; o /= 10)
               a++;
-            for (o = u[0] += v, v = 1; o >= 10; o /= 10)
-              v++;
-            a != v && (r.e++, u[0] == ue && (u[0] = 1));
+            for (o = u[0] += h, h = 1; o >= 10; o /= 10)
+              h++;
+            a != h && (e.e++, u[0] == or && (u[0] = 1));
             break;
           } else {
-            if (u[f] += v, u[f] != ue)
+            if (u[f] += h, u[f] != or)
               break;
-            u[f--] = 0, v = 1;
+            u[f--] = 0, h = 1;
           }
       for (a = u.length; u[--a] === 0; )
         u.pop();
     }
-  return mr && (r.e > p.maxE ? (r.d = null, r.e = NaN) : r.e < p.minE && (r.e = 0, r.d = [0])), r;
+  return me && (e.e > p.maxE ? (e.d = null, e.e = NaN) : e.e < p.minE && (e.e = 0, e.d = [0])), e;
 }
-function le(r, e, n) {
-  if (!r.isFinite())
-    return Vi(r);
-  var i, t = r.e, a = Gr(r.d), o = a.length;
-  return e ? (n && (i = n - o) > 0 ? a = a.charAt(0) + "." + a.slice(1) + de(i) : o > 1 && (a = a.charAt(0) + "." + a.slice(1)), a = a + (r.e < 0 ? "e" : "e+") + r.e) : t < 0 ? (a = "0." + de(-t - 1) + a, n && (i = n - o) > 0 && (a += de(i))) : t >= o ? (a += de(t + 1 - o), n && (i = n - t - 1) > 0 && (a = a + "." + de(i))) : ((i = t + 1) < o && (a = a.slice(0, i) + "." + a.slice(i)), n && (i = n - o) > 0 && (t + 1 === o && (a += "."), a += de(i))), a;
+function hr(e, t, n) {
+  if (!e.isFinite())
+    return Zi(e);
+  var i, r = e.e, a = Ye(e.d), o = a.length;
+  return t ? (n && (i = n - o) > 0 ? a = a.charAt(0) + "." + a.slice(1) + mr(i) : o > 1 && (a = a.charAt(0) + "." + a.slice(1)), a = a + (e.e < 0 ? "e" : "e+") + e.e) : r < 0 ? (a = "0." + mr(-r - 1) + a, n && (i = n - o) > 0 && (a += mr(i))) : r >= o ? (a += mr(r + 1 - o), n && (i = n - r - 1) > 0 && (a = a + "." + mr(i))) : ((i = r + 1) < o && (a = a.slice(0, i) + "." + a.slice(i)), n && (i = n - o) > 0 && (r + 1 === o && (a += "."), a += mr(i))), a;
 }
-function Ct(r, e) {
-  var n = r[0];
-  for (e *= hr; n >= 10; n /= 10)
-    e++;
-  return e;
+function Ct(e, t) {
+  var n = e[0];
+  for (t *= pe; n >= 10; n /= 10)
+    t++;
+  return t;
 }
-function ht(r, e, n) {
-  if (e > oo)
-    throw mr = !0, n && (r.precision = n), Error(Ii);
-  return vr(new r(lt), e, 1, !0);
+function vt(e, t, n) {
+  if (t > so)
+    throw me = !0, n && (e.precision = n), Error(Li);
+  return ve(new e(lt), t, 1, !0);
 }
-function ae(r, e, n) {
-  if (e > Pt)
-    throw Error(Ii);
-  return vr(new r(vt), e, n, !0);
+function ur(e, t, n) {
+  if (t > Pt)
+    throw Error(Li);
+  return ve(new e(ht), t, n, !0);
 }
-function Pi(r) {
-  var e = r.length - 1, n = e * hr + 1;
-  if (e = r[e], e) {
-    for (; e % 10 == 0; e /= 10)
+function Ri(e) {
+  var t = e.length - 1, n = t * pe + 1;
+  if (t = e[t], t) {
+    for (; t % 10 == 0; t /= 10)
       n--;
-    for (e = r[0]; e >= 10; e /= 10)
+    for (t = e[0]; t >= 10; t /= 10)
       n++;
   }
   return n;
 }
-function de(r) {
-  for (var e = ""; r--; )
-    e += "0";
-  return e;
-}
-function Ri(r, e, n, i) {
-  var t, a = new r(1), o = Math.ceil(i / hr + 4);
-  for (mr = !1; ; ) {
-    if (n % 2 && (a = a.times(e), hn(a.d, o) && (t = !0)), n = Jr(n / 2), n === 0) {
-      n = a.d.length - 1, t && a.d[n] === 0 && ++a.d[n];
-      break;
-    }
-    e = e.times(e), hn(e.d, o);
-  }
-  return mr = !0, a;
-}
-function vn(r) {
-  return r.d[r.d.length - 1] & 1;
-}
-function Ui(r, e, n) {
-  for (var i, t = new r(e[0]), a = 0; ++a < e.length; )
-    if (i = new r(e[a]), i.s)
-      t[n](i) && (t = i);
-    else {
-      t = i;
-      break;
-    }
+function mr(e) {
+  for (var t = ""; e--; )
+    t += "0";
   return t;
 }
-function Rt(r, e) {
-  var n, i, t, a, o, v, c, l = 0, s = 0, u = 0, f = r.constructor, p = f.rounding, D = f.precision;
-  if (!r.d || !r.d[0] || r.e > 17)
-    return new f(r.d ? r.d[0] ? r.s < 0 ? 0 : 1 / 0 : 1 : r.s ? r.s < 0 ? 0 : r : NaN);
-  for (e == null ? (mr = !1, c = D) : c = e, v = new f(0.03125); r.e > -2; )
-    r = r.times(v), u += 5;
-  for (i = Math.log(Vr(2, u)) / Math.LN10 * 2 + 5 | 0, c += i, n = a = o = new f(1), f.precision = c; ; ) {
-    if (a = vr(a.times(r), c, 1), n = n.times(++s), v = o.plus(Tr(a, n, c, 1)), Gr(v.d).slice(0, c) === Gr(o.d).slice(0, c)) {
-      for (t = u; t--; )
-        o = vr(o.times(o), c, 1);
-      if (e == null)
-        if (l < 3 && Qe(o.d, c - i, p, l))
-          f.precision = c += 10, n = a = v = new f(1), s = 0, l++;
+function Ui(e, t, n, i) {
+  var r, a = new e(1), o = Math.ceil(i / pe + 4);
+  for (me = !1; ; ) {
+    if (n % 2 && (a = a.times(t), pn(a.d, o) && (r = !0)), n = Qe(n / 2), n === 0) {
+      n = a.d.length - 1, r && a.d[n] === 0 && ++a.d[n];
+      break;
+    }
+    t = t.times(t), pn(t.d, o);
+  }
+  return me = !0, a;
+}
+function vn(e) {
+  return e.d[e.d.length - 1] & 1;
+}
+function Vi(e, t, n) {
+  for (var i, r = new e(t[0]), a = 0; ++a < t.length; )
+    if (i = new e(t[a]), i.s)
+      r[n](i) && (r = i);
+    else {
+      r = i;
+      break;
+    }
+  return r;
+}
+function Rt(e, t) {
+  var n, i, r, a, o, h, c, l = 0, s = 0, u = 0, f = e.constructor, p = f.rounding, D = f.precision;
+  if (!e.d || !e.d[0] || e.e > 17)
+    return new f(e.d ? e.d[0] ? e.s < 0 ? 0 : 1 / 0 : 1 : e.s ? e.s < 0 ? 0 : e : NaN);
+  for (t == null ? (me = !1, c = D) : c = t, h = new f(0.03125); e.e > -2; )
+    e = e.times(h), u += 5;
+  for (i = Math.log(Ve(2, u)) / Math.LN10 * 2 + 5 | 0, c += i, n = a = o = new f(1), f.precision = c; ; ) {
+    if (a = ve(a.times(e), c, 1), n = n.times(++s), h = o.plus(Te(a, n, c, 1)), Ye(h.d).slice(0, c) === Ye(o.d).slice(0, c)) {
+      for (r = u; r--; )
+        o = ve(o.times(o), c, 1);
+      if (t == null)
+        if (l < 3 && Qr(o.d, c - i, p, l))
+          f.precision = c += 10, n = a = h = new f(1), s = 0, l++;
         else
-          return vr(o, f.precision = D, p, mr = !0);
+          return ve(o, f.precision = D, p, me = !0);
       else
         return f.precision = D, o;
     }
-    o = v;
+    o = h;
   }
 }
-function ye(r, e) {
-  var n, i, t, a, o, v, c, l, s, u, f, p = 1, D = 10, h = r, m = h.d, d = h.constructor, w = d.rounding, g = d.precision;
-  if (h.s < 0 || !m || !m[0] || !h.e && m[0] == 1 && m.length == 1)
-    return new d(m && !m[0] ? -1 / 0 : h.s != 1 ? NaN : m ? 0 : h);
-  if (e == null ? (mr = !1, s = g) : s = e, d.precision = s += D, n = Gr(m), i = n.charAt(0), Math.abs(a = h.e) < 15e14) {
+function yr(e, t) {
+  var n, i, r, a, o, h, c, l, s, u, f, p = 1, D = 10, v = e, m = v.d, d = v.constructor, w = d.rounding, g = d.precision;
+  if (v.s < 0 || !m || !m[0] || !v.e && m[0] == 1 && m.length == 1)
+    return new d(m && !m[0] ? -1 / 0 : v.s != 1 ? NaN : m ? 0 : v);
+  if (t == null ? (me = !1, s = g) : s = t, d.precision = s += D, n = Ye(m), i = n.charAt(0), Math.abs(a = v.e) < 15e14) {
     for (; i < 7 && i != 1 || i == 1 && n.charAt(1) > 3; )
-      h = h.times(r), n = Gr(h.d), i = n.charAt(0), p++;
-    a = h.e, i > 1 ? (h = new d("0." + n), a++) : h = new d(i + "." + n.slice(1));
+      v = v.times(e), n = Ye(v.d), i = n.charAt(0), p++;
+    a = v.e, i > 1 ? (v = new d("0." + n), a++) : v = new d(i + "." + n.slice(1));
   } else
-    return l = ht(d, s + 2, g).times(a + ""), h = ye(new d(i + "." + n.slice(1)), s - D).plus(l), d.precision = g, e == null ? vr(h, g, w, mr = !0) : h;
-  for (u = h, c = o = h = Tr(h.minus(1), h.plus(1), s, 1), f = vr(h.times(h), s, 1), t = 3; ; ) {
-    if (o = vr(o.times(f), s, 1), l = c.plus(Tr(o, new d(t), s, 1)), Gr(l.d).slice(0, s) === Gr(c.d).slice(0, s))
-      if (c = c.times(2), a !== 0 && (c = c.plus(ht(d, s + 2, g).times(a + ""))), c = Tr(c, new d(p), s, 1), e == null)
-        if (Qe(c.d, s - D, w, v))
-          d.precision = s += D, l = o = h = Tr(u.minus(1), u.plus(1), s, 1), f = vr(h.times(h), s, 1), t = v = 1;
+    return l = vt(d, s + 2, g).times(a + ""), v = yr(new d(i + "." + n.slice(1)), s - D).plus(l), d.precision = g, t == null ? ve(v, g, w, me = !0) : v;
+  for (u = v, c = o = v = Te(v.minus(1), v.plus(1), s, 1), f = ve(v.times(v), s, 1), r = 3; ; ) {
+    if (o = ve(o.times(f), s, 1), l = c.plus(Te(o, new d(r), s, 1)), Ye(l.d).slice(0, s) === Ye(c.d).slice(0, s))
+      if (c = c.times(2), a !== 0 && (c = c.plus(vt(d, s + 2, g).times(a + ""))), c = Te(c, new d(p), s, 1), t == null)
+        if (Qr(c.d, s - D, w, h))
+          d.precision = s += D, l = o = v = Te(u.minus(1), u.plus(1), s, 1), f = ve(v.times(v), s, 1), r = h = 1;
         else
-          return vr(c, d.precision = g, w, mr = !0);
+          return ve(c, d.precision = g, w, me = !0);
       else
         return d.precision = g, c;
-    c = l, t += 2;
+    c = l, r += 2;
   }
 }
-function Vi(r) {
-  return String(r.s * r.s / 0);
+function Zi(e) {
+  return String(e.s * e.s / 0);
 }
-function Ut(r, e) {
-  var n, i, t;
-  for ((n = e.indexOf(".")) > -1 && (e = e.replace(".", "")), (i = e.search(/e/i)) > 0 ? (n < 0 && (n = i), n += +e.slice(i + 1), e = e.substring(0, i)) : n < 0 && (n = e.length), i = 0; e.charCodeAt(i) === 48; i++)
+function Ut(e, t) {
+  var n, i, r;
+  for ((n = t.indexOf(".")) > -1 && (t = t.replace(".", "")), (i = t.search(/e/i)) > 0 ? (n < 0 && (n = i), n += +t.slice(i + 1), t = t.substring(0, i)) : n < 0 && (n = t.length), i = 0; t.charCodeAt(i) === 48; i++)
     ;
-  for (t = e.length; e.charCodeAt(t - 1) === 48; --t)
+  for (r = t.length; t.charCodeAt(r - 1) === 48; --r)
     ;
-  if (e = e.slice(i, t), e) {
-    if (t -= i, r.e = n = n - i - 1, r.d = [], i = (n + 1) % hr, n < 0 && (i += hr), i < t) {
-      for (i && r.d.push(+e.slice(0, i)), t -= hr; i < t; )
-        r.d.push(+e.slice(i, i += hr));
-      e = e.slice(i), i = hr - e.length;
+  if (t = t.slice(i, r), t) {
+    if (r -= i, e.e = n = n - i - 1, e.d = [], i = (n + 1) % pe, n < 0 && (i += pe), i < r) {
+      for (i && e.d.push(+t.slice(0, i)), r -= pe; i < r; )
+        e.d.push(+t.slice(i, i += pe));
+      t = t.slice(i), i = pe - t.length;
     } else
-      i -= t;
+      i -= r;
     for (; i--; )
-      e += "0";
-    r.d.push(+e), mr && (r.e > r.constructor.maxE ? (r.d = null, r.e = NaN) : r.e < r.constructor.minE && (r.e = 0, r.d = [0]));
+      t += "0";
+    e.d.push(+t), me && (e.e > e.constructor.maxE ? (e.d = null, e.e = NaN) : e.e < e.constructor.minE && (e.e = 0, e.d = [0]));
   } else
-    r.e = 0, r.d = [0];
-  return r;
-}
-function fo(r, e) {
-  var n, i, t, a, o, v, c, l, s;
-  if (e.indexOf("_") > -1) {
-    if (e = e.replace(/(\d)_(?=\d)/g, "$1"), Li.test(e))
-      return Ut(r, e);
-  } else if (e === "Infinity" || e === "NaN")
-    return +e || (r.s = NaN), r.e = NaN, r.d = null, r;
-  if (io.test(e))
-    n = 16, e = e.toLowerCase();
-  else if (no.test(e))
-    n = 2;
-  else if (ao.test(e))
-    n = 8;
-  else
-    throw Error(Ae + e);
-  for (a = e.search(/p/i), a > 0 ? (c = +e.slice(a + 1), e = e.substring(2, a)) : e = e.slice(2), a = e.indexOf("."), o = a >= 0, i = r.constructor, o && (e = e.replace(".", ""), v = e.length, a = v - a, t = Ri(i, new i(n), a, a * 2)), l = ut(e, n, ue), s = l.length - 1, a = s; l[a] === 0; --a)
-    l.pop();
-  return a < 0 ? new i(r.s * 0) : (r.e = Ct(l, s), r.d = l, mr = !1, o && (r = Tr(r, t, v * 4)), c && (r = r.times(Math.abs(c) < 54 ? Vr(2, c) : Le.pow(2, c))), mr = !0, r);
-}
-function co(r, e) {
-  var n, i = e.d.length;
-  if (i < 3)
-    return e.isZero() ? e : qe(r, 2, e, e);
-  n = 1.4 * Math.sqrt(i), n = n > 16 ? 16 : n | 0, e = e.times(1 / bt(5, n)), e = qe(r, 2, e, e);
-  for (var t, a = new r(5), o = new r(16), v = new r(20); n--; )
-    t = e.times(e), e = e.times(a.plus(t.times(o.times(t).minus(v))));
+    e.e = 0, e.d = [0];
   return e;
 }
-function qe(r, e, n, i, t) {
-  var a, o, v, c, l = r.precision, s = Math.ceil(l / hr);
-  for (mr = !1, c = n.times(n), v = new r(i); ; ) {
-    if (o = Tr(v.times(c), new r(e++ * e++), l, 1), v = t ? i.plus(o) : i.minus(o), i = Tr(o.times(c), new r(e++ * e++), l, 1), o = v.plus(i), o.d[s] !== void 0) {
-      for (a = s; o.d[a] === v.d[a] && a--; )
+function co(e, t) {
+  var n, i, r, a, o, h, c, l, s;
+  if (t.indexOf("_") > -1) {
+    if (t = t.replace(/(\d)_(?=\d)/g, "$1"), Pi.test(t))
+      return Ut(e, t);
+  } else if (t === "Infinity" || t === "NaN")
+    return +t || (e.s = NaN), e.e = NaN, e.d = null, e;
+  if (ao.test(t))
+    n = 16, t = t.toLowerCase();
+  else if (io.test(t))
+    n = 2;
+  else if (uo.test(t))
+    n = 8;
+  else
+    throw Error(Ar + t);
+  for (a = t.search(/p/i), a > 0 ? (c = +t.slice(a + 1), t = t.substring(2, a)) : t = t.slice(2), a = t.indexOf("."), o = a >= 0, i = e.constructor, o && (t = t.replace(".", ""), h = t.length, a = h - a, r = Ui(i, new i(n), a, a * 2)), l = ut(t, n, or), s = l.length - 1, a = s; l[a] === 0; --a)
+    l.pop();
+  return a < 0 ? new i(e.s * 0) : (e.e = Ct(l, s), e.d = l, me = !1, o && (e = Te(e, r, h * 4)), c && (e = e.times(Math.abs(c) < 54 ? Ve(2, c) : qr.pow(2, c))), me = !0, e);
+}
+function lo(e, t) {
+  var n, i = t.d.length;
+  if (i < 3)
+    return t.isZero() ? t : $r(e, 2, t, t);
+  n = 1.4 * Math.sqrt(i), n = n > 16 ? 16 : n | 0, t = t.times(1 / bt(5, n)), t = $r(e, 2, t, t);
+  for (var r, a = new e(5), o = new e(16), h = new e(20); n--; )
+    r = t.times(t), t = t.times(a.plus(r.times(o.times(r).minus(h))));
+  return t;
+}
+function $r(e, t, n, i, r) {
+  var a, o, h, c, l = e.precision, s = Math.ceil(l / pe);
+  for (me = !1, c = n.times(n), h = new e(i); ; ) {
+    if (o = Te(h.times(c), new e(t++ * t++), l, 1), h = r ? i.plus(o) : i.minus(o), i = Te(o.times(c), new e(t++ * t++), l, 1), o = h.plus(i), o.d[s] !== void 0) {
+      for (a = s; o.d[a] === h.d[a] && a--; )
         ;
       if (a == -1)
         break;
     }
-    a = v, v = i, i = o, o = a;
+    a = h, h = i, i = o, o = a;
   }
-  return mr = !0, o.d.length = s + 1, o;
+  return me = !0, o.d.length = s + 1, o;
 }
-function bt(r, e) {
-  for (var n = r; --e; )
-    n *= r;
+function bt(e, t) {
+  for (var n = e; --t; )
+    n *= e;
   return n;
 }
-function Zi(r, e) {
-  var n, i = e.s < 0, t = ae(r, r.precision, 1), a = t.times(0.5);
-  if (e = e.abs(), e.lte(a))
-    return he = i ? 4 : 1, e;
-  if (n = e.divToInt(t), n.isZero())
-    he = i ? 3 : 2;
+function Gi(e, t) {
+  var n, i = t.s < 0, r = ur(e, e.precision, 1), a = r.times(0.5);
+  if (t = t.abs(), t.lte(a))
+    return pr = i ? 4 : 1, t;
+  if (n = t.divToInt(r), n.isZero())
+    pr = i ? 3 : 2;
   else {
-    if (e = e.minus(n.times(t)), e.lte(a))
-      return he = vn(n) ? i ? 2 : 3 : i ? 4 : 1, e;
-    he = vn(n) ? i ? 1 : 4 : i ? 3 : 2;
+    if (t = t.minus(n.times(r)), t.lte(a))
+      return pr = vn(n) ? i ? 2 : 3 : i ? 4 : 1, t;
+    pr = vn(n) ? i ? 1 : 4 : i ? 3 : 2;
   }
-  return e.minus(t).abs();
+  return t.minus(r).abs();
 }
-function Xt(r, e, n, i) {
-  var t, a, o, v, c, l, s, u, f, p = r.constructor, D = n !== void 0;
-  if (D ? (Wr(n, 1, Ee), i === void 0 ? i = p.rounding : Wr(i, 0, 8)) : (n = p.precision, i = p.rounding), !r.isFinite())
-    s = Vi(r);
+function Xt(e, t, n, i) {
+  var r, a, o, h, c, l, s, u, f, p = e.constructor, D = n !== void 0;
+  if (D ? (ke(n, 1, Er), i === void 0 ? i = p.rounding : ke(i, 0, 8)) : (n = p.precision, i = p.rounding), !e.isFinite())
+    s = Zi(e);
   else {
-    for (s = le(r), o = s.indexOf("."), D ? (t = 2, e == 16 ? n = n * 4 - 3 : e == 8 && (n = n * 3 - 2)) : t = e, o >= 0 && (s = s.replace(".", ""), f = new p(1), f.e = s.length - o, f.d = ut(le(f), 10, t), f.e = f.d.length), u = ut(s, 10, t), a = c = u.length; u[--c] == 0; )
+    for (s = hr(e), o = s.indexOf("."), D ? (r = 2, t == 16 ? n = n * 4 - 3 : t == 8 && (n = n * 3 - 2)) : r = t, o >= 0 && (s = s.replace(".", ""), f = new p(1), f.e = s.length - o, f.d = ut(hr(f), 10, r), f.e = f.d.length), u = ut(s, 10, r), a = c = u.length; u[--c] == 0; )
       u.pop();
     if (!u[0])
       s = D ? "0p+0" : "0";
     else {
-      if (o < 0 ? a-- : (r = new p(r), r.d = u, r.e = a, r = Tr(r, f, n, i, 0, t), u = r.d, a = r.e, l = Oi), o = u[n], v = t / 2, l = l || u[n + 1] !== void 0, l = i < 4 ? (o !== void 0 || l) && (i === 0 || i === (r.s < 0 ? 3 : 2)) : o > v || o === v && (i === 4 || l || i === 6 && u[n - 1] & 1 || i === (r.s < 0 ? 8 : 7)), u.length = n, l)
-        for (; ++u[--n] > t - 1; )
+      if (o < 0 ? a-- : (e = new p(e), e.d = u, e.e = a, e = Te(e, f, n, i, 0, r), u = e.d, a = e.e, l = Oi), o = u[n], h = r / 2, l = l || u[n + 1] !== void 0, l = i < 4 ? (o !== void 0 || l) && (i === 0 || i === (e.s < 0 ? 3 : 2)) : o > h || o === h && (i === 4 || l || i === 6 && u[n - 1] & 1 || i === (e.s < 0 ? 8 : 7)), u.length = n, l)
+        for (; ++u[--n] > r - 1; )
           u[n] = 0, n || (++a, u.unshift(1));
       for (c = u.length; !u[c - 1]; --c)
         ;
       for (o = 0, s = ""; o < c; o++)
-        s += qt.charAt(u[o]);
+        s += $t.charAt(u[o]);
       if (D) {
         if (c > 1)
-          if (e == 16 || e == 8) {
-            for (o = e == 16 ? 4 : 3, --c; c % o; c++)
+          if (t == 16 || t == 8) {
+            for (o = t == 16 ? 4 : 3, --c; c % o; c++)
               s += "0";
-            for (u = ut(s, t, e), c = u.length; !u[c - 1]; --c)
+            for (u = ut(s, r, t), c = u.length; !u[c - 1]; --c)
               ;
             for (o = 1, s = "1."; o < c; o++)
-              s += qt.charAt(u[o]);
+              s += $t.charAt(u[o]);
           } else
             s = s.charAt(0) + "." + s.slice(1);
         s = s + (a < 0 ? "p" : "p+") + a;
@@ -2856,85 +2856,85 @@ function Xt(r, e, n, i) {
       else
         a < c && (s = s.slice(0, a) + "." + s.slice(a));
     }
-    s = (e == 16 ? "0x" : e == 2 ? "0b" : e == 8 ? "0o" : "") + s;
+    s = (t == 16 ? "0x" : t == 2 ? "0b" : t == 8 ? "0o" : "") + s;
   }
-  return r.s < 0 ? "-" + s : s;
+  return e.s < 0 ? "-" + s : s;
 }
-function hn(r, e) {
-  if (r.length > e)
-    return r.length = e, !0;
+function pn(e, t) {
+  if (e.length > t)
+    return e.length = t, !0;
 }
-function lo(r) {
-  return new this(r).abs();
+function ho(e) {
+  return new this(e).abs();
 }
-function vo(r) {
-  return new this(r).acos();
+function vo(e) {
+  return new this(e).acos();
 }
-function ho(r) {
-  return new this(r).acosh();
+function po(e) {
+  return new this(e).acosh();
 }
-function po(r, e) {
-  return new this(r).plus(e);
+function mo(e, t) {
+  return new this(e).plus(t);
 }
-function mo(r) {
-  return new this(r).asin();
+function go(e) {
+  return new this(e).asin();
 }
-function go(r) {
-  return new this(r).asinh();
+function Do(e) {
+  return new this(e).asinh();
 }
-function Do(r) {
-  return new this(r).atan();
+function yo(e) {
+  return new this(e).atan();
 }
-function yo(r) {
-  return new this(r).atanh();
+function wo(e) {
+  return new this(e).atanh();
 }
-function wo(r, e) {
-  r = new this(r), e = new this(e);
-  var n, i = this.precision, t = this.rounding, a = i + 4;
-  return !r.s || !e.s ? n = new this(NaN) : !r.d && !e.d ? (n = ae(this, a, 1).times(e.s > 0 ? 0.25 : 0.75), n.s = r.s) : !e.d || r.isZero() ? (n = e.s < 0 ? ae(this, i, t) : new this(0), n.s = r.s) : !r.d || e.isZero() ? (n = ae(this, a, 1).times(0.5), n.s = r.s) : e.s < 0 ? (this.precision = a, this.rounding = 1, n = this.atan(Tr(r, e, a, 1)), e = ae(this, a, 1), this.precision = i, this.rounding = t, n = r.s < 0 ? n.minus(e) : n.plus(e)) : n = this.atan(Tr(r, e, a, 1)), n;
+function Ao(e, t) {
+  e = new this(e), t = new this(t);
+  var n, i = this.precision, r = this.rounding, a = i + 4;
+  return !e.s || !t.s ? n = new this(NaN) : !e.d && !t.d ? (n = ur(this, a, 1).times(t.s > 0 ? 0.25 : 0.75), n.s = e.s) : !t.d || e.isZero() ? (n = t.s < 0 ? ur(this, i, r) : new this(0), n.s = e.s) : !e.d || t.isZero() ? (n = ur(this, a, 1).times(0.5), n.s = e.s) : t.s < 0 ? (this.precision = a, this.rounding = 1, n = this.atan(Te(e, t, a, 1)), t = ur(this, a, 1), this.precision = i, this.rounding = r, n = e.s < 0 ? n.minus(t) : n.plus(t)) : n = this.atan(Te(e, t, a, 1)), n;
 }
-function Ao(r) {
-  return new this(r).cbrt();
+function Eo(e) {
+  return new this(e).cbrt();
 }
-function Eo(r) {
-  return vr(r = new this(r), r.e + 1, 2);
+function Fo(e) {
+  return ve(e = new this(e), e.e + 1, 2);
 }
-function Fo(r, e, n) {
-  return new this(r).clamp(e, n);
+function Co(e, t, n) {
+  return new this(e).clamp(t, n);
 }
-function Co(r) {
-  if (!r || typeof r != "object")
+function bo(e) {
+  if (!e || typeof e != "object")
     throw Error(Ft + "Object expected");
-  var e, n, i, t = r.defaults === !0, a = [
+  var t, n, i, r = e.defaults === !0, a = [
     "precision",
     1,
-    Ee,
+    Er,
     "rounding",
     0,
     8,
     "toExpNeg",
-    -_e,
+    -_r,
     0,
     "toExpPos",
     0,
-    _e,
+    _r,
     "maxE",
     0,
-    _e,
+    _r,
     "minE",
-    -_e,
+    -_r,
     0,
     "modulo",
     0,
     9
   ];
-  for (e = 0; e < a.length; e += 3)
-    if (n = a[e], t && (this[n] = Lt[n]), (i = r[n]) !== void 0)
-      if (Jr(i) === i && i >= a[e + 1] && i <= a[e + 2])
+  for (t = 0; t < a.length; t += 3)
+    if (n = a[t], r && (this[n] = qt[n]), (i = e[n]) !== void 0)
+      if (Qe(i) === i && i >= a[t + 1] && i <= a[t + 2])
         this[n] = i;
       else
-        throw Error(Ae + n + ": " + i);
-  if (n = "crypto", t && (this[n] = Lt[n]), (i = r[n]) !== void 0)
+        throw Error(Ar + n + ": " + i);
+  if (n = "crypto", r && (this[n] = qt[n]), (i = e[n]) !== void 0)
     if (i === !0 || i === !1 || i === 0 || i === 1)
       if (i)
         if (typeof crypto < "u" && crypto && (crypto.getRandomValues || crypto.randomBytes))
@@ -2944,23 +2944,23 @@ function Co(r) {
       else
         this[n] = !1;
     else
-      throw Error(Ae + n + ": " + i);
+      throw Error(Ar + n + ": " + i);
   return this;
 }
-function bo(r) {
-  return new this(r).cos();
+function Mo(e) {
+  return new this(e).cos();
 }
-function Mo(r) {
-  return new this(r).cosh();
+function So(e) {
+  return new this(e).cosh();
 }
-function Gi(r) {
-  var e, n, i;
-  function t(a) {
-    var o, v, c, l = this;
-    if (!(l instanceof t))
-      return new t(a);
-    if (l.constructor = t, pn(a)) {
-      l.s = a.s, mr ? !a.d || a.e > t.maxE ? (l.e = NaN, l.d = null) : a.e < t.minE ? (l.e = 0, l.d = [0]) : (l.e = a.e, l.d = a.d.slice()) : (l.e = a.e, l.d = a.d ? a.d.slice() : a.d);
+function Yi(e) {
+  var t, n, i;
+  function r(a) {
+    var o, h, c, l = this;
+    if (!(l instanceof r))
+      return new r(a);
+    if (l.constructor = r, dn(a)) {
+      l.s = a.s, me ? !a.d || a.e > r.maxE ? (l.e = NaN, l.d = null) : a.e < r.minE ? (l.e = 0, l.d = [0]) : (l.e = a.e, l.d = a.d.slice()) : (l.e = a.e, l.d = a.d ? a.d.slice() : a.d);
       return;
     }
     if (c = typeof a, c === "number") {
@@ -2969,9 +2969,9 @@ function Gi(r) {
         return;
       }
       if (a < 0 ? (a = -a, l.s = -1) : l.s = 1, a === ~~a && a < 1e7) {
-        for (o = 0, v = a; v >= 10; v /= 10)
+        for (o = 0, h = a; h >= 10; h /= 10)
           o++;
-        mr ? o > t.maxE ? (l.e = NaN, l.d = null) : o < t.minE ? (l.e = 0, l.d = [0]) : (l.e = o, l.d = [a]) : (l.e = o, l.d = [a]);
+        me ? o > r.maxE ? (l.e = NaN, l.d = null) : o < r.minE ? (l.e = 0, l.d = [0]) : (l.e = o, l.d = [a]) : (l.e = o, l.d = [a]);
         return;
       } else if (a * 0 !== 0) {
         a || (l.s = NaN), l.e = NaN, l.d = null;
@@ -2979,169 +2979,169 @@ function Gi(r) {
       }
       return Ut(l, a.toString());
     } else if (c !== "string")
-      throw Error(Ae + a);
-    return (v = a.charCodeAt(0)) === 45 ? (a = a.slice(1), l.s = -1) : (v === 43 && (a = a.slice(1)), l.s = 1), Li.test(a) ? Ut(l, a) : fo(l, a);
+      throw Error(Ar + a);
+    return (h = a.charCodeAt(0)) === 45 ? (a = a.slice(1), l.s = -1) : (h === 43 && (a = a.slice(1)), l.s = 1), Pi.test(a) ? Ut(l, a) : co(l, a);
   }
-  if (t.prototype = W, t.ROUND_UP = 0, t.ROUND_DOWN = 1, t.ROUND_CEIL = 2, t.ROUND_FLOOR = 3, t.ROUND_HALF_UP = 4, t.ROUND_HALF_DOWN = 5, t.ROUND_HALF_EVEN = 6, t.ROUND_HALF_CEIL = 7, t.ROUND_HALF_FLOOR = 8, t.EUCLID = 9, t.config = t.set = Co, t.clone = Gi, t.isDecimal = pn, t.abs = lo, t.acos = vo, t.acosh = ho, t.add = po, t.asin = mo, t.asinh = go, t.atan = Do, t.atanh = yo, t.atan2 = wo, t.cbrt = Ao, t.ceil = Eo, t.clamp = Fo, t.cos = bo, t.cosh = Mo, t.div = So, t.exp = No, t.floor = xo, t.hypot = Bo, t.ln = _o, t.log = zo, t.log10 = Oo, t.log2 = To, t.max = Io, t.min = $o, t.mod = qo, t.mul = Lo, t.pow = Po, t.random = Ro, t.round = Uo, t.sign = Vo, t.sin = Zo, t.sinh = Go, t.sqrt = Yo, t.sub = Jo, t.sum = Qo, t.tan = Xo, t.tanh = Ko, t.trunc = Ho, r === void 0 && (r = {}), r && r.defaults !== !0)
-    for (i = ["precision", "rounding", "toExpNeg", "toExpPos", "maxE", "minE", "modulo", "crypto"], e = 0; e < i.length; )
-      r.hasOwnProperty(n = i[e++]) || (r[n] = this[n]);
-  return t.config(r), t;
+  if (r.prototype = W, r.ROUND_UP = 0, r.ROUND_DOWN = 1, r.ROUND_CEIL = 2, r.ROUND_FLOOR = 3, r.ROUND_HALF_UP = 4, r.ROUND_HALF_DOWN = 5, r.ROUND_HALF_EVEN = 6, r.ROUND_HALF_CEIL = 7, r.ROUND_HALF_FLOOR = 8, r.EUCLID = 9, r.config = r.set = bo, r.clone = Yi, r.isDecimal = dn, r.abs = ho, r.acos = vo, r.acosh = po, r.add = mo, r.asin = go, r.asinh = Do, r.atan = yo, r.atanh = wo, r.atan2 = Ao, r.cbrt = Eo, r.ceil = Fo, r.clamp = Co, r.cos = Mo, r.cosh = So, r.div = xo, r.exp = No, r.floor = Bo, r.hypot = _o, r.ln = zo, r.log = To, r.log10 = Oo, r.log2 = Io, r.max = Lo, r.min = $o, r.mod = qo, r.mul = Po, r.pow = Ro, r.random = Uo, r.round = Vo, r.sign = Zo, r.sin = Go, r.sinh = Yo, r.sqrt = Jo, r.sub = Qo, r.sum = Xo, r.tan = Ho, r.tanh = Ko, r.trunc = Wo, e === void 0 && (e = {}), e && e.defaults !== !0)
+    for (i = ["precision", "rounding", "toExpNeg", "toExpPos", "maxE", "minE", "modulo", "crypto"], t = 0; t < i.length; )
+      e.hasOwnProperty(n = i[t++]) || (e[n] = this[n]);
+  return r.config(e), r;
 }
-function So(r, e) {
-  return new this(r).div(e);
+function xo(e, t) {
+  return new this(e).div(t);
 }
-function No(r) {
-  return new this(r).exp();
+function No(e) {
+  return new this(e).exp();
 }
-function xo(r) {
-  return vr(r = new this(r), r.e + 1, 3);
+function Bo(e) {
+  return ve(e = new this(e), e.e + 1, 3);
 }
-function Bo() {
-  var r, e, n = new this(0);
-  for (mr = !1, r = 0; r < arguments.length; )
-    if (e = new this(arguments[r++]), e.d)
-      n.d && (n = n.plus(e.times(e)));
+function _o() {
+  var e, t, n = new this(0);
+  for (me = !1, e = 0; e < arguments.length; )
+    if (t = new this(arguments[e++]), t.d)
+      n.d && (n = n.plus(t.times(t)));
     else {
-      if (e.s)
-        return mr = !0, new this(1 / 0);
-      n = e;
+      if (t.s)
+        return me = !0, new this(1 / 0);
+      n = t;
     }
-  return mr = !0, n.sqrt();
+  return me = !0, n.sqrt();
 }
-function pn(r) {
-  return r instanceof Le || r && r.toStringTag === qi || !1;
+function dn(e) {
+  return e instanceof qr || e && e.toStringTag === qi || !1;
 }
-function _o(r) {
-  return new this(r).ln();
+function zo(e) {
+  return new this(e).ln();
 }
-function zo(r, e) {
-  return new this(r).log(e);
+function To(e, t) {
+  return new this(e).log(t);
 }
-function To(r) {
-  return new this(r).log(2);
+function Io(e) {
+  return new this(e).log(2);
 }
-function Oo(r) {
-  return new this(r).log(10);
+function Oo(e) {
+  return new this(e).log(10);
 }
-function Io() {
-  return Ui(this, arguments, "lt");
+function Lo() {
+  return Vi(this, arguments, "lt");
 }
 function $o() {
-  return Ui(this, arguments, "gt");
+  return Vi(this, arguments, "gt");
 }
-function qo(r, e) {
-  return new this(r).mod(e);
+function qo(e, t) {
+  return new this(e).mod(t);
 }
-function Lo(r, e) {
-  return new this(r).mul(e);
+function Po(e, t) {
+  return new this(e).mul(t);
 }
-function Po(r, e) {
-  return new this(r).pow(e);
+function Ro(e, t) {
+  return new this(e).pow(t);
 }
-function Ro(r) {
-  var e, n, i, t, a = 0, o = new this(1), v = [];
-  if (r === void 0 ? r = this.precision : Wr(r, 1, Ee), i = Math.ceil(r / hr), this.crypto)
+function Uo(e) {
+  var t, n, i, r, a = 0, o = new this(1), h = [];
+  if (e === void 0 ? e = this.precision : ke(e, 1, Er), i = Math.ceil(e / pe), this.crypto)
     if (crypto.getRandomValues)
-      for (e = crypto.getRandomValues(new Uint32Array(i)); a < i; )
-        t = e[a], t >= 429e7 ? e[a] = crypto.getRandomValues(new Uint32Array(1))[0] : v[a++] = t % 1e7;
+      for (t = crypto.getRandomValues(new Uint32Array(i)); a < i; )
+        r = t[a], r >= 429e7 ? t[a] = crypto.getRandomValues(new Uint32Array(1))[0] : h[a++] = r % 1e7;
     else if (crypto.randomBytes) {
-      for (e = crypto.randomBytes(i *= 4); a < i; )
-        t = e[a] + (e[a + 1] << 8) + (e[a + 2] << 16) + ((e[a + 3] & 127) << 24), t >= 214e7 ? crypto.randomBytes(4).copy(e, a) : (v.push(t % 1e7), a += 4);
+      for (t = crypto.randomBytes(i *= 4); a < i; )
+        r = t[a] + (t[a + 1] << 8) + (t[a + 2] << 16) + ((t[a + 3] & 127) << 24), r >= 214e7 ? crypto.randomBytes(4).copy(t, a) : (h.push(r % 1e7), a += 4);
       a = i / 4;
     } else
       throw Error($i);
   else
     for (; a < i; )
-      v[a++] = Math.random() * 1e7 | 0;
-  for (i = v[--a], r %= hr, i && r && (t = Vr(10, hr - r), v[a] = (i / t | 0) * t); v[a] === 0; a--)
-    v.pop();
+      h[a++] = Math.random() * 1e7 | 0;
+  for (i = h[--a], e %= pe, i && e && (r = Ve(10, pe - e), h[a] = (i / r | 0) * r); h[a] === 0; a--)
+    h.pop();
   if (a < 0)
-    n = 0, v = [0];
+    n = 0, h = [0];
   else {
-    for (n = -1; v[0] === 0; n -= hr)
-      v.shift();
-    for (i = 1, t = v[0]; t >= 10; t /= 10)
+    for (n = -1; h[0] === 0; n -= pe)
+      h.shift();
+    for (i = 1, r = h[0]; r >= 10; r /= 10)
       i++;
-    i < hr && (n -= hr - i);
+    i < pe && (n -= pe - i);
   }
-  return o.e = n, o.d = v, o;
+  return o.e = n, o.d = h, o;
 }
-function Uo(r) {
-  return vr(r = new this(r), r.e + 1, this.rounding);
+function Vo(e) {
+  return ve(e = new this(e), e.e + 1, this.rounding);
 }
-function Vo(r) {
-  return r = new this(r), r.d ? r.d[0] ? r.s : 0 * r.s : r.s || NaN;
+function Zo(e) {
+  return e = new this(e), e.d ? e.d[0] ? e.s : 0 * e.s : e.s || NaN;
 }
-function Zo(r) {
-  return new this(r).sin();
+function Go(e) {
+  return new this(e).sin();
 }
-function Go(r) {
-  return new this(r).sinh();
+function Yo(e) {
+  return new this(e).sinh();
 }
-function Yo(r) {
-  return new this(r).sqrt();
+function Jo(e) {
+  return new this(e).sqrt();
 }
-function Jo(r, e) {
-  return new this(r).sub(e);
+function Qo(e, t) {
+  return new this(e).sub(t);
 }
-function Qo() {
-  var r = 0, e = arguments, n = new this(e[r]);
-  for (mr = !1; n.s && ++r < e.length; )
-    n = n.plus(e[r]);
-  return mr = !0, vr(n, this.precision, this.rounding);
+function Xo() {
+  var e = 0, t = arguments, n = new this(t[e]);
+  for (me = !1; n.s && ++e < t.length; )
+    n = n.plus(t[e]);
+  return me = !0, ve(n, this.precision, this.rounding);
 }
-function Xo(r) {
-  return new this(r).tan();
+function Ho(e) {
+  return new this(e).tan();
 }
-function Ko(r) {
-  return new this(r).tanh();
+function Ko(e) {
+  return new this(e).tanh();
 }
-function Ho(r) {
-  return vr(r = new this(r), r.e + 1, 1);
+function Wo(e) {
+  return ve(e = new this(e), e.e + 1, 1);
 }
 W[Symbol.for("nodejs.util.inspect.custom")] = W.toString;
 W[Symbol.toStringTag] = "Decimal";
-var Le = W.constructor = Gi(Lt);
-lt = new Le(lt);
-vt = new Le(vt);
-var Wo = "BigNumber", ko = ["?on", "config"], jo = /* @__PURE__ */ rr(Wo, ko, (r) => {
+var qr = W.constructor = Yi(qt);
+lt = new qr(lt);
+ht = new qr(ht);
+var ko = "BigNumber", jo = ["?on", "config"], es = /* @__PURE__ */ ee(ko, jo, (e) => {
   var {
-    on: e,
+    on: t,
     config: n
-  } = r, i = Le.clone({
+  } = e, i = qr.clone({
     precision: n.precision,
-    modulo: Le.EUCLID
+    modulo: qr.EUCLID
   });
   return i.prototype = Object.create(i.prototype), i.prototype.type = "BigNumber", i.prototype.isBigNumber = !0, i.prototype.toJSON = function() {
     return {
       mathjs: "BigNumber",
       value: this.toString()
     };
-  }, i.fromJSON = function(t) {
-    return new i(t.value);
-  }, e && e("config", function(t, a) {
-    t.precision !== a.precision && i.config({
-      precision: t.precision
+  }, i.fromJSON = function(r) {
+    return new i(r.value);
+  }, t && t("config", function(r, a) {
+    r.precision !== a.precision && i.config({
+      precision: r.precision
     });
   }), i;
 }, {
   isClass: !0
 });
-function Yi(r) {
-  return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
+function Ji(e) {
+  return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
 }
-var Ji = { exports: {} };
+var Qi = { exports: {} };
 /**
  * @license Complex.js v2.1.1 12/05/2020
  *
  * Copyright (c) 2020, Robert Eisele (robert@xarg.org)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  **/
-(function(r, e) {
+(function(e, t) {
   (function(n) {
     var i = Math.cosh || function(u) {
       return Math.abs(u) < 1e-9 ? 1 - u : (Math.exp(u) + Math.exp(-u)) * 0.5;
-    }, t = Math.sinh || function(u) {
+    }, r = Math.sinh || function(u) {
       return Math.abs(u) < 1e-9 ? u : (Math.exp(u) - Math.exp(-u)) * 0.5;
     }, a = function(u) {
       var f = Math.PI / 4;
@@ -3152,7 +3152,7 @@ var Ji = { exports: {} };
     }, o = function(u, f) {
       var p = Math.abs(u), D = Math.abs(f);
       return p < 3e3 && D < 3e3 ? Math.sqrt(p * p + D * D) : (p < D ? (p = D, D = u / f) : D = f / u, p * Math.sqrt(1 + D * D));
-    }, v = function() {
+    }, h = function() {
       throw SyntaxError("Invalid Param");
     };
     function c(u, f) {
@@ -3179,25 +3179,25 @@ var Ji = { exports: {} };
                 return s.INFINITY;
               p.re = u.r * Math.cos(u.phi), p.im = u.r * Math.sin(u.phi);
             } else
-              u.length === 2 ? (p.re = u[0], p.im = u[1]) : v();
+              u.length === 2 ? (p.re = u[0], p.im = u[1]) : h();
             break;
           case "string":
             p.im = /* void */
             p.re = 0;
-            var D = u.match(/\d+\.?\d*e[+-]?\d+|\d+\.?\d*|\.\d+|./g), h = 1, m = 0;
-            D === null && v();
+            var D = u.match(/\d+\.?\d*e[+-]?\d+|\d+\.?\d*|\.\d+|./g), v = 1, m = 0;
+            D === null && h();
             for (var d = 0; d < D.length; d++) {
               var w = D[d];
               w === " " || w === "	" || w === `
-` || (w === "+" ? h++ : w === "-" ? m++ : w === "i" || w === "I" ? (h + m === 0 && v(), D[d + 1] !== " " && !isNaN(D[d + 1]) ? (p.im += parseFloat((m % 2 ? "-" : "") + D[d + 1]), d++) : p.im += parseFloat((m % 2 ? "-" : "") + "1"), h = m = 0) : ((h + m === 0 || isNaN(w)) && v(), D[d + 1] === "i" || D[d + 1] === "I" ? (p.im += parseFloat((m % 2 ? "-" : "") + w), d++) : p.re += parseFloat((m % 2 ? "-" : "") + w), h = m = 0));
+` || (w === "+" ? v++ : w === "-" ? m++ : w === "i" || w === "I" ? (v + m === 0 && h(), D[d + 1] !== " " && !isNaN(D[d + 1]) ? (p.im += parseFloat((m % 2 ? "-" : "") + D[d + 1]), d++) : p.im += parseFloat((m % 2 ? "-" : "") + "1"), v = m = 0) : ((v + m === 0 || isNaN(w)) && h(), D[d + 1] === "i" || D[d + 1] === "I" ? (p.im += parseFloat((m % 2 ? "-" : "") + w), d++) : p.re += parseFloat((m % 2 ? "-" : "") + w), v = m = 0));
             }
-            h + m > 0 && v();
+            v + m > 0 && h();
             break;
           case "number":
             p.im = 0, p.re = u;
             break;
           default:
-            v();
+            h();
         }
       return isNaN(p.re) || isNaN(p.im), p;
     };
@@ -3272,11 +3272,11 @@ var Ji = { exports: {} };
         if (this.isZero() || p.isInfinite())
           return s.ZERO;
         u = this.re, f = this.im;
-        var D = p.re, h = p.im, m, d;
-        return h === 0 ? new s(u / D, f / D) : Math.abs(D) < Math.abs(h) ? (d = D / h, m = D * d + h, new s(
+        var D = p.re, v = p.im, m, d;
+        return v === 0 ? new s(u / D, f / D) : Math.abs(D) < Math.abs(v) ? (d = D / v, m = D * d + v, new s(
           (u * d + f) / m,
           (f * d - u) / m
-        )) : (d = h / D, m = h * d + D, new s(
+        )) : (d = v / D, m = v * d + D, new s(
           (u + f * d) / m,
           (f - u * d) / m
         ));
@@ -3307,8 +3307,8 @@ var Ji = { exports: {} };
         }
         if (u === 0 && f === 0 && p.re > 0 && p.im >= 0)
           return s.ZERO;
-        var D = Math.atan2(f, u), h = c(u, f);
-        return u = Math.exp(p.re * h - p.im * D), f = p.im * h + p.re * D, new s(
+        var D = Math.atan2(f, u), v = c(u, f);
+        return u = Math.exp(p.re * v - p.im * D), f = p.im * v + p.re * D, new s(
           u * Math.cos(f),
           u * Math.sin(f)
         );
@@ -3319,14 +3319,14 @@ var Ji = { exports: {} };
        * @returns {Complex}
        */
       sqrt: function() {
-        var u = this.re, f = this.im, p = this.abs(), D, h;
+        var u = this.re, f = this.im, p = this.abs(), D, v;
         if (u >= 0) {
           if (f === 0)
             return new s(Math.sqrt(u), 0);
           D = 0.5 * Math.sqrt(2 * (p + u));
         } else
           D = Math.abs(f) / Math.sqrt(2 * (p - u));
-        return u <= 0 ? h = 0.5 * Math.sqrt(2 * (p - u)) : h = Math.abs(f) / Math.sqrt(2 * (p + u)), new s(D, f < 0 ? -h : h);
+        return u <= 0 ? v = 0.5 * Math.sqrt(2 * (p - u)) : v = Math.abs(f) / Math.sqrt(2 * (p + u)), new s(D, f < 0 ? -v : v);
       },
       /**
        * Calculate the complex exponent
@@ -3392,7 +3392,7 @@ var Ji = { exports: {} };
         var u = this.re, f = this.im;
         return new s(
           Math.sin(u) * i(f),
-          Math.cos(u) * t(f)
+          Math.cos(u) * r(f)
         );
       },
       /**
@@ -3404,7 +3404,7 @@ var Ji = { exports: {} };
         var u = this.re, f = this.im;
         return new s(
           Math.cos(u) * i(f),
-          -Math.sin(u) * t(f)
+          -Math.sin(u) * r(f)
         );
       },
       /**
@@ -3416,7 +3416,7 @@ var Ji = { exports: {} };
         var u = 2 * this.re, f = 2 * this.im, p = Math.cos(u) + i(f);
         return new s(
           Math.sin(u) / p,
-          t(f) / p
+          r(f) / p
         );
       },
       /**
@@ -3428,7 +3428,7 @@ var Ji = { exports: {} };
         var u = 2 * this.re, f = 2 * this.im, p = Math.cos(u) - i(f);
         return new s(
           -Math.sin(u) / p,
-          t(f) / p
+          r(f) / p
         );
       },
       /**
@@ -3440,7 +3440,7 @@ var Ji = { exports: {} };
         var u = this.re, f = this.im, p = 0.5 * i(2 * f) + 0.5 * Math.cos(2 * u);
         return new s(
           Math.cos(u) * i(f) / p,
-          Math.sin(u) * t(f) / p
+          Math.sin(u) * r(f) / p
         );
       },
       /**
@@ -3452,7 +3452,7 @@ var Ji = { exports: {} };
         var u = this.re, f = this.im, p = 0.5 * i(2 * f) - 0.5 * Math.cos(2 * u);
         return new s(
           Math.sin(u) * i(f) / p,
-          -Math.cos(u) * t(f) / p
+          -Math.cos(u) * r(f) / p
         );
       },
       /**
@@ -3566,7 +3566,7 @@ var Ji = { exports: {} };
       sinh: function() {
         var u = this.re, f = this.im;
         return new s(
-          t(u) * Math.cos(f),
+          r(u) * Math.cos(f),
           i(u) * Math.sin(f)
         );
       },
@@ -3579,7 +3579,7 @@ var Ji = { exports: {} };
         var u = this.re, f = this.im;
         return new s(
           i(u) * Math.cos(f),
-          t(u) * Math.sin(f)
+          r(u) * Math.sin(f)
         );
       },
       /**
@@ -3590,7 +3590,7 @@ var Ji = { exports: {} };
       tanh: function() {
         var u = 2 * this.re, f = 2 * this.im, p = i(u) + Math.cos(f);
         return new s(
-          t(u) / p,
+          r(u) / p,
           Math.sin(f) / p
         );
       },
@@ -3602,7 +3602,7 @@ var Ji = { exports: {} };
       coth: function() {
         var u = 2 * this.re, f = 2 * this.im, p = i(u) - Math.cos(f);
         return new s(
-          t(u) / p,
+          r(u) / p,
           -Math.sin(f) / p
         );
       },
@@ -3614,7 +3614,7 @@ var Ji = { exports: {} };
       csch: function() {
         var u = this.re, f = this.im, p = Math.cos(2 * f) - i(2 * u);
         return new s(
-          -2 * t(u) * Math.cos(f) / p,
+          -2 * r(u) * Math.cos(f) / p,
           2 * i(u) * Math.sin(f) / p
         );
       },
@@ -3627,7 +3627,7 @@ var Ji = { exports: {} };
         var u = this.re, f = this.im, p = Math.cos(2 * f) + i(2 * u);
         return new s(
           2 * i(u) * Math.cos(f) / p,
-          -2 * t(u) * Math.sin(f) / p
+          -2 * r(u) * Math.sin(f) / p
         );
       },
       /**
@@ -3663,9 +3663,9 @@ var Ji = { exports: {} };
        * @returns {Complex}
        */
       atanh: function() {
-        var u = this.re, f = this.im, p = u > 1 && f === 0, D = 1 - u, h = 1 + u, m = D * D + f * f, d = m !== 0 ? new s(
-          (h * D - f * f) / m,
-          (f * D + h * f) / m
+        var u = this.re, f = this.im, p = u > 1 && f === 0, D = 1 - u, v = 1 + u, m = D * D + f * f, d = m !== 0 ? new s(
+          (v * D - f * f) / m,
+          (f * D + v * f) / m
         ) : new s(
           u !== -1 ? u / 0 : 0,
           f !== 0 ? f / 0 : 0
@@ -3870,44 +3870,44 @@ var Ji = { exports: {} };
       isInfinite: function() {
         return !(this.isNaN() || this.isFinite());
       }
-    }, s.ZERO = new s(0, 0), s.ONE = new s(1, 0), s.I = new s(0, 1), s.PI = new s(Math.PI, 0), s.E = new s(Math.E, 0), s.INFINITY = new s(1 / 0, 1 / 0), s.NAN = new s(NaN, NaN), s.EPSILON = 1e-15, Object.defineProperty(s, "__esModule", { value: !0 }), s.default = s, s.Complex = s, r.exports = s;
+    }, s.ZERO = new s(0, 0), s.ONE = new s(1, 0), s.I = new s(0, 1), s.PI = new s(Math.PI, 0), s.E = new s(Math.E, 0), s.INFINITY = new s(1 / 0, 1 / 0), s.NAN = new s(NaN, NaN), s.EPSILON = 1e-15, Object.defineProperty(s, "__esModule", { value: !0 }), s.default = s, s.Complex = s, e.exports = s;
   })();
-})(Ji);
-var rs = Ji.exports;
-const Zr = /* @__PURE__ */ Yi(rs);
-var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defineProperty(Zr, "name", {
+})(Qi);
+var rs = Qi.exports;
+const Ge = /* @__PURE__ */ Ji(rs);
+var ts = "Complex", ns = [], is = /* @__PURE__ */ ee(ts, ns, () => (Object.defineProperty(Ge, "name", {
   value: "Complex"
-}), Zr.prototype.constructor = Zr, Zr.prototype.type = "Complex", Zr.prototype.isComplex = !0, Zr.prototype.toJSON = function() {
+}), Ge.prototype.constructor = Ge, Ge.prototype.type = "Complex", Ge.prototype.isComplex = !0, Ge.prototype.toJSON = function() {
   return {
     mathjs: "Complex",
     re: this.re,
     im: this.im
   };
-}, Zr.prototype.toPolar = function() {
+}, Ge.prototype.toPolar = function() {
   return {
     r: this.abs(),
     phi: this.arg()
   };
-}, Zr.prototype.format = function(r) {
-  var e = "", n = this.im, i = this.re, t = Ot(this.re, r), a = Ot(this.im, r), o = $r(r) ? r : r ? r.precision : null;
+}, Ge.prototype.format = function(e) {
+  var t = "", n = this.im, i = this.re, r = It(this.re, e), a = It(this.im, e), o = Le(e) ? e : e ? e.precision : null;
   if (o !== null) {
-    var v = Math.pow(10, -o);
-    Math.abs(i / n) < v && (i = 0), Math.abs(n / i) < v && (n = 0);
+    var h = Math.pow(10, -o);
+    Math.abs(i / n) < h && (i = 0), Math.abs(n / i) < h && (n = 0);
   }
-  return n === 0 ? e = t : i === 0 ? n === 1 ? e = "i" : n === -1 ? e = "-i" : e = a + "i" : n < 0 ? n === -1 ? e = t + " - i" : e = t + " - " + a.substring(1) + "i" : n === 1 ? e = t + " + i" : e = t + " + " + a + "i", e;
-}, Zr.fromPolar = function(r) {
+  return n === 0 ? t = r : i === 0 ? n === 1 ? t = "i" : n === -1 ? t = "-i" : t = a + "i" : n < 0 ? n === -1 ? t = r + " - i" : t = r + " - " + a.substring(1) + "i" : n === 1 ? t = r + " + i" : t = r + " + " + a + "i", t;
+}, Ge.fromPolar = function(e) {
   switch (arguments.length) {
     case 1: {
-      var e = arguments[0];
-      if (typeof e == "object")
-        return Zr(e);
+      var t = arguments[0];
+      if (typeof t == "object")
+        return Ge(t);
       throw new TypeError("Input has to be an object with r and phi keys.");
     }
     case 2: {
       var n = arguments[0], i = arguments[1];
-      if ($r(n)) {
-        if (pi(i) && i.hasBase("ANGLE") && (i = i.toNumber("rad")), $r(i))
-          return new Zr({
+      if (Le(n)) {
+        if (di(i) && i.hasBase("ANGLE") && (i = i.toNumber("rad")), Le(i))
+          return new Ge({
             r: n,
             phi: i
           });
@@ -3918,13 +3918,13 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
     default:
       throw new SyntaxError("Wrong number of arguments in function fromPolar");
   }
-}, Zr.prototype.valueOf = Zr.prototype.toString, Zr.fromJSON = function(r) {
-  return new Zr(r);
-}, Zr.compare = function(r, e) {
-  return r.re > e.re ? 1 : r.re < e.re ? -1 : r.im > e.im ? 1 : r.im < e.im ? -1 : 0;
-}, Zr), {
+}, Ge.prototype.valueOf = Ge.prototype.toString, Ge.fromJSON = function(e) {
+  return new Ge(e);
+}, Ge.compare = function(e, t) {
+  return e.re > t.re ? 1 : e.re < t.re ? -1 : e.im > t.im ? 1 : e.im < t.im ? -1 : 0;
+}, Ge), {
   isClass: !0
-}), Qi = { exports: {} };
+}), Xi = { exports: {} };
 /**
  * @license Fraction.js v4.3.0 20/08/2023
  * https://www.xarg.org/2014/03/rational-numbers-in-javascript/
@@ -3932,16 +3932,16 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
  * Copyright (c) 2023, Robert Eisele (robert@raw.org)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  **/
-(function(r, e) {
+(function(e, t) {
   (function(n) {
-    var i = 2e3, t = {
+    var i = 2e3, r = {
       s: 1,
       n: 0,
       d: 1
     };
     function a(d, w) {
       if (isNaN(d = parseInt(d, 10)))
-        throw h();
+        throw v();
       return d * w;
     }
     function o(d, w) {
@@ -3949,70 +3949,70 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
         throw D();
       var g = Object.create(p.prototype);
       g.s = d < 0 ? -1 : 1, d = d < 0 ? -d : d;
-      var E = f(d, w);
-      return g.n = d / E, g.d = w / E, g;
+      var A = f(d, w);
+      return g.n = d / A, g.d = w / A, g;
     }
-    function v(d) {
-      for (var w = {}, g = d, E = 2, F = 4; F <= g; ) {
-        for (; g % E === 0; )
-          g /= E, w[E] = (w[E] || 0) + 1;
-        F += 1 + 2 * E++;
+    function h(d) {
+      for (var w = {}, g = d, A = 2, F = 4; F <= g; ) {
+        for (; g % A === 0; )
+          g /= A, w[A] = (w[A] || 0) + 1;
+        F += 1 + 2 * A++;
       }
       return g !== d ? g > 1 && (w[g] = (w[g] || 0) + 1) : w[d] = (w[d] || 0) + 1, w;
     }
     var c = function(d, w) {
-      var g = 0, E = 1, F = 1, y = 0, C = 0, b = 0, A = 1, S = 1, M = 0, N = 1, O = 1, T = 1, I = 1e7, B;
+      var g = 0, A = 1, F = 1, y = 0, C = 0, b = 0, E = 1, S = 1, M = 0, x = 1, I = 1, T = 1, O = 1e7, B;
       if (d != null)
         if (w !== void 0) {
-          if (g = d, E = w, F = g * E, g % 1 !== 0 || E % 1 !== 0)
+          if (g = d, A = w, F = g * A, g % 1 !== 0 || A % 1 !== 0)
             throw m();
         } else
           switch (typeof d) {
             case "object": {
               if ("d" in d && "n" in d)
-                g = d.n, E = d.d, "s" in d && (g *= d.s);
+                g = d.n, A = d.d, "s" in d && (g *= d.s);
               else if (0 in d)
-                g = d[0], 1 in d && (E = d[1]);
+                g = d[0], 1 in d && (A = d[1]);
               else
-                throw h();
-              F = g * E;
+                throw v();
+              F = g * A;
               break;
             }
             case "number": {
               if (d < 0 && (F = d, d = -d), d % 1 === 0)
                 g = d;
               else if (d > 0) {
-                for (d >= 1 && (S = Math.pow(10, Math.floor(1 + Math.log(d) / Math.LN10)), d /= S); N <= I && T <= I; )
-                  if (B = (M + O) / (N + T), d === B) {
-                    N + T <= I ? (g = M + O, E = N + T) : T > N ? (g = O, E = T) : (g = M, E = N);
+                for (d >= 1 && (S = Math.pow(10, Math.floor(1 + Math.log(d) / Math.LN10)), d /= S); x <= O && T <= O; )
+                  if (B = (M + I) / (x + T), d === B) {
+                    x + T <= O ? (g = M + I, A = x + T) : T > x ? (g = I, A = T) : (g = M, A = x);
                     break;
                   } else
-                    d > B ? (M += O, N += T) : (O += M, T += N), N > I ? (g = O, E = T) : (g = M, E = N);
+                    d > B ? (M += I, x += T) : (I += M, T += x), x > O ? (g = I, A = T) : (g = M, A = x);
                 g *= S;
               } else
-                (isNaN(d) || isNaN(w)) && (E = g = NaN);
+                (isNaN(d) || isNaN(w)) && (A = g = NaN);
               break;
             }
             case "string": {
-              if (N = d.match(/\d+|./g), N === null)
-                throw h();
-              if (N[M] === "-" ? (F = -1, M++) : N[M] === "+" && M++, N.length === M + 1 ? C = a(N[M++], F) : N[M + 1] === "." || N[M] === "." ? (N[M] !== "." && (y = a(N[M++], F)), M++, (M + 1 === N.length || N[M + 1] === "(" && N[M + 3] === ")" || N[M + 1] === "'" && N[M + 3] === "'") && (C = a(N[M], F), A = Math.pow(10, N[M].length), M++), (N[M] === "(" && N[M + 2] === ")" || N[M] === "'" && N[M + 2] === "'") && (b = a(N[M + 1], F), S = Math.pow(10, N[M + 1].length) - 1, M += 3)) : N[M + 1] === "/" || N[M + 1] === ":" ? (C = a(N[M], F), A = a(N[M + 2], 1), M += 3) : N[M + 3] === "/" && N[M + 1] === " " && (y = a(N[M], F), C = a(N[M + 2], F), A = a(N[M + 4], 1), M += 5), N.length <= M) {
-                E = A * S, F = /* void */
-                g = b + E * y + S * C;
+              if (x = d.match(/\d+|./g), x === null)
+                throw v();
+              if (x[M] === "-" ? (F = -1, M++) : x[M] === "+" && M++, x.length === M + 1 ? C = a(x[M++], F) : x[M + 1] === "." || x[M] === "." ? (x[M] !== "." && (y = a(x[M++], F)), M++, (M + 1 === x.length || x[M + 1] === "(" && x[M + 3] === ")" || x[M + 1] === "'" && x[M + 3] === "'") && (C = a(x[M], F), E = Math.pow(10, x[M].length), M++), (x[M] === "(" && x[M + 2] === ")" || x[M] === "'" && x[M + 2] === "'") && (b = a(x[M + 1], F), S = Math.pow(10, x[M + 1].length) - 1, M += 3)) : x[M + 1] === "/" || x[M + 1] === ":" ? (C = a(x[M], F), E = a(x[M + 2], 1), M += 3) : x[M + 3] === "/" && x[M + 1] === " " && (y = a(x[M], F), C = a(x[M + 2], F), E = a(x[M + 4], 1), M += 5), x.length <= M) {
+                A = E * S, F = /* void */
+                g = b + A * y + S * C;
                 break;
               }
             }
             default:
-              throw h();
+              throw v();
           }
-      if (E === 0)
+      if (A === 0)
         throw D();
-      t.s = F < 0 ? -1 : 1, t.n = Math.abs(g), t.d = Math.abs(E);
+      r.s = F < 0 ? -1 : 1, r.n = Math.abs(g), r.d = Math.abs(A);
     };
     function l(d, w, g) {
-      for (var E = 1; w > 0; d = d * d % g, w >>= 1)
-        w & 1 && (E = E * d % g);
-      return E;
+      for (var A = 1; w > 0; d = d * d % g, w >>= 1)
+        w & 1 && (A = A * d % g);
+      return A;
     }
     function s(d, w) {
       for (; w % 2 === 0; w /= 2)
@@ -4021,16 +4021,16 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
         ;
       if (w === 1)
         return 0;
-      for (var g = 10 % w, E = 1; g !== 1; E++)
-        if (g = g * 10 % w, E > i)
+      for (var g = 10 % w, A = 1; g !== 1; A++)
+        if (g = g * 10 % w, A > i)
           return 0;
-      return E;
+      return A;
     }
     function u(d, w, g) {
-      for (var E = 1, F = l(10, g, w), y = 0; y < 300; y++) {
-        if (E === F)
+      for (var A = 1, F = l(10, g, w), y = 0; y < 300; y++) {
+        if (A === F)
           return y;
-        E = E * 10 % w, F = F * 10 % w;
+        A = A * 10 % w, F = F * 10 % w;
       }
       return 0;
     }
@@ -4048,13 +4048,13 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
     }
     function p(d, w) {
       if (c(d, w), this instanceof p)
-        d = f(t.d, t.n), this.s = t.s, this.n = t.n / d, this.d = t.d / d;
+        d = f(r.d, r.n), this.s = r.s, this.n = r.n / d, this.d = r.d / d;
       else
-        return o(t.s * t.n, t.d);
+        return o(r.s * r.n, r.d);
     }
     var D = function() {
       return new Error("Division by Zero");
-    }, h = function() {
+    }, v = function() {
       return new Error("Invalid argument");
     }, m = function() {
       return new Error("Parameters must be integer");
@@ -4086,8 +4086,8 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        **/
       add: function(d, w) {
         return c(d, w), o(
-          this.s * this.n * t.d + t.s * this.d * t.n,
-          this.d * t.d
+          this.s * this.n * r.d + r.s * this.d * r.n,
+          this.d * r.d
         );
       },
       /**
@@ -4097,8 +4097,8 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        **/
       sub: function(d, w) {
         return c(d, w), o(
-          this.s * this.n * t.d - t.s * this.d * t.n,
-          this.d * t.d
+          this.s * this.n * r.d - r.s * this.d * r.n,
+          this.d * r.d
         );
       },
       /**
@@ -4108,8 +4108,8 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        **/
       mul: function(d, w) {
         return c(d, w), o(
-          this.s * t.s * this.n * t.n,
-          this.d * t.d
+          this.s * r.s * this.n * r.n,
+          this.d * r.d
         );
       },
       /**
@@ -4119,8 +4119,8 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        **/
       div: function(d, w) {
         return c(d, w), o(
-          this.s * t.s * this.n * t.d,
-          this.d * t.n
+          this.s * r.s * this.n * r.d,
+          this.d * r.n
         );
       },
       /**
@@ -4141,11 +4141,11 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
           return new p(NaN);
         if (d === void 0)
           return o(this.s * this.n % this.d, 1);
-        if (c(d, w), t.n === 0 && this.d === 0)
+        if (c(d, w), r.n === 0 && this.d === 0)
           throw D();
         return o(
-          this.s * (t.d * this.n) % (t.n * this.d),
-          t.d * this.d
+          this.s * (r.d * this.n) % (r.n * this.d),
+          r.d * this.d
         );
       },
       /**
@@ -4154,7 +4154,7 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction(5,8).gcd(3,7) => 1/56
        */
       gcd: function(d, w) {
-        return c(d, w), o(f(t.n, this.n) * f(t.d, this.d), t.d * this.d);
+        return c(d, w), o(f(r.n, this.n) * f(r.d, this.d), r.d * this.d);
       },
       /**
        * Calculates the fractional lcm of two rational numbers
@@ -4162,7 +4162,7 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction(5,8).lcm(3,7) => 15
        */
       lcm: function(d, w) {
-        return c(d, w), t.n === 0 && this.n === 0 ? o(0, 1) : o(t.n * this.n, f(t.n, this.n) * f(t.d, this.d));
+        return c(d, w), r.n === 0 && this.n === 0 ? o(0, 1) : o(r.n * this.n, f(r.n, this.n) * f(r.d, this.d));
       },
       /**
        * Calculates the ceil of a rational number
@@ -4202,32 +4202,32 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction(-1,2).pow(-3) => -8
        */
       pow: function(d, w) {
-        if (c(d, w), t.d === 1)
-          return t.s < 0 ? o(Math.pow(this.s * this.d, t.n), Math.pow(this.n, t.n)) : o(Math.pow(this.s * this.n, t.n), Math.pow(this.d, t.n));
+        if (c(d, w), r.d === 1)
+          return r.s < 0 ? o(Math.pow(this.s * this.d, r.n), Math.pow(this.n, r.n)) : o(Math.pow(this.s * this.n, r.n), Math.pow(this.d, r.n));
         if (this.s < 0)
           return null;
-        var g = v(this.n), E = v(this.d), F = 1, y = 1;
+        var g = h(this.n), A = h(this.d), F = 1, y = 1;
         for (var C in g)
           if (C !== "1") {
             if (C === "0") {
               F = 0;
               break;
             }
-            if (g[C] *= t.n, g[C] % t.d === 0)
-              g[C] /= t.d;
+            if (g[C] *= r.n, g[C] % r.d === 0)
+              g[C] /= r.d;
             else
               return null;
             F *= Math.pow(C, g[C]);
           }
-        for (var C in E)
+        for (var C in A)
           if (C !== "1") {
-            if (E[C] *= t.n, E[C] % t.d === 0)
-              E[C] /= t.d;
+            if (A[C] *= r.n, A[C] % r.d === 0)
+              A[C] /= r.d;
             else
               return null;
-            y *= Math.pow(C, E[C]);
+            y *= Math.pow(C, A[C]);
           }
-        return t.s < 0 ? o(y, F) : o(F, y);
+        return r.s < 0 ? o(y, F) : o(F, y);
       },
       /**
        * Check if two rational numbers are the same
@@ -4235,7 +4235,7 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction(19.6).equals([98, 5]);
        **/
       equals: function(d, w) {
-        return c(d, w), this.s * this.n * t.d === t.s * t.n * this.d;
+        return c(d, w), this.s * this.n * r.d === r.s * r.n * this.d;
       },
       /**
        * Check if two rational numbers are the same
@@ -4244,15 +4244,15 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        **/
       compare: function(d, w) {
         c(d, w);
-        var g = this.s * this.n * t.d - t.s * t.n * this.d;
+        var g = this.s * this.n * r.d - r.s * r.n * this.d;
         return (0 < g) - (g < 0);
       },
       simplify: function(d) {
         if (isNaN(this.n) || isNaN(this.d))
           return this;
         d = d || 1e-3;
-        for (var w = this.abs(), g = w.toContinued(), E = 1; E < g.length; E++) {
-          for (var F = o(g[E - 1], 1), y = E - 2; y >= 0; y--)
+        for (var w = this.abs(), g = w.toContinued(), A = 1; A < g.length; A++) {
+          for (var F = o(g[A - 1], 1), y = A - 2; y >= 0; y--)
             F = F.inverse().add(g[y]);
           if (Math.abs(F.sub(w).valueOf()) < d)
             return F.mul(this.s);
@@ -4265,7 +4265,7 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction(19.6).divisible(1.5);
        */
       divisible: function(d, w) {
-        return c(d, w), !(!(t.n * this.d) || this.n * t.d % (t.n * this.d));
+        return c(d, w), !(!(r.n * this.d) || this.n * r.d % (r.n * this.d));
       },
       /**
        * Returns a decimal representation of the fraction
@@ -4281,8 +4281,8 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction("1.'3'").toFraction(true) => "4 1/3"
        **/
       toFraction: function(d) {
-        var w, g = "", E = this.n, F = this.d;
-        return this.s < 0 && (g += "-"), F === 1 ? g += E : (d && (w = Math.floor(E / F)) > 0 && (g += w, g += " ", E %= F), g += E, g += "/", g += F), g;
+        var w, g = "", A = this.n, F = this.d;
+        return this.s < 0 && (g += "-"), F === 1 ? g += A : (d && (w = Math.floor(A / F)) > 0 && (g += w, g += " ", A %= F), g += A, g += "/", g += F), g;
       },
       /**
        * Returns a latex representation of a Fraction object
@@ -4290,8 +4290,8 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction("1.'3'").toLatex() => "\frac{4}{3}"
        **/
       toLatex: function(d) {
-        var w, g = "", E = this.n, F = this.d;
-        return this.s < 0 && (g += "-"), F === 1 ? g += E : (d && (w = Math.floor(E / F)) > 0 && (g += w, E %= F), g += "\\frac{", g += E, g += "}{", g += F, g += "}"), g;
+        var w, g = "", A = this.n, F = this.d;
+        return this.s < 0 && (g += "-"), F === 1 ? g += A : (d && (w = Math.floor(A / F)) > 0 && (g += w, A %= F), g += "\\frac{", g += A, g += "}{", g += F, g += "}"), g;
       },
       /**
        * Returns an array of continued fraction elements
@@ -4299,13 +4299,13 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
        * Ex: new Fraction("7/8").toContinued() => [0,1,7]
        */
       toContinued: function() {
-        var d, w = this.n, g = this.d, E = [];
+        var d, w = this.n, g = this.d, A = [];
         if (isNaN(w) || isNaN(g))
-          return E;
+          return A;
         do
-          E.push(Math.floor(w / g)), d = w % g, w = g, g = d;
+          A.push(Math.floor(w / g)), d = w % g, w = g, g = d;
         while (w !== 1);
-        return E;
+        return A;
       },
       /**
        * Creates a string representation of a fraction with all digits
@@ -4317,12 +4317,12 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
         if (isNaN(w) || isNaN(g))
           return "NaN";
         d = d || 15;
-        var E = s(w, g), F = u(w, g, E), y = this.s < 0 ? "-" : "";
-        if (y += w / g | 0, w %= g, w *= 10, w && (y += "."), E) {
+        var A = s(w, g), F = u(w, g, A), y = this.s < 0 ? "-" : "";
+        if (y += w / g | 0, w %= g, w *= 10, w && (y += "."), A) {
           for (var C = F; C--; )
             y += w / g | 0, w %= g, w *= 10;
           y += "(";
-          for (var C = E; C--; )
+          for (var C = A; C--; )
             y += w / g | 0, w %= g, w *= 10;
           y += ")";
         } else
@@ -4330,99 +4330,99 @@ var es = "Complex", ts = [], ns = /* @__PURE__ */ rr(es, ts, () => (Object.defin
             y += w / g | 0, w %= g, w *= 10;
         return y;
       }
-    }, Object.defineProperty(p, "__esModule", { value: !0 }), p.default = p, p.Fraction = p, r.exports = p;
+    }, Object.defineProperty(p, "__esModule", { value: !0 }), p.default = p, p.Fraction = p, e.exports = p;
   })();
-})(Qi);
-var is = Qi.exports;
-const ve = /* @__PURE__ */ Yi(is);
-var as = "Fraction", us = [], os = /* @__PURE__ */ rr(as, us, () => (Object.defineProperty(ve, "name", {
+})(Xi);
+var as = Xi.exports;
+const vr = /* @__PURE__ */ Ji(as);
+var us = "Fraction", os = [], ss = /* @__PURE__ */ ee(us, os, () => (Object.defineProperty(vr, "name", {
   value: "Fraction"
-}), ve.prototype.constructor = ve, ve.prototype.type = "Fraction", ve.prototype.isFraction = !0, ve.prototype.toJSON = function() {
+}), vr.prototype.constructor = vr, vr.prototype.type = "Fraction", vr.prototype.isFraction = !0, vr.prototype.toJSON = function() {
   return {
     mathjs: "Fraction",
     n: this.s * this.n,
     d: this.d
   };
-}, ve.fromJSON = function(r) {
-  return new ve(r);
-}, ve), {
+}, vr.fromJSON = function(e) {
+  return new vr(e);
+}, vr), {
   isClass: !0
-}), ss = "Matrix", fs = [], cs = /* @__PURE__ */ rr(ss, fs, () => {
-  function r() {
-    if (!(this instanceof r))
+}), fs = "Matrix", cs = [], ls = /* @__PURE__ */ ee(fs, cs, () => {
+  function e() {
+    if (!(this instanceof e))
       throw new SyntaxError("Constructor must be called with the new operator");
   }
-  return r.prototype.type = "Matrix", r.prototype.isMatrix = !0, r.prototype.storage = function() {
+  return e.prototype.type = "Matrix", e.prototype.isMatrix = !0, e.prototype.storage = function() {
     throw new Error("Cannot invoke storage on a Matrix interface");
-  }, r.prototype.datatype = function() {
+  }, e.prototype.datatype = function() {
     throw new Error("Cannot invoke datatype on a Matrix interface");
-  }, r.prototype.create = function(e, n) {
+  }, e.prototype.create = function(t, n) {
     throw new Error("Cannot invoke create on a Matrix interface");
-  }, r.prototype.subset = function(e, n, i) {
+  }, e.prototype.subset = function(t, n, i) {
     throw new Error("Cannot invoke subset on a Matrix interface");
-  }, r.prototype.get = function(e) {
+  }, e.prototype.get = function(t) {
     throw new Error("Cannot invoke get on a Matrix interface");
-  }, r.prototype.set = function(e, n, i) {
+  }, e.prototype.set = function(t, n, i) {
     throw new Error("Cannot invoke set on a Matrix interface");
-  }, r.prototype.resize = function(e, n) {
+  }, e.prototype.resize = function(t, n) {
     throw new Error("Cannot invoke resize on a Matrix interface");
-  }, r.prototype.reshape = function(e, n) {
+  }, e.prototype.reshape = function(t, n) {
     throw new Error("Cannot invoke reshape on a Matrix interface");
-  }, r.prototype.clone = function() {
+  }, e.prototype.clone = function() {
     throw new Error("Cannot invoke clone on a Matrix interface");
-  }, r.prototype.size = function() {
+  }, e.prototype.size = function() {
     throw new Error("Cannot invoke size on a Matrix interface");
-  }, r.prototype.map = function(e, n) {
+  }, e.prototype.map = function(t, n) {
     throw new Error("Cannot invoke map on a Matrix interface");
-  }, r.prototype.forEach = function(e) {
+  }, e.prototype.forEach = function(t) {
     throw new Error("Cannot invoke forEach on a Matrix interface");
-  }, r.prototype[Symbol.iterator] = function() {
+  }, e.prototype[Symbol.iterator] = function() {
     throw new Error("Cannot iterate a Matrix interface");
-  }, r.prototype.toArray = function() {
+  }, e.prototype.toArray = function() {
     throw new Error("Cannot invoke toArray on a Matrix interface");
-  }, r.prototype.valueOf = function() {
+  }, e.prototype.valueOf = function() {
     throw new Error("Cannot invoke valueOf on a Matrix interface");
-  }, r.prototype.format = function(e) {
+  }, e.prototype.format = function(t) {
     throw new Error("Cannot invoke format on a Matrix interface");
-  }, r.prototype.toString = function() {
+  }, e.prototype.toString = function() {
     throw new Error("Cannot invoke toString on a Matrix interface");
-  }, r;
+  }, e;
 }, {
   isClass: !0
 });
-function Xi(r) {
-  return Object.keys(r.signatures || {}).reduce(function(e, n) {
+function Hi(e) {
+  return Object.keys(e.signatures || {}).reduce(function(t, n) {
     var i = (n.match(/,/g) || []).length + 1;
-    return Math.max(e, i);
+    return Math.max(t, i);
   }, -1);
 }
-var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => {
+var hs = "DenseMatrix", vs = ["Matrix"], ps = /* @__PURE__ */ ee(hs, vs, (e) => {
   var {
-    Matrix: e
-  } = r;
+    Matrix: t
+  } = e;
   function n(s, u) {
     if (!(this instanceof n))
       throw new SyntaxError("Constructor must be called with the new operator");
-    if (u && !te(u))
+    if (u && !tr(u))
       throw new Error("Invalid datatype: " + u);
-    if (_r(s))
-      s.type === "DenseMatrix" ? (this._data = Fr(s._data), this._size = Fr(s._size), this._datatype = u || s._datatype) : (this._data = s.toArray(), this._size = s.size(), this._datatype = u || s._datatype);
-    else if (s && Mr(s.data) && Mr(s.size))
-      this._data = s.data, this._size = s.size, fn(this._data, this._size), this._datatype = u || s.datatype;
-    else if (Mr(s))
-      this._data = l(s), this._size = qr(this._data), fn(this._data, this._size), this._datatype = u;
+    if (_e(s))
+      s.type === "DenseMatrix" ? (this._data = Ce(s._data), this._size = Ce(s._size), this._datatype = u || s._datatype) : (this._data = s.toArray(), this._size = s.size(), this._datatype = u || s._datatype);
+    else if (s && Me(s.data) && Me(s.size))
+      this._data = s.data, this._size = s.size, cn(this._data, this._size), this._datatype = u || s.datatype;
+    else if (Me(s))
+      this._data = l(s), this._size = $e(this._data), cn(this._data, this._size), this._datatype = u;
     else {
       if (s)
-        throw new TypeError("Unsupported type of data (" + fe(s) + ")");
+        throw new TypeError("Unsupported type of data (" + lr(s) + ")");
       this._data = [], this._size = [0], this._datatype = u;
     }
   }
-  n.prototype = new e(), n.prototype.createDenseMatrix = function(s, u) {
+  n.prototype = new t(), n.prototype.createDenseMatrix = function(s, u) {
     return new n(s, u);
   }, Object.defineProperty(n, "name", {
     value: "DenseMatrix"
   }), n.prototype.constructor = n, n.prototype.type = "DenseMatrix", n.prototype.isDenseMatrix = !0, n.prototype.getDataType = function() {
-    return Je(this._data, fe);
+    return Jr(this._data, lr);
   }, n.prototype.storage = function() {
     return "dense";
   }, n.prototype.datatype = function() {
@@ -4440,30 +4440,30 @@ var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => 
         throw new SyntaxError("Wrong number of arguments");
     }
   }, n.prototype.get = function(s) {
-    if (!Mr(s))
+    if (!Me(s))
       throw new TypeError("Array expected");
     if (s.length !== this._size.length)
-      throw new Er(s.length, this._size.length);
+      throw new Fe(s.length, this._size.length);
     for (var u = 0; u < s.length; u++)
-      Br(s[u], this._size[u]);
+      Be(s[u], this._size[u]);
     for (var f = this._data, p = 0, D = s.length; p < D; p++) {
-      var h = s[p];
-      Br(h, f.length), f = f[h];
+      var v = s[p];
+      Be(v, f.length), f = f[v];
     }
     return f;
   }, n.prototype.set = function(s, u, f) {
-    if (!Mr(s))
+    if (!Me(s))
       throw new TypeError("Array expected");
     if (s.length < this._size.length)
-      throw new Er(s.length, this._size.length, "<");
-    var p, D, h, m = s.map(function(w) {
+      throw new Fe(s.length, this._size.length, "<");
+    var p, D, v, m = s.map(function(w) {
       return w + 1;
     });
     c(this, m, f);
     var d = this._data;
     for (p = 0, D = s.length - 1; p < D; p++)
-      h = s[p], Br(h, d.length), d = d[h];
-    return h = s[s.length - 1], Br(h, d.length), d[h] = u, this;
+      v = s[p], Be(v, d.length), d = d[v];
+    return v = s[s.length - 1], Be(v, d.length), d[v] = u, this;
   };
   function i(s, u) {
     if (!wt(u))
@@ -4473,72 +4473,72 @@ var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => 
       return s.get(u.min());
     var p = u.size();
     if (p.length !== s._size.length)
-      throw new Er(p.length, s._size.length);
-    for (var D = u.min(), h = u.max(), m = 0, d = s._size.length; m < d; m++)
-      Br(D[m], s._size[m]), Br(h[m], s._size[m]);
-    return new n(t(s._data, u, p.length, 0), s._datatype);
+      throw new Fe(p.length, s._size.length);
+    for (var D = u.min(), v = u.max(), m = 0, d = s._size.length; m < d; m++)
+      Be(D[m], s._size[m]), Be(v[m], s._size[m]);
+    return new n(r(s._data, u, p.length, 0), s._datatype);
   }
-  function t(s, u, f, p) {
-    var D = p === f - 1, h = u.dimension(p);
-    return D ? h.map(function(m) {
-      return Br(m, s.length), s[m];
-    }).valueOf() : h.map(function(m) {
-      Br(m, s.length);
+  function r(s, u, f, p) {
+    var D = p === f - 1, v = u.dimension(p);
+    return D ? v.map(function(m) {
+      return Be(m, s.length), s[m];
+    }).valueOf() : v.map(function(m) {
+      Be(m, s.length);
       var d = s[m];
-      return t(d, u, f, p + 1);
+      return r(d, u, f, p + 1);
     }).valueOf();
   }
   function a(s, u, f, p) {
     if (!u || u.isIndex !== !0)
       throw new TypeError("Invalid index");
-    var D = u.size(), h = u.isScalar(), m;
-    if (_r(f) ? (m = f.size(), f = f.valueOf()) : m = qr(f), h) {
+    var D = u.size(), v = u.isScalar(), m;
+    if (_e(f) ? (m = f.size(), f = f.valueOf()) : m = $e(f), v) {
       if (m.length !== 0)
         throw new TypeError("Scalar expected");
       s.set(u.min(), f, p);
     } else {
-      if (!Ie(m, D))
+      if (!Or(m, D))
         try {
-          m.length === 0 ? f = ln([f], D) : f = ln(f, D), m = qr(f);
+          m.length === 0 ? f = hn([f], D) : f = hn(f, D), m = $e(f);
         } catch {
         }
       if (D.length < s._size.length)
-        throw new Er(D.length, s._size.length, "<");
+        throw new Fe(D.length, s._size.length, "<");
       if (m.length < D.length) {
         for (var d = 0, w = 0; D[d] === 1 && m[d] === 1; )
           d++;
         for (; D[d] === 1; )
           w++, d++;
-        f = bi(f, D.length, w, m);
+        f = Mi(f, D.length, w, m);
       }
-      if (!Ie(D, m))
-        throw new Er(D, m, ">");
+      if (!Or(D, m))
+        throw new Fe(D, m, ">");
       var g = u.max().map(function(y) {
         return y + 1;
       });
       c(s, g, p);
-      var E = D.length, F = 0;
-      o(s._data, u, f, E, F);
+      var A = D.length, F = 0;
+      o(s._data, u, f, A, F);
     }
     return s;
   }
   function o(s, u, f, p, D) {
-    var h = D === p - 1, m = u.dimension(D);
-    h ? m.forEach(function(d, w) {
-      Br(d), s[d] = f[w[0]];
+    var v = D === p - 1, m = u.dimension(D);
+    v ? m.forEach(function(d, w) {
+      Be(d), s[d] = f[w[0]];
     }) : m.forEach(function(d, w) {
-      Br(d), o(s[d], u, f[w[0]], p, D + 1);
+      Be(d), o(s[d], u, f[w[0]], p, D + 1);
     });
   }
   n.prototype.resize = function(s, u, f) {
     if (!ot(s))
       throw new TypeError("Array or Matrix expected");
-    var p = s.valueOf().map((h) => Array.isArray(h) && h.length === 1 ? h[0] : h), D = f ? this.clone() : this;
-    return v(D, p, u);
+    var p = s.valueOf().map((v) => Array.isArray(v) && v.length === 1 ? v[0] : v), D = f ? this.clone() : this;
+    return h(D, p, u);
   };
-  function v(s, u, f) {
+  function h(s, u, f) {
     if (u.length === 0) {
-      for (var p = s._data; Mr(p); )
+      for (var p = s._data; Me(p); )
         p = p[0];
       return p;
     }
@@ -4547,42 +4547,42 @@ var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => 
   n.prototype.reshape = function(s, u) {
     var f = u ? this.clone() : this;
     f._data = Jt(f._data, s);
-    var p = f._size.reduce((D, h) => D * h);
+    var p = f._size.reduce((D, v) => D * v);
     return f._size = Qt(s, p), f;
   };
   function c(s, u, f) {
     for (var p = s._size.slice(0), D = !1; p.length < u.length; )
       p.push(0), D = !0;
-    for (var h = 0, m = u.length; h < m; h++)
-      u[h] > p[h] && (p[h] = u[h], D = !0);
-    D && v(s, p, f);
+    for (var v = 0, m = u.length; v < m; v++)
+      u[v] > p[v] && (p[v] = u[v], D = !0);
+    D && h(s, p, f);
   }
   n.prototype.clone = function() {
     var s = new n({
-      data: Fr(this._data),
-      size: Fr(this._size),
+      data: Ce(this._data),
+      size: Ce(this._size),
       datatype: this._datatype
     });
     return s;
   }, n.prototype.size = function() {
     return this._size.slice(0);
   }, n.prototype.map = function(s) {
-    var u = this, f = Xi(s), p = function m(d, w) {
-      return Mr(d) ? d.map(function(g, E) {
-        return m(g, w.concat(E));
+    var u = this, f = Hi(s), p = function m(d, w) {
+      return Me(d) ? d.map(function(g, A) {
+        return m(g, w.concat(A));
       }) : f === 1 ? s(d) : f === 2 ? s(d, w) : s(d, w, u);
-    }, D = p(this._data, []), h = this._datatype !== void 0 ? Je(D, fe) : void 0;
-    return new n(D, h);
+    }, D = p(this._data, []), v = this._datatype !== void 0 ? Jr(D, lr) : void 0;
+    return new n(D, v);
   }, n.prototype.forEach = function(s) {
-    var u = this, f = function p(D, h) {
-      Mr(D) ? D.forEach(function(m, d) {
-        p(m, h.concat(d));
-      }) : s(D, h, u);
+    var u = this, f = function p(D, v) {
+      Me(D) ? D.forEach(function(m, d) {
+        p(m, v.concat(d));
+      }) : s(D, v, u);
     };
     f(this._data, []);
   }, n.prototype[Symbol.iterator] = function* () {
     var s = function* u(f, p) {
-      if (Mr(f))
+      if (Me(f))
         for (var D = 0; D < f.length; D++)
           yield* u(f[D], p.concat(D));
       else
@@ -4607,17 +4607,17 @@ var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => 
     for (var p = this._data, D = function(d) {
       var w = p.map((g) => [g[d]]);
       u.push(new n(w, s._datatype));
-    }, h = 0; h < f[1]; h++)
-      D(h);
+    }, v = 0; v < f[1]; v++)
+      D(v);
     return u;
   }, n.prototype.toArray = function() {
-    return Fr(this._data);
+    return Ce(this._data);
   }, n.prototype.valueOf = function() {
     return this._data;
   }, n.prototype.format = function(s) {
-    return Ir(this._data, s);
+    return Oe(this._data, s);
   }, n.prototype.toString = function() {
-    return Ir(this._data);
+    return Oe(this._data);
   }, n.prototype.toJSON = function() {
     return {
       mathjs: "DenseMatrix",
@@ -4627,41 +4627,41 @@ var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => 
     };
   }, n.prototype.diagonal = function(s) {
     if (s) {
-      if (Pr(s) && (s = s.toNumber()), !$r(s) || !zr(s))
+      if (Pe(s) && (s = s.toNumber()), !Le(s) || !ze(s))
         throw new TypeError("The parameter k must be an integer number");
     } else
       s = 0;
-    for (var u = s > 0 ? s : 0, f = s < 0 ? -s : 0, p = this._size[0], D = this._size[1], h = Math.min(p - f, D - u), m = [], d = 0; d < h; d++)
+    for (var u = s > 0 ? s : 0, f = s < 0 ? -s : 0, p = this._size[0], D = this._size[1], v = Math.min(p - f, D - u), m = [], d = 0; d < v; d++)
       m[d] = this._data[d + f][d + u];
     return new n({
       data: m,
-      size: [h],
+      size: [v],
       datatype: this._datatype
     });
   }, n.diagonal = function(s, u, f, p) {
-    if (!Mr(s))
+    if (!Me(s))
       throw new TypeError("Array expected, size parameter");
     if (s.length !== 2)
       throw new Error("Only two dimensions matrix are supported");
     if (s = s.map(function(C) {
-      if (Pr(C) && (C = C.toNumber()), !$r(C) || !zr(C) || C < 1)
+      if (Pe(C) && (C = C.toNumber()), !Le(C) || !ze(C) || C < 1)
         throw new Error("Size values must be positive integers");
       return C;
     }), f) {
-      if (Pr(f) && (f = f.toNumber()), !$r(f) || !zr(f))
+      if (Pe(f) && (f = f.toNumber()), !Le(f) || !ze(f))
         throw new TypeError("The parameter k must be an integer number");
     } else
       f = 0;
-    var D = f > 0 ? f : 0, h = f < 0 ? -f : 0, m = s[0], d = s[1], w = Math.min(m - h, d - D), g;
-    if (Mr(u)) {
+    var D = f > 0 ? f : 0, v = f < 0 ? -f : 0, m = s[0], d = s[1], w = Math.min(m - v, d - D), g;
+    if (Me(u)) {
       if (u.length !== w)
         throw new Error("Invalid value array length");
       g = function(b) {
         return u[b];
       };
-    } else if (_r(u)) {
-      var E = u.size();
-      if (E.length !== 1 || E[0] !== w)
+    } else if (_e(u)) {
+      var A = u.size();
+      if (A.length !== 1 || A[0] !== w)
         throw new Error("Invalid matrix length");
       g = function(b) {
         return u.get([b]);
@@ -4670,12 +4670,12 @@ var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => 
       g = function() {
         return u;
       };
-    p || (p = Pr(g(0)) ? g(0).mul(0) : 0);
+    p || (p = Pe(g(0)) ? g(0).mul(0) : 0);
     var F = [];
     if (s.length > 0) {
       F = ft(F, s, p);
       for (var y = 0; y < w; y++)
-        F[y + h][y + D] = g(y);
+        F[y + v][y + D] = g(y);
     }
     return new n({
       data: F,
@@ -4684,33 +4684,33 @@ var ls = "DenseMatrix", vs = ["Matrix"], hs = /* @__PURE__ */ rr(ls, vs, (r) => 
   }, n.fromJSON = function(s) {
     return new n(s);
   }, n.prototype.swapRows = function(s, u) {
-    if (!$r(s) || !zr(s) || !$r(u) || !zr(u))
+    if (!Le(s) || !ze(s) || !Le(u) || !ze(u))
       throw new Error("Row index must be positive integers");
     if (this._size.length !== 2)
       throw new Error("Only two dimensional matrix is supported");
-    return Br(s, this._size[0]), Br(u, this._size[0]), n._swapRows(s, u, this._data), this;
+    return Be(s, this._size[0]), Be(u, this._size[0]), n._swapRows(s, u, this._data), this;
   }, n._swapRows = function(s, u, f) {
     var p = f[s];
     f[s] = f[u], f[u] = p;
   };
   function l(s) {
-    return _r(s) ? l(s.valueOf()) : Mr(s) ? s.map(l) : s;
+    return _e(s) ? l(s.valueOf()) : Me(s) ? s.map(l) : s;
   }
   return n;
 }, {
   isClass: !0
 });
-function jr(r, e, n) {
-  return r && typeof r.map == "function" ? r.map(function(i) {
-    return jr(i, e);
-  }) : e(r);
+function er(e, t, n) {
+  return e && typeof e.map == "function" ? e.map(function(i) {
+    return er(i, t);
+  }) : t(e);
 }
-var dn = "isInteger", ps = ["typed"], ds = /* @__PURE__ */ rr(dn, ps, (r) => {
+var mn = "isInteger", ds = ["typed"], ms = /* @__PURE__ */ ee(mn, ds, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(dn, {
-    number: zr,
+    typed: t
+  } = e;
+  return t(mn, {
+    number: ze,
     // TODO: what to do with isInteger(add(0.1, 0.2))  ?
     BigNumber: function(i) {
       return i.isInt();
@@ -4718,67 +4718,67 @@ var dn = "isInteger", ps = ["typed"], ds = /* @__PURE__ */ rr(dn, ps, (r) => {
     Fraction: function(i) {
       return i.d === 1 && isFinite(i.n);
     },
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
   });
-}), Kt = "number", Mt = "number, number";
-function Ki(r) {
-  return Math.abs(r);
+}), Ht = "number", Mt = "number, number";
+function Ki(e) {
+  return Math.abs(e);
 }
-Ki.signature = Kt;
-function Hi(r, e) {
-  return r + e;
-}
-Hi.signature = Mt;
-function Wi(r, e) {
-  return r - e;
+Ki.signature = Ht;
+function Wi(e, t) {
+  return e + t;
 }
 Wi.signature = Mt;
-function ki(r, e) {
-  return r * e;
+function ki(e, t) {
+  return e - t;
 }
 ki.signature = Mt;
-function ji(r) {
-  return -r;
+function ji(e, t) {
+  return e * t;
 }
-ji.signature = Kt;
-function Vt(r) {
-  return Bu(r);
+ji.signature = Mt;
+function ea(e) {
+  return -e;
 }
-Vt.signature = Kt;
-function ra(r, e) {
-  return r * r < 1 && e === 1 / 0 || r * r > 1 && e === -1 / 0 ? 0 : Math.pow(r, e);
+ea.signature = Ht;
+function Vt(e) {
+  return _u(e);
+}
+Vt.signature = Ht;
+function ra(e, t) {
+  return e * e < 1 && t === 1 / 0 || e * e > 1 && t === -1 / 0 ? 0 : Math.pow(e, t);
 }
 ra.signature = Mt;
-var ea = "number";
-function ta(r) {
-  return r > 0;
+var ta = "number";
+function na(e) {
+  return e > 0;
 }
-ta.signature = ea;
-function na(r) {
-  return r === 0;
+na.signature = ta;
+function ia(e) {
+  return e === 0;
 }
-na.signature = ea;
-var mn = "isPositive", ms = ["typed"], gs = /* @__PURE__ */ rr(mn, ms, (r) => {
+ia.signature = ta;
+var gn = "isPositive", gs = ["typed"], Ds = /* @__PURE__ */ ee(gn, gs, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(mn, {
-    number: ta,
+    typed: t
+  } = e;
+  return t(gn, {
+    number: na,
     BigNumber: function(i) {
       return !i.isNeg() && !i.isZero() && !i.isNaN();
     },
     Fraction: function(i) {
       return i.s > 0 && i.n > 0;
     },
-    Unit: e.referToSelf((n) => (i) => e.find(n, i.valueType())(i.value)),
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    Unit: t.referToSelf((n) => (i) => t.find(n, i.valueType())(i.value)),
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
   });
-}), gn = "isZero", Ds = ["typed"], ys = /* @__PURE__ */ rr(gn, Ds, (r) => {
+}), Dn = "isZero", ys = ["typed"], ws = /* @__PURE__ */ ee(Dn, ys, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(gn, {
-    number: na,
+    typed: t
+  } = e;
+  return t(Dn, {
+    number: ia,
     BigNumber: function(i) {
       return i.isZero();
     },
@@ -4788,453 +4788,453 @@ var mn = "isPositive", ms = ["typed"], gs = /* @__PURE__ */ rr(mn, ms, (r) => {
     Fraction: function(i) {
       return i.d === 1 && i.n === 0;
     },
-    Unit: e.referToSelf((n) => (i) => e.find(n, i.valueType())(i.value)),
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    Unit: t.referToSelf((n) => (i) => t.find(n, i.valueType())(i.value)),
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
   });
-}), Dn = "typeOf", ws = ["typed"], As = /* @__PURE__ */ rr(Dn, ws, (r) => {
+}), yn = "typeOf", As = ["typed"], Es = /* @__PURE__ */ ee(yn, As, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(Dn, {
-    any: fe
+    typed: t
+  } = e;
+  return t(yn, {
+    any: lr
   });
 });
-function Xe(r, e, n) {
+function Xr(e, t, n) {
   if (n == null)
-    return r.eq(e);
-  if (r.eq(e))
+    return e.eq(t);
+  if (e.eq(t))
     return !0;
-  if (r.isNaN() || e.isNaN())
+  if (e.isNaN() || t.isNaN())
     return !1;
-  if (r.isFinite() && e.isFinite()) {
-    var i = r.minus(e).abs();
+  if (e.isFinite() && t.isFinite()) {
+    var i = e.minus(t).abs();
     if (i.isZero())
       return !0;
-    var t = r.constructor.max(r.abs(), e.abs());
-    return i.lte(t.times(n));
+    var r = e.constructor.max(e.abs(), t.abs());
+    return i.lte(r.times(n));
   }
   return !1;
 }
-function Es(r, e, n) {
-  return we(r.re, e.re, n) && we(r.im, e.im, n);
+function Fs(e, t, n) {
+  return wr(e.re, t.re, n) && wr(e.im, t.im, n);
 }
-var Ke = /* @__PURE__ */ rr("compareUnits", ["typed"], (r) => {
+var Hr = /* @__PURE__ */ ee("compareUnits", ["typed"], (e) => {
   var {
-    typed: e
-  } = r;
+    typed: t
+  } = e;
   return {
-    "Unit, Unit": e.referToSelf((n) => (i, t) => {
-      if (!i.equalBase(t))
+    "Unit, Unit": t.referToSelf((n) => (i, r) => {
+      if (!i.equalBase(r))
         throw new Error("Cannot compare units with different base");
-      return e.find(n, [i.valueType(), t.valueType()])(i.value, t.value);
+      return t.find(n, [i.valueType(), r.valueType()])(i.value, r.value);
     })
   };
-}), pt = "equalScalar", Fs = ["typed", "config"], Cs = /* @__PURE__ */ rr(pt, Fs, (r) => {
+}), pt = "equalScalar", Cs = ["typed", "config"], bs = /* @__PURE__ */ ee(pt, Cs, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n
-  } = r, i = Ke({
-    typed: e
+  } = e, i = Hr({
+    typed: t
   });
-  return e(pt, {
+  return t(pt, {
     "boolean, boolean": function(a, o) {
       return a === o;
     },
     "number, number": function(a, o) {
-      return we(a, o, n.epsilon);
+      return wr(a, o, n.epsilon);
     },
     "BigNumber, BigNumber": function(a, o) {
-      return a.eq(o) || Xe(a, o, n.epsilon);
+      return a.eq(o) || Xr(a, o, n.epsilon);
     },
     "Fraction, Fraction": function(a, o) {
       return a.equals(o);
     },
     "Complex, Complex": function(a, o) {
-      return Es(a, o, n.epsilon);
+      return Fs(a, o, n.epsilon);
     }
   }, i);
 });
-rr(pt, ["typed", "config"], (r) => {
+ee(pt, ["typed", "config"], (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n
-  } = r;
-  return e(pt, {
-    "number, number": function(t, a) {
-      return we(t, a, n.epsilon);
+  } = e;
+  return t(pt, {
+    "number, number": function(r, a) {
+      return wr(r, a, n.epsilon);
     }
   });
 });
-var bs = "SparseMatrix", Ms = ["typed", "equalScalar", "Matrix"], Ss = /* @__PURE__ */ rr(bs, Ms, (r) => {
+var Ms = "SparseMatrix", Ss = ["typed", "equalScalar", "Matrix"], xs = /* @__PURE__ */ ee(Ms, Ss, (e) => {
   var {
-    typed: e,
+    typed: t,
     equalScalar: n,
     Matrix: i
-  } = r;
-  function t(h, m) {
-    if (!(this instanceof t))
+  } = e;
+  function r(v, m) {
+    if (!(this instanceof r))
       throw new SyntaxError("Constructor must be called with the new operator");
-    if (m && !te(m))
+    if (m && !tr(m))
       throw new Error("Invalid datatype: " + m);
-    if (_r(h))
-      a(this, h, m);
-    else if (h && Mr(h.index) && Mr(h.ptr) && Mr(h.size))
-      this._values = h.values, this._index = h.index, this._ptr = h.ptr, this._size = h.size, this._datatype = m || h.datatype;
-    else if (Mr(h))
-      o(this, h, m);
+    if (_e(v))
+      a(this, v, m);
+    else if (v && Me(v.index) && Me(v.ptr) && Me(v.size))
+      this._values = v.values, this._index = v.index, this._ptr = v.ptr, this._size = v.size, this._datatype = m || v.datatype;
+    else if (Me(v))
+      o(this, v, m);
     else {
-      if (h)
-        throw new TypeError("Unsupported type of data (" + fe(h) + ")");
+      if (v)
+        throw new TypeError("Unsupported type of data (" + lr(v) + ")");
       this._values = [], this._index = [], this._ptr = [0], this._size = [0, 0], this._datatype = m;
     }
   }
-  function a(h, m, d) {
-    m.type === "SparseMatrix" ? (h._values = m._values ? Fr(m._values) : void 0, h._index = Fr(m._index), h._ptr = Fr(m._ptr), h._size = Fr(m._size), h._datatype = d || m._datatype) : o(h, m.valueOf(), d || m._datatype);
+  function a(v, m, d) {
+    m.type === "SparseMatrix" ? (v._values = m._values ? Ce(m._values) : void 0, v._index = Ce(m._index), v._ptr = Ce(m._ptr), v._size = Ce(m._size), v._datatype = d || m._datatype) : o(v, m.valueOf(), d || m._datatype);
   }
-  function o(h, m, d) {
-    h._values = [], h._index = [], h._ptr = [], h._datatype = d;
-    var w = m.length, g = 0, E = n, F = 0;
-    if (te(d) && (E = e.find(n, [d, d]) || n, F = e.convert(0, d)), w > 0) {
+  function o(v, m, d) {
+    v._values = [], v._index = [], v._ptr = [], v._datatype = d;
+    var w = m.length, g = 0, A = n, F = 0;
+    if (tr(d) && (A = t.find(n, [d, d]) || n, F = t.convert(0, d)), w > 0) {
       var y = 0;
       do {
-        h._ptr.push(h._index.length);
+        v._ptr.push(v._index.length);
         for (var C = 0; C < w; C++) {
           var b = m[C];
-          if (Mr(b)) {
+          if (Me(b)) {
             if (y === 0 && g < b.length && (g = b.length), y < b.length) {
-              var A = b[y];
-              E(A, F) || (h._values.push(A), h._index.push(C));
+              var E = b[y];
+              A(E, F) || (v._values.push(E), v._index.push(C));
             }
           } else
-            y === 0 && g < 1 && (g = 1), E(b, F) || (h._values.push(b), h._index.push(C));
+            y === 0 && g < 1 && (g = 1), A(b, F) || (v._values.push(b), v._index.push(C));
         }
         y++;
       } while (y < g);
     }
-    h._ptr.push(h._index.length), h._size = [w, g];
+    v._ptr.push(v._index.length), v._size = [w, g];
   }
-  t.prototype = new i(), t.prototype.createSparseMatrix = function(h, m) {
-    return new t(h, m);
-  }, Object.defineProperty(t, "name", {
+  r.prototype = new i(), r.prototype.createSparseMatrix = function(v, m) {
+    return new r(v, m);
+  }, Object.defineProperty(r, "name", {
     value: "SparseMatrix"
-  }), t.prototype.constructor = t, t.prototype.type = "SparseMatrix", t.prototype.isSparseMatrix = !0, t.prototype.getDataType = function() {
-    return Je(this._values, fe);
-  }, t.prototype.storage = function() {
+  }), r.prototype.constructor = r, r.prototype.type = "SparseMatrix", r.prototype.isSparseMatrix = !0, r.prototype.getDataType = function() {
+    return Jr(this._values, lr);
+  }, r.prototype.storage = function() {
     return "sparse";
-  }, t.prototype.datatype = function() {
+  }, r.prototype.datatype = function() {
     return this._datatype;
-  }, t.prototype.create = function(h, m) {
-    return new t(h, m);
-  }, t.prototype.density = function() {
-    var h = this._size[0], m = this._size[1];
-    return h !== 0 && m !== 0 ? this._index.length / (h * m) : 0;
-  }, t.prototype.subset = function(h, m, d) {
+  }, r.prototype.create = function(v, m) {
+    return new r(v, m);
+  }, r.prototype.density = function() {
+    var v = this._size[0], m = this._size[1];
+    return v !== 0 && m !== 0 ? this._index.length / (v * m) : 0;
+  }, r.prototype.subset = function(v, m, d) {
     if (!this._values)
       throw new Error("Cannot invoke subset on a Pattern only matrix");
     switch (arguments.length) {
       case 1:
-        return v(this, h);
+        return h(this, v);
       case 2:
       case 3:
-        return c(this, h, m, d);
+        return c(this, v, m, d);
       default:
         throw new SyntaxError("Wrong number of arguments");
     }
   };
-  function v(h, m) {
+  function h(v, m) {
     if (!wt(m))
       throw new TypeError("Invalid index");
     var d = m.isScalar();
     if (d)
-      return h.get(m.min());
+      return v.get(m.min());
     var w = m.size();
-    if (w.length !== h._size.length)
-      throw new Er(w.length, h._size.length);
-    var g, E, F, y, C = m.min(), b = m.max();
-    for (g = 0, E = h._size.length; g < E; g++)
-      Br(C[g], h._size[g]), Br(b[g], h._size[g]);
-    var A = h._values, S = h._index, M = h._ptr, N = m.dimension(0), O = m.dimension(1), T = [], I = [];
-    N.forEach(function(z, V) {
-      I[z] = V[0], T[z] = !0;
+    if (w.length !== v._size.length)
+      throw new Fe(w.length, v._size.length);
+    var g, A, F, y, C = m.min(), b = m.max();
+    for (g = 0, A = v._size.length; g < A; g++)
+      Be(C[g], v._size[g]), Be(b[g], v._size[g]);
+    var E = v._values, S = v._index, M = v._ptr, x = m.dimension(0), I = m.dimension(1), T = [], O = [];
+    x.forEach(function(z, V) {
+      O[z] = V[0], T[z] = !0;
     });
-    var B = A ? [] : void 0, G = [], q = [];
-    return O.forEach(function(z) {
-      for (q.push(G.length), F = M[z], y = M[z + 1]; F < y; F++)
-        g = S[F], T[g] === !0 && (G.push(I[g]), B && B.push(A[F]));
-    }), q.push(G.length), new t({
+    var B = E ? [] : void 0, G = [], $ = [];
+    return I.forEach(function(z) {
+      for ($.push(G.length), F = M[z], y = M[z + 1]; F < y; F++)
+        g = S[F], T[g] === !0 && (G.push(O[g]), B && B.push(E[F]));
+    }), $.push(G.length), new r({
       values: B,
       index: G,
-      ptr: q,
+      ptr: $,
       size: w,
-      datatype: h._datatype
+      datatype: v._datatype
     });
   }
-  function c(h, m, d, w) {
+  function c(v, m, d, w) {
     if (!m || m.isIndex !== !0)
       throw new TypeError("Invalid index");
-    var g = m.size(), E = m.isScalar(), F;
-    if (_r(d) ? (F = d.size(), d = d.toArray()) : F = qr(d), E) {
+    var g = m.size(), A = m.isScalar(), F;
+    if (_e(d) ? (F = d.size(), d = d.toArray()) : F = $e(d), A) {
       if (F.length !== 0)
         throw new TypeError("Scalar expected");
-      h.set(m.min(), d, w);
+      v.set(m.min(), d, w);
     } else {
       if (g.length !== 1 && g.length !== 2)
-        throw new Er(g.length, h._size.length, "<");
+        throw new Fe(g.length, v._size.length, "<");
       if (F.length < g.length) {
         for (var y = 0, C = 0; g[y] === 1 && F[y] === 1; )
           y++;
         for (; g[y] === 1; )
           C++, y++;
-        d = bi(d, g.length, C, F);
+        d = Mi(d, g.length, C, F);
       }
-      if (!Ie(g, F))
-        throw new Er(g, F, ">");
+      if (!Or(g, F))
+        throw new Fe(g, F, ">");
       if (g.length === 1) {
         var b = m.dimension(0);
-        b.forEach(function(M, N) {
-          Br(M), h.set([M, 0], d[N[0]], w);
+        b.forEach(function(M, x) {
+          Be(M), v.set([M, 0], d[x[0]], w);
         });
       } else {
-        var A = m.dimension(0), S = m.dimension(1);
-        A.forEach(function(M, N) {
-          Br(M), S.forEach(function(O, T) {
-            Br(O), h.set([M, O], d[N[0]][T[0]], w);
+        var E = m.dimension(0), S = m.dimension(1);
+        E.forEach(function(M, x) {
+          Be(M), S.forEach(function(I, T) {
+            Be(I), v.set([M, I], d[x[0]][T[0]], w);
           });
         });
       }
     }
-    return h;
+    return v;
   }
-  t.prototype.get = function(h) {
-    if (!Mr(h))
+  r.prototype.get = function(v) {
+    if (!Me(v))
       throw new TypeError("Array expected");
-    if (h.length !== this._size.length)
-      throw new Er(h.length, this._size.length);
+    if (v.length !== this._size.length)
+      throw new Fe(v.length, this._size.length);
     if (!this._values)
       throw new Error("Cannot invoke get on a Pattern only matrix");
-    var m = h[0], d = h[1];
-    Br(m, this._size[0]), Br(d, this._size[1]);
+    var m = v[0], d = v[1];
+    Be(m, this._size[0]), Be(d, this._size[1]);
     var w = l(m, this._ptr[d], this._ptr[d + 1], this._index);
     return w < this._ptr[d + 1] && this._index[w] === m ? this._values[w] : 0;
-  }, t.prototype.set = function(h, m, d) {
-    if (!Mr(h))
+  }, r.prototype.set = function(v, m, d) {
+    if (!Me(v))
       throw new TypeError("Array expected");
-    if (h.length !== this._size.length)
-      throw new Er(h.length, this._size.length);
+    if (v.length !== this._size.length)
+      throw new Fe(v.length, this._size.length);
     if (!this._values)
       throw new Error("Cannot invoke set on a Pattern only matrix");
-    var w = h[0], g = h[1], E = this._size[0], F = this._size[1], y = n, C = 0;
-    te(this._datatype) && (y = e.find(n, [this._datatype, this._datatype]) || n, C = e.convert(0, this._datatype)), (w > E - 1 || g > F - 1) && (f(this, Math.max(w + 1, E), Math.max(g + 1, F), d), E = this._size[0], F = this._size[1]), Br(w, E), Br(g, F);
+    var w = v[0], g = v[1], A = this._size[0], F = this._size[1], y = n, C = 0;
+    tr(this._datatype) && (y = t.find(n, [this._datatype, this._datatype]) || n, C = t.convert(0, this._datatype)), (w > A - 1 || g > F - 1) && (f(this, Math.max(w + 1, A), Math.max(g + 1, F), d), A = this._size[0], F = this._size[1]), Be(w, A), Be(g, F);
     var b = l(w, this._ptr[g], this._ptr[g + 1], this._index);
     return b < this._ptr[g + 1] && this._index[b] === w ? y(m, C) ? s(b, g, this._values, this._index, this._ptr) : this._values[b] = m : y(m, C) || u(b, w, g, m, this._values, this._index, this._ptr), this;
   };
-  function l(h, m, d, w) {
+  function l(v, m, d, w) {
     if (d - m === 0)
       return d;
     for (var g = m; g < d; g++)
-      if (w[g] === h)
+      if (w[g] === v)
         return g;
     return m;
   }
-  function s(h, m, d, w, g) {
-    d.splice(h, 1), w.splice(h, 1);
-    for (var E = m + 1; E < g.length; E++)
-      g[E]--;
+  function s(v, m, d, w, g) {
+    d.splice(v, 1), w.splice(v, 1);
+    for (var A = m + 1; A < g.length; A++)
+      g[A]--;
   }
-  function u(h, m, d, w, g, E, F) {
-    g.splice(h, 0, w), E.splice(h, 0, m);
+  function u(v, m, d, w, g, A, F) {
+    g.splice(v, 0, w), A.splice(v, 0, m);
     for (var y = d + 1; y < F.length; y++)
       F[y]++;
   }
-  t.prototype.resize = function(h, m, d) {
-    if (!ot(h))
+  r.prototype.resize = function(v, m, d) {
+    if (!ot(v))
       throw new TypeError("Array or Matrix expected");
-    var w = h.valueOf().map((E) => Array.isArray(E) && E.length === 1 ? E[0] : E);
+    var w = v.valueOf().map((A) => Array.isArray(A) && A.length === 1 ? A[0] : A);
     if (w.length !== 2)
       throw new Error("Only two dimensions matrix are supported");
-    w.forEach(function(E) {
-      if (!$r(E) || !zr(E) || E < 0)
-        throw new TypeError("Invalid size, must contain positive integers (size: " + Ir(w) + ")");
+    w.forEach(function(A) {
+      if (!Le(A) || !ze(A) || A < 0)
+        throw new TypeError("Invalid size, must contain positive integers (size: " + Oe(w) + ")");
     });
     var g = d ? this.clone() : this;
     return f(g, w[0], w[1], m);
   };
-  function f(h, m, d, w) {
-    var g = w || 0, E = n, F = 0;
-    te(h._datatype) && (E = e.find(n, [h._datatype, h._datatype]) || n, F = e.convert(0, h._datatype), g = e.convert(g, h._datatype));
-    var y = !E(g, F), C = h._size[0], b = h._size[1], A, S, M;
+  function f(v, m, d, w) {
+    var g = w || 0, A = n, F = 0;
+    tr(v._datatype) && (A = t.find(n, [v._datatype, v._datatype]) || n, F = t.convert(0, v._datatype), g = t.convert(g, v._datatype));
+    var y = !A(g, F), C = v._size[0], b = v._size[1], E, S, M;
     if (d > b) {
       for (S = b; S < d; S++)
-        if (h._ptr[S] = h._values.length, y)
-          for (A = 0; A < C; A++)
-            h._values.push(g), h._index.push(A);
-      h._ptr[d] = h._values.length;
+        if (v._ptr[S] = v._values.length, y)
+          for (E = 0; E < C; E++)
+            v._values.push(g), v._index.push(E);
+      v._ptr[d] = v._values.length;
     } else
-      d < b && (h._ptr.splice(d + 1, b - d), h._values.splice(h._ptr[d], h._values.length), h._index.splice(h._ptr[d], h._index.length));
+      d < b && (v._ptr.splice(d + 1, b - d), v._values.splice(v._ptr[d], v._values.length), v._index.splice(v._ptr[d], v._index.length));
     if (b = d, m > C) {
       if (y) {
-        var N = 0;
+        var x = 0;
         for (S = 0; S < b; S++) {
-          h._ptr[S] = h._ptr[S] + N, M = h._ptr[S + 1] + N;
-          var O = 0;
-          for (A = C; A < m; A++, O++)
-            h._values.splice(M + O, 0, g), h._index.splice(M + O, 0, A), N++;
+          v._ptr[S] = v._ptr[S] + x, M = v._ptr[S + 1] + x;
+          var I = 0;
+          for (E = C; E < m; E++, I++)
+            v._values.splice(M + I, 0, g), v._index.splice(M + I, 0, E), x++;
         }
-        h._ptr[b] = h._values.length;
+        v._ptr[b] = v._values.length;
       }
     } else if (m < C) {
       var T = 0;
       for (S = 0; S < b; S++) {
-        h._ptr[S] = h._ptr[S] - T;
-        var I = h._ptr[S], B = h._ptr[S + 1] - T;
-        for (M = I; M < B; M++)
-          A = h._index[M], A > m - 1 && (h._values.splice(M, 1), h._index.splice(M, 1), T++);
+        v._ptr[S] = v._ptr[S] - T;
+        var O = v._ptr[S], B = v._ptr[S + 1] - T;
+        for (M = O; M < B; M++)
+          E = v._index[M], E > m - 1 && (v._values.splice(M, 1), v._index.splice(M, 1), T++);
       }
-      h._ptr[S] = h._values.length;
+      v._ptr[S] = v._values.length;
     }
-    return h._size[0] = m, h._size[1] = d, h;
+    return v._size[0] = m, v._size[1] = d, v;
   }
-  t.prototype.reshape = function(h, m) {
-    if (!Mr(h))
+  r.prototype.reshape = function(v, m) {
+    if (!Me(v))
       throw new TypeError("Array expected");
-    if (h.length !== 2)
+    if (v.length !== 2)
       throw new Error("Sparse matrices can only be reshaped in two dimensions");
-    h.forEach(function(z) {
-      if (!$r(z) || !zr(z) || z <= -2 || z === 0)
-        throw new TypeError("Invalid size, must contain positive integers or -1 (size: " + Ir(h) + ")");
+    v.forEach(function(z) {
+      if (!Le(z) || !ze(z) || z <= -2 || z === 0)
+        throw new TypeError("Invalid size, must contain positive integers or -1 (size: " + Oe(v) + ")");
     });
     var d = this._size[0] * this._size[1];
-    h = Qt(h, d);
-    var w = h[0] * h[1];
+    v = Qt(v, d);
+    var w = v[0] * v[1];
     if (d !== w)
       throw new Error("Reshaping sparse matrix will result in the wrong number of elements");
     var g = m ? this.clone() : this;
-    if (this._size[0] === h[0] && this._size[1] === h[1])
+    if (this._size[0] === v[0] && this._size[1] === v[1])
       return g;
-    for (var E = [], F = 0; F < g._ptr.length; F++)
+    for (var A = [], F = 0; F < g._ptr.length; F++)
       for (var y = 0; y < g._ptr[F + 1] - g._ptr[F]; y++)
-        E.push(F);
-    for (var C = g._values.slice(), b = g._index.slice(), A = 0; A < g._index.length; A++) {
-      var S = b[A], M = E[A], N = S * g._size[1] + M;
-      E[A] = N % h[1], b[A] = Math.floor(N / h[1]);
+        A.push(F);
+    for (var C = g._values.slice(), b = g._index.slice(), E = 0; E < g._index.length; E++) {
+      var S = b[E], M = A[E], x = S * g._size[1] + M;
+      A[E] = x % v[1], b[E] = Math.floor(x / v[1]);
     }
-    g._values.length = 0, g._index.length = 0, g._ptr.length = h[1] + 1, g._size = h.slice();
-    for (var O = 0; O < g._ptr.length; O++)
-      g._ptr[O] = 0;
+    g._values.length = 0, g._index.length = 0, g._ptr.length = v[1] + 1, g._size = v.slice();
+    for (var I = 0; I < g._ptr.length; I++)
+      g._ptr[I] = 0;
     for (var T = 0; T < C.length; T++) {
-      var I = b[T], B = E[T], G = C[T], q = l(I, g._ptr[B], g._ptr[B + 1], g._index);
-      u(q, I, B, G, g._values, g._index, g._ptr);
+      var O = b[T], B = A[T], G = C[T], $ = l(O, g._ptr[B], g._ptr[B + 1], g._index);
+      u($, O, B, G, g._values, g._index, g._ptr);
     }
     return g;
-  }, t.prototype.clone = function() {
-    var h = new t({
-      values: this._values ? Fr(this._values) : void 0,
-      index: Fr(this._index),
-      ptr: Fr(this._ptr),
-      size: Fr(this._size),
+  }, r.prototype.clone = function() {
+    var v = new r({
+      values: this._values ? Ce(this._values) : void 0,
+      index: Ce(this._index),
+      ptr: Ce(this._ptr),
+      size: Ce(this._size),
       datatype: this._datatype
     });
-    return h;
-  }, t.prototype.size = function() {
+    return v;
+  }, r.prototype.size = function() {
     return this._size.slice(0);
-  }, t.prototype.map = function(h, m) {
+  }, r.prototype.map = function(v, m) {
     if (!this._values)
       throw new Error("Cannot invoke map on a Pattern only matrix");
-    var d = this, w = this._size[0], g = this._size[1], E = Xi(h), F = function(C, b, A) {
-      return E === 1 ? h(C) : E === 2 ? h(C, [b, A]) : h(C, [b, A], d);
+    var d = this, w = this._size[0], g = this._size[1], A = Hi(v), F = function(C, b, E) {
+      return A === 1 ? v(C) : A === 2 ? v(C, [b, E]) : v(C, [b, E], d);
     };
     return p(this, 0, w - 1, 0, g - 1, F, m);
   };
-  function p(h, m, d, w, g, E, F) {
-    var y = [], C = [], b = [], A = n, S = 0;
-    te(h._datatype) && (A = e.find(n, [h._datatype, h._datatype]) || n, S = e.convert(0, h._datatype));
-    for (var M = function(L, Z, nr) {
-      L = E(L, Z, nr), A(L, S) || (y.push(L), C.push(Z));
-    }, N = w; N <= g; N++) {
+  function p(v, m, d, w, g, A, F) {
+    var y = [], C = [], b = [], E = n, S = 0;
+    tr(v._datatype) && (E = t.find(n, [v._datatype, v._datatype]) || n, S = t.convert(0, v._datatype));
+    for (var M = function(q, Z, ne) {
+      q = A(q, Z, ne), E(q, S) || (y.push(q), C.push(Z));
+    }, x = w; x <= g; x++) {
       b.push(y.length);
-      var O = h._ptr[N], T = h._ptr[N + 1];
+      var I = v._ptr[x], T = v._ptr[x + 1];
       if (F)
-        for (var I = O; I < T; I++) {
-          var B = h._index[I];
-          B >= m && B <= d && M(h._values[I], B - m, N - w);
+        for (var O = I; O < T; O++) {
+          var B = v._index[O];
+          B >= m && B <= d && M(v._values[O], B - m, x - w);
         }
       else {
-        for (var G = {}, q = O; q < T; q++) {
-          var z = h._index[q];
-          G[z] = h._values[q];
+        for (var G = {}, $ = I; $ < T; $++) {
+          var z = v._index[$];
+          G[z] = v._values[$];
         }
         for (var V = m; V <= d; V++) {
-          var H = V in G ? G[V] : 0;
-          M(H, V - m, N - w);
+          var K = V in G ? G[V] : 0;
+          M(K, V - m, x - w);
         }
       }
     }
-    return b.push(y.length), new t({
+    return b.push(y.length), new r({
       values: y,
       index: C,
       ptr: b,
       size: [d - m + 1, g - w + 1]
     });
   }
-  t.prototype.forEach = function(h, m) {
+  r.prototype.forEach = function(v, m) {
     if (!this._values)
       throw new Error("Cannot invoke forEach on a Pattern only matrix");
-    for (var d = this, w = this._size[0], g = this._size[1], E = 0; E < g; E++) {
-      var F = this._ptr[E], y = this._ptr[E + 1];
+    for (var d = this, w = this._size[0], g = this._size[1], A = 0; A < g; A++) {
+      var F = this._ptr[A], y = this._ptr[A + 1];
       if (m)
         for (var C = F; C < y; C++) {
           var b = this._index[C];
-          h(this._values[C], [b, E], d);
+          v(this._values[C], [b, A], d);
         }
       else {
-        for (var A = {}, S = F; S < y; S++) {
+        for (var E = {}, S = F; S < y; S++) {
           var M = this._index[S];
-          A[M] = this._values[S];
+          E[M] = this._values[S];
         }
-        for (var N = 0; N < w; N++) {
-          var O = N in A ? A[N] : 0;
-          h(O, [N, E], d);
+        for (var x = 0; x < w; x++) {
+          var I = x in E ? E[x] : 0;
+          v(I, [x, A], d);
         }
       }
     }
-  }, t.prototype[Symbol.iterator] = function* () {
+  }, r.prototype[Symbol.iterator] = function* () {
     if (!this._values)
       throw new Error("Cannot iterate a Pattern only matrix");
-    for (var h = this._size[1], m = 0; m < h; m++)
+    for (var v = this._size[1], m = 0; m < v; m++)
       for (var d = this._ptr[m], w = this._ptr[m + 1], g = d; g < w; g++) {
-        var E = this._index[g];
+        var A = this._index[g];
         yield {
           value: this._values[g],
-          index: [E, m]
+          index: [A, m]
         };
       }
-  }, t.prototype.toArray = function() {
+  }, r.prototype.toArray = function() {
     return D(this._values, this._index, this._ptr, this._size, !0);
-  }, t.prototype.valueOf = function() {
+  }, r.prototype.valueOf = function() {
     return D(this._values, this._index, this._ptr, this._size, !1);
   };
-  function D(h, m, d, w, g) {
-    var E = w[0], F = w[1], y = [], C, b;
-    for (C = 0; C < E; C++)
+  function D(v, m, d, w, g) {
+    var A = w[0], F = w[1], y = [], C, b;
+    for (C = 0; C < A; C++)
       for (y[C] = [], b = 0; b < F; b++)
         y[C][b] = 0;
     for (b = 0; b < F; b++)
-      for (var A = d[b], S = d[b + 1], M = A; M < S; M++)
-        C = m[M], y[C][b] = h ? g ? Fr(h[M]) : h[M] : 1;
+      for (var E = d[b], S = d[b + 1], M = E; M < S; M++)
+        C = m[M], y[C][b] = v ? g ? Ce(v[M]) : v[M] : 1;
     return y;
   }
-  return t.prototype.format = function(h) {
-    for (var m = this._size[0], d = this._size[1], w = this.density(), g = "Sparse Matrix [" + Ir(m, h) + " x " + Ir(d, h) + "] density: " + Ir(w, h) + `
-`, E = 0; E < d; E++)
-      for (var F = this._ptr[E], y = this._ptr[E + 1], C = F; C < y; C++) {
+  return r.prototype.format = function(v) {
+    for (var m = this._size[0], d = this._size[1], w = this.density(), g = "Sparse Matrix [" + Oe(m, v) + " x " + Oe(d, v) + "] density: " + Oe(w, v) + `
+`, A = 0; A < d; A++)
+      for (var F = this._ptr[A], y = this._ptr[A + 1], C = F; C < y; C++) {
         var b = this._index[C];
         g += `
-    (` + Ir(b, h) + ", " + Ir(E, h) + ") ==> " + (this._values ? Ir(this._values[C], h) : "X");
+    (` + Oe(b, v) + ", " + Oe(A, v) + ") ==> " + (this._values ? Oe(this._values[C], v) : "X");
       }
     return g;
-  }, t.prototype.toString = function() {
-    return Ir(this.toArray());
-  }, t.prototype.toJSON = function() {
+  }, r.prototype.toString = function() {
+    return Oe(this.toArray());
+  }, r.prototype.toJSON = function() {
     return {
       mathjs: "SparseMatrix",
       values: this._values,
@@ -5243,56 +5243,56 @@ var bs = "SparseMatrix", Ms = ["typed", "equalScalar", "Matrix"], Ss = /* @__PUR
       size: this._size,
       datatype: this._datatype
     };
-  }, t.prototype.diagonal = function(h) {
-    if (h) {
-      if (Pr(h) && (h = h.toNumber()), !$r(h) || !zr(h))
+  }, r.prototype.diagonal = function(v) {
+    if (v) {
+      if (Pe(v) && (v = v.toNumber()), !Le(v) || !ze(v))
         throw new TypeError("The parameter k must be an integer number");
     } else
-      h = 0;
-    var m = h > 0 ? h : 0, d = h < 0 ? -h : 0, w = this._size[0], g = this._size[1], E = Math.min(w - d, g - m), F = [], y = [], C = [];
+      v = 0;
+    var m = v > 0 ? v : 0, d = v < 0 ? -v : 0, w = this._size[0], g = this._size[1], A = Math.min(w - d, g - m), F = [], y = [], C = [];
     C[0] = 0;
-    for (var b = m; b < g && F.length < E; b++)
-      for (var A = this._ptr[b], S = this._ptr[b + 1], M = A; M < S; M++) {
-        var N = this._index[M];
-        if (N === b - m + d) {
-          F.push(this._values[M]), y[F.length - 1] = N - d;
+    for (var b = m; b < g && F.length < A; b++)
+      for (var E = this._ptr[b], S = this._ptr[b + 1], M = E; M < S; M++) {
+        var x = this._index[M];
+        if (x === b - m + d) {
+          F.push(this._values[M]), y[F.length - 1] = x - d;
           break;
         }
       }
-    return C.push(F.length), new t({
+    return C.push(F.length), new r({
       values: F,
       index: y,
       ptr: C,
-      size: [E, 1]
+      size: [A, 1]
     });
-  }, t.fromJSON = function(h) {
-    return new t(h);
-  }, t.diagonal = function(h, m, d, w, g) {
-    if (!Mr(h))
+  }, r.fromJSON = function(v) {
+    return new r(v);
+  }, r.diagonal = function(v, m, d, w, g) {
+    if (!Me(v))
       throw new TypeError("Array expected, size parameter");
-    if (h.length !== 2)
+    if (v.length !== 2)
       throw new Error("Only two dimensions matrix are supported");
-    if (h = h.map(function(z) {
-      if (Pr(z) && (z = z.toNumber()), !$r(z) || !zr(z) || z < 1)
+    if (v = v.map(function(z) {
+      if (Pe(z) && (z = z.toNumber()), !Le(z) || !ze(z) || z < 1)
         throw new Error("Size values must be positive integers");
       return z;
     }), d) {
-      if (Pr(d) && (d = d.toNumber()), !$r(d) || !zr(d))
+      if (Pe(d) && (d = d.toNumber()), !Le(d) || !ze(d))
         throw new TypeError("The parameter k must be an integer number");
     } else
       d = 0;
-    var E = n, F = 0;
-    te(g) && (E = e.find(n, [g, g]) || n, F = e.convert(0, g));
-    var y = d > 0 ? d : 0, C = d < 0 ? -d : 0, b = h[0], A = h[1], S = Math.min(b - C, A - y), M;
-    if (Mr(m)) {
+    var A = n, F = 0;
+    tr(g) && (A = t.find(n, [g, g]) || n, F = t.convert(0, g));
+    var y = d > 0 ? d : 0, C = d < 0 ? -d : 0, b = v[0], E = v[1], S = Math.min(b - C, E - y), M;
+    if (Me(m)) {
       if (m.length !== S)
         throw new Error("Invalid value array length");
       M = function(V) {
         return m[V];
       };
-    } else if (_r(m)) {
-      var N = m.size();
-      if (N.length !== 1 || N[0] !== S)
+    } else if (_e(m)) {
+      var x = m.size();
+      if (x.length !== 1 || x[0] !== S)
         throw new Error("Invalid matrix length");
       M = function(V) {
         return m.get([V]);
@@ -5301,283 +5301,283 @@ var bs = "SparseMatrix", Ms = ["typed", "equalScalar", "Matrix"], Ss = /* @__PUR
       M = function() {
         return m;
       };
-    for (var O = [], T = [], I = [], B = 0; B < A; B++) {
-      I.push(O.length);
+    for (var I = [], T = [], O = [], B = 0; B < E; B++) {
+      O.push(I.length);
       var G = B - y;
       if (G >= 0 && G < S) {
-        var q = M(G);
-        E(q, F) || (T.push(G + C), O.push(q));
+        var $ = M(G);
+        A($, F) || (T.push(G + C), I.push($));
       }
     }
-    return I.push(O.length), new t({
-      values: O,
+    return O.push(I.length), new r({
+      values: I,
       index: T,
-      ptr: I,
-      size: [b, A]
+      ptr: O,
+      size: [b, E]
     });
-  }, t.prototype.swapRows = function(h, m) {
-    if (!$r(h) || !zr(h) || !$r(m) || !zr(m))
+  }, r.prototype.swapRows = function(v, m) {
+    if (!Le(v) || !ze(v) || !Le(m) || !ze(m))
       throw new Error("Row index must be positive integers");
     if (this._size.length !== 2)
       throw new Error("Only two dimensional matrix is supported");
-    return Br(h, this._size[0]), Br(m, this._size[0]), t._swapRows(h, m, this._size[1], this._values, this._index, this._ptr), this;
-  }, t._forEachRow = function(h, m, d, w, g) {
-    for (var E = w[h], F = w[h + 1], y = E; y < F; y++)
+    return Be(v, this._size[0]), Be(m, this._size[0]), r._swapRows(v, m, this._size[1], this._values, this._index, this._ptr), this;
+  }, r._forEachRow = function(v, m, d, w, g) {
+    for (var A = w[v], F = w[v + 1], y = A; y < F; y++)
       g(d[y], m[y]);
-  }, t._swapRows = function(h, m, d, w, g, E) {
+  }, r._swapRows = function(v, m, d, w, g, A) {
     for (var F = 0; F < d; F++) {
-      var y = E[F], C = E[F + 1], b = l(h, y, C, g), A = l(m, y, C, g);
-      if (b < C && A < C && g[b] === h && g[A] === m) {
+      var y = A[F], C = A[F + 1], b = l(v, y, C, g), E = l(m, y, C, g);
+      if (b < C && E < C && g[b] === v && g[E] === m) {
         if (w) {
           var S = w[b];
-          w[b] = w[A], w[A] = S;
+          w[b] = w[E], w[E] = S;
         }
         continue;
       }
-      if (b < C && g[b] === h && (A >= C || g[A] !== m)) {
+      if (b < C && g[b] === v && (E >= C || g[E] !== m)) {
         var M = w ? w[b] : void 0;
-        g.splice(A, 0, m), w && w.splice(A, 0, M), g.splice(A <= b ? b + 1 : b, 1), w && w.splice(A <= b ? b + 1 : b, 1);
+        g.splice(E, 0, m), w && w.splice(E, 0, M), g.splice(E <= b ? b + 1 : b, 1), w && w.splice(E <= b ? b + 1 : b, 1);
         continue;
       }
-      if (A < C && g[A] === m && (b >= C || g[b] !== h)) {
-        var N = w ? w[A] : void 0;
-        g.splice(b, 0, h), w && w.splice(b, 0, N), g.splice(b <= A ? A + 1 : A, 1), w && w.splice(b <= A ? A + 1 : A, 1);
+      if (E < C && g[E] === m && (b >= C || g[b] !== v)) {
+        var x = w ? w[E] : void 0;
+        g.splice(b, 0, v), w && w.splice(b, 0, x), g.splice(b <= E ? E + 1 : E, 1), w && w.splice(b <= E ? E + 1 : E, 1);
       }
     }
-  }, t;
+  }, r;
 }, {
   isClass: !0
-}), Ns = "number", xs = ["typed"];
-function Bs(r) {
-  var e = r.match(/(0[box])([0-9a-fA-F]*)\.([0-9a-fA-F]*)/);
-  if (e) {
+}), Ns = "number", Bs = ["typed"];
+function _s(e) {
+  var t = e.match(/(0[box])([0-9a-fA-F]*)\.([0-9a-fA-F]*)/);
+  if (t) {
     var n = {
       "0b": 2,
       "0o": 8,
       "0x": 16
-    }[e[1]], i = e[2], t = e[3];
+    }[t[1]], i = t[2], r = t[3];
     return {
-      input: r,
+      input: e,
       radix: n,
       integerPart: i,
-      fractionalPart: t
+      fractionalPart: r
     };
   } else
     return null;
 }
-function _s(r) {
-  for (var e = parseInt(r.integerPart, r.radix), n = 0, i = 0; i < r.fractionalPart.length; i++) {
-    var t = parseInt(r.fractionalPart[i], r.radix);
-    n += t / Math.pow(r.radix, i + 1);
+function zs(e) {
+  for (var t = parseInt(e.integerPart, e.radix), n = 0, i = 0; i < e.fractionalPart.length; i++) {
+    var r = parseInt(e.fractionalPart[i], e.radix);
+    n += r / Math.pow(e.radix, i + 1);
   }
-  var a = e + n;
+  var a = t + n;
   if (isNaN(a))
-    throw new SyntaxError('String "' + r.input + '" is not a valid number');
+    throw new SyntaxError('String "' + e.input + '" is not a valid number');
   return a;
 }
-var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
+var Ts = /* @__PURE__ */ ee(Ns, Bs, (e) => {
   var {
-    typed: e
-  } = r, n = e("number", {
+    typed: t
+  } = e, n = t("number", {
     "": function() {
       return 0;
     },
-    number: function(t) {
-      return t;
+    number: function(r) {
+      return r;
     },
-    string: function(t) {
-      if (t === "NaN")
+    string: function(r) {
+      if (r === "NaN")
         return NaN;
-      var a = Bs(t);
+      var a = _s(r);
       if (a)
-        return _s(a);
-      var o = 0, v = t.match(/(0[box][0-9a-fA-F]*)i([0-9]*)/);
-      v && (o = Number(v[2]), t = v[1]);
-      var c = Number(t);
+        return zs(a);
+      var o = 0, h = r.match(/(0[box][0-9a-fA-F]*)i([0-9]*)/);
+      h && (o = Number(h[2]), r = h[1]);
+      var c = Number(r);
       if (isNaN(c))
-        throw new SyntaxError('String "' + t + '" is not a valid number');
-      if (v) {
+        throw new SyntaxError('String "' + r + '" is not a valid number');
+      if (h) {
         if (c > 2 ** o - 1)
-          throw new SyntaxError('String "'.concat(t, '" is out of range'));
+          throw new SyntaxError('String "'.concat(r, '" is out of range'));
         c >= 2 ** (o - 1) && (c = c - 2 ** o);
       }
       return c;
     },
-    BigNumber: function(t) {
-      return t.toNumber();
+    BigNumber: function(r) {
+      return r.toNumber();
     },
-    Fraction: function(t) {
-      return t.valueOf();
+    Fraction: function(r) {
+      return r.valueOf();
     },
-    Unit: e.referToSelf((i) => (t) => {
-      var a = t.clone();
-      return a.value = i(t.value), a;
+    Unit: t.referToSelf((i) => (r) => {
+      var a = r.clone();
+      return a.value = i(r.value), a;
     }),
-    null: function(t) {
+    null: function(r) {
       return 0;
     },
-    "Unit, string | Unit": function(t, a) {
-      return t.toNumber(a);
+    "Unit, string | Unit": function(r, a) {
+      return r.toNumber(a);
     },
-    "Array | Matrix": e.referToSelf((i) => (t) => jr(t, i))
+    "Array | Matrix": t.referToSelf((i) => (r) => er(r, i))
   });
   return n.fromJSON = function(i) {
     return parseFloat(i.value);
   }, n;
-}), Ts = "bignumber", Os = ["typed", "BigNumber"], Is = /* @__PURE__ */ rr(Ts, Os, (r) => {
+}), Is = "bignumber", Os = ["typed", "BigNumber"], Ls = /* @__PURE__ */ ee(Is, Os, (e) => {
   var {
-    typed: e,
+    typed: t,
     BigNumber: n
-  } = r;
-  return e("bignumber", {
+  } = e;
+  return t("bignumber", {
     "": function() {
       return new n(0);
     },
-    number: function(t) {
-      return new n(t + "");
+    number: function(r) {
+      return new n(r + "");
     },
-    string: function(t) {
-      var a = t.match(/(0[box][0-9a-fA-F]*)i([0-9]*)/);
+    string: function(r) {
+      var a = r.match(/(0[box][0-9a-fA-F]*)i([0-9]*)/);
       if (a) {
-        var o = a[2], v = n(a[1]), c = new n(2).pow(Number(o));
-        if (v.gt(c.sub(1)))
-          throw new SyntaxError('String "'.concat(t, '" is out of range'));
+        var o = a[2], h = n(a[1]), c = new n(2).pow(Number(o));
+        if (h.gt(c.sub(1)))
+          throw new SyntaxError('String "'.concat(r, '" is out of range'));
         var l = new n(2).pow(Number(o) - 1);
-        return v.gte(l) ? v.sub(c) : v;
+        return h.gte(l) ? h.sub(c) : h;
       }
-      return new n(t);
+      return new n(r);
     },
-    BigNumber: function(t) {
-      return t;
+    BigNumber: function(r) {
+      return r;
     },
-    Unit: e.referToSelf((i) => (t) => {
-      var a = t.clone();
-      return a.value = i(t.value), a;
+    Unit: t.referToSelf((i) => (r) => {
+      var a = r.clone();
+      return a.value = i(r.value), a;
     }),
-    Fraction: function(t) {
-      return new n(t.n).div(t.d).times(t.s);
+    Fraction: function(r) {
+      return new n(r.n).div(r.d).times(r.s);
     },
-    null: function(t) {
+    null: function(r) {
       return new n(0);
     },
-    "Array | Matrix": e.referToSelf((i) => (t) => jr(t, i))
+    "Array | Matrix": t.referToSelf((i) => (r) => er(r, i))
   });
-}), $s = "complex", qs = ["typed", "Complex"], Ls = /* @__PURE__ */ rr($s, qs, (r) => {
+}), $s = "complex", qs = ["typed", "Complex"], Ps = /* @__PURE__ */ ee($s, qs, (e) => {
   var {
-    typed: e,
+    typed: t,
     Complex: n
-  } = r;
-  return e("complex", {
+  } = e;
+  return t("complex", {
     "": function() {
       return n.ZERO;
     },
-    number: function(t) {
-      return new n(t, 0);
+    number: function(r) {
+      return new n(r, 0);
     },
-    "number, number": function(t, a) {
-      return new n(t, a);
+    "number, number": function(r, a) {
+      return new n(r, a);
     },
     // TODO: this signature should be redundant
-    "BigNumber, BigNumber": function(t, a) {
-      return new n(t.toNumber(), a.toNumber());
+    "BigNumber, BigNumber": function(r, a) {
+      return new n(r.toNumber(), a.toNumber());
     },
-    Fraction: function(t) {
-      return new n(t.valueOf(), 0);
+    Fraction: function(r) {
+      return new n(r.valueOf(), 0);
     },
-    Complex: function(t) {
-      return t.clone();
+    Complex: function(r) {
+      return r.clone();
     },
-    string: function(t) {
-      return n(t);
+    string: function(r) {
+      return n(r);
     },
-    null: function(t) {
+    null: function(r) {
       return n(0);
     },
-    Object: function(t) {
-      if ("re" in t && "im" in t)
-        return new n(t.re, t.im);
-      if ("r" in t && "phi" in t || "abs" in t && "arg" in t)
-        return new n(t);
+    Object: function(r) {
+      if ("re" in r && "im" in r)
+        return new n(r.re, r.im);
+      if ("r" in r && "phi" in r || "abs" in r && "arg" in r)
+        return new n(r);
       throw new Error("Expected object with properties (re and im) or (r and phi) or (abs and arg)");
     },
-    "Array | Matrix": e.referToSelf((i) => (t) => jr(t, i))
+    "Array | Matrix": t.referToSelf((i) => (r) => er(r, i))
   });
-}), Ps = "fraction", Rs = ["typed", "Fraction"], Us = /* @__PURE__ */ rr(Ps, Rs, (r) => {
+}), Rs = "fraction", Us = ["typed", "Fraction"], Vs = /* @__PURE__ */ ee(Rs, Us, (e) => {
   var {
-    typed: e,
+    typed: t,
     Fraction: n
-  } = r;
-  return e("fraction", {
-    number: function(t) {
-      if (!isFinite(t) || isNaN(t))
-        throw new Error(t + " cannot be represented as a fraction");
-      return new n(t);
+  } = e;
+  return t("fraction", {
+    number: function(r) {
+      if (!isFinite(r) || isNaN(r))
+        throw new Error(r + " cannot be represented as a fraction");
+      return new n(r);
     },
-    string: function(t) {
-      return new n(t);
+    string: function(r) {
+      return new n(r);
     },
-    "number, number": function(t, a) {
-      return new n(t, a);
+    "number, number": function(r, a) {
+      return new n(r, a);
     },
-    null: function(t) {
+    null: function(r) {
       return new n(0);
     },
-    BigNumber: function(t) {
-      return new n(t.toString());
+    BigNumber: function(r) {
+      return new n(r.toString());
     },
-    Fraction: function(t) {
-      return t;
+    Fraction: function(r) {
+      return r;
     },
-    Unit: e.referToSelf((i) => (t) => {
-      var a = t.clone();
-      return a.value = i(t.value), a;
+    Unit: t.referToSelf((i) => (r) => {
+      var a = r.clone();
+      return a.value = i(r.value), a;
     }),
-    Object: function(t) {
-      return new n(t);
+    Object: function(r) {
+      return new n(r);
     },
-    "Array | Matrix": e.referToSelf((i) => (t) => jr(t, i))
+    "Array | Matrix": t.referToSelf((i) => (r) => er(r, i))
   });
-}), yn = "matrix", Vs = ["typed", "Matrix", "DenseMatrix", "SparseMatrix"], Zs = /* @__PURE__ */ rr(yn, Vs, (r) => {
+}), wn = "matrix", Zs = ["typed", "Matrix", "DenseMatrix", "SparseMatrix"], Gs = /* @__PURE__ */ ee(wn, Zs, (e) => {
   var {
-    typed: e,
+    typed: t,
     Matrix: n,
     DenseMatrix: i,
-    SparseMatrix: t
-  } = r;
-  return e(yn, {
+    SparseMatrix: r
+  } = e;
+  return t(wn, {
     "": function() {
       return a([]);
     },
-    string: function(v) {
-      return a([], v);
+    string: function(h) {
+      return a([], h);
     },
-    "string, string": function(v, c) {
-      return a([], v, c);
+    "string, string": function(h, c) {
+      return a([], h, c);
     },
-    Array: function(v) {
-      return a(v);
+    Array: function(h) {
+      return a(h);
     },
-    Matrix: function(v) {
-      return a(v, v.storage());
+    Matrix: function(h) {
+      return a(h, h.storage());
     },
     "Array | Matrix, string": a,
     "Array | Matrix, string, string": a
   });
-  function a(o, v, c) {
-    if (v === "dense" || v === "default" || v === void 0)
+  function a(o, h, c) {
+    if (h === "dense" || h === "default" || h === void 0)
       return new i(o, c);
-    if (v === "sparse")
-      return new t(o, c);
-    throw new TypeError("Unknown matrix type " + JSON.stringify(v) + ".");
+    if (h === "sparse")
+      return new r(o, c);
+    throw new TypeError("Unknown matrix type " + JSON.stringify(h) + ".");
   }
-}), wn = "matrixFromColumns", Gs = ["typed", "matrix", "flatten", "size"], Ys = /* @__PURE__ */ rr(wn, Gs, (r) => {
+}), An = "matrixFromColumns", Ys = ["typed", "matrix", "flatten", "size"], Js = /* @__PURE__ */ ee(An, Ys, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     flatten: i,
-    size: t
-  } = r;
-  return e(wn, {
+    size: r
+  } = e;
+  return t(An, {
     "...Array": function(c) {
       return a(c);
     },
@@ -5586,12 +5586,12 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
     }
     // TODO implement this properly for SparseMatrix
   });
-  function a(v) {
-    if (v.length === 0)
+  function a(h) {
+    if (h.length === 0)
       throw new TypeError("At least one column is needed to construct a matrix.");
-    for (var c = o(v[0]), l = [], s = 0; s < c; s++)
+    for (var c = o(h[0]), l = [], s = 0; s < c; s++)
       l[s] = [];
-    for (var u of v) {
+    for (var u of h) {
       var f = o(u);
       if (f !== c)
         throw new TypeError("The vectors had different length: " + (c | 0) + " ≠ " + (f | 0));
@@ -5600,8 +5600,8 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
     }
     return l;
   }
-  function o(v) {
-    var c = t(v);
+  function o(h) {
+    var c = r(h);
     if (c.length === 1)
       return c[0];
     if (c.length === 2) {
@@ -5613,435 +5613,435 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
     } else
       throw new TypeError("Only one- or two-dimensional vectors are supported.");
   }
-}), An = "unaryMinus", Js = ["typed"], Qs = /* @__PURE__ */ rr(An, Js, (r) => {
+}), En = "unaryMinus", Qs = ["typed"], Xs = /* @__PURE__ */ ee(En, Qs, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(An, {
-    number: ji,
+    typed: t
+  } = e;
+  return t(En, {
+    number: ea,
     "Complex | BigNumber | Fraction": (n) => n.neg(),
-    Unit: e.referToSelf((n) => (i) => {
-      var t = i.clone();
-      return t.value = e.find(n, t.valueType())(i.value), t;
+    Unit: t.referToSelf((n) => (i) => {
+      var r = i.clone();
+      return r.value = t.find(n, r.valueType())(i.value), r;
     }),
     // deep map collection, skip zeros since unaryMinus(0) = 0
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
     // TODO: add support for string
   });
-}), En = "abs", Xs = ["typed"], Ks = /* @__PURE__ */ rr(En, Xs, (r) => {
+}), Fn = "abs", Hs = ["typed"], Ks = /* @__PURE__ */ ee(Fn, Hs, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(En, {
+    typed: t
+  } = e;
+  return t(Fn, {
     number: Ki,
     "Complex | BigNumber | Fraction | Unit": (n) => n.abs(),
     // deep map collection, skip zeros since abs(0) = 0
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
   });
-}), Fn = "addScalar", Hs = ["typed"], Ws = /* @__PURE__ */ rr(Fn, Hs, (r) => {
+}), Cn = "addScalar", Ws = ["typed"], ks = /* @__PURE__ */ ee(Cn, Ws, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(Fn, {
-    "number, number": Hi,
-    "Complex, Complex": function(i, t) {
-      return i.add(t);
-    },
-    "BigNumber, BigNumber": function(i, t) {
-      return i.plus(t);
-    },
-    "Fraction, Fraction": function(i, t) {
-      return i.add(t);
-    },
-    "Unit, Unit": e.referToSelf((n) => (i, t) => {
-      if (i.value === null || i.value === void 0)
-        throw new Error("Parameter x contains a unit with undefined value");
-      if (t.value === null || t.value === void 0)
-        throw new Error("Parameter y contains a unit with undefined value");
-      if (!i.equalBase(t))
-        throw new Error("Units do not match");
-      var a = i.clone();
-      return a.value = e.find(n, [a.valueType(), t.valueType()])(a.value, t.value), a.fixPrefix = !1, a;
-    })
-  });
-}), Cn = "subtractScalar", ks = ["typed"], js = /* @__PURE__ */ rr(Cn, ks, (r) => {
-  var {
-    typed: e
-  } = r;
-  return e(Cn, {
+    typed: t
+  } = e;
+  return t(Cn, {
     "number, number": Wi,
-    "Complex, Complex": function(i, t) {
-      return i.sub(t);
+    "Complex, Complex": function(i, r) {
+      return i.add(r);
     },
-    "BigNumber, BigNumber": function(i, t) {
-      return i.minus(t);
+    "BigNumber, BigNumber": function(i, r) {
+      return i.plus(r);
     },
-    "Fraction, Fraction": function(i, t) {
-      return i.sub(t);
+    "Fraction, Fraction": function(i, r) {
+      return i.add(r);
     },
-    "Unit, Unit": e.referToSelf((n) => (i, t) => {
+    "Unit, Unit": t.referToSelf((n) => (i, r) => {
       if (i.value === null || i.value === void 0)
         throw new Error("Parameter x contains a unit with undefined value");
-      if (t.value === null || t.value === void 0)
+      if (r.value === null || r.value === void 0)
         throw new Error("Parameter y contains a unit with undefined value");
-      if (!i.equalBase(t))
+      if (!i.equalBase(r))
         throw new Error("Units do not match");
       var a = i.clone();
-      return a.value = e.find(n, [a.valueType(), t.valueType()])(a.value, t.value), a.fixPrefix = !1, a;
+      return a.value = t.find(n, [a.valueType(), r.valueType()])(a.value, r.value), a.fixPrefix = !1, a;
     })
   });
-}), rf = "matAlgo11xS0s", ef = ["typed", "equalScalar"], tf = /* @__PURE__ */ rr(rf, ef, (r) => {
+}), bn = "subtractScalar", js = ["typed"], ef = /* @__PURE__ */ ee(bn, js, (e) => {
   var {
-    typed: e,
+    typed: t
+  } = e;
+  return t(bn, {
+    "number, number": ki,
+    "Complex, Complex": function(i, r) {
+      return i.sub(r);
+    },
+    "BigNumber, BigNumber": function(i, r) {
+      return i.minus(r);
+    },
+    "Fraction, Fraction": function(i, r) {
+      return i.sub(r);
+    },
+    "Unit, Unit": t.referToSelf((n) => (i, r) => {
+      if (i.value === null || i.value === void 0)
+        throw new Error("Parameter x contains a unit with undefined value");
+      if (r.value === null || r.value === void 0)
+        throw new Error("Parameter y contains a unit with undefined value");
+      if (!i.equalBase(r))
+        throw new Error("Units do not match");
+      var a = i.clone();
+      return a.value = t.find(n, [a.valueType(), r.valueType()])(a.value, r.value), a.fixPrefix = !1, a;
+    })
+  });
+}), rf = "matAlgo11xS0s", tf = ["typed", "equalScalar"], nf = /* @__PURE__ */ ee(rf, tf, (e) => {
+  var {
+    typed: t,
     equalScalar: n
-  } = r;
-  return function(t, a, o, v) {
-    var c = t._values, l = t._index, s = t._ptr, u = t._size, f = t._datatype;
+  } = e;
+  return function(r, a, o, h) {
+    var c = r._values, l = r._index, s = r._ptr, u = r._size, f = r._datatype;
     if (!c)
       throw new Error("Cannot perform operation on Pattern Sparse Matrix and Scalar value");
-    var p = u[0], D = u[1], h, m = n, d = 0, w = o;
-    typeof f == "string" && (h = f, m = e.find(n, [h, h]), d = e.convert(0, h), a = e.convert(a, h), w = e.find(o, [h, h]));
-    for (var g = [], E = [], F = [], y = 0; y < D; y++) {
-      F[y] = E.length;
-      for (var C = s[y], b = s[y + 1], A = C; A < b; A++) {
-        var S = l[A], M = v ? w(a, c[A]) : w(c[A], a);
-        m(M, d) || (E.push(S), g.push(M));
+    var p = u[0], D = u[1], v, m = n, d = 0, w = o;
+    typeof f == "string" && (v = f, m = t.find(n, [v, v]), d = t.convert(0, v), a = t.convert(a, v), w = t.find(o, [v, v]));
+    for (var g = [], A = [], F = [], y = 0; y < D; y++) {
+      F[y] = A.length;
+      for (var C = s[y], b = s[y + 1], E = C; E < b; E++) {
+        var S = l[E], M = h ? w(a, c[E]) : w(c[E], a);
+        m(M, d) || (A.push(S), g.push(M));
       }
     }
-    return F[D] = E.length, t.createSparseMatrix({
+    return F[D] = A.length, r.createSparseMatrix({
       values: g,
-      index: E,
+      index: A,
       ptr: F,
       size: [p, D],
-      datatype: h
+      datatype: v
     });
   };
-}), nf = "matAlgo12xSfs", af = ["typed", "DenseMatrix"], Pe = /* @__PURE__ */ rr(nf, af, (r) => {
+}), af = "matAlgo12xSfs", uf = ["typed", "DenseMatrix"], Pr = /* @__PURE__ */ ee(af, uf, (e) => {
   var {
-    typed: e,
+    typed: t,
     DenseMatrix: n
-  } = r;
-  return function(t, a, o, v) {
-    var c = t._values, l = t._index, s = t._ptr, u = t._size, f = t._datatype;
+  } = e;
+  return function(r, a, o, h) {
+    var c = r._values, l = r._index, s = r._ptr, u = r._size, f = r._datatype;
     if (!c)
       throw new Error("Cannot perform operation on Pattern Sparse Matrix and Scalar value");
-    var p = u[0], D = u[1], h, m = o;
-    typeof f == "string" && (h = f, a = e.convert(a, h), m = e.find(o, [h, h]));
-    for (var d = [], w = [], g = [], E = 0; E < D; E++) {
-      for (var F = E + 1, y = s[E], C = s[E + 1], b = y; b < C; b++) {
-        var A = l[b];
-        w[A] = c[b], g[A] = F;
+    var p = u[0], D = u[1], v, m = o;
+    typeof f == "string" && (v = f, a = t.convert(a, v), m = t.find(o, [v, v]));
+    for (var d = [], w = [], g = [], A = 0; A < D; A++) {
+      for (var F = A + 1, y = s[A], C = s[A + 1], b = y; b < C; b++) {
+        var E = l[b];
+        w[E] = c[b], g[E] = F;
       }
       for (var S = 0; S < p; S++)
-        E === 0 && (d[S] = []), g[S] === F ? d[S][E] = v ? m(a, w[S]) : m(w[S], a) : d[S][E] = v ? m(a, 0) : m(0, a);
+        A === 0 && (d[S] = []), g[S] === F ? d[S][A] = h ? m(a, w[S]) : m(w[S], a) : d[S][A] = h ? m(a, 0) : m(0, a);
     }
     return new n({
       data: d,
       size: [p, D],
-      datatype: h
+      datatype: v
     });
   };
-}), uf = "matAlgo14xDs", of = ["typed"], ia = /* @__PURE__ */ rr(uf, of, (r) => {
+}), of = "matAlgo14xDs", sf = ["typed"], aa = /* @__PURE__ */ ee(of, sf, (e) => {
   var {
-    typed: e
-  } = r;
-  return function(t, a, o, v) {
-    var c = t._data, l = t._size, s = t._datatype, u, f = o;
-    typeof s == "string" && (u = s, a = e.convert(a, u), f = e.find(o, [u, u]));
-    var p = l.length > 0 ? n(f, 0, l, l[0], c, a, v) : [];
-    return t.createDenseMatrix({
+    typed: t
+  } = e;
+  return function(r, a, o, h) {
+    var c = r._data, l = r._size, s = r._datatype, u, f = o;
+    typeof s == "string" && (u = s, a = t.convert(a, u), f = t.find(o, [u, u]));
+    var p = l.length > 0 ? n(f, 0, l, l[0], c, a, h) : [];
+    return r.createDenseMatrix({
       data: p,
-      size: Fr(l),
+      size: Ce(l),
       datatype: u
     });
   };
-  function n(i, t, a, o, v, c, l) {
+  function n(i, r, a, o, h, c, l) {
     var s = [];
-    if (t === a.length - 1)
+    if (r === a.length - 1)
       for (var u = 0; u < o; u++)
-        s[u] = l ? i(c, v[u]) : i(v[u], c);
+        s[u] = l ? i(c, h[u]) : i(h[u], c);
     else
       for (var f = 0; f < o; f++)
-        s[f] = n(i, t + 1, a, a[t + 1], v[f], c, l);
+        s[f] = n(i, r + 1, a, a[r + 1], h[f], c, l);
     return s;
   }
-}), sf = "matAlgo03xDSf", ff = ["typed"], Re = /* @__PURE__ */ rr(sf, ff, (r) => {
+}), ff = "matAlgo03xDSf", cf = ["typed"], Rr = /* @__PURE__ */ ee(ff, cf, (e) => {
   var {
-    typed: e
-  } = r;
-  return function(i, t, a, o) {
-    var v = i._data, c = i._size, l = i._datatype, s = t._values, u = t._index, f = t._ptr, p = t._size, D = t._datatype;
+    typed: t
+  } = e;
+  return function(i, r, a, o) {
+    var h = i._data, c = i._size, l = i._datatype, s = r._values, u = r._index, f = r._ptr, p = r._size, D = r._datatype;
     if (c.length !== p.length)
-      throw new Er(c.length, p.length);
+      throw new Fe(c.length, p.length);
     if (c[0] !== p[0] || c[1] !== p[1])
       throw new RangeError("Dimension mismatch. Matrix A (" + c + ") must match Matrix B (" + p + ")");
     if (!s)
       throw new Error("Cannot perform operation on Dense Matrix and Pattern Sparse Matrix");
-    var h = c[0], m = c[1], d, w = 0, g = a;
-    typeof l == "string" && l === D && (d = l, w = e.convert(0, d), g = e.find(a, [d, d]));
-    for (var E = [], F = 0; F < h; F++)
-      E[F] = [];
+    var v = c[0], m = c[1], d, w = 0, g = a;
+    typeof l == "string" && l === D && (d = l, w = t.convert(0, d), g = t.find(a, [d, d]));
+    for (var A = [], F = 0; F < v; F++)
+      A[F] = [];
     for (var y = [], C = [], b = 0; b < m; b++) {
-      for (var A = b + 1, S = f[b], M = f[b + 1], N = S; N < M; N++) {
-        var O = u[N];
-        y[O] = o ? g(s[N], v[O][b]) : g(v[O][b], s[N]), C[O] = A;
+      for (var E = b + 1, S = f[b], M = f[b + 1], x = S; x < M; x++) {
+        var I = u[x];
+        y[I] = o ? g(s[x], h[I][b]) : g(h[I][b], s[x]), C[I] = E;
       }
-      for (var T = 0; T < h; T++)
-        C[T] === A ? E[T][b] = y[T] : E[T][b] = o ? g(w, v[T][b]) : g(v[T][b], w);
+      for (var T = 0; T < v; T++)
+        C[T] === E ? A[T][b] = y[T] : A[T][b] = o ? g(w, h[T][b]) : g(h[T][b], w);
     }
     return i.createDenseMatrix({
-      data: E,
-      size: [h, m],
+      data: A,
+      size: [v, m],
       datatype: d
     });
   };
-}), cf = "matAlgo05xSfSf", lf = ["typed", "equalScalar"], vf = /* @__PURE__ */ rr(cf, lf, (r) => {
+}), lf = "matAlgo05xSfSf", hf = ["typed", "equalScalar"], vf = /* @__PURE__ */ ee(lf, hf, (e) => {
   var {
-    typed: e,
+    typed: t,
     equalScalar: n
-  } = r;
-  return function(t, a, o) {
-    var v = t._values, c = t._index, l = t._ptr, s = t._size, u = t._datatype, f = a._values, p = a._index, D = a._ptr, h = a._size, m = a._datatype;
-    if (s.length !== h.length)
-      throw new Er(s.length, h.length);
-    if (s[0] !== h[0] || s[1] !== h[1])
-      throw new RangeError("Dimension mismatch. Matrix A (" + s + ") must match Matrix B (" + h + ")");
-    var d = s[0], w = s[1], g, E = n, F = 0, y = o;
-    typeof u == "string" && u === m && (g = u, E = e.find(n, [g, g]), F = e.convert(0, g), y = e.find(o, [g, g]));
-    var C = v && f ? [] : void 0, b = [], A = [], S = C ? [] : void 0, M = C ? [] : void 0, N = [], O = [], T, I, B, G;
-    for (I = 0; I < w; I++) {
-      A[I] = b.length;
-      var q = I + 1;
-      for (B = l[I], G = l[I + 1]; B < G; B++)
-        T = c[B], b.push(T), N[T] = q, S && (S[T] = v[B]);
-      for (B = D[I], G = D[I + 1]; B < G; B++)
-        T = p[B], N[T] !== q && b.push(T), O[T] = q, M && (M[T] = f[B]);
+  } = e;
+  return function(r, a, o) {
+    var h = r._values, c = r._index, l = r._ptr, s = r._size, u = r._datatype, f = a._values, p = a._index, D = a._ptr, v = a._size, m = a._datatype;
+    if (s.length !== v.length)
+      throw new Fe(s.length, v.length);
+    if (s[0] !== v[0] || s[1] !== v[1])
+      throw new RangeError("Dimension mismatch. Matrix A (" + s + ") must match Matrix B (" + v + ")");
+    var d = s[0], w = s[1], g, A = n, F = 0, y = o;
+    typeof u == "string" && u === m && (g = u, A = t.find(n, [g, g]), F = t.convert(0, g), y = t.find(o, [g, g]));
+    var C = h && f ? [] : void 0, b = [], E = [], S = C ? [] : void 0, M = C ? [] : void 0, x = [], I = [], T, O, B, G;
+    for (O = 0; O < w; O++) {
+      E[O] = b.length;
+      var $ = O + 1;
+      for (B = l[O], G = l[O + 1]; B < G; B++)
+        T = c[B], b.push(T), x[T] = $, S && (S[T] = h[B]);
+      for (B = D[O], G = D[O + 1]; B < G; B++)
+        T = p[B], x[T] !== $ && b.push(T), I[T] = $, M && (M[T] = f[B]);
       if (C)
-        for (B = A[I]; B < b.length; ) {
+        for (B = E[O]; B < b.length; ) {
           T = b[B];
-          var z = N[T], V = O[T];
-          if (z === q || V === q) {
-            var H = z === q ? S[T] : F, P = V === q ? M[T] : F, L = y(H, P);
-            E(L, F) ? b.splice(B, 1) : (C.push(L), B++);
+          var z = x[T], V = I[T];
+          if (z === $ || V === $) {
+            var K = z === $ ? S[T] : F, P = V === $ ? M[T] : F, q = y(K, P);
+            A(q, F) ? b.splice(B, 1) : (C.push(q), B++);
           }
         }
     }
-    return A[w] = b.length, t.createSparseMatrix({
+    return E[w] = b.length, r.createSparseMatrix({
       values: C,
       index: b,
-      ptr: A,
+      ptr: E,
       size: [d, w],
       datatype: g
     });
   };
-}), hf = "matAlgo13xDD", pf = ["typed"], df = /* @__PURE__ */ rr(hf, pf, (r) => {
+}), pf = "matAlgo13xDD", df = ["typed"], mf = /* @__PURE__ */ ee(pf, df, (e) => {
   var {
-    typed: e
-  } = r;
-  return function(t, a, o) {
-    var v = t._data, c = t._size, l = t._datatype, s = a._data, u = a._size, f = a._datatype, p = [];
+    typed: t
+  } = e;
+  return function(r, a, o) {
+    var h = r._data, c = r._size, l = r._datatype, s = a._data, u = a._size, f = a._datatype, p = [];
     if (c.length !== u.length)
-      throw new Er(c.length, u.length);
+      throw new Fe(c.length, u.length);
     for (var D = 0; D < c.length; D++) {
       if (c[D] !== u[D])
         throw new RangeError("Dimension mismatch. Matrix A (" + c + ") must match Matrix B (" + u + ")");
       p[D] = c[D];
     }
-    var h, m = o;
-    typeof l == "string" && l === f && (h = l, m = e.find(o, [h, h]));
-    var d = p.length > 0 ? n(m, 0, p, p[0], v, s) : [];
-    return t.createDenseMatrix({
+    var v, m = o;
+    typeof l == "string" && l === f && (v = l, m = t.find(o, [v, v]));
+    var d = p.length > 0 ? n(m, 0, p, p[0], h, s) : [];
+    return r.createDenseMatrix({
       data: d,
       size: p,
-      datatype: h
+      datatype: v
     });
   };
-  function n(i, t, a, o, v, c) {
+  function n(i, r, a, o, h, c) {
     var l = [];
-    if (t === a.length - 1)
+    if (r === a.length - 1)
       for (var s = 0; s < o; s++)
-        l[s] = i(v[s], c[s]);
+        l[s] = i(h[s], c[s]);
     else
       for (var u = 0; u < o; u++)
-        l[u] = n(i, t + 1, a, a[t + 1], v[u], c[u]);
+        l[u] = n(i, r + 1, a, a[r + 1], h[u], c[u]);
     return l;
   }
-}), mf = "broadcast", gf = ["concat"], Df = /* @__PURE__ */ rr(mf, gf, (r) => {
+}), gf = "broadcast", Df = ["concat"], yf = /* @__PURE__ */ ee(gf, Df, (e) => {
   var {
-    concat: e
-  } = r;
-  return function(t, a) {
-    var o = Math.max(t._size.length, a._size.length);
-    if (t._size.length === a._size.length && t._size.every((D, h) => D === a._size[h]))
-      return [t, a];
-    for (var v = n(t._size, o, 0), c = n(a._size, o, 0), l = [], s = 0; s < o; s++)
-      l[s] = Math.max(v[s], c[s]);
-    ct(v, l), ct(c, l);
-    var u = t.clone(), f = a.clone();
+    concat: t
+  } = e;
+  return function(r, a) {
+    var o = Math.max(r._size.length, a._size.length);
+    if (r._size.length === a._size.length && r._size.every((D, v) => D === a._size[v]))
+      return [r, a];
+    for (var h = n(r._size, o, 0), c = n(a._size, o, 0), l = [], s = 0; s < o; s++)
+      l[s] = Math.max(h[s], c[s]);
+    ct(h, l), ct(c, l);
+    var u = r.clone(), f = a.clone();
     u._size.length < o ? u.reshape(n(u._size, o, 1)) : f._size.length < o && f.reshape(n(f._size, o, 1));
     for (var p = 0; p < o; p++)
       u._size[p] < l[p] && (u = i(u, l[p], p)), f._size[p] < l[p] && (f = i(f, l[p], p));
     return [u, f];
   };
-  function n(t, a, o) {
-    return [...Array(a - t.length).fill(o), ...t];
+  function n(r, a, o) {
+    return [...Array(a - r.length).fill(o), ...r];
   }
-  function i(t, a, o) {
-    return e(...Array(a).fill(t), o);
+  function i(r, a, o) {
+    return t(...Array(a).fill(r), o);
   }
-}), yf = "matrixAlgorithmSuite", wf = ["typed", "matrix", "concat"], Me = /* @__PURE__ */ rr(yf, wf, (r) => {
+}), wf = "matrixAlgorithmSuite", Af = ["typed", "matrix", "concat"], Mr = /* @__PURE__ */ ee(wf, Af, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     concat: i
-  } = r, t = df({
-    typed: e
-  }), a = ia({
-    typed: e
-  }), o = Df({
+  } = e, r = mf({
+    typed: t
+  }), a = aa({
+    typed: t
+  }), o = yf({
     concat: i
   });
   return function(c) {
     var l = c.elop, s = c.SD || c.DS, u;
     l ? (u = {
-      "DenseMatrix, DenseMatrix": (h, m) => t(...o(h, m), l),
-      "Array, Array": (h, m) => t(...o(n(h), n(m)), l).valueOf(),
-      "Array, DenseMatrix": (h, m) => t(...o(n(h), m), l),
-      "DenseMatrix, Array": (h, m) => t(...o(h, n(m)), l)
-    }, c.SS && (u["SparseMatrix, SparseMatrix"] = (h, m) => c.SS(...o(h, m), l, !1)), c.DS && (u["DenseMatrix, SparseMatrix"] = (h, m) => c.DS(...o(h, m), l, !1), u["Array, SparseMatrix"] = (h, m) => c.DS(...o(n(h), m), l, !1)), s && (u["SparseMatrix, DenseMatrix"] = (h, m) => s(...o(m, h), l, !0), u["SparseMatrix, Array"] = (h, m) => s(...o(n(m), h), l, !0))) : (u = {
-      "DenseMatrix, DenseMatrix": e.referToSelf((h) => (m, d) => t(...o(m, d), h)),
-      "Array, Array": e.referToSelf((h) => (m, d) => t(...o(n(m), n(d)), h).valueOf()),
-      "Array, DenseMatrix": e.referToSelf((h) => (m, d) => t(...o(n(m), d), h)),
-      "DenseMatrix, Array": e.referToSelf((h) => (m, d) => t(...o(m, n(d)), h))
-    }, c.SS && (u["SparseMatrix, SparseMatrix"] = e.referToSelf((h) => (m, d) => c.SS(...o(m, d), h, !1))), c.DS && (u["DenseMatrix, SparseMatrix"] = e.referToSelf((h) => (m, d) => c.DS(...o(m, d), h, !1)), u["Array, SparseMatrix"] = e.referToSelf((h) => (m, d) => c.DS(...o(n(m), d), h, !1))), s && (u["SparseMatrix, DenseMatrix"] = e.referToSelf((h) => (m, d) => s(...o(d, m), h, !0)), u["SparseMatrix, Array"] = e.referToSelf((h) => (m, d) => s(...o(n(d), m), h, !0))));
+      "DenseMatrix, DenseMatrix": (v, m) => r(...o(v, m), l),
+      "Array, Array": (v, m) => r(...o(n(v), n(m)), l).valueOf(),
+      "Array, DenseMatrix": (v, m) => r(...o(n(v), m), l),
+      "DenseMatrix, Array": (v, m) => r(...o(v, n(m)), l)
+    }, c.SS && (u["SparseMatrix, SparseMatrix"] = (v, m) => c.SS(...o(v, m), l, !1)), c.DS && (u["DenseMatrix, SparseMatrix"] = (v, m) => c.DS(...o(v, m), l, !1), u["Array, SparseMatrix"] = (v, m) => c.DS(...o(n(v), m), l, !1)), s && (u["SparseMatrix, DenseMatrix"] = (v, m) => s(...o(m, v), l, !0), u["SparseMatrix, Array"] = (v, m) => s(...o(n(m), v), l, !0))) : (u = {
+      "DenseMatrix, DenseMatrix": t.referToSelf((v) => (m, d) => r(...o(m, d), v)),
+      "Array, Array": t.referToSelf((v) => (m, d) => r(...o(n(m), n(d)), v).valueOf()),
+      "Array, DenseMatrix": t.referToSelf((v) => (m, d) => r(...o(n(m), d), v)),
+      "DenseMatrix, Array": t.referToSelf((v) => (m, d) => r(...o(m, n(d)), v))
+    }, c.SS && (u["SparseMatrix, SparseMatrix"] = t.referToSelf((v) => (m, d) => c.SS(...o(m, d), v, !1))), c.DS && (u["DenseMatrix, SparseMatrix"] = t.referToSelf((v) => (m, d) => c.DS(...o(m, d), v, !1)), u["Array, SparseMatrix"] = t.referToSelf((v) => (m, d) => c.DS(...o(n(m), d), v, !1))), s && (u["SparseMatrix, DenseMatrix"] = t.referToSelf((v) => (m, d) => s(...o(d, m), v, !0)), u["SparseMatrix, Array"] = t.referToSelf((v) => (m, d) => s(...o(n(d), m), v, !0))));
     var f = c.scalar || "any", p = c.Ds || c.Ss;
-    p && (l ? (u["DenseMatrix," + f] = (h, m) => a(h, m, l, !1), u[f + ", DenseMatrix"] = (h, m) => a(m, h, l, !0), u["Array," + f] = (h, m) => a(n(h), m, l, !1).valueOf(), u[f + ", Array"] = (h, m) => a(n(m), h, l, !0).valueOf()) : (u["DenseMatrix," + f] = e.referToSelf((h) => (m, d) => a(m, d, h, !1)), u[f + ", DenseMatrix"] = e.referToSelf((h) => (m, d) => a(d, m, h, !0)), u["Array," + f] = e.referToSelf((h) => (m, d) => a(n(m), d, h, !1).valueOf()), u[f + ", Array"] = e.referToSelf((h) => (m, d) => a(n(d), m, h, !0).valueOf())));
+    p && (l ? (u["DenseMatrix," + f] = (v, m) => a(v, m, l, !1), u[f + ", DenseMatrix"] = (v, m) => a(m, v, l, !0), u["Array," + f] = (v, m) => a(n(v), m, l, !1).valueOf(), u[f + ", Array"] = (v, m) => a(n(m), v, l, !0).valueOf()) : (u["DenseMatrix," + f] = t.referToSelf((v) => (m, d) => a(m, d, v, !1)), u[f + ", DenseMatrix"] = t.referToSelf((v) => (m, d) => a(d, m, v, !0)), u["Array," + f] = t.referToSelf((v) => (m, d) => a(n(m), d, v, !1).valueOf()), u[f + ", Array"] = t.referToSelf((v) => (m, d) => a(n(d), m, v, !0).valueOf())));
     var D = c.sS !== void 0 ? c.sS : c.Ss;
-    return l ? (c.Ss && (u["SparseMatrix," + f] = (h, m) => c.Ss(h, m, l, !1)), D && (u[f + ", SparseMatrix"] = (h, m) => D(m, h, l, !0))) : (c.Ss && (u["SparseMatrix," + f] = e.referToSelf((h) => (m, d) => c.Ss(m, d, h, !1))), D && (u[f + ", SparseMatrix"] = e.referToSelf((h) => (m, d) => D(d, m, h, !0)))), l && l.signatures && Mu(u, l.signatures), u;
+    return l ? (c.Ss && (u["SparseMatrix," + f] = (v, m) => c.Ss(v, m, l, !1)), D && (u[f + ", SparseMatrix"] = (v, m) => D(m, v, l, !0))) : (c.Ss && (u["SparseMatrix," + f] = t.referToSelf((v) => (m, d) => c.Ss(m, d, v, !1))), D && (u[f + ", SparseMatrix"] = t.referToSelf((v) => (m, d) => D(d, m, v, !0)))), l && l.signatures && Su(u, l.signatures), u;
   };
-}), Af = "matAlgo01xDSid", Ef = ["typed"], aa = /* @__PURE__ */ rr(Af, Ef, (r) => {
+}), Ef = "matAlgo01xDSid", Ff = ["typed"], ua = /* @__PURE__ */ ee(Ef, Ff, (e) => {
   var {
-    typed: e
-  } = r;
-  return function(i, t, a, o) {
-    var v = i._data, c = i._size, l = i._datatype, s = t._values, u = t._index, f = t._ptr, p = t._size, D = t._datatype;
+    typed: t
+  } = e;
+  return function(i, r, a, o) {
+    var h = i._data, c = i._size, l = i._datatype, s = r._values, u = r._index, f = r._ptr, p = r._size, D = r._datatype;
     if (c.length !== p.length)
-      throw new Er(c.length, p.length);
+      throw new Fe(c.length, p.length);
     if (c[0] !== p[0] || c[1] !== p[1])
       throw new RangeError("Dimension mismatch. Matrix A (" + c + ") must match Matrix B (" + p + ")");
     if (!s)
       throw new Error("Cannot perform operation on Dense Matrix and Pattern Sparse Matrix");
-    var h = c[0], m = c[1], d = typeof l == "string" && l === D ? l : void 0, w = d ? e.find(a, [d, d]) : a, g, E, F = [];
-    for (g = 0; g < h; g++)
+    var v = c[0], m = c[1], d = typeof l == "string" && l === D ? l : void 0, w = d ? t.find(a, [d, d]) : a, g, A, F = [];
+    for (g = 0; g < v; g++)
       F[g] = [];
     var y = [], C = [];
-    for (E = 0; E < m; E++) {
-      for (var b = E + 1, A = f[E], S = f[E + 1], M = A; M < S; M++)
-        g = u[M], y[g] = o ? w(s[M], v[g][E]) : w(v[g][E], s[M]), C[g] = b;
-      for (g = 0; g < h; g++)
-        C[g] === b ? F[g][E] = y[g] : F[g][E] = v[g][E];
+    for (A = 0; A < m; A++) {
+      for (var b = A + 1, E = f[A], S = f[A + 1], M = E; M < S; M++)
+        g = u[M], y[g] = o ? w(s[M], h[g][A]) : w(h[g][A], s[M]), C[g] = b;
+      for (g = 0; g < v; g++)
+        C[g] === b ? F[g][A] = y[g] : F[g][A] = h[g][A];
     }
     return i.createDenseMatrix({
       data: F,
-      size: [h, m],
+      size: [v, m],
       datatype: d
     });
   };
-}), Ff = "matAlgo04xSidSid", Cf = ["typed", "equalScalar"], bf = /* @__PURE__ */ rr(Ff, Cf, (r) => {
+}), Cf = "matAlgo04xSidSid", bf = ["typed", "equalScalar"], Mf = /* @__PURE__ */ ee(Cf, bf, (e) => {
   var {
-    typed: e,
+    typed: t,
     equalScalar: n
-  } = r;
-  return function(t, a, o) {
-    var v = t._values, c = t._index, l = t._ptr, s = t._size, u = t._datatype, f = a._values, p = a._index, D = a._ptr, h = a._size, m = a._datatype;
-    if (s.length !== h.length)
-      throw new Er(s.length, h.length);
-    if (s[0] !== h[0] || s[1] !== h[1])
-      throw new RangeError("Dimension mismatch. Matrix A (" + s + ") must match Matrix B (" + h + ")");
-    var d = s[0], w = s[1], g, E = n, F = 0, y = o;
-    typeof u == "string" && u === m && (g = u, E = e.find(n, [g, g]), F = e.convert(0, g), y = e.find(o, [g, g]));
-    var C = v && f ? [] : void 0, b = [], A = [], S = v && f ? [] : void 0, M = v && f ? [] : void 0, N = [], O = [], T, I, B, G, q;
-    for (I = 0; I < w; I++) {
-      A[I] = b.length;
-      var z = I + 1;
-      for (G = l[I], q = l[I + 1], B = G; B < q; B++)
-        T = c[B], b.push(T), N[T] = z, S && (S[T] = v[B]);
-      for (G = D[I], q = D[I + 1], B = G; B < q; B++)
-        if (T = p[B], N[T] === z) {
+  } = e;
+  return function(r, a, o) {
+    var h = r._values, c = r._index, l = r._ptr, s = r._size, u = r._datatype, f = a._values, p = a._index, D = a._ptr, v = a._size, m = a._datatype;
+    if (s.length !== v.length)
+      throw new Fe(s.length, v.length);
+    if (s[0] !== v[0] || s[1] !== v[1])
+      throw new RangeError("Dimension mismatch. Matrix A (" + s + ") must match Matrix B (" + v + ")");
+    var d = s[0], w = s[1], g, A = n, F = 0, y = o;
+    typeof u == "string" && u === m && (g = u, A = t.find(n, [g, g]), F = t.convert(0, g), y = t.find(o, [g, g]));
+    var C = h && f ? [] : void 0, b = [], E = [], S = h && f ? [] : void 0, M = h && f ? [] : void 0, x = [], I = [], T, O, B, G, $;
+    for (O = 0; O < w; O++) {
+      E[O] = b.length;
+      var z = O + 1;
+      for (G = l[O], $ = l[O + 1], B = G; B < $; B++)
+        T = c[B], b.push(T), x[T] = z, S && (S[T] = h[B]);
+      for (G = D[O], $ = D[O + 1], B = G; B < $; B++)
+        if (T = p[B], x[T] === z) {
           if (S) {
             var V = y(S[T], f[B]);
-            E(V, F) ? N[T] = null : S[T] = V;
+            A(V, F) ? x[T] = null : S[T] = V;
           }
         } else
-          b.push(T), O[T] = z, M && (M[T] = f[B]);
+          b.push(T), I[T] = z, M && (M[T] = f[B]);
       if (S && M)
-        for (B = A[I]; B < b.length; )
-          T = b[B], N[T] === z ? (C[B] = S[T], B++) : O[T] === z ? (C[B] = M[T], B++) : b.splice(B, 1);
+        for (B = E[O]; B < b.length; )
+          T = b[B], x[T] === z ? (C[B] = S[T], B++) : I[T] === z ? (C[B] = M[T], B++) : b.splice(B, 1);
     }
-    return A[w] = b.length, t.createSparseMatrix({
+    return E[w] = b.length, r.createSparseMatrix({
       values: C,
       index: b,
-      ptr: A,
+      ptr: E,
       size: [d, w],
       datatype: g
     });
   };
-}), Mf = "matAlgo10xSids", Sf = ["typed", "DenseMatrix"], ua = /* @__PURE__ */ rr(Mf, Sf, (r) => {
+}), Sf = "matAlgo10xSids", xf = ["typed", "DenseMatrix"], oa = /* @__PURE__ */ ee(Sf, xf, (e) => {
   var {
-    typed: e,
+    typed: t,
     DenseMatrix: n
-  } = r;
-  return function(t, a, o, v) {
-    var c = t._values, l = t._index, s = t._ptr, u = t._size, f = t._datatype;
+  } = e;
+  return function(r, a, o, h) {
+    var c = r._values, l = r._index, s = r._ptr, u = r._size, f = r._datatype;
     if (!c)
       throw new Error("Cannot perform operation on Pattern Sparse Matrix and Scalar value");
-    var p = u[0], D = u[1], h, m = o;
-    typeof f == "string" && (h = f, a = e.convert(a, h), m = e.find(o, [h, h]));
-    for (var d = [], w = [], g = [], E = 0; E < D; E++) {
-      for (var F = E + 1, y = s[E], C = s[E + 1], b = y; b < C; b++) {
-        var A = l[b];
-        w[A] = c[b], g[A] = F;
+    var p = u[0], D = u[1], v, m = o;
+    typeof f == "string" && (v = f, a = t.convert(a, v), m = t.find(o, [v, v]));
+    for (var d = [], w = [], g = [], A = 0; A < D; A++) {
+      for (var F = A + 1, y = s[A], C = s[A + 1], b = y; b < C; b++) {
+        var E = l[b];
+        w[E] = c[b], g[E] = F;
       }
       for (var S = 0; S < p; S++)
-        E === 0 && (d[S] = []), g[S] === F ? d[S][E] = v ? m(a, w[S]) : m(w[S], a) : d[S][E] = a;
+        A === 0 && (d[S] = []), g[S] === F ? d[S][A] = h ? m(a, w[S]) : m(w[S], a) : d[S][A] = a;
     }
     return new n({
       data: d,
       size: [p, D],
-      datatype: h
+      datatype: v
     });
   };
-}), Nf = "multiplyScalar", xf = ["typed"], Bf = /* @__PURE__ */ rr(Nf, xf, (r) => {
+}), Nf = "multiplyScalar", Bf = ["typed"], _f = /* @__PURE__ */ ee(Nf, Bf, (e) => {
   var {
-    typed: e
-  } = r;
-  return e("multiplyScalar", {
-    "number, number": ki,
-    "Complex, Complex": function(i, t) {
-      return i.mul(t);
+    typed: t
+  } = e;
+  return t("multiplyScalar", {
+    "number, number": ji,
+    "Complex, Complex": function(i, r) {
+      return i.mul(r);
     },
-    "BigNumber, BigNumber": function(i, t) {
-      return i.times(t);
+    "BigNumber, BigNumber": function(i, r) {
+      return i.times(r);
     },
-    "Fraction, Fraction": function(i, t) {
-      return i.mul(t);
+    "Fraction, Fraction": function(i, r) {
+      return i.mul(r);
     },
     "number | Fraction | BigNumber | Complex, Unit": (n, i) => i.multiply(n),
     "Unit, number | Fraction | BigNumber | Complex | Unit": (n, i) => n.multiply(i)
   });
-}), bn = "multiply", _f = ["typed", "matrix", "addScalar", "multiplyScalar", "equalScalar", "dot"], zf = /* @__PURE__ */ rr(bn, _f, (r) => {
+}), Mn = "multiply", zf = ["typed", "matrix", "addScalar", "multiplyScalar", "equalScalar", "dot"], Tf = /* @__PURE__ */ ee(Mn, zf, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     addScalar: i,
-    multiplyScalar: t,
+    multiplyScalar: r,
     equalScalar: a,
     dot: o
-  } = r, v = tf({
-    typed: e,
+  } = e, h = nf({
+    typed: t,
     equalScalar: a
-  }), c = ia({
-    typed: e
+  }), c = aa({
+    typed: t
   });
   function l(F, y) {
     switch (F.length) {
@@ -6088,216 +6088,216 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
     return f(F, y);
   }
   function f(F, y) {
-    var C = F._data, b = F._size, A = F._datatype, S = y._data, M = y._size, N = y._datatype, O = b[0], T = M[1], I, B = i, G = t;
-    A && N && A === N && typeof A == "string" && (I = A, B = e.find(i, [I, I]), G = e.find(t, [I, I]));
-    for (var q = [], z = 0; z < T; z++) {
-      for (var V = G(C[0], S[0][z]), H = 1; H < O; H++)
-        V = B(V, G(C[H], S[H][z]));
-      q[z] = V;
+    var C = F._data, b = F._size, E = F._datatype, S = y._data, M = y._size, x = y._datatype, I = b[0], T = M[1], O, B = i, G = r;
+    E && x && E === x && typeof E == "string" && (O = E, B = t.find(i, [O, O]), G = t.find(r, [O, O]));
+    for (var $ = [], z = 0; z < T; z++) {
+      for (var V = G(C[0], S[0][z]), K = 1; K < I; K++)
+        V = B(V, G(C[K], S[K][z]));
+      $[z] = V;
     }
     return F.createDenseMatrix({
-      data: q,
+      data: $,
       size: [T],
-      datatype: I
+      datatype: O
     });
   }
-  var p = e("_multiplyMatrixVector", {
-    "DenseMatrix, any": h,
+  var p = t("_multiplyMatrixVector", {
+    "DenseMatrix, any": v,
     "SparseMatrix, any": w
-  }), D = e("_multiplyMatrixMatrix", {
+  }), D = t("_multiplyMatrixMatrix", {
     "DenseMatrix, DenseMatrix": m,
     "DenseMatrix, SparseMatrix": d,
     "SparseMatrix, DenseMatrix": g,
-    "SparseMatrix, SparseMatrix": E
+    "SparseMatrix, SparseMatrix": A
   });
-  function h(F, y) {
-    var C = F._data, b = F._size, A = F._datatype, S = y._data, M = y._datatype, N = b[0], O = b[1], T, I = i, B = t;
-    A && M && A === M && typeof A == "string" && (T = A, I = e.find(i, [T, T]), B = e.find(t, [T, T]));
-    for (var G = [], q = 0; q < N; q++) {
-      for (var z = C[q], V = B(z[0], S[0]), H = 1; H < O; H++)
-        V = I(V, B(z[H], S[H]));
-      G[q] = V;
+  function v(F, y) {
+    var C = F._data, b = F._size, E = F._datatype, S = y._data, M = y._datatype, x = b[0], I = b[1], T, O = i, B = r;
+    E && M && E === M && typeof E == "string" && (T = E, O = t.find(i, [T, T]), B = t.find(r, [T, T]));
+    for (var G = [], $ = 0; $ < x; $++) {
+      for (var z = C[$], V = B(z[0], S[0]), K = 1; K < I; K++)
+        V = O(V, B(z[K], S[K]));
+      G[$] = V;
     }
     return F.createDenseMatrix({
       data: G,
-      size: [N],
+      size: [x],
       datatype: T
     });
   }
   function m(F, y) {
-    var C = F._data, b = F._size, A = F._datatype, S = y._data, M = y._size, N = y._datatype, O = b[0], T = b[1], I = M[1], B, G = i, q = t;
-    A && N && A === N && typeof A == "string" && (B = A, G = e.find(i, [B, B]), q = e.find(t, [B, B]));
-    for (var z = [], V = 0; V < O; V++) {
-      var H = C[V];
+    var C = F._data, b = F._size, E = F._datatype, S = y._data, M = y._size, x = y._datatype, I = b[0], T = b[1], O = M[1], B, G = i, $ = r;
+    E && x && E === x && typeof E == "string" && (B = E, G = t.find(i, [B, B]), $ = t.find(r, [B, B]));
+    for (var z = [], V = 0; V < I; V++) {
+      var K = C[V];
       z[V] = [];
-      for (var P = 0; P < I; P++) {
-        for (var L = q(H[0], S[0][P]), Z = 1; Z < T; Z++)
-          L = G(L, q(H[Z], S[Z][P]));
-        z[V][P] = L;
+      for (var P = 0; P < O; P++) {
+        for (var q = $(K[0], S[0][P]), Z = 1; Z < T; Z++)
+          q = G(q, $(K[Z], S[Z][P]));
+        z[V][P] = q;
       }
     }
     return F.createDenseMatrix({
       data: z,
-      size: [O, I],
+      size: [I, O],
       datatype: B
     });
   }
   function d(F, y) {
-    var C = F._data, b = F._size, A = F._datatype, S = y._values, M = y._index, N = y._ptr, O = y._size, T = y._datatype;
+    var C = F._data, b = F._size, E = F._datatype, S = y._values, M = y._index, x = y._ptr, I = y._size, T = y._datatype;
     if (!S)
       throw new Error("Cannot multiply Dense Matrix times Pattern only Matrix");
-    var I = b[0], B = O[1], G, q = i, z = t, V = a, H = 0;
-    A && T && A === T && typeof A == "string" && (G = A, q = e.find(i, [G, G]), z = e.find(t, [G, G]), V = e.find(a, [G, G]), H = e.convert(0, G));
-    for (var P = [], L = [], Z = [], nr = y.createSparseMatrix({
+    var O = b[0], B = I[1], G, $ = i, z = r, V = a, K = 0;
+    E && T && E === T && typeof E == "string" && (G = E, $ = t.find(i, [G, G]), z = t.find(r, [G, G]), V = t.find(a, [G, G]), K = t.convert(0, G));
+    for (var P = [], q = [], Z = [], ne = y.createSparseMatrix({
       values: P,
-      index: L,
+      index: q,
       ptr: Z,
-      size: [I, B],
+      size: [O, B],
       datatype: G
     }), k = 0; k < B; k++) {
-      Z[k] = L.length;
-      var U = N[k], Q = N[k + 1];
+      Z[k] = q.length;
+      var U = x[k], Q = x[k + 1];
       if (Q > U)
-        for (var X = 0, J = 0; J < I; J++) {
-          for (var ur = J + 1, j = void 0, or = U; or < Q; or++) {
-            var fr = M[or];
-            X !== ur ? (j = z(C[J][fr], S[or]), X = ur) : j = q(j, z(C[J][fr], S[or]));
+        for (var X = 0, J = 0; J < O; J++) {
+          for (var ue = J + 1, j = void 0, oe = U; oe < Q; oe++) {
+            var le = M[oe];
+            X !== ue ? (j = z(C[J][le], S[oe]), X = ue) : j = $(j, z(C[J][le], S[oe]));
           }
-          X === ur && !V(j, H) && (L.push(J), P.push(j));
+          X === ue && !V(j, K) && (q.push(J), P.push(j));
         }
     }
-    return Z[B] = L.length, nr;
+    return Z[B] = q.length, ne;
   }
   function w(F, y) {
-    var C = F._values, b = F._index, A = F._ptr, S = F._datatype;
+    var C = F._values, b = F._index, E = F._ptr, S = F._datatype;
     if (!C)
       throw new Error("Cannot multiply Pattern only Matrix times Dense Matrix");
-    var M = y._data, N = y._datatype, O = F._size[0], T = y._size[0], I = [], B = [], G = [], q, z = i, V = t, H = a, P = 0;
-    S && N && S === N && typeof S == "string" && (q = S, z = e.find(i, [q, q]), V = e.find(t, [q, q]), H = e.find(a, [q, q]), P = e.convert(0, q));
-    var L = [], Z = [];
+    var M = y._data, x = y._datatype, I = F._size[0], T = y._size[0], O = [], B = [], G = [], $, z = i, V = r, K = a, P = 0;
+    S && x && S === x && typeof S == "string" && ($ = S, z = t.find(i, [$, $]), V = t.find(r, [$, $]), K = t.find(a, [$, $]), P = t.convert(0, $));
+    var q = [], Z = [];
     G[0] = 0;
-    for (var nr = 0; nr < T; nr++) {
-      var k = M[nr];
-      if (!H(k, P))
-        for (var U = A[nr], Q = A[nr + 1], X = U; X < Q; X++) {
+    for (var ne = 0; ne < T; ne++) {
+      var k = M[ne];
+      if (!K(k, P))
+        for (var U = E[ne], Q = E[ne + 1], X = U; X < Q; X++) {
           var J = b[X];
-          Z[J] ? L[J] = z(L[J], V(k, C[X])) : (Z[J] = !0, B.push(J), L[J] = V(k, C[X]));
+          Z[J] ? q[J] = z(q[J], V(k, C[X])) : (Z[J] = !0, B.push(J), q[J] = V(k, C[X]));
         }
     }
-    for (var ur = B.length, j = 0; j < ur; j++) {
-      var or = B[j];
-      I[j] = L[or];
+    for (var ue = B.length, j = 0; j < ue; j++) {
+      var oe = B[j];
+      O[j] = q[oe];
     }
     return G[1] = B.length, F.createSparseMatrix({
-      values: I,
+      values: O,
       index: B,
       ptr: G,
-      size: [O, 1],
-      datatype: q
+      size: [I, 1],
+      datatype: $
     });
   }
   function g(F, y) {
-    var C = F._values, b = F._index, A = F._ptr, S = F._datatype;
+    var C = F._values, b = F._index, E = F._ptr, S = F._datatype;
     if (!C)
       throw new Error("Cannot multiply Pattern only Matrix times Dense Matrix");
-    var M = y._data, N = y._datatype, O = F._size[0], T = y._size[0], I = y._size[1], B, G = i, q = t, z = a, V = 0;
-    S && N && S === N && typeof S == "string" && (B = S, G = e.find(i, [B, B]), q = e.find(t, [B, B]), z = e.find(a, [B, B]), V = e.convert(0, B));
-    for (var H = [], P = [], L = [], Z = F.createSparseMatrix({
-      values: H,
+    var M = y._data, x = y._datatype, I = F._size[0], T = y._size[0], O = y._size[1], B, G = i, $ = r, z = a, V = 0;
+    S && x && S === x && typeof S == "string" && (B = S, G = t.find(i, [B, B]), $ = t.find(r, [B, B]), z = t.find(a, [B, B]), V = t.convert(0, B));
+    for (var K = [], P = [], q = [], Z = F.createSparseMatrix({
+      values: K,
       index: P,
-      ptr: L,
-      size: [O, I],
+      ptr: q,
+      size: [I, O],
       datatype: B
-    }), nr = [], k = [], U = 0; U < I; U++) {
-      L[U] = P.length;
+    }), ne = [], k = [], U = 0; U < O; U++) {
+      q[U] = P.length;
       for (var Q = U + 1, X = 0; X < T; X++) {
         var J = M[X][U];
         if (!z(J, V))
-          for (var ur = A[X], j = A[X + 1], or = ur; or < j; or++) {
-            var fr = b[or];
-            k[fr] !== Q ? (k[fr] = Q, P.push(fr), nr[fr] = q(J, C[or])) : nr[fr] = G(nr[fr], q(J, C[or]));
+          for (var ue = E[X], j = E[X + 1], oe = ue; oe < j; oe++) {
+            var le = b[oe];
+            k[le] !== Q ? (k[le] = Q, P.push(le), ne[le] = $(J, C[oe])) : ne[le] = G(ne[le], $(J, C[oe]));
           }
       }
-      for (var pr = L[U], gr = P.length, yr = pr; yr < gr; yr++) {
-        var cr = P[yr];
-        H[yr] = nr[cr];
+      for (var de = q[U], ge = P.length, we = de; we < ge; we++) {
+        var he = P[we];
+        K[we] = ne[he];
       }
     }
-    return L[I] = P.length, Z;
+    return q[O] = P.length, Z;
   }
-  function E(F, y) {
-    var C = F._values, b = F._index, A = F._ptr, S = F._datatype, M = y._values, N = y._index, O = y._ptr, T = y._datatype, I = F._size[0], B = y._size[1], G = C && M, q, z = i, V = t;
-    S && T && S === T && typeof S == "string" && (q = S, z = e.find(i, [q, q]), V = e.find(t, [q, q]));
-    for (var H = G ? [] : void 0, P = [], L = [], Z = F.createSparseMatrix({
-      values: H,
+  function A(F, y) {
+    var C = F._values, b = F._index, E = F._ptr, S = F._datatype, M = y._values, x = y._index, I = y._ptr, T = y._datatype, O = F._size[0], B = y._size[1], G = C && M, $, z = i, V = r;
+    S && T && S === T && typeof S == "string" && ($ = S, z = t.find(i, [$, $]), V = t.find(r, [$, $]));
+    for (var K = G ? [] : void 0, P = [], q = [], Z = F.createSparseMatrix({
+      values: K,
       index: P,
-      ptr: L,
-      size: [I, B],
-      datatype: q
-    }), nr = G ? [] : void 0, k = [], U, Q, X, J, ur, j, or, fr, pr = 0; pr < B; pr++) {
-      L[pr] = P.length;
-      var gr = pr + 1;
-      for (ur = O[pr], j = O[pr + 1], J = ur; J < j; J++)
-        if (fr = N[J], G)
-          for (Q = A[fr], X = A[fr + 1], U = Q; U < X; U++)
-            or = b[U], k[or] !== gr ? (k[or] = gr, P.push(or), nr[or] = V(M[J], C[U])) : nr[or] = z(nr[or], V(M[J], C[U]));
+      ptr: q,
+      size: [O, B],
+      datatype: $
+    }), ne = G ? [] : void 0, k = [], U, Q, X, J, ue, j, oe, le, de = 0; de < B; de++) {
+      q[de] = P.length;
+      var ge = de + 1;
+      for (ue = I[de], j = I[de + 1], J = ue; J < j; J++)
+        if (le = x[J], G)
+          for (Q = E[le], X = E[le + 1], U = Q; U < X; U++)
+            oe = b[U], k[oe] !== ge ? (k[oe] = ge, P.push(oe), ne[oe] = V(M[J], C[U])) : ne[oe] = z(ne[oe], V(M[J], C[U]));
         else
-          for (Q = A[fr], X = A[fr + 1], U = Q; U < X; U++)
-            or = b[U], k[or] !== gr && (k[or] = gr, P.push(or));
+          for (Q = E[le], X = E[le + 1], U = Q; U < X; U++)
+            oe = b[U], k[oe] !== ge && (k[oe] = ge, P.push(oe));
       if (G)
-        for (var yr = L[pr], cr = P.length, Cr = yr; Cr < cr; Cr++) {
-          var wr = P[Cr];
-          H[Cr] = nr[wr];
+        for (var we = q[de], he = P.length, be = we; be < he; be++) {
+          var Ee = P[be];
+          K[be] = ne[Ee];
         }
     }
-    return L[B] = P.length, Z;
+    return q[B] = P.length, Z;
   }
-  return e(bn, t, {
+  return t(Mn, r, {
     // we extend the signatures of multiplyScalar with signatures dealing with matrices
-    "Array, Array": e.referTo("Matrix, Matrix", (F) => (y, C) => {
-      l(qr(y), qr(C));
+    "Array, Array": t.referTo("Matrix, Matrix", (F) => (y, C) => {
+      l($e(y), $e(C));
       var b = F(n(y), n(C));
-      return _r(b) ? b.valueOf() : b;
+      return _e(b) ? b.valueOf() : b;
     }),
     "Matrix, Matrix": function(y, C) {
-      var b = y.size(), A = C.size();
-      return l(b, A), b.length === 1 ? A.length === 1 ? s(y, C, b[0]) : u(y, C) : A.length === 1 ? p(y, C) : D(y, C);
+      var b = y.size(), E = C.size();
+      return l(b, E), b.length === 1 ? E.length === 1 ? s(y, C, b[0]) : u(y, C) : E.length === 1 ? p(y, C) : D(y, C);
     },
-    "Matrix, Array": e.referTo("Matrix,Matrix", (F) => (y, C) => F(y, n(C))),
-    "Array, Matrix": e.referToSelf((F) => (y, C) => F(n(y, C.storage()), C)),
+    "Matrix, Array": t.referTo("Matrix,Matrix", (F) => (y, C) => F(y, n(C))),
+    "Array, Matrix": t.referToSelf((F) => (y, C) => F(n(y, C.storage()), C)),
     "SparseMatrix, any": function(y, C) {
-      return v(y, C, t, !1);
+      return h(y, C, r, !1);
     },
     "DenseMatrix, any": function(y, C) {
-      return c(y, C, t, !1);
+      return c(y, C, r, !1);
     },
     "any, SparseMatrix": function(y, C) {
-      return v(C, y, t, !0);
+      return h(C, y, r, !0);
     },
     "any, DenseMatrix": function(y, C) {
-      return c(C, y, t, !0);
+      return c(C, y, r, !0);
     },
     "Array, any": function(y, C) {
-      return c(n(y), C, t, !1).valueOf();
+      return c(n(y), C, r, !1).valueOf();
     },
     "any, Array": function(y, C) {
-      return c(n(C), y, t, !0).valueOf();
+      return c(n(C), y, r, !0).valueOf();
     },
-    "any, any": t,
-    "any, any, ...any": e.referToSelf((F) => (y, C, b) => {
-      for (var A = F(y, C), S = 0; S < b.length; S++)
-        A = F(A, b[S]);
-      return A;
+    "any, any": r,
+    "any, any, ...any": t.referToSelf((F) => (y, C, b) => {
+      for (var E = F(y, C), S = 0; S < b.length; S++)
+        E = F(E, b[S]);
+      return E;
     })
   });
-}), Mn = "sign", Tf = ["typed", "BigNumber", "Fraction", "complex"], Of = /* @__PURE__ */ rr(Mn, Tf, (r) => {
+}), Sn = "sign", If = ["typed", "BigNumber", "Fraction", "complex"], Of = /* @__PURE__ */ ee(Sn, If, (e) => {
   var {
-    typed: e,
+    typed: t,
     BigNumber: n,
     complex: i,
-    Fraction: t
-  } = r;
-  return e(Mn, {
+    Fraction: r
+  } = e;
+  return t(Sn, {
     number: Vt,
     Complex: function(o) {
       return o.im === 0 ? i(Vt(o.re)) : o.sign();
@@ -6306,96 +6306,96 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
       return new n(o.cmp(0));
     },
     Fraction: function(o) {
-      return new t(o.s, 1);
+      return new r(o.s, 1);
     },
     // deep map collection, skip zeros since sign(0) = 0
-    "Array | Matrix": e.referToSelf((a) => (o) => jr(o, a)),
-    Unit: e.referToSelf((a) => (o) => {
+    "Array | Matrix": t.referToSelf((a) => (o) => er(o, a)),
+    Unit: t.referToSelf((a) => (o) => {
       if (!o._isDerived() && o.units[0].unit.offset !== 0)
         throw new TypeError("sign is ambiguous for units with offset");
-      return e.find(a, o.valueType())(o.value);
+      return t.find(a, o.valueType())(o.value);
     })
   });
-}), If = "sqrt", $f = ["config", "typed", "Complex"], qf = /* @__PURE__ */ rr(If, $f, (r) => {
+}), Lf = "sqrt", $f = ["config", "typed", "Complex"], qf = /* @__PURE__ */ ee(Lf, $f, (e) => {
   var {
-    config: e,
+    config: t,
     typed: n,
     Complex: i
-  } = r;
+  } = e;
   return n("sqrt", {
-    number: t,
+    number: r,
     Complex: function(o) {
       return o.sqrt();
     },
     BigNumber: function(o) {
-      return !o.isNegative() || e.predictable ? o.sqrt() : t(o.toNumber());
+      return !o.isNegative() || t.predictable ? o.sqrt() : r(o.toNumber());
     },
     Unit: function(o) {
       return o.pow(0.5);
     }
   });
-  function t(a) {
-    return isNaN(a) ? NaN : a >= 0 || e.predictable ? Math.sqrt(a) : new i(a, 0).sqrt();
+  function r(a) {
+    return isNaN(a) ? NaN : a >= 0 || t.predictable ? Math.sqrt(a) : new i(a, 0).sqrt();
   }
-}), Sn = "subtract", Lf = ["typed", "matrix", "equalScalar", "subtractScalar", "unaryMinus", "DenseMatrix", "concat"], Pf = /* @__PURE__ */ rr(Sn, Lf, (r) => {
+}), xn = "subtract", Pf = ["typed", "matrix", "equalScalar", "subtractScalar", "unaryMinus", "DenseMatrix", "concat"], Rf = /* @__PURE__ */ ee(xn, Pf, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     equalScalar: i,
-    subtractScalar: t,
+    subtractScalar: r,
     unaryMinus: a,
     DenseMatrix: o,
-    concat: v
-  } = r, c = aa({
-    typed: e
-  }), l = Re({
-    typed: e
+    concat: h
+  } = e, c = ua({
+    typed: t
+  }), l = Rr({
+    typed: t
   }), s = vf({
-    typed: e,
+    typed: t,
     equalScalar: i
-  }), u = ua({
-    typed: e,
+  }), u = oa({
+    typed: t,
     DenseMatrix: o
-  }), f = Pe({
-    typed: e,
+  }), f = Pr({
+    typed: t,
     DenseMatrix: o
-  }), p = Me({
-    typed: e,
+  }), p = Mr({
+    typed: t,
     matrix: n,
-    concat: v
+    concat: h
   });
-  return e(Sn, {
-    "any, any": t
+  return t(xn, {
+    "any, any": r
   }, p({
-    elop: t,
+    elop: r,
     SS: s,
     DS: c,
     SD: l,
     Ss: f,
     sS: u
   }));
-}), Rf = "matAlgo07xSSf", Uf = ["typed", "DenseMatrix"], He = /* @__PURE__ */ rr(Rf, Uf, (r) => {
+}), Uf = "matAlgo07xSSf", Vf = ["typed", "DenseMatrix"], Kr = /* @__PURE__ */ ee(Uf, Vf, (e) => {
   var {
-    typed: e,
+    typed: t,
     DenseMatrix: n
-  } = r;
-  return function(a, o, v) {
+  } = e;
+  return function(a, o, h) {
     var c = a._size, l = a._datatype, s = o._size, u = o._datatype;
     if (c.length !== s.length)
-      throw new Er(c.length, s.length);
+      throw new Fe(c.length, s.length);
     if (c[0] !== s[0] || c[1] !== s[1])
       throw new RangeError("Dimension mismatch. Matrix A (" + c + ") must match Matrix B (" + s + ")");
-    var f = c[0], p = c[1], D, h = 0, m = v;
-    typeof l == "string" && l === u && (D = l, h = e.convert(0, D), m = e.find(v, [D, D]));
+    var f = c[0], p = c[1], D, v = 0, m = h;
+    typeof l == "string" && l === u && (D = l, v = t.convert(0, D), m = t.find(h, [D, D]));
     var d, w, g = [];
     for (d = 0; d < f; d++)
       g[d] = [];
-    var E = [], F = [], y = [], C = [];
+    var A = [], F = [], y = [], C = [];
     for (w = 0; w < p; w++) {
       var b = w + 1;
-      for (i(a, w, y, E, b), i(o, w, C, F, b), d = 0; d < f; d++) {
-        var A = y[d] === b ? E[d] : h, S = C[d] === b ? F[d] : h;
-        g[d][w] = m(A, S);
+      for (i(a, w, y, A, b), i(o, w, C, F, b), d = 0; d < f; d++) {
+        var E = y[d] === b ? A[d] : v, S = C[d] === b ? F[d] : v;
+        g[d][w] = m(E, S);
       }
     }
     return new n({
@@ -6404,121 +6404,121 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
       datatype: D
     });
   };
-  function i(t, a, o, v, c) {
-    for (var l = t._values, s = t._index, u = t._ptr, f = u[a], p = u[a + 1]; f < p; f++) {
+  function i(r, a, o, h, c) {
+    for (var l = r._values, s = r._index, u = r._ptr, f = u[a], p = u[a + 1]; f < p; f++) {
       var D = s[f];
-      o[D] = c, v[D] = l[f];
+      o[D] = c, h[D] = l[f];
     }
   }
-}), Nn = "conj", Vf = ["typed"], Zf = /* @__PURE__ */ rr(Nn, Vf, (r) => {
+}), Nn = "conj", Zf = ["typed"], Gf = /* @__PURE__ */ ee(Nn, Zf, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(Nn, {
+    typed: t
+  } = e;
+  return t(Nn, {
     "number | BigNumber | Fraction": (n) => n,
     Complex: (n) => n.conjugate(),
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
   });
-}), xn = "im", Gf = ["typed"], Yf = /* @__PURE__ */ rr(xn, Gf, (r) => {
+}), Bn = "im", Yf = ["typed"], Jf = /* @__PURE__ */ ee(Bn, Yf, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(xn, {
+    typed: t
+  } = e;
+  return t(Bn, {
     number: () => 0,
     "BigNumber | Fraction": (n) => n.mul(0),
     Complex: (n) => n.im,
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
   });
-}), Bn = "re", Jf = ["typed"], Qf = /* @__PURE__ */ rr(Bn, Jf, (r) => {
+}), _n = "re", Qf = ["typed"], Xf = /* @__PURE__ */ ee(_n, Qf, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(Bn, {
+    typed: t
+  } = e;
+  return t(_n, {
     "number | BigNumber | Fraction": (n) => n,
     Complex: (n) => n.re,
-    "Array | Matrix": e.referToSelf((n) => (i) => jr(i, n))
+    "Array | Matrix": t.referToSelf((n) => (i) => er(i, n))
   });
-}), _n = "concat", Xf = ["typed", "matrix", "isInteger"], Kf = /* @__PURE__ */ rr(_n, Xf, (r) => {
+}), zn = "concat", Hf = ["typed", "matrix", "isInteger"], Kf = /* @__PURE__ */ ee(zn, Hf, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     isInteger: i
-  } = r;
-  return e(_n, {
+  } = e;
+  return t(zn, {
     // TODO: change signature to '...Array | Matrix, dim?' when supported
     "...Array | Matrix | number | BigNumber": function(a) {
-      var o, v = a.length, c = -1, l, s = !1, u = [];
-      for (o = 0; o < v; o++) {
+      var o, h = a.length, c = -1, l, s = !1, u = [];
+      for (o = 0; o < h; o++) {
         var f = a[o];
-        if (_r(f) && (s = !0), $r(f) || Pr(f)) {
-          if (o !== v - 1)
+        if (_e(f) && (s = !0), Le(f) || Pe(f)) {
+          if (o !== h - 1)
             throw new Error("Dimension must be specified as last argument");
           if (l = c, c = f.valueOf(), !i(c))
             throw new TypeError("Integer number expected for dimension");
           if (c < 0 || o > 0 && c > l)
-            throw new be(c, l + 1);
+            throw new br(c, l + 1);
         } else {
-          var p = Fr(f).valueOf(), D = qr(p);
+          var p = Ce(f).valueOf(), D = $e(p);
           if (u[o] = p, l = c, c = D.length - 1, o > 0 && c !== l)
-            throw new Er(l + 1, c + 1);
+            throw new Fe(l + 1, c + 1);
         }
       }
       if (u.length === 0)
         throw new SyntaxError("At least one matrix expected");
-      for (var h = u.shift(); u.length; )
-        h = Ni(h, u.shift(), c);
-      return s ? n(h) : h;
+      for (var v = u.shift(); u.length; )
+        v = Ni(v, u.shift(), c);
+      return s ? n(v) : v;
     },
     "...string": function(a) {
       return a.join("");
     }
   });
-}), zn = "column", Hf = ["typed", "Index", "matrix", "range"], Wf = /* @__PURE__ */ rr(zn, Hf, (r) => {
+}), Tn = "column", Wf = ["typed", "Index", "matrix", "range"], kf = /* @__PURE__ */ ee(Tn, Wf, (e) => {
   var {
-    typed: e,
+    typed: t,
     Index: n,
     matrix: i,
-    range: t
-  } = r;
-  return e(zn, {
+    range: r
+  } = e;
+  return t(Tn, {
     "Matrix, number": a,
-    "Array, number": function(v, c) {
-      return a(i(Fr(v)), c).valueOf();
+    "Array, number": function(h, c) {
+      return a(i(Ce(h)), c).valueOf();
     }
   });
-  function a(o, v) {
+  function a(o, h) {
     if (o.size().length !== 2)
       throw new Error("Only two dimensional matrix is supported");
-    Br(v, o.size()[1]);
-    var c = t(0, o.size()[0]), l = new n(c, v), s = o.subset(l);
-    return _r(s) ? s : i([[s]]);
+    Be(h, o.size()[1]);
+    var c = r(0, o.size()[0]), l = new n(c, h), s = o.subset(l);
+    return _e(s) ? s : i([[s]]);
   }
-}), Tn = "diag", kf = ["typed", "matrix", "DenseMatrix", "SparseMatrix"], jf = /* @__PURE__ */ rr(Tn, kf, (r) => {
+}), In = "diag", jf = ["typed", "matrix", "DenseMatrix", "SparseMatrix"], ec = /* @__PURE__ */ ee(In, jf, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     DenseMatrix: i,
-    SparseMatrix: t
-  } = r;
-  return e(Tn, {
+    SparseMatrix: r
+  } = e;
+  return t(In, {
     // FIXME: simplify this huge amount of signatures as soon as typed-function supports optional arguments
     Array: function(l) {
-      return a(l, 0, qr(l), null);
+      return a(l, 0, $e(l), null);
     },
     "Array, number": function(l, s) {
-      return a(l, s, qr(l), null);
+      return a(l, s, $e(l), null);
     },
     "Array, BigNumber": function(l, s) {
-      return a(l, s.toNumber(), qr(l), null);
+      return a(l, s.toNumber(), $e(l), null);
     },
     "Array, string": function(l, s) {
-      return a(l, 0, qr(l), s);
+      return a(l, 0, $e(l), s);
     },
     "Array, number, string": function(l, s, u) {
-      return a(l, s, qr(l), u);
+      return a(l, s, $e(l), u);
     },
     "Array, BigNumber, string": function(l, s, u) {
-      return a(l, s.toNumber(), qr(l), u);
+      return a(l, s.toNumber(), $e(l), u);
     },
     Matrix: function(l) {
       return a(l, 0, l.size(), l.storage());
@@ -6540,14 +6540,14 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
     }
   });
   function a(c, l, s, u) {
-    if (!zr(l))
+    if (!ze(l))
       throw new TypeError("Second parameter in function diag must be an integer");
     var f = l > 0 ? l : 0, p = l < 0 ? -l : 0;
     switch (s.length) {
       case 1:
         return o(c, l, u, s[0], p, f);
       case 2:
-        return v(c, l, u, s, p, f);
+        return h(c, l, u, s, p, f);
     }
     throw new RangeError("Matrix for function diag must be 2 dimensional");
   }
@@ -6555,54 +6555,54 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
     var D = [u + f, u + p];
     if (s && s !== "sparse" && s !== "dense")
       throw new TypeError("Unknown matrix type ".concat(s, '"'));
-    var h = s === "sparse" ? t.diagonal(D, c, l) : i.diagonal(D, c, l);
-    return s !== null ? h : h.valueOf();
+    var v = s === "sparse" ? r.diagonal(D, c, l) : i.diagonal(D, c, l);
+    return s !== null ? v : v.valueOf();
   }
-  function v(c, l, s, u, f, p) {
-    if (_r(c)) {
+  function h(c, l, s, u, f, p) {
+    if (_e(c)) {
       var D = c.diagonal(l);
       return s !== null ? s !== D.storage() ? n(D, s) : D : D.valueOf();
     }
-    for (var h = Math.min(u[0] - f, u[1] - p), m = [], d = 0; d < h; d++)
+    for (var v = Math.min(u[0] - f, u[1] - p), m = [], d = 0; d < v; d++)
       m[d] = c[d + f][d + p];
     return s !== null ? n(m) : m;
   }
-}), On = "flatten", rc = ["typed", "matrix"], ec = /* @__PURE__ */ rr(On, rc, (r) => {
+}), On = "flatten", rc = ["typed", "matrix"], tc = /* @__PURE__ */ ee(On, rc, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n
-  } = r;
-  return e(On, {
-    Array: function(t) {
-      return $t(t);
+  } = e;
+  return t(On, {
+    Array: function(r) {
+      return Lt(r);
     },
-    Matrix: function(t) {
-      var a = $t(t.toArray());
+    Matrix: function(r) {
+      var a = Lt(r.toArray());
       return n(a);
     }
   });
-}), In = "getMatrixDataType", tc = ["typed"], nc = /* @__PURE__ */ rr(In, tc, (r) => {
+}), Ln = "getMatrixDataType", nc = ["typed"], ic = /* @__PURE__ */ ee(Ln, nc, (e) => {
   var {
-    typed: e
-  } = r;
-  return e(In, {
+    typed: t
+  } = e;
+  return t(Ln, {
     Array: function(i) {
-      return Je(i, fe);
+      return Jr(i, lr);
     },
     Matrix: function(i) {
       return i.getDataType();
     }
   });
-}), $n = "identity", ic = ["typed", "config", "matrix", "BigNumber", "DenseMatrix", "SparseMatrix"], ac = /* @__PURE__ */ rr($n, ic, (r) => {
+}), $n = "identity", ac = ["typed", "config", "matrix", "BigNumber", "DenseMatrix", "SparseMatrix"], uc = /* @__PURE__ */ ee($n, ac, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i,
-    BigNumber: t,
+    BigNumber: r,
     DenseMatrix: a,
     SparseMatrix: o
-  } = r;
-  return e($n, {
+  } = e;
+  return t($n, {
     "": function() {
       return n.matrix === "Matrix" ? i([]) : [];
     },
@@ -6622,19 +6622,19 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
       return c(s, u, f);
     },
     Array: function(s) {
-      return v(s);
+      return h(s);
     },
     "Array, string": function(s, u) {
-      return v(s, u);
+      return h(s, u);
     },
     Matrix: function(s) {
-      return v(s.valueOf(), s.storage());
+      return h(s.valueOf(), s.storage());
     },
     "Matrix, string": function(s, u) {
-      return v(s.valueOf(), u);
+      return h(s.valueOf(), u);
     }
   });
-  function v(l, s) {
+  function h(l, s) {
     switch (l.length) {
       case 0:
         return s ? i(s) : [];
@@ -6647,47 +6647,47 @@ var zs = /* @__PURE__ */ rr(Ns, xs, (r) => {
     }
   }
   function c(l, s, u) {
-    var f = Pr(l) || Pr(s) ? t : null;
-    if (Pr(l) && (l = l.toNumber()), Pr(s) && (s = s.toNumber()), !zr(l) || l < 1)
+    var f = Pe(l) || Pe(s) ? r : null;
+    if (Pe(l) && (l = l.toNumber()), Pe(s) && (s = s.toNumber()), !ze(l) || l < 1)
       throw new Error("Parameters in function identity must be positive integers");
-    if (!zr(s) || s < 1)
+    if (!ze(s) || s < 1)
       throw new Error("Parameters in function identity must be positive integers");
-    var p = f ? new t(1) : 1, D = f ? new f(0) : 0, h = [l, s];
+    var p = f ? new r(1) : 1, D = f ? new f(0) : 0, v = [l, s];
     if (u) {
       if (u === "sparse")
-        return o.diagonal(h, p, 0, D);
+        return o.diagonal(v, p, 0, D);
       if (u === "dense")
-        return a.diagonal(h, p, 0, D);
+        return a.diagonal(v, p, 0, D);
       throw new TypeError('Unknown matrix type "'.concat(u, '"'));
     }
-    for (var m = ft([], h, D), d = l < s ? l : s, w = 0; w < d; w++)
+    for (var m = ft([], v, D), d = l < s ? l : s, w = 0; w < d; w++)
       m[w][w] = p;
     return m;
   }
 });
-function oa() {
+function sa() {
   throw new Error('No "bignumber" implementation available');
 }
-function uc() {
+function oc() {
   throw new Error('No "fraction" implementation available');
 }
-function sa() {
+function fa() {
   throw new Error('No "matrix" implementation available');
 }
-var qn = "range", oc = ["typed", "config", "?matrix", "?bignumber", "smaller", "smallerEq", "larger", "largerEq", "add", "isPositive"], sc = /* @__PURE__ */ rr(qn, oc, (r) => {
+var qn = "range", sc = ["typed", "config", "?matrix", "?bignumber", "smaller", "smallerEq", "larger", "largerEq", "add", "isPositive"], fc = /* @__PURE__ */ ee(qn, sc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i,
-    bignumber: t,
+    bignumber: r,
     smaller: a,
     smallerEq: o,
-    larger: v,
+    larger: h,
     largerEq: c,
     add: l,
     isPositive: s
-  } = r;
-  return e(qn, {
+  } = e;
+  return t(qn, {
     // TODO: simplify signatures when typed-function supports default values and optional arguments
     // TODO: a number or boolean should not be converted to string here
     string: f,
@@ -6725,22 +6725,22 @@ var qn = "range", oc = ["typed", "config", "?matrix", "?bignumber", "smaller", "
       return u(p(m, d, w, g));
     }
   });
-  function u(h) {
-    return n.matrix === "Matrix" ? i ? i(h) : sa() : h;
+  function u(v) {
+    return n.matrix === "Matrix" ? i ? i(v) : fa() : v;
   }
-  function f(h, m) {
-    var d = D(h);
+  function f(v, m) {
+    var d = D(v);
     if (!d)
-      throw new SyntaxError('String "' + h + '" is no valid range');
-    return n.number === "BigNumber" ? (t === void 0 && oa(), u(p(t(d.start), t(d.end), t(d.step)))) : u(p(d.start, d.end, d.step, m));
+      throw new SyntaxError('String "' + v + '" is no valid range');
+    return n.number === "BigNumber" ? (r === void 0 && sa(), u(p(r(d.start), r(d.end), r(d.step)))) : u(p(d.start, d.end, d.step, m));
   }
-  function p(h, m, d, w) {
-    for (var g = [], E = s(d) ? w ? o : a : w ? c : v, F = h; E(F, m); )
+  function p(v, m, d, w) {
+    for (var g = [], A = s(d) ? w ? o : a : w ? c : h, F = v; A(F, m); )
       g.push(F), F = l(F, d);
     return g;
   }
-  function D(h) {
-    var m = h.split(":"), d = m.map(function(g) {
+  function D(v) {
+    var m = v.split(":"), d = m.map(function(g) {
       return Number(g);
     }), w = d.some(function(g) {
       return isNaN(g);
@@ -6764,110 +6764,110 @@ var qn = "range", oc = ["typed", "config", "?matrix", "?bignumber", "smaller", "
         return null;
     }
   }
-}), Ln = "reshape", fc = ["typed", "isInteger", "matrix"], cc = /* @__PURE__ */ rr(Ln, fc, (r) => {
+}), Pn = "reshape", cc = ["typed", "isInteger", "matrix"], lc = /* @__PURE__ */ ee(Pn, cc, (e) => {
   var {
-    typed: e,
+    typed: t,
     isInteger: n
-  } = r;
-  return e(Ln, {
-    "Matrix, Array": function(t, a) {
-      return t.reshape(a, !0);
+  } = e;
+  return t(Pn, {
+    "Matrix, Array": function(r, a) {
+      return r.reshape(a, !0);
     },
-    "Array, Array": function(t, a) {
+    "Array, Array": function(r, a) {
       return a.forEach(function(o) {
         if (!n(o))
           throw new TypeError("Invalid size for dimension: " + o);
-      }), Jt(t, a);
+      }), Jt(r, a);
     }
   });
-}), Pn = "size", lc = ["typed", "config", "?matrix"], vc = /* @__PURE__ */ rr(Pn, lc, (r) => {
+}), Rn = "size", hc = ["typed", "config", "?matrix"], vc = /* @__PURE__ */ ee(Rn, hc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i
-  } = r;
-  return e(Pn, {
+  } = e;
+  return t(Rn, {
     Matrix: function(a) {
       return a.create(a.size());
     },
-    Array: qr,
+    Array: $e,
     string: function(a) {
       return n.matrix === "Array" ? [a.length] : i([a.length]);
     },
     "number | Complex | BigNumber | Unit | boolean | null": function(a) {
-      return n.matrix === "Array" ? [] : i ? i([]) : sa();
+      return n.matrix === "Array" ? [] : i ? i([]) : fa();
     }
   });
-}), Rn = "squeeze", hc = ["typed", "matrix"], pc = /* @__PURE__ */ rr(Rn, hc, (r) => {
+}), Un = "squeeze", pc = ["typed", "matrix"], dc = /* @__PURE__ */ ee(Un, pc, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n
-  } = r;
-  return e(Rn, {
-    Array: function(t) {
-      return cn(Fr(t));
+  } = e;
+  return t(Un, {
+    Array: function(r) {
+      return ln(Ce(r));
     },
-    Matrix: function(t) {
-      var a = cn(t.toArray());
+    Matrix: function(r) {
+      var a = ln(r.toArray());
       return Array.isArray(a) ? n(a) : a;
     },
-    any: function(t) {
-      return Fr(t);
+    any: function(r) {
+      return Ce(r);
     }
   });
-}), Un = "subset", dc = ["typed", "matrix", "zeros", "add"], mc = /* @__PURE__ */ rr(Un, dc, (r) => {
+}), Vn = "subset", mc = ["typed", "matrix", "zeros", "add"], gc = /* @__PURE__ */ ee(Vn, mc, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     zeros: i,
-    add: t
-  } = r;
-  return e(Un, {
+    add: r
+  } = e;
+  return t(Vn, {
     // get subset
-    "Matrix, Index": function(v, c) {
-      return $e(c) ? n() : (st(v, c), v.subset(c));
+    "Matrix, Index": function(h, c) {
+      return Lr(c) ? n() : (st(h, c), h.subset(c));
     },
-    "Array, Index": e.referTo("Matrix, Index", function(o) {
-      return function(v, c) {
-        var l = o(n(v), c);
+    "Array, Index": t.referTo("Matrix, Index", function(o) {
+      return function(h, c) {
+        var l = o(n(h), c);
         return c.isScalar() ? l : l.valueOf();
       };
     }),
-    "Object, Index": Dc,
-    "string, Index": gc,
+    "Object, Index": yc,
+    "string, Index": Dc,
     // set subset
-    "Matrix, Index, any, any": function(v, c, l, s) {
-      return $e(c) ? v : (st(v, c), v.clone().subset(c, a(l, c), s));
+    "Matrix, Index, any, any": function(h, c, l, s) {
+      return Lr(c) ? h : (st(h, c), h.clone().subset(c, a(l, c), s));
     },
-    "Array, Index, any, any": e.referTo("Matrix, Index, any, any", function(o) {
-      return function(v, c, l, s) {
-        var u = o(n(v), c, l, s);
+    "Array, Index, any, any": t.referTo("Matrix, Index, any, any", function(o) {
+      return function(h, c, l, s) {
+        var u = o(n(h), c, l, s);
         return u.isMatrix ? u.valueOf() : u;
       };
     }),
-    "Array, Index, any": e.referTo("Matrix, Index, any, any", function(o) {
-      return function(v, c, l) {
-        return o(n(v), c, l, void 0).valueOf();
+    "Array, Index, any": t.referTo("Matrix, Index, any, any", function(o) {
+      return function(h, c, l) {
+        return o(n(h), c, l, void 0).valueOf();
       };
     }),
-    "Matrix, Index, any": e.referTo("Matrix, Index, any, any", function(o) {
-      return function(v, c, l) {
-        return o(v, c, l, void 0);
+    "Matrix, Index, any": t.referTo("Matrix, Index, any, any", function(o) {
+      return function(h, c, l) {
+        return o(h, c, l, void 0);
       };
     }),
-    "string, Index, string": Vn,
-    "string, Index, string, string": Vn,
-    "Object, Index, any": yc
+    "string, Index, string": Zn,
+    "string, Index, string, string": Zn,
+    "Object, Index, any": wc
   });
-  function a(o, v) {
+  function a(o, h) {
     if (typeof o == "string")
       throw new Error("can't boradcast a string");
-    if (v._isScalar)
+    if (h._isScalar)
       return o;
-    var c = v.size();
+    var c = h.size();
     if (c.every((l) => l > 0))
       try {
-        return t(o, i(c));
+        return r(o, i(c));
       } catch {
         return o;
       }
@@ -6875,92 +6875,92 @@ var qn = "range", oc = ["typed", "config", "?matrix", "?bignumber", "smaller", "
       return o;
   }
 });
-function gc(r, e) {
-  if (!wt(e))
+function Dc(e, t) {
+  if (!wt(t))
     throw new TypeError("Index expected");
-  if ($e(e))
+  if (Lr(t))
     return "";
-  if (st(Array.from(r), e), e.size().length !== 1)
-    throw new Er(e.size().length, 1);
-  var n = r.length;
-  Br(e.min()[0], n), Br(e.max()[0], n);
-  var i = e.dimension(0), t = "";
+  if (st(Array.from(e), t), t.size().length !== 1)
+    throw new Fe(t.size().length, 1);
+  var n = e.length;
+  Be(t.min()[0], n), Be(t.max()[0], n);
+  var i = t.dimension(0), r = "";
   return i.forEach(function(a) {
-    t += r.charAt(a);
-  }), t;
+    r += e.charAt(a);
+  }), r;
 }
-function Vn(r, e, n, i) {
-  if (!e || e.isIndex !== !0)
+function Zn(e, t, n, i) {
+  if (!t || t.isIndex !== !0)
     throw new TypeError("Index expected");
-  if ($e(e))
-    return r;
-  if (st(Array.from(r), e), e.size().length !== 1)
-    throw new Er(e.size().length, 1);
+  if (Lr(t))
+    return e;
+  if (st(Array.from(e), t), t.size().length !== 1)
+    throw new Fe(t.size().length, 1);
   if (i !== void 0) {
     if (typeof i != "string" || i.length !== 1)
       throw new TypeError("Single character expected as defaultValue");
   } else
     i = " ";
-  var t = e.dimension(0), a = t.size()[0];
+  var r = t.dimension(0), a = r.size()[0];
   if (a !== n.length)
-    throw new Er(t.size()[0], n.length);
-  var o = r.length;
-  Br(e.min()[0]), Br(e.max()[0]);
-  for (var v = [], c = 0; c < o; c++)
-    v[c] = r.charAt(c);
-  if (t.forEach(function(u, f) {
-    v[u] = n.charAt(f[0]);
-  }), v.length > o)
-    for (var l = o - 1, s = v.length; l < s; l++)
-      v[l] || (v[l] = i);
-  return v.join("");
+    throw new Fe(r.size()[0], n.length);
+  var o = e.length;
+  Be(t.min()[0]), Be(t.max()[0]);
+  for (var h = [], c = 0; c < o; c++)
+    h[c] = e.charAt(c);
+  if (r.forEach(function(u, f) {
+    h[u] = n.charAt(f[0]);
+  }), h.length > o)
+    for (var l = o - 1, s = h.length; l < s; l++)
+      h[l] || (h[l] = i);
+  return h.join("");
 }
-function Dc(r, e) {
-  if (!$e(e)) {
-    if (e.size().length !== 1)
-      throw new Er(e.size(), 1);
-    var n = e.dimension(0);
+function yc(e, t) {
+  if (!Lr(t)) {
+    if (t.size().length !== 1)
+      throw new Fe(t.size(), 1);
+    var n = t.dimension(0);
     if (typeof n != "string")
       throw new TypeError("String expected as index to retrieve an object property");
-    return xi(r, n);
+    return Bi(e, n);
   }
 }
-function yc(r, e, n) {
-  if ($e(e))
-    return r;
-  if (e.size().length !== 1)
-    throw new Er(e.size(), 1);
-  var i = e.dimension(0);
+function wc(e, t, n) {
+  if (Lr(t))
+    return e;
+  if (t.size().length !== 1)
+    throw new Fe(t.size(), 1);
+  var i = t.dimension(0);
   if (typeof i != "string")
     throw new TypeError("String expected as index to retrieve an object property");
-  var t = Fr(r);
-  return Bi(t, i, n), t;
+  var r = Ce(e);
+  return _i(r, i, n), r;
 }
-var Zn = "transpose", wc = ["typed", "matrix"], Ac = /* @__PURE__ */ rr(Zn, wc, (r) => {
+var Gn = "transpose", Ac = ["typed", "matrix"], Ec = /* @__PURE__ */ ee(Gn, Ac, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n
-  } = r;
-  return e(Zn, {
+  } = e;
+  return t(Gn, {
     Array: (o) => i(n(o)).valueOf(),
     Matrix: i,
-    any: Fr
+    any: Ce
     // scalars
   });
   function i(o) {
-    var v = o.size(), c;
-    switch (v.length) {
+    var h = o.size(), c;
+    switch (h.length) {
       case 1:
         c = o.clone();
         break;
       case 2:
         {
-          var l = v[0], s = v[1];
+          var l = h[0], s = h[1];
           if (s === 0)
-            throw new RangeError("Cannot transpose a 2D matrix with no columns (size: " + Ir(v) + ")");
+            throw new RangeError("Cannot transpose a 2D matrix with no columns (size: " + Oe(h) + ")");
           switch (o.storage()) {
             case "dense":
-              c = t(o, l, s);
+              c = r(o, l, s);
               break;
             case "sparse":
               c = a(o, l, s);
@@ -6969,62 +6969,62 @@ var Zn = "transpose", wc = ["typed", "matrix"], Ac = /* @__PURE__ */ rr(Zn, wc, 
         }
         break;
       default:
-        throw new RangeError("Matrix must be a vector or two dimensional (size: " + Ir(v) + ")");
+        throw new RangeError("Matrix must be a vector or two dimensional (size: " + Oe(h) + ")");
     }
     return c;
   }
-  function t(o, v, c) {
+  function r(o, h, c) {
     for (var l = o._data, s = [], u, f = 0; f < c; f++) {
       u = s[f] = [];
-      for (var p = 0; p < v; p++)
-        u[p] = Fr(l[p][f]);
+      for (var p = 0; p < h; p++)
+        u[p] = Ce(l[p][f]);
     }
     return o.createDenseMatrix({
       data: s,
-      size: [c, v],
+      size: [c, h],
       datatype: o._datatype
     });
   }
-  function a(o, v, c) {
-    for (var l = o._values, s = o._index, u = o._ptr, f = l ? [] : void 0, p = [], D = [], h = [], m = 0; m < v; m++)
-      h[m] = 0;
+  function a(o, h, c) {
+    for (var l = o._values, s = o._index, u = o._ptr, f = l ? [] : void 0, p = [], D = [], v = [], m = 0; m < h; m++)
+      v[m] = 0;
     var d, w, g;
     for (d = 0, w = s.length; d < w; d++)
-      h[s[d]]++;
-    for (var E = 0, F = 0; F < v; F++)
-      D.push(E), E += h[F], h[F] = D[F];
-    for (D.push(E), g = 0; g < c; g++)
+      v[s[d]]++;
+    for (var A = 0, F = 0; F < h; F++)
+      D.push(A), A += v[F], v[F] = D[F];
+    for (D.push(A), g = 0; g < c; g++)
       for (var y = u[g], C = u[g + 1], b = y; b < C; b++) {
-        var A = h[s[b]]++;
-        p[A] = g, l && (f[A] = Fr(l[b]));
+        var E = v[s[b]]++;
+        p[E] = g, l && (f[E] = Ce(l[b]));
       }
     return o.createSparseMatrix({
       values: f,
       index: p,
       ptr: D,
-      size: [c, v],
+      size: [c, h],
       datatype: o._datatype
     });
   }
-}), Gn = "ctranspose", Ec = ["typed", "transpose", "conj"], Fc = /* @__PURE__ */ rr(Gn, Ec, (r) => {
+}), Yn = "ctranspose", Fc = ["typed", "transpose", "conj"], Cc = /* @__PURE__ */ ee(Yn, Fc, (e) => {
   var {
-    typed: e,
+    typed: t,
     transpose: n,
     conj: i
-  } = r;
-  return e(Gn, {
+  } = e;
+  return t(Yn, {
     any: function(a) {
       return i(n(a));
     }
   });
-}), Yn = "zeros", Cc = ["typed", "config", "matrix", "BigNumber"], bc = /* @__PURE__ */ rr(Yn, Cc, (r) => {
+}), Jn = "zeros", bc = ["typed", "config", "matrix", "BigNumber"], Mc = /* @__PURE__ */ ee(Jn, bc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i,
-    BigNumber: t
-  } = r;
-  return e(Yn, {
+    BigNumber: r
+  } = e;
+  return t(Jn, {
     "": function() {
       return n.matrix === "Array" ? a([]) : a([], "default");
     },
@@ -7048,8 +7048,8 @@ var Zn = "transpose", wc = ["typed", "matrix"], Ac = /* @__PURE__ */ rr(Zn, wc, 
     }
   });
   function a(c, l) {
-    var s = o(c), u = s ? new t(0) : 0;
-    if (v(c), l) {
+    var s = o(c), u = s ? new r(0) : 0;
+    if (h(c), l) {
       var f = i(l);
       return c.length > 0 ? f.resize(c, u) : f;
     } else {
@@ -7060,230 +7060,230 @@ var Zn = "transpose", wc = ["typed", "matrix"], Ac = /* @__PURE__ */ rr(Zn, wc, 
   function o(c) {
     var l = !1;
     return c.forEach(function(s, u, f) {
-      Pr(s) && (l = !0, f[u] = s.toNumber());
+      Pe(s) && (l = !0, f[u] = s.toNumber());
     }), l;
   }
-  function v(c) {
+  function h(c) {
     c.forEach(function(l) {
-      if (typeof l != "number" || !zr(l) || l < 0)
+      if (typeof l != "number" || !ze(l) || l < 0)
         throw new Error("Parameters in function zeros must be positive integers");
     });
   }
-}), Mc = "numeric", Sc = ["number", "?bignumber", "?fraction"], Nc = /* @__PURE__ */ rr(Mc, Sc, (r) => {
+}), Sc = "numeric", xc = ["number", "?bignumber", "?fraction"], Nc = /* @__PURE__ */ ee(Sc, xc, (e) => {
   var {
-    number: e,
+    number: t,
     bignumber: n,
     fraction: i
-  } = r, t = {
+  } = e, r = {
     string: !0,
     number: !0,
     BigNumber: !0,
     Fraction: !0
   }, a = {
-    number: (o) => e(o),
-    BigNumber: n ? (o) => n(o) : oa,
-    Fraction: i ? (o) => i(o) : uc
+    number: (o) => t(o),
+    BigNumber: n ? (o) => n(o) : sa,
+    Fraction: i ? (o) => i(o) : oc
   };
-  return function(v) {
+  return function(h) {
     var c = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "number", l = arguments.length > 2 ? arguments[2] : void 0;
     if (l !== void 0)
       throw new SyntaxError("numeric() takes one or two arguments");
-    var s = fe(v);
-    if (!(s in t))
-      throw new TypeError("Cannot convert " + v + ' of type "' + s + '"; valid input types are ' + Object.keys(t).join(", "));
+    var s = lr(h);
+    if (!(s in r))
+      throw new TypeError("Cannot convert " + h + ' of type "' + s + '"; valid input types are ' + Object.keys(r).join(", "));
     if (!(c in a))
-      throw new TypeError("Cannot convert " + v + ' to type "' + c + '"; valid output types are ' + Object.keys(a).join(", "));
-    return c === s ? v : a[c](v);
+      throw new TypeError("Cannot convert " + h + ' to type "' + c + '"; valid output types are ' + Object.keys(a).join(", "));
+    return c === s ? h : a[c](h);
   };
-}), Jn = "divideScalar", xc = ["typed", "numeric"], Bc = /* @__PURE__ */ rr(Jn, xc, (r) => {
+}), Qn = "divideScalar", Bc = ["typed", "numeric"], _c = /* @__PURE__ */ ee(Qn, Bc, (e) => {
   var {
-    typed: e,
+    typed: t,
     numeric: n
-  } = r;
-  return e(Jn, {
-    "number, number": function(t, a) {
-      return t / a;
+  } = e;
+  return t(Qn, {
+    "number, number": function(r, a) {
+      return r / a;
     },
-    "Complex, Complex": function(t, a) {
-      return t.div(a);
+    "Complex, Complex": function(r, a) {
+      return r.div(a);
     },
-    "BigNumber, BigNumber": function(t, a) {
-      return t.div(a);
+    "BigNumber, BigNumber": function(r, a) {
+      return r.div(a);
     },
-    "Fraction, Fraction": function(t, a) {
-      return t.div(a);
+    "Fraction, Fraction": function(r, a) {
+      return r.div(a);
     },
-    "Unit, number | Complex | Fraction | BigNumber | Unit": (i, t) => i.divide(t),
-    "number | Fraction | Complex | BigNumber, Unit": (i, t) => t.divideInto(i)
+    "Unit, number | Complex | Fraction | BigNumber | Unit": (i, r) => i.divide(r),
+    "number | Fraction | Complex | BigNumber, Unit": (i, r) => r.divideInto(i)
   });
-}), Qn = "pow", _c = ["typed", "config", "identity", "multiply", "matrix", "inv", "fraction", "number", "Complex"], zc = /* @__PURE__ */ rr(Qn, _c, (r) => {
+}), Xn = "pow", zc = ["typed", "config", "identity", "multiply", "matrix", "inv", "fraction", "number", "Complex"], Tc = /* @__PURE__ */ ee(Xn, zc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     identity: i,
-    multiply: t,
+    multiply: r,
     matrix: a,
     inv: o,
-    number: v,
+    number: h,
     fraction: c,
     Complex: l
-  } = r;
-  return e(Qn, {
+  } = e;
+  return t(Xn, {
     "number, number": s,
-    "Complex, Complex": function(D, h) {
-      return D.pow(h);
+    "Complex, Complex": function(D, v) {
+      return D.pow(v);
     },
-    "BigNumber, BigNumber": function(D, h) {
-      return h.isInteger() || D >= 0 || n.predictable ? D.pow(h) : new l(D.toNumber(), 0).pow(h.toNumber(), 0);
+    "BigNumber, BigNumber": function(D, v) {
+      return v.isInteger() || D >= 0 || n.predictable ? D.pow(v) : new l(D.toNumber(), 0).pow(v.toNumber(), 0);
     },
-    "Fraction, Fraction": function(D, h) {
-      var m = D.pow(h);
+    "Fraction, Fraction": function(D, v) {
+      var m = D.pow(v);
       if (m != null)
         return m;
       if (n.predictable)
         throw new Error("Result of pow is non-rational and cannot be expressed as a fraction");
-      return s(D.valueOf(), h.valueOf());
+      return s(D.valueOf(), v.valueOf());
     },
     "Array, number": u,
-    "Array, BigNumber": function(D, h) {
-      return u(D, h.toNumber());
+    "Array, BigNumber": function(D, v) {
+      return u(D, v.toNumber());
     },
     "Matrix, number": f,
-    "Matrix, BigNumber": function(D, h) {
-      return f(D, h.toNumber());
+    "Matrix, BigNumber": function(D, v) {
+      return f(D, v.toNumber());
     },
-    "Unit, number | BigNumber": function(D, h) {
-      return D.pow(h);
+    "Unit, number | BigNumber": function(D, v) {
+      return D.pow(v);
     }
   });
   function s(p, D) {
-    if (n.predictable && !zr(D) && p < 0)
+    if (n.predictable && !ze(D) && p < 0)
       try {
-        var h = c(D), m = v(h);
-        if ((D === m || Math.abs((D - m) / D) < 1e-14) && h.d % 2 === 1)
-          return (h.n % 2 === 0 ? 1 : -1) * Math.pow(-p, D);
+        var v = c(D), m = h(v);
+        if ((D === m || Math.abs((D - m) / D) < 1e-14) && v.d % 2 === 1)
+          return (v.n % 2 === 0 ? 1 : -1) * Math.pow(-p, D);
       } catch {
       }
-    return n.predictable && (p < -1 && D === 1 / 0 || p > -1 && p < 0 && D === -1 / 0) ? NaN : zr(D) || p >= 0 || n.predictable ? ra(p, D) : p * p < 1 && D === 1 / 0 || p * p > 1 && D === -1 / 0 ? 0 : new l(p, 0).pow(D, 0);
+    return n.predictable && (p < -1 && D === 1 / 0 || p > -1 && p < 0 && D === -1 / 0) ? NaN : ze(D) || p >= 0 || n.predictable ? ra(p, D) : p * p < 1 && D === 1 / 0 || p * p > 1 && D === -1 / 0 ? 0 : new l(p, 0).pow(D, 0);
   }
   function u(p, D) {
-    if (!zr(D))
+    if (!ze(D))
       throw new TypeError("For A^b, b must be an integer (value is " + D + ")");
-    var h = qr(p);
-    if (h.length !== 2)
-      throw new Error("For A^b, A must be 2 dimensional (A has " + h.length + " dimensions)");
-    if (h[0] !== h[1])
-      throw new Error("For A^b, A must be square (size is " + h[0] + "x" + h[1] + ")");
+    var v = $e(p);
+    if (v.length !== 2)
+      throw new Error("For A^b, A must be 2 dimensional (A has " + v.length + " dimensions)");
+    if (v[0] !== v[1])
+      throw new Error("For A^b, A must be square (size is " + v[0] + "x" + v[1] + ")");
     if (D < 0)
       try {
         return u(o(p), -D);
       } catch (w) {
         throw w.message === "Cannot calculate inverse, determinant is zero" ? new TypeError("For A^b, when A is not invertible, b must be a positive integer (value is " + D + ")") : w;
       }
-    for (var m = i(h[0]).valueOf(), d = p; D >= 1; )
-      (D & 1) === 1 && (m = t(d, m)), D >>= 1, d = t(d, d);
+    for (var m = i(v[0]).valueOf(), d = p; D >= 1; )
+      (D & 1) === 1 && (m = r(d, m)), D >>= 1, d = r(d, d);
     return m;
   }
   function f(p, D) {
     return a(u(p.valueOf(), D));
   }
 });
-function St(r) {
+function St(e) {
   var {
-    DenseMatrix: e
-  } = r;
-  return function(i, t, a) {
+    DenseMatrix: t
+  } = e;
+  return function(i, r, a) {
     var o = i.size();
     if (o.length !== 2)
-      throw new RangeError("Matrix must be two dimensional (size: " + Ir(o) + ")");
-    var v = o[0], c = o[1];
-    if (v !== c)
-      throw new RangeError("Matrix must be square (size: " + Ir(o) + ")");
+      throw new RangeError("Matrix must be two dimensional (size: " + Oe(o) + ")");
+    var h = o[0], c = o[1];
+    if (h !== c)
+      throw new RangeError("Matrix must be square (size: " + Oe(o) + ")");
     var l = [];
-    if (_r(t)) {
-      var s = t.size(), u = t._data;
+    if (_e(r)) {
+      var s = r.size(), u = r._data;
       if (s.length === 1) {
-        if (s[0] !== v)
+        if (s[0] !== h)
           throw new RangeError("Dimension mismatch. Matrix columns must match vector length.");
-        for (var f = 0; f < v; f++)
+        for (var f = 0; f < h; f++)
           l[f] = [u[f]];
-        return new e({
+        return new t({
           data: l,
-          size: [v, 1],
-          datatype: t._datatype
+          size: [h, 1],
+          datatype: r._datatype
         });
       }
       if (s.length === 2) {
-        if (s[0] !== v || s[1] !== 1)
+        if (s[0] !== h || s[1] !== 1)
           throw new RangeError("Dimension mismatch. Matrix columns must match vector length.");
-        if (di(t)) {
+        if (mi(r)) {
           if (a) {
             l = [];
-            for (var p = 0; p < v; p++)
+            for (var p = 0; p < h; p++)
               l[p] = [u[p][0]];
-            return new e({
+            return new t({
               data: l,
-              size: [v, 1],
-              datatype: t._datatype
+              size: [h, 1],
+              datatype: r._datatype
             });
           }
-          return t;
+          return r;
         }
-        if (mi(t)) {
-          for (var D = 0; D < v; D++)
+        if (gi(r)) {
+          for (var D = 0; D < h; D++)
             l[D] = [0];
-          for (var h = t._values, m = t._index, d = t._ptr, w = d[1], g = d[0]; g < w; g++) {
-            var E = m[g];
-            l[E][0] = h[g];
+          for (var v = r._values, m = r._index, d = r._ptr, w = d[1], g = d[0]; g < w; g++) {
+            var A = m[g];
+            l[A][0] = v[g];
           }
-          return new e({
+          return new t({
             data: l,
-            size: [v, 1],
-            datatype: t._datatype
+            size: [h, 1],
+            datatype: r._datatype
           });
         }
       }
       throw new RangeError("Dimension mismatch. The right side has to be either 1- or 2-dimensional vector.");
     }
-    if (Mr(t)) {
-      var F = qr(t);
+    if (Me(r)) {
+      var F = $e(r);
       if (F.length === 1) {
-        if (F[0] !== v)
+        if (F[0] !== h)
           throw new RangeError("Dimension mismatch. Matrix columns must match vector length.");
-        for (var y = 0; y < v; y++)
-          l[y] = [t[y]];
-        return new e({
+        for (var y = 0; y < h; y++)
+          l[y] = [r[y]];
+        return new t({
           data: l,
-          size: [v, 1]
+          size: [h, 1]
         });
       }
       if (F.length === 2) {
-        if (F[0] !== v || F[1] !== 1)
+        if (F[0] !== h || F[1] !== 1)
           throw new RangeError("Dimension mismatch. Matrix columns must match vector length.");
-        for (var C = 0; C < v; C++)
-          l[C] = [t[C][0]];
-        return new e({
+        for (var C = 0; C < h; C++)
+          l[C] = [r[C][0]];
+        return new t({
           data: l,
-          size: [v, 1]
+          size: [h, 1]
         });
       }
       throw new RangeError("Dimension mismatch. The right side has to be either 1- or 2-dimensional vector.");
     }
   };
 }
-var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "subtractScalar", "equalScalar", "DenseMatrix"], Oc = /* @__PURE__ */ rr(Xn, Tc, (r) => {
+var Hn = "lsolve", Ic = ["typed", "matrix", "divideScalar", "multiplyScalar", "subtractScalar", "equalScalar", "DenseMatrix"], Oc = /* @__PURE__ */ ee(Hn, Ic, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     divideScalar: i,
-    multiplyScalar: t,
+    multiplyScalar: r,
     subtractScalar: a,
     equalScalar: o,
-    DenseMatrix: v
-  } = r, c = St({
-    DenseMatrix: v
+    DenseMatrix: h
+  } = e, c = St({
+    DenseMatrix: h
   });
-  return e(Xn, {
+  return t(Hn, {
     "SparseMatrix, Array | Matrix": function(f, p) {
       return s(f, p);
     },
@@ -7291,69 +7291,69 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
       return l(f, p);
     },
     "Array, Array | Matrix": function(f, p) {
-      var D = n(f), h = l(D, p);
-      return h.valueOf();
+      var D = n(f), v = l(D, p);
+      return v.valueOf();
     }
   });
   function l(u, f) {
     f = c(u, f, !0);
-    for (var p = f._data, D = u._size[0], h = u._size[1], m = [], d = u._data, w = 0; w < h; w++) {
-      var g = p[w][0] || 0, E = void 0;
+    for (var p = f._data, D = u._size[0], v = u._size[1], m = [], d = u._data, w = 0; w < v; w++) {
+      var g = p[w][0] || 0, A = void 0;
       if (o(g, 0))
-        E = 0;
+        A = 0;
       else {
         var F = d[w][w];
         if (o(F, 0))
           throw new Error("Linear system cannot be solved since matrix is singular");
-        E = i(g, F);
+        A = i(g, F);
         for (var y = w + 1; y < D; y++)
-          p[y] = [a(p[y][0] || 0, t(E, d[y][w]))];
+          p[y] = [a(p[y][0] || 0, r(A, d[y][w]))];
       }
-      m[w] = [E];
+      m[w] = [A];
     }
-    return new v({
+    return new h({
       data: m,
       size: [D, 1]
     });
   }
   function s(u, f) {
     f = c(u, f, !0);
-    for (var p = f._data, D = u._size[0], h = u._size[1], m = u._values, d = u._index, w = u._ptr, g = [], E = 0; E < h; E++) {
-      var F = p[E][0] || 0;
+    for (var p = f._data, D = u._size[0], v = u._size[1], m = u._values, d = u._index, w = u._ptr, g = [], A = 0; A < v; A++) {
+      var F = p[A][0] || 0;
       if (o(F, 0))
-        g[E] = [0];
+        g[A] = [0];
       else {
-        for (var y = 0, C = [], b = [], A = w[E], S = w[E + 1], M = A; M < S; M++) {
-          var N = d[M];
-          N === E ? y = m[M] : N > E && (C.push(m[M]), b.push(N));
+        for (var y = 0, C = [], b = [], E = w[A], S = w[A + 1], M = E; M < S; M++) {
+          var x = d[M];
+          x === A ? y = m[M] : x > A && (C.push(m[M]), b.push(x));
         }
         if (o(y, 0))
           throw new Error("Linear system cannot be solved since matrix is singular");
-        for (var O = i(F, y), T = 0, I = b.length; T < I; T++) {
+        for (var I = i(F, y), T = 0, O = b.length; T < O; T++) {
           var B = b[T];
-          p[B] = [a(p[B][0] || 0, t(O, C[T]))];
+          p[B] = [a(p[B][0] || 0, r(I, C[T]))];
         }
-        g[E] = [O];
+        g[A] = [I];
       }
     }
-    return new v({
+    return new h({
       data: g,
       size: [D, 1]
     });
   }
-}), Kn = "usolve", Ic = ["typed", "matrix", "divideScalar", "multiplyScalar", "subtractScalar", "equalScalar", "DenseMatrix"], $c = /* @__PURE__ */ rr(Kn, Ic, (r) => {
+}), Kn = "usolve", Lc = ["typed", "matrix", "divideScalar", "multiplyScalar", "subtractScalar", "equalScalar", "DenseMatrix"], $c = /* @__PURE__ */ ee(Kn, Lc, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     divideScalar: i,
-    multiplyScalar: t,
+    multiplyScalar: r,
     subtractScalar: a,
     equalScalar: o,
-    DenseMatrix: v
-  } = r, c = St({
-    DenseMatrix: v
+    DenseMatrix: h
+  } = e, c = St({
+    DenseMatrix: h
   });
-  return e(Kn, {
+  return t(Kn, {
     "SparseMatrix, Array | Matrix": function(f, p) {
       return s(f, p);
     },
@@ -7361,69 +7361,69 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
       return l(f, p);
     },
     "Array, Array | Matrix": function(f, p) {
-      var D = n(f), h = l(D, p);
-      return h.valueOf();
+      var D = n(f), v = l(D, p);
+      return v.valueOf();
     }
   });
   function l(u, f) {
     f = c(u, f, !0);
-    for (var p = f._data, D = u._size[0], h = u._size[1], m = [], d = u._data, w = h - 1; w >= 0; w--) {
-      var g = p[w][0] || 0, E = void 0;
+    for (var p = f._data, D = u._size[0], v = u._size[1], m = [], d = u._data, w = v - 1; w >= 0; w--) {
+      var g = p[w][0] || 0, A = void 0;
       if (o(g, 0))
-        E = 0;
+        A = 0;
       else {
         var F = d[w][w];
         if (o(F, 0))
           throw new Error("Linear system cannot be solved since matrix is singular");
-        E = i(g, F);
+        A = i(g, F);
         for (var y = w - 1; y >= 0; y--)
-          p[y] = [a(p[y][0] || 0, t(E, d[y][w]))];
+          p[y] = [a(p[y][0] || 0, r(A, d[y][w]))];
       }
-      m[w] = [E];
+      m[w] = [A];
     }
-    return new v({
+    return new h({
       data: m,
       size: [D, 1]
     });
   }
   function s(u, f) {
     f = c(u, f, !0);
-    for (var p = f._data, D = u._size[0], h = u._size[1], m = u._values, d = u._index, w = u._ptr, g = [], E = h - 1; E >= 0; E--) {
-      var F = p[E][0] || 0;
+    for (var p = f._data, D = u._size[0], v = u._size[1], m = u._values, d = u._index, w = u._ptr, g = [], A = v - 1; A >= 0; A--) {
+      var F = p[A][0] || 0;
       if (o(F, 0))
-        g[E] = [0];
+        g[A] = [0];
       else {
-        for (var y = 0, C = [], b = [], A = w[E], S = w[E + 1], M = S - 1; M >= A; M--) {
-          var N = d[M];
-          N === E ? y = m[M] : N < E && (C.push(m[M]), b.push(N));
+        for (var y = 0, C = [], b = [], E = w[A], S = w[A + 1], M = S - 1; M >= E; M--) {
+          var x = d[M];
+          x === A ? y = m[M] : x < A && (C.push(m[M]), b.push(x));
         }
         if (o(y, 0))
           throw new Error("Linear system cannot be solved since matrix is singular");
-        for (var O = i(F, y), T = 0, I = b.length; T < I; T++) {
+        for (var I = i(F, y), T = 0, O = b.length; T < O; T++) {
           var B = b[T];
-          p[B] = [a(p[B][0], t(O, C[T]))];
+          p[B] = [a(p[B][0], r(I, C[T]))];
         }
-        g[E] = [O];
+        g[A] = [I];
       }
     }
-    return new v({
+    return new h({
       data: g,
       size: [D, 1]
     });
   }
-}), Hn = "usolveAll", qc = ["typed", "matrix", "divideScalar", "multiplyScalar", "subtractScalar", "equalScalar", "DenseMatrix"], Lc = /* @__PURE__ */ rr(Hn, qc, (r) => {
+}), Wn = "usolveAll", qc = ["typed", "matrix", "divideScalar", "multiplyScalar", "subtractScalar", "equalScalar", "DenseMatrix"], Pc = /* @__PURE__ */ ee(Wn, qc, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     divideScalar: i,
-    multiplyScalar: t,
+    multiplyScalar: r,
     subtractScalar: a,
     equalScalar: o,
-    DenseMatrix: v
-  } = r, c = St({
-    DenseMatrix: v
+    DenseMatrix: h
+  } = e, c = St({
+    DenseMatrix: h
   });
-  return e(Hn, {
+  return t(Wn, {
     "SparseMatrix, Array | Matrix": function(f, p) {
       return s(f, p);
     },
@@ -7431,18 +7431,18 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
       return l(f, p);
     },
     "Array, Array | Matrix": function(f, p) {
-      var D = n(f), h = l(D, p);
-      return h.map((m) => m.valueOf());
+      var D = n(f), v = l(D, p);
+      return v.map((m) => m.valueOf());
     }
   });
   function l(u, f) {
-    for (var p = [c(u, f, !0)._data.map((b) => b[0])], D = u._data, h = u._size[0], m = u._size[1], d = m - 1; d >= 0; d--)
+    for (var p = [c(u, f, !0)._data.map((b) => b[0])], D = u._data, v = u._size[0], m = u._size[1], d = m - 1; d >= 0; d--)
       for (var w = p.length, g = 0; g < w; g++) {
-        var E = p[g];
+        var A = p[g];
         if (o(D[d][d], 0))
-          if (o(E[d], 0)) {
+          if (o(A[d], 0)) {
             if (g === 0) {
-              var y = [...E];
+              var y = [...A];
               y[d] = 1;
               for (var C = d - 1; C >= 0; C--)
                 y[C] = a(y[C], D[C][d]);
@@ -7454,313 +7454,313 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
             p.splice(g, 1), g -= 1, w -= 1;
           }
         else {
-          E[d] = i(E[d], D[d][d]);
+          A[d] = i(A[d], D[d][d]);
           for (var F = d - 1; F >= 0; F--)
-            E[F] = a(E[F], t(E[d], D[F][d]));
+            A[F] = a(A[F], r(A[d], D[F][d]));
         }
       }
-    return p.map((b) => new v({
-      data: b.map((A) => [A]),
-      size: [h, 1]
+    return p.map((b) => new h({
+      data: b.map((E) => [E]),
+      size: [v, 1]
     }));
   }
   function s(u, f) {
-    for (var p = [c(u, f, !0)._data.map((H) => H[0])], D = u._size[0], h = u._size[1], m = u._values, d = u._index, w = u._ptr, g = h - 1; g >= 0; g--)
-      for (var E = p.length, F = 0; F < E; F++) {
-        for (var y = p[F], C = [], b = [], A = w[g], S = w[g + 1], M = 0, N = S - 1; N >= A; N--) {
-          var O = d[N];
-          O === g ? M = m[N] : O < g && (C.push(m[N]), b.push(O));
+    for (var p = [c(u, f, !0)._data.map((K) => K[0])], D = u._size[0], v = u._size[1], m = u._values, d = u._index, w = u._ptr, g = v - 1; g >= 0; g--)
+      for (var A = p.length, F = 0; F < A; F++) {
+        for (var y = p[F], C = [], b = [], E = w[g], S = w[g + 1], M = 0, x = S - 1; x >= E; x--) {
+          var I = d[x];
+          I === g ? M = m[x] : I < g && (C.push(m[x]), b.push(I));
         }
         if (o(M, 0))
           if (o(y[g], 0)) {
             if (F === 0) {
               var G = [...y];
               G[g] = 1;
-              for (var q = 0, z = b.length; q < z; q++) {
-                var V = b[q];
-                G[V] = a(G[V], C[q]);
+              for (var $ = 0, z = b.length; $ < z; $++) {
+                var V = b[$];
+                G[V] = a(G[V], C[$]);
               }
               p.push(G);
             }
           } else {
             if (F === 0)
               return [];
-            p.splice(F, 1), F -= 1, E -= 1;
+            p.splice(F, 1), F -= 1, A -= 1;
           }
         else {
           y[g] = i(y[g], M);
-          for (var T = 0, I = b.length; T < I; T++) {
+          for (var T = 0, O = b.length; T < O; T++) {
             var B = b[T];
-            y[B] = a(y[B], t(y[g], C[T]));
+            y[B] = a(y[B], r(y[g], C[T]));
           }
         }
       }
-    return p.map((H) => new v({
-      data: H.map((P) => [P]),
+    return p.map((K) => new h({
+      data: K.map((P) => [P]),
       size: [D, 1]
     }));
   }
-}), dt = "equal", Pc = ["typed", "matrix", "equalScalar", "DenseMatrix", "concat"], Rc = /* @__PURE__ */ rr(dt, Pc, (r) => {
+}), dt = "equal", Rc = ["typed", "matrix", "equalScalar", "DenseMatrix", "concat"], Uc = /* @__PURE__ */ ee(dt, Rc, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     equalScalar: i,
-    DenseMatrix: t,
+    DenseMatrix: r,
     concat: a
-  } = r, o = Re({
-    typed: e
-  }), v = He({
-    typed: e,
-    DenseMatrix: t
-  }), c = Pe({
-    typed: e,
-    DenseMatrix: t
-  }), l = Me({
-    typed: e,
+  } = e, o = Rr({
+    typed: t
+  }), h = Kr({
+    typed: t,
+    DenseMatrix: r
+  }), c = Pr({
+    typed: t,
+    DenseMatrix: r
+  }), l = Mr({
+    typed: t,
     matrix: n,
     concat: a
   });
-  return e(dt, Uc({
-    typed: e,
+  return t(dt, Vc({
+    typed: t,
     equalScalar: i
   }), l({
     elop: i,
-    SS: v,
+    SS: h,
     DS: o,
     Ss: c
   }));
-}), Uc = rr(dt, ["typed", "equalScalar"], (r) => {
+}), Vc = ee(dt, ["typed", "equalScalar"], (e) => {
   var {
-    typed: e,
+    typed: t,
     equalScalar: n
-  } = r;
-  return e(dt, {
-    "any, any": function(t, a) {
-      return t === null ? a === null : a === null ? t === null : t === void 0 ? a === void 0 : a === void 0 ? t === void 0 : n(t, a);
+  } = e;
+  return t(dt, {
+    "any, any": function(r, a) {
+      return r === null ? a === null : a === null ? r === null : r === void 0 ? a === void 0 : a === void 0 ? r === void 0 : n(r, a);
     }
   });
-}), mt = "smaller", Vc = ["typed", "config", "matrix", "DenseMatrix", "concat"], Zc = /* @__PURE__ */ rr(mt, Vc, (r) => {
+}), mt = "smaller", Zc = ["typed", "config", "matrix", "DenseMatrix", "concat"], Gc = /* @__PURE__ */ ee(mt, Zc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i,
-    DenseMatrix: t,
+    DenseMatrix: r,
     concat: a
-  } = r, o = Re({
-    typed: e
-  }), v = He({
-    typed: e,
-    DenseMatrix: t
-  }), c = Pe({
-    typed: e,
-    DenseMatrix: t
-  }), l = Me({
-    typed: e,
+  } = e, o = Rr({
+    typed: t
+  }), h = Kr({
+    typed: t,
+    DenseMatrix: r
+  }), c = Pr({
+    typed: t,
+    DenseMatrix: r
+  }), l = Mr({
+    typed: t,
     matrix: i,
     concat: a
-  }), s = Ke({
-    typed: e
+  }), s = Hr({
+    typed: t
   });
-  return e(mt, Gc({
-    typed: e,
+  return t(mt, Yc({
+    typed: t,
     config: n
   }), {
     "boolean, boolean": (u, f) => u < f,
     "BigNumber, BigNumber": function(f, p) {
-      return f.lt(p) && !Xe(f, p, n.epsilon);
+      return f.lt(p) && !Xr(f, p, n.epsilon);
     },
     "Fraction, Fraction": (u, f) => u.compare(f) === -1,
     "Complex, Complex": function(f, p) {
       throw new TypeError("No ordering relation is defined for complex numbers");
     }
   }, s, l({
-    SS: v,
+    SS: h,
     DS: o,
     Ss: c
   }));
-}), Gc = /* @__PURE__ */ rr(mt, ["typed", "config"], (r) => {
+}), Yc = /* @__PURE__ */ ee(mt, ["typed", "config"], (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n
-  } = r;
-  return e(mt, {
-    "number, number": function(t, a) {
-      return t < a && !we(t, a, n.epsilon);
+  } = e;
+  return t(mt, {
+    "number, number": function(r, a) {
+      return r < a && !wr(r, a, n.epsilon);
     }
   });
-}), gt = "smallerEq", Yc = ["typed", "config", "matrix", "DenseMatrix", "concat"], Jc = /* @__PURE__ */ rr(gt, Yc, (r) => {
+}), gt = "smallerEq", Jc = ["typed", "config", "matrix", "DenseMatrix", "concat"], Qc = /* @__PURE__ */ ee(gt, Jc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i,
-    DenseMatrix: t,
+    DenseMatrix: r,
     concat: a
-  } = r, o = Re({
-    typed: e
-  }), v = He({
-    typed: e,
-    DenseMatrix: t
-  }), c = Pe({
-    typed: e,
-    DenseMatrix: t
-  }), l = Me({
-    typed: e,
+  } = e, o = Rr({
+    typed: t
+  }), h = Kr({
+    typed: t,
+    DenseMatrix: r
+  }), c = Pr({
+    typed: t,
+    DenseMatrix: r
+  }), l = Mr({
+    typed: t,
     matrix: i,
     concat: a
-  }), s = Ke({
-    typed: e
+  }), s = Hr({
+    typed: t
   });
-  return e(gt, Qc({
-    typed: e,
+  return t(gt, Xc({
+    typed: t,
     config: n
   }), {
     "boolean, boolean": (u, f) => u <= f,
     "BigNumber, BigNumber": function(f, p) {
-      return f.lte(p) || Xe(f, p, n.epsilon);
+      return f.lte(p) || Xr(f, p, n.epsilon);
     },
     "Fraction, Fraction": (u, f) => u.compare(f) !== 1,
     "Complex, Complex": function() {
       throw new TypeError("No ordering relation is defined for complex numbers");
     }
   }, s, l({
-    SS: v,
+    SS: h,
     DS: o,
     Ss: c
   }));
-}), Qc = /* @__PURE__ */ rr(gt, ["typed", "config"], (r) => {
+}), Xc = /* @__PURE__ */ ee(gt, ["typed", "config"], (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n
-  } = r;
-  return e(gt, {
-    "number, number": function(t, a) {
-      return t <= a || we(t, a, n.epsilon);
+  } = e;
+  return t(gt, {
+    "number, number": function(r, a) {
+      return r <= a || wr(r, a, n.epsilon);
     }
   });
-}), Dt = "larger", Xc = ["typed", "config", "matrix", "DenseMatrix", "concat"], Kc = /* @__PURE__ */ rr(Dt, Xc, (r) => {
+}), Dt = "larger", Hc = ["typed", "config", "matrix", "DenseMatrix", "concat"], Kc = /* @__PURE__ */ ee(Dt, Hc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i,
-    DenseMatrix: t,
+    DenseMatrix: r,
     concat: a
-  } = r, o = Re({
-    typed: e
-  }), v = He({
-    typed: e,
-    DenseMatrix: t
-  }), c = Pe({
-    typed: e,
-    DenseMatrix: t
-  }), l = Me({
-    typed: e,
+  } = e, o = Rr({
+    typed: t
+  }), h = Kr({
+    typed: t,
+    DenseMatrix: r
+  }), c = Pr({
+    typed: t,
+    DenseMatrix: r
+  }), l = Mr({
+    typed: t,
     matrix: i,
     concat: a
-  }), s = Ke({
-    typed: e
+  }), s = Hr({
+    typed: t
   });
-  return e(Dt, Hc({
-    typed: e,
+  return t(Dt, Wc({
+    typed: t,
     config: n
   }), {
     "boolean, boolean": (u, f) => u > f,
     "BigNumber, BigNumber": function(f, p) {
-      return f.gt(p) && !Xe(f, p, n.epsilon);
+      return f.gt(p) && !Xr(f, p, n.epsilon);
     },
     "Fraction, Fraction": (u, f) => u.compare(f) === 1,
     "Complex, Complex": function() {
       throw new TypeError("No ordering relation is defined for complex numbers");
     }
   }, s, l({
-    SS: v,
+    SS: h,
     DS: o,
     Ss: c
   }));
-}), Hc = /* @__PURE__ */ rr(Dt, ["typed", "config"], (r) => {
+}), Wc = /* @__PURE__ */ ee(Dt, ["typed", "config"], (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n
-  } = r;
-  return e(Dt, {
-    "number, number": function(t, a) {
-      return t > a && !we(t, a, n.epsilon);
+  } = e;
+  return t(Dt, {
+    "number, number": function(r, a) {
+      return r > a && !wr(r, a, n.epsilon);
     }
   });
-}), yt = "largerEq", Wc = ["typed", "config", "matrix", "DenseMatrix", "concat"], kc = /* @__PURE__ */ rr(yt, Wc, (r) => {
+}), yt = "largerEq", kc = ["typed", "config", "matrix", "DenseMatrix", "concat"], jc = /* @__PURE__ */ ee(yt, kc, (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n,
     matrix: i,
-    DenseMatrix: t,
+    DenseMatrix: r,
     concat: a
-  } = r, o = Re({
-    typed: e
-  }), v = He({
-    typed: e,
-    DenseMatrix: t
-  }), c = Pe({
-    typed: e,
-    DenseMatrix: t
-  }), l = Me({
-    typed: e,
+  } = e, o = Rr({
+    typed: t
+  }), h = Kr({
+    typed: t,
+    DenseMatrix: r
+  }), c = Pr({
+    typed: t,
+    DenseMatrix: r
+  }), l = Mr({
+    typed: t,
     matrix: i,
     concat: a
-  }), s = Ke({
-    typed: e
+  }), s = Hr({
+    typed: t
   });
-  return e(yt, jc({
-    typed: e,
+  return t(yt, el({
+    typed: t,
     config: n
   }), {
     "boolean, boolean": (u, f) => u >= f,
     "BigNumber, BigNumber": function(f, p) {
-      return f.gte(p) || Xe(f, p, n.epsilon);
+      return f.gte(p) || Xr(f, p, n.epsilon);
     },
     "Fraction, Fraction": (u, f) => u.compare(f) !== -1,
     "Complex, Complex": function() {
       throw new TypeError("No ordering relation is defined for complex numbers");
     }
   }, s, l({
-    SS: v,
+    SS: h,
     DS: o,
     Ss: c
   }));
-}), jc = /* @__PURE__ */ rr(yt, ["typed", "config"], (r) => {
+}), el = /* @__PURE__ */ ee(yt, ["typed", "config"], (e) => {
   var {
-    typed: e,
+    typed: t,
     config: n
-  } = r;
-  return e(yt, {
-    "number, number": function(t, a) {
-      return t >= a || we(t, a, n.epsilon);
+  } = e;
+  return t(yt, {
+    "number, number": function(r, a) {
+      return r >= a || wr(r, a, n.epsilon);
     }
   });
-}), rl = "ImmutableDenseMatrix", el = ["smaller", "DenseMatrix"], tl = /* @__PURE__ */ rr(rl, el, (r) => {
+}), rl = "ImmutableDenseMatrix", tl = ["smaller", "DenseMatrix"], nl = /* @__PURE__ */ ee(rl, tl, (e) => {
   var {
-    smaller: e,
+    smaller: t,
     DenseMatrix: n
-  } = r;
-  function i(t, a) {
+  } = e;
+  function i(r, a) {
     if (!(this instanceof i))
       throw new SyntaxError("Constructor must be called with the new operator");
-    if (a && !te(a))
+    if (a && !tr(a))
       throw new Error("Invalid datatype: " + a);
-    if (_r(t) || Mr(t)) {
-      var o = new n(t, a);
+    if (_e(r) || Me(r)) {
+      var o = new n(r, a);
       this._data = o._data, this._size = o._size, this._datatype = o._datatype, this._min = null, this._max = null;
-    } else if (t && Mr(t.data) && Mr(t.size))
-      this._data = t.data, this._size = t.size, this._datatype = t.datatype, this._min = typeof t.min < "u" ? t.min : null, this._max = typeof t.max < "u" ? t.max : null;
+    } else if (r && Me(r.data) && Me(r.size))
+      this._data = r.data, this._size = r.size, this._datatype = r.datatype, this._min = typeof r.min < "u" ? r.min : null, this._max = typeof r.max < "u" ? r.max : null;
     else {
-      if (t)
-        throw new TypeError("Unsupported type of data (" + fe(t) + ")");
+      if (r)
+        throw new TypeError("Unsupported type of data (" + lr(r) + ")");
       this._data = [], this._size = [0], this._datatype = a, this._min = null, this._max = null;
     }
   }
-  return i.prototype = new n(), i.prototype.type = "ImmutableDenseMatrix", i.prototype.isImmutableDenseMatrix = !0, i.prototype.subset = function(t) {
+  return i.prototype = new n(), i.prototype.type = "ImmutableDenseMatrix", i.prototype.isImmutableDenseMatrix = !0, i.prototype.subset = function(r) {
     switch (arguments.length) {
       case 1: {
-        var a = n.prototype.subset.call(this, t);
-        return _r(a) ? new i({
+        var a = n.prototype.subset.call(this, r);
+        return _e(a) ? new i({
           data: a._data,
           size: a._size,
           datatype: a._datatype
@@ -7780,8 +7780,8 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
     throw new Error("Cannot invoke reshape on an Immutable Matrix instance");
   }, i.prototype.clone = function() {
     return new i({
-      data: Fr(this._data),
-      size: Fr(this._size),
+      data: Ce(this._data),
+      size: Ce(this._size),
       datatype: this._datatype
     });
   }, i.prototype.toJSON = function() {
@@ -7791,49 +7791,49 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
       size: this._size,
       datatype: this._datatype
     };
-  }, i.fromJSON = function(t) {
-    return new i(t);
+  }, i.fromJSON = function(r) {
+    return new i(r);
   }, i.prototype.swapRows = function() {
     throw new Error("Cannot invoke swapRows on an Immutable Matrix instance");
   }, i.prototype.min = function() {
     if (this._min === null) {
-      var t = null;
+      var r = null;
       this.forEach(function(a) {
-        (t === null || e(a, t)) && (t = a);
-      }), this._min = t !== null ? t : void 0;
+        (r === null || t(a, r)) && (r = a);
+      }), this._min = r !== null ? r : void 0;
     }
     return this._min;
   }, i.prototype.max = function() {
     if (this._max === null) {
-      var t = null;
+      var r = null;
       this.forEach(function(a) {
-        (t === null || e(t, a)) && (t = a);
-      }), this._max = t !== null ? t : void 0;
+        (r === null || t(r, a)) && (r = a);
+      }), this._max = r !== null ? r : void 0;
     }
     return this._max;
   }, i;
 }, {
   isClass: !0
-}), nl = "Index", il = ["ImmutableDenseMatrix", "getMatrixDataType"], al = /* @__PURE__ */ rr(nl, il, (r) => {
+}), il = "Index", al = ["ImmutableDenseMatrix", "getMatrixDataType"], ul = /* @__PURE__ */ ee(il, al, (e) => {
   var {
-    ImmutableDenseMatrix: e,
+    ImmutableDenseMatrix: t,
     getMatrixDataType: n
-  } = r;
+  } = e;
   function i(a) {
     if (!(this instanceof i))
       throw new SyntaxError("Constructor must be called with the new operator");
     this._dimensions = [], this._sourceSize = [], this._isScalar = !0;
-    for (var o = 0, v = arguments.length; o < v; o++) {
-      var c = arguments[o], l = Mr(c), s = _r(c), u = null;
-      if (gi(c))
+    for (var o = 0, h = arguments.length; o < h; o++) {
+      var c = arguments[o], l = Me(c), s = _e(c), u = null;
+      if (Di(c))
         this._dimensions.push(c), this._isScalar = !1;
       else if (l || s) {
         var f = void 0;
-        n(c) === "boolean" ? (l && (f = t(Wn(c).valueOf())), s && (f = t(Wn(c._data).valueOf())), u = c.valueOf().length) : f = t(c.valueOf()), this._dimensions.push(f);
+        n(c) === "boolean" ? (l && (f = r(kn(c).valueOf())), s && (f = r(kn(c._data).valueOf())), u = c.valueOf().length) : f = r(c.valueOf()), this._dimensions.push(f);
         var p = f.size();
         (p.length !== 1 || p[0] !== 1 || u !== null) && (this._isScalar = !1);
       } else if (typeof c == "number")
-        this._dimensions.push(t([c]));
+        this._dimensions.push(r([c]));
       else if (typeof c == "string")
         this._dimensions.push(c);
       else
@@ -7842,38 +7842,38 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
     }
   }
   i.prototype.type = "Index", i.prototype.isIndex = !0;
-  function t(a) {
-    for (var o = 0, v = a.length; o < v; o++)
-      if (typeof a[o] != "number" || !zr(a[o]))
+  function r(a) {
+    for (var o = 0, h = a.length; o < h; o++)
+      if (typeof a[o] != "number" || !ze(a[o]))
         throw new TypeError("Index parameters must be positive integer numbers");
-    return new e(a);
+    return new t(a);
   }
   return i.prototype.clone = function() {
     var a = new i();
-    return a._dimensions = Fr(this._dimensions), a._isScalar = this._isScalar, a._sourceSize = this._sourceSize, a;
+    return a._dimensions = Ce(this._dimensions), a._isScalar = this._isScalar, a._sourceSize = this._sourceSize, a;
   }, i.create = function(a) {
     var o = new i();
     return i.apply(o, a), o;
   }, i.prototype.size = function() {
-    for (var a = [], o = 0, v = this._dimensions.length; o < v; o++) {
+    for (var a = [], o = 0, h = this._dimensions.length; o < h; o++) {
       var c = this._dimensions[o];
       a[o] = typeof c == "string" ? 1 : c.size()[0];
     }
     return a;
   }, i.prototype.max = function() {
-    for (var a = [], o = 0, v = this._dimensions.length; o < v; o++) {
+    for (var a = [], o = 0, h = this._dimensions.length; o < h; o++) {
       var c = this._dimensions[o];
       a[o] = typeof c == "string" ? c : c.max();
     }
     return a;
   }, i.prototype.min = function() {
-    for (var a = [], o = 0, v = this._dimensions.length; o < v; o++) {
+    for (var a = [], o = 0, h = this._dimensions.length; o < h; o++) {
       var c = this._dimensions[o];
       a[o] = typeof c == "string" ? c : c.min();
     }
     return a;
   }, i.prototype.forEach = function(a) {
-    for (var o = 0, v = this._dimensions.length; o < v; o++)
+    for (var o = 0, h = this._dimensions.length; o < h; o++)
       a(this._dimensions[o], o, this);
   }, i.prototype.dimension = function(a) {
     return this._dimensions[a] || null;
@@ -7884,13 +7884,13 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
   }, i.prototype.isScalar = function() {
     return this._isScalar;
   }, i.prototype.toArray = function() {
-    for (var a = [], o = 0, v = this._dimensions.length; o < v; o++) {
+    for (var a = [], o = 0, h = this._dimensions.length; o < h; o++) {
       var c = this._dimensions[o];
       a.push(typeof c == "string" ? c : c.toArray());
     }
     return a;
   }, i.prototype.valueOf = i.prototype.toArray, i.prototype.toString = function() {
-    for (var a = [], o = 0, v = this._dimensions.length; o < v; o++) {
+    for (var a = [], o = 0, h = this._dimensions.length; o < h; o++) {
       var c = this._dimensions[o];
       typeof c == "string" ? a.push(JSON.stringify(c)) : a.push(c.toString());
     }
@@ -7906,23 +7906,23 @@ var Xn = "lsolve", Tc = ["typed", "matrix", "divideScalar", "multiplyScalar", "s
 }, {
   isClass: !0
 });
-function Wn(r) {
-  var e = [];
-  return r.forEach((n, i) => {
-    n && e.push(i);
-  }), e;
+function kn(e) {
+  var t = [];
+  return e.forEach((n, i) => {
+    n && t.push(i);
+  }), t;
 }
-var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul, ol, (r) => {
+var ol = "FibonacciHeap", sl = ["smaller", "larger"], fl = /* @__PURE__ */ ee(ol, sl, (e) => {
   var {
-    smaller: e,
+    smaller: t,
     larger: n
-  } = r, i = 1 / Math.log((1 + Math.sqrt(5)) / 2);
-  function t() {
-    if (!(this instanceof t))
+  } = e, i = 1 / Math.log((1 + Math.sqrt(5)) / 2);
+  function r() {
+    if (!(this instanceof r))
       throw new SyntaxError("Constructor must be called with the new operator");
     this._minimum = null, this._size = 0;
   }
-  t.prototype.type = "FibonacciHeap", t.prototype.isFibonacciHeap = !0, t.prototype.insert = function(s, u) {
+  r.prototype.type = "FibonacciHeap", r.prototype.isFibonacciHeap = !0, r.prototype.insert = function(s, u) {
     var f = {
       key: s,
       value: u,
@@ -7930,17 +7930,17 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
     };
     if (this._minimum) {
       var p = this._minimum;
-      f.left = p, f.right = p.right, p.right = f, f.right.left = f, e(s, p.key) && (this._minimum = f);
+      f.left = p, f.right = p.right, p.right = f, f.right.left = f, t(s, p.key) && (this._minimum = f);
     } else
       f.left = f, f.right = f, this._minimum = f;
     return this._size++, f;
-  }, t.prototype.size = function() {
+  }, r.prototype.size = function() {
     return this._size;
-  }, t.prototype.clear = function() {
+  }, r.prototype.clear = function() {
     this._minimum = null, this._size = 0;
-  }, t.prototype.isEmpty = function() {
+  }, r.prototype.isEmpty = function() {
     return this._size === 0;
-  }, t.prototype.extractMinimum = function() {
+  }, r.prototype.extractMinimum = function() {
     var s = this._minimum;
     if (s === null)
       return s;
@@ -7949,97 +7949,97 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
       p.left.right = p.right, p.right.left = p.left, p.left = u, p.right = u.right, u.right = p, p.right.left = p, p.parent = null, p = D, f--;
     }
     return s.left.right = s.right, s.right.left = s.left, s === s.right ? u = null : (u = s.right, u = l(u, this._size)), this._size--, this._minimum = u, s;
-  }, t.prototype.remove = function(s) {
+  }, r.prototype.remove = function(s) {
     this._minimum = a(this._minimum, s, -1), this.extractMinimum();
   };
   function a(s, u, f) {
     u.key = f;
     var p = u.parent;
-    return p && e(u.key, p.key) && (o(s, u, p), v(s, p)), e(u.key, s.key) && (s = u), s;
+    return p && t(u.key, p.key) && (o(s, u, p), h(s, p)), t(u.key, s.key) && (s = u), s;
   }
   function o(s, u, f) {
     u.left.right = u.right, u.right.left = u.left, f.degree--, f.child === u && (f.child = u.right), f.degree === 0 && (f.child = null), u.left = s, u.right = s.right, s.right = u, u.right.left = u, u.parent = null, u.mark = !1;
   }
-  function v(s, u) {
+  function h(s, u) {
     var f = u.parent;
-    f && (u.mark ? (o(s, u, f), v(f)) : u.mark = !0);
+    f && (u.mark ? (o(s, u, f), h(f)) : u.mark = !0);
   }
   var c = function(u, f) {
     u.left.right = u.right, u.right.left = u.left, u.parent = f, f.child ? (u.left = f.child, u.right = f.child.right, f.child.right = u, u.right.left = u) : (f.child = u, u.right = u, u.left = u), f.degree++, u.mark = !1;
   };
   function l(s, u) {
-    var f = Math.floor(Math.log(u) * i) + 1, p = new Array(f), D = 0, h = s;
-    if (h)
-      for (D++, h = h.right; h !== s; )
-        D++, h = h.right;
+    var f = Math.floor(Math.log(u) * i) + 1, p = new Array(f), D = 0, v = s;
+    if (v)
+      for (D++, v = v.right; v !== s; )
+        D++, v = v.right;
     for (var m; D > 0; ) {
-      for (var d = h.degree, w = h.right; m = p[d], !!m; ) {
-        if (n(h.key, m.key)) {
+      for (var d = v.degree, w = v.right; m = p[d], !!m; ) {
+        if (n(v.key, m.key)) {
           var g = m;
-          m = h, h = g;
+          m = v, v = g;
         }
-        c(m, h), p[d] = null, d++;
+        c(m, v), p[d] = null, d++;
       }
-      p[d] = h, h = w, D--;
+      p[d] = v, v = w, D--;
     }
     s = null;
-    for (var E = 0; E < f; E++)
-      m = p[E], m && (s ? (m.left.right = m.right, m.right.left = m.left, m.left = s, m.right = s.right, s.right = m, m.right.left = m, e(m.key, s.key) && (s = m)) : s = m);
+    for (var A = 0; A < f; A++)
+      m = p[A], m && (s ? (m.left.right = m.right, m.right.left = m.left, m.left = s, m.right = s.right, s.right = m, m.right.left = m, t(m.key, s.key) && (s = m)) : s = m);
     return s;
   }
-  return t;
+  return r;
 }, {
   isClass: !0
-}), fl = "Spa", cl = ["addScalar", "equalScalar", "FibonacciHeap"], ll = /* @__PURE__ */ rr(fl, cl, (r) => {
+}), cl = "Spa", ll = ["addScalar", "equalScalar", "FibonacciHeap"], hl = /* @__PURE__ */ ee(cl, ll, (e) => {
   var {
-    addScalar: e,
+    addScalar: t,
     equalScalar: n,
     FibonacciHeap: i
-  } = r;
-  function t() {
-    if (!(this instanceof t))
+  } = e;
+  function r() {
+    if (!(this instanceof r))
       throw new SyntaxError("Constructor must be called with the new operator");
     this._values = [], this._heap = new i();
   }
-  return t.prototype.type = "Spa", t.prototype.isSpa = !0, t.prototype.set = function(a, o) {
+  return r.prototype.type = "Spa", r.prototype.isSpa = !0, r.prototype.set = function(a, o) {
     if (this._values[a])
       this._values[a].value = o;
     else {
-      var v = this._heap.insert(a, o);
-      this._values[a] = v;
+      var h = this._heap.insert(a, o);
+      this._values[a] = h;
     }
-  }, t.prototype.get = function(a) {
+  }, r.prototype.get = function(a) {
     var o = this._values[a];
     return o ? o.value : 0;
-  }, t.prototype.accumulate = function(a, o) {
-    var v = this._values[a];
-    v ? v.value = e(v.value, o) : (v = this._heap.insert(a, o), this._values[a] = v);
-  }, t.prototype.forEach = function(a, o, v) {
+  }, r.prototype.accumulate = function(a, o) {
+    var h = this._values[a];
+    h ? h.value = t(h.value, o) : (h = this._heap.insert(a, o), this._values[a] = h);
+  }, r.prototype.forEach = function(a, o, h) {
     var c = this._heap, l = this._values, s = [], u = c.extractMinimum();
     for (u && s.push(u); u && u.key <= o; )
-      u.key >= a && (n(u.value, 0) || v(u.key, u.value, this)), u = c.extractMinimum(), u && s.push(u);
+      u.key >= a && (n(u.value, 0) || h(u.key, u.value, this)), u = c.extractMinimum(), u && s.push(u);
     for (var f = 0; f < s.length; f++) {
       var p = s[f];
       u = c.insert(p.key, p.value), l[u.key] = u;
     }
-  }, t.prototype.swap = function(a, o) {
-    var v = this._values[a], c = this._values[o];
-    if (!v && c)
-      v = this._heap.insert(a, c.value), this._heap.remove(c), this._values[a] = v, this._values[o] = void 0;
-    else if (v && !c)
-      c = this._heap.insert(o, v.value), this._heap.remove(v), this._values[o] = c, this._values[a] = void 0;
-    else if (v && c) {
-      var l = v.value;
-      v.value = c.value, c.value = l;
+  }, r.prototype.swap = function(a, o) {
+    var h = this._values[a], c = this._values[o];
+    if (!h && c)
+      h = this._heap.insert(a, c.value), this._heap.remove(c), this._values[a] = h, this._values[o] = void 0;
+    else if (h && !c)
+      c = this._heap.insert(o, h.value), this._heap.remove(h), this._values[o] = c, this._values[a] = void 0;
+    else if (h && c) {
+      var l = h.value;
+      h.value = c.value, c.value = l;
     }
-  }, t;
+  }, r;
 }, {
   isClass: !0
-}), vl = "atan", hl = ["typed"], pl = /* @__PURE__ */ rr(vl, hl, (r) => {
+}), vl = "atan", pl = ["typed"], dl = /* @__PURE__ */ ee(vl, pl, (e) => {
   var {
-    typed: e
-  } = r;
-  return e("atan", {
+    typed: t
+  } = e;
+  return t("atan", {
     number: function(i) {
       return Math.atan(i);
     },
@@ -8050,64 +8050,64 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
       return i.atan();
     }
   });
-}), fa = /* @__PURE__ */ rr("trigUnit", ["typed"], (r) => {
+}), ca = /* @__PURE__ */ ee("trigUnit", ["typed"], (e) => {
   var {
-    typed: e
-  } = r;
+    typed: t
+  } = e;
   return {
-    Unit: e.referToSelf((n) => (i) => {
+    Unit: t.referToSelf((n) => (i) => {
       if (!i.hasBase(i.constructor.BASE_UNITS.ANGLE))
         throw new TypeError("Unit in function cot is no angle");
-      return e.find(n, i.valueType())(i.value);
+      return t.find(n, i.valueType())(i.value);
     })
   };
-}), kn = "cos", dl = ["typed"], ml = /* @__PURE__ */ rr(kn, dl, (r) => {
+}), jn = "cos", ml = ["typed"], gl = /* @__PURE__ */ ee(jn, ml, (e) => {
   var {
-    typed: e
-  } = r, n = fa({
-    typed: e
+    typed: t
+  } = e, n = ca({
+    typed: t
   });
-  return e(kn, {
+  return t(jn, {
     number: Math.cos,
     "Complex | BigNumber": (i) => i.cos()
   }, n);
-}), jn = "sin", gl = ["typed"], Dl = /* @__PURE__ */ rr(jn, gl, (r) => {
+}), ei = "sin", Dl = ["typed"], yl = /* @__PURE__ */ ee(ei, Dl, (e) => {
   var {
-    typed: e
-  } = r, n = fa({
-    typed: e
+    typed: t
+  } = e, n = ca({
+    typed: t
   });
-  return e(jn, {
+  return t(ei, {
     number: Math.sin,
     "Complex | BigNumber": (i) => i.sin()
   }, n);
-}), ri = "add", yl = ["typed", "matrix", "addScalar", "equalScalar", "DenseMatrix", "SparseMatrix", "concat"], wl = /* @__PURE__ */ rr(ri, yl, (r) => {
+}), ri = "add", wl = ["typed", "matrix", "addScalar", "equalScalar", "DenseMatrix", "SparseMatrix", "concat"], Al = /* @__PURE__ */ ee(ri, wl, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     addScalar: i,
-    equalScalar: t,
+    equalScalar: r,
     DenseMatrix: a,
     SparseMatrix: o,
-    concat: v
-  } = r, c = aa({
-    typed: e
-  }), l = bf({
-    typed: e,
-    equalScalar: t
-  }), s = ua({
-    typed: e,
+    concat: h
+  } = e, c = ua({
+    typed: t
+  }), l = Mf({
+    typed: t,
+    equalScalar: r
+  }), s = oa({
+    typed: t,
     DenseMatrix: a
-  }), u = Me({
-    typed: e,
+  }), u = Mr({
+    typed: t,
     matrix: n,
-    concat: v
+    concat: h
   });
-  return e(ri, {
+  return t(ri, {
     "any, any": i,
-    "any, any, ...any": e.referToSelf((f) => (p, D, h) => {
-      for (var m = f(p, D), d = 0; d < h.length; d++)
-        m = f(m, h[d]);
+    "any, any, ...any": t.referToSelf((f) => (p, D, v) => {
+      for (var m = f(p, D), d = 0; d < v.length; d++)
+        m = f(m, v[d]);
       return m;
     })
   }, u({
@@ -8116,23 +8116,23 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
     SS: l,
     Ss: s
   }));
-}), ei = "norm", Al = ["typed", "abs", "add", "pow", "conj", "sqrt", "multiply", "equalScalar", "larger", "smaller", "matrix", "ctranspose", "eigs"], El = /* @__PURE__ */ rr(ei, Al, (r) => {
+}), ti = "norm", El = ["typed", "abs", "add", "pow", "conj", "sqrt", "multiply", "equalScalar", "larger", "smaller", "matrix", "ctranspose", "eigs"], Fl = /* @__PURE__ */ ee(ti, El, (e) => {
   var {
-    typed: e,
+    typed: t,
     abs: n,
     add: i,
-    pow: t,
+    pow: r,
     conj: a,
     sqrt: o,
-    multiply: v,
+    multiply: h,
     equalScalar: c,
     larger: l,
     smaller: s,
     matrix: u,
     ctranspose: f,
     eigs: p
-  } = r;
-  return e(ei, {
+  } = e;
+  return t(ti, {
     number: Math.abs,
     Complex: function(b) {
       return b.abs();
@@ -8149,24 +8149,24 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
     Matrix: function(b) {
       return y(b, 2);
     },
-    "Array, number | BigNumber | string": function(b, A) {
-      return y(u(b), A);
+    "Array, number | BigNumber | string": function(b, E) {
+      return y(u(b), E);
     },
-    "Matrix, number | BigNumber | string": function(b, A) {
-      return y(b, A);
+    "Matrix, number | BigNumber | string": function(b, E) {
+      return y(b, E);
     }
   });
   function D(C) {
     var b = 0;
-    return C.forEach(function(A) {
-      var S = n(A);
+    return C.forEach(function(E) {
+      var S = n(E);
       l(S, b) && (b = S);
     }, !0), b;
   }
-  function h(C) {
+  function v(C) {
     var b;
-    return C.forEach(function(A) {
-      var S = n(A);
+    return C.forEach(function(E) {
+      var S = n(E);
       (!b || s(S, b)) && (b = S);
     }, !0), b || 0;
   }
@@ -8174,15 +8174,15 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
     if (b === Number.POSITIVE_INFINITY || b === "inf")
       return D(C);
     if (b === Number.NEGATIVE_INFINITY || b === "-inf")
-      return h(C);
+      return v(C);
     if (b === "fro")
       return y(C, 2);
     if (typeof b == "number" && !isNaN(b)) {
       if (!c(b, 0)) {
-        var A = 0;
+        var E = 0;
         return C.forEach(function(S) {
-          A = i(t(n(S), b), A);
-        }, !0), t(A, 1 / b);
+          E = i(r(n(S), b), E);
+        }, !0), r(E, 1 / b);
       }
       return Number.POSITIVE_INFINITY;
     }
@@ -8190,36 +8190,36 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
   }
   function d(C) {
     var b = 0;
-    return C.forEach(function(A, S) {
-      b = i(b, v(A, a(A)));
+    return C.forEach(function(E, S) {
+      b = i(b, h(E, a(E)));
     }), n(o(b));
   }
   function w(C) {
-    var b = [], A = 0;
+    var b = [], E = 0;
     return C.forEach(function(S, M) {
-      var N = M[1], O = i(b[N] || 0, n(S));
-      l(O, A) && (A = O), b[N] = O;
-    }, !0), A;
+      var x = M[1], I = i(b[x] || 0, n(S));
+      l(I, E) && (E = I), b[x] = I;
+    }, !0), E;
   }
   function g(C) {
     var b = C.size();
     if (b[0] !== b[1])
       throw new RangeError("Invalid matrix dimensions");
-    var A = f(C), S = v(A, C), M = p(S).values.toArray(), N = M[M.length - 1];
-    return n(o(N));
+    var E = f(C), S = h(E, C), M = p(S).values.toArray(), x = M[M.length - 1];
+    return n(o(x));
   }
-  function E(C) {
-    var b = [], A = 0;
+  function A(C) {
+    var b = [], E = 0;
     return C.forEach(function(S, M) {
-      var N = M[0], O = i(b[N] || 0, n(S));
-      l(O, A) && (A = O), b[N] = O;
-    }, !0), A;
+      var x = M[0], I = i(b[x] || 0, n(S));
+      l(I, E) && (E = I), b[x] = I;
+    }, !0), E;
   }
   function F(C, b) {
     if (b === 1)
       return w(C);
     if (b === Number.POSITIVE_INFINITY || b === "inf")
-      return E(C);
+      return A(C);
     if (b === "fro")
       return d(C);
     if (b === 2)
@@ -8227,29 +8227,29 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
     throw new Error("Unsupported parameter value " + b);
   }
   function y(C, b) {
-    var A = C.size();
-    if (A.length === 1)
+    var E = C.size();
+    if (E.length === 1)
       return m(C, b);
-    if (A.length === 2) {
-      if (A[0] && A[1])
+    if (E.length === 2) {
+      if (E[0] && E[1])
         return F(C, b);
       throw new RangeError("Invalid matrix dimensions");
     }
   }
-}), ti = "dot", Fl = ["typed", "addScalar", "multiplyScalar", "conj", "size"], Cl = /* @__PURE__ */ rr(ti, Fl, (r) => {
+}), ni = "dot", Cl = ["typed", "addScalar", "multiplyScalar", "conj", "size"], bl = /* @__PURE__ */ ee(ni, Cl, (e) => {
   var {
-    typed: e,
+    typed: t,
     addScalar: n,
     multiplyScalar: i,
-    conj: t,
+    conj: r,
     size: a
-  } = r;
-  return e(ti, {
-    "Array | DenseMatrix, Array | DenseMatrix": v,
+  } = e;
+  return t(ni, {
+    "Array | DenseMatrix, Array | DenseMatrix": h,
     "SparseMatrix, SparseMatrix": c
   });
   function o(s, u) {
-    var f = l(s), p = l(u), D, h;
+    var f = l(s), p = l(u), D, v;
     if (f.length === 1)
       D = f[0];
     else if (f.length === 2 && f[1] === 1)
@@ -8257,100 +8257,100 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
     else
       throw new RangeError("Expected a column vector, instead got a matrix of size (" + f.join(", ") + ")");
     if (p.length === 1)
-      h = p[0];
+      v = p[0];
     else if (p.length === 2 && p[1] === 1)
-      h = p[0];
+      v = p[0];
     else
       throw new RangeError("Expected a column vector, instead got a matrix of size (" + p.join(", ") + ")");
-    if (D !== h)
-      throw new RangeError("Vectors must have equal length (" + D + " != " + h + ")");
+    if (D !== v)
+      throw new RangeError("Vectors must have equal length (" + D + " != " + v + ")");
     if (D === 0)
       throw new RangeError("Cannot calculate the dot product of empty vectors");
     return D;
   }
-  function v(s, u) {
-    var f = o(s, u), p = _r(s) ? s._data : s, D = _r(s) ? s._datatype : void 0, h = _r(u) ? u._data : u, m = _r(u) ? u._datatype : void 0, d = l(s).length === 2, w = l(u).length === 2, g = n, E = i;
+  function h(s, u) {
+    var f = o(s, u), p = _e(s) ? s._data : s, D = _e(s) ? s._datatype : void 0, v = _e(u) ? u._data : u, m = _e(u) ? u._datatype : void 0, d = l(s).length === 2, w = l(u).length === 2, g = n, A = i;
     if (D && m && D === m && typeof D == "string") {
       var F = D;
-      g = e.find(n, [F, F]), E = e.find(i, [F, F]);
+      g = t.find(n, [F, F]), A = t.find(i, [F, F]);
     }
     if (!d && !w) {
-      for (var y = E(t(p[0]), h[0]), C = 1; C < f; C++)
-        y = g(y, E(t(p[C]), h[C]));
+      for (var y = A(r(p[0]), v[0]), C = 1; C < f; C++)
+        y = g(y, A(r(p[C]), v[C]));
       return y;
     }
     if (!d && w) {
-      for (var b = E(t(p[0]), h[0][0]), A = 1; A < f; A++)
-        b = g(b, E(t(p[A]), h[A][0]));
+      for (var b = A(r(p[0]), v[0][0]), E = 1; E < f; E++)
+        b = g(b, A(r(p[E]), v[E][0]));
       return b;
     }
     if (d && !w) {
-      for (var S = E(t(p[0][0]), h[0]), M = 1; M < f; M++)
-        S = g(S, E(t(p[M][0]), h[M]));
+      for (var S = A(r(p[0][0]), v[0]), M = 1; M < f; M++)
+        S = g(S, A(r(p[M][0]), v[M]));
       return S;
     }
     if (d && w) {
-      for (var N = E(t(p[0][0]), h[0][0]), O = 1; O < f; O++)
-        N = g(N, E(t(p[O][0]), h[O][0]));
-      return N;
+      for (var x = A(r(p[0][0]), v[0][0]), I = 1; I < f; I++)
+        x = g(x, A(r(p[I][0]), v[I][0]));
+      return x;
     }
   }
   function c(s, u) {
     o(s, u);
-    for (var f = s._index, p = s._values, D = u._index, h = u._values, m = 0, d = n, w = i, g = 0, E = 0; g < f.length && E < D.length; ) {
-      var F = f[g], y = D[E];
+    for (var f = s._index, p = s._values, D = u._index, v = u._values, m = 0, d = n, w = i, g = 0, A = 0; g < f.length && A < D.length; ) {
+      var F = f[g], y = D[A];
       if (F < y) {
         g++;
         continue;
       }
       if (F > y) {
-        E++;
+        A++;
         continue;
       }
-      F === y && (m = d(m, w(p[g], h[E])), g++, E++);
+      F === y && (m = d(m, w(p[g], v[A])), g++, A++);
     }
     return m;
   }
   function l(s) {
-    return _r(s) ? s.size() : a(s);
+    return _e(s) ? s.size() : a(s);
   }
-}), ni = "index", bl = ["typed", "Index"], Ml = /* @__PURE__ */ rr(ni, bl, (r) => {
+}), ii = "index", Ml = ["typed", "Index"], Sl = /* @__PURE__ */ ee(ii, Ml, (e) => {
   var {
-    typed: e,
+    typed: t,
     Index: n
-  } = r;
-  return e(ni, {
-    "...number | string | BigNumber | Range | Array | Matrix": function(t) {
-      var a = t.map(function(v) {
-        return Pr(v) ? v.toNumber() : Mr(v) || _r(v) ? v.map(function(c) {
-          return Pr(c) ? c.toNumber() : c;
-        }) : v;
+  } = e;
+  return t(ii, {
+    "...number | string | BigNumber | Range | Array | Matrix": function(r) {
+      var a = r.map(function(h) {
+        return Pe(h) ? h.toNumber() : Me(h) || _e(h) ? h.map(function(c) {
+          return Pe(c) ? c.toNumber() : c;
+        }) : h;
       }), o = new n();
       return n.apply(o, a), o;
     }
   });
-}), ii = "lup", Sl = ["typed", "matrix", "abs", "addScalar", "divideScalar", "multiplyScalar", "subtractScalar", "larger", "equalScalar", "unaryMinus", "DenseMatrix", "SparseMatrix", "Spa"], Nl = /* @__PURE__ */ rr(ii, Sl, (r) => {
+}), ai = "lup", xl = ["typed", "matrix", "abs", "addScalar", "divideScalar", "multiplyScalar", "subtractScalar", "larger", "equalScalar", "unaryMinus", "DenseMatrix", "SparseMatrix", "Spa"], Nl = /* @__PURE__ */ ee(ai, xl, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     abs: i,
-    addScalar: t,
+    addScalar: r,
     divideScalar: a,
     multiplyScalar: o,
-    subtractScalar: v,
+    subtractScalar: h,
     larger: c,
     equalScalar: l,
     unaryMinus: s,
     DenseMatrix: u,
     SparseMatrix: f,
     Spa: p
-  } = r;
-  return e(ii, {
+  } = e;
+  return t(ai, {
     DenseMatrix: function(d) {
       return D(d);
     },
     SparseMatrix: function(d) {
-      return h(d);
+      return v(d);
     },
     Array: function(d) {
       var w = n(d), g = D(w);
@@ -8362,101 +8362,52 @@ var ul = "FibonacciHeap", ol = ["smaller", "larger"], sl = /* @__PURE__ */ rr(ul
     }
   });
   function D(m) {
-    var d = m._size[0], w = m._size[1], g = Math.min(d, w), E = Fr(m._data), F = [], y = [d, g], C = [], b = [g, w], A, S, M, N = [];
-    for (A = 0; A < d; A++)
-      N[A] = A;
+    var d = m._size[0], w = m._size[1], g = Math.min(d, w), A = Ce(m._data), F = [], y = [d, g], C = [], b = [g, w], E, S, M, x = [];
+    for (E = 0; E < d; E++)
+      x[E] = E;
     for (S = 0; S < w; S++) {
       if (S > 0)
-        for (A = 0; A < d; A++) {
-          var O = Math.min(A, S), T = 0;
-          for (M = 0; M < O; M++)
-            T = t(T, o(E[A][M], E[M][S]));
-          E[A][S] = v(E[A][S], T);
+        for (E = 0; E < d; E++) {
+          var I = Math.min(E, S), T = 0;
+          for (M = 0; M < I; M++)
+            T = r(T, o(A[E][M], A[M][S]));
+          A[E][S] = h(A[E][S], T);
         }
-      var I = S, B = 0, G = 0;
-      for (A = S; A < d; A++) {
-        var q = E[A][S], z = i(q);
-        c(z, B) && (I = A, B = z, G = q);
+      var O = S, B = 0, G = 0;
+      for (E = S; E < d; E++) {
+        var $ = A[E][S], z = i($);
+        c(z, B) && (O = E, B = z, G = $);
       }
-      if (S !== I && (N[S] = [N[I], N[I] = N[S]][0], u._swapRows(S, I, E)), S < d)
-        for (A = S + 1; A < d; A++) {
-          var V = E[A][S];
-          l(V, 0) || (E[A][S] = a(E[A][S], G));
+      if (S !== O && (x[S] = [x[O], x[O] = x[S]][0], u._swapRows(S, O, A)), S < d)
+        for (E = S + 1; E < d; E++) {
+          var V = A[E][S];
+          l(V, 0) || (A[E][S] = a(A[E][S], G));
         }
     }
     for (S = 0; S < w; S++)
-      for (A = 0; A < d; A++) {
-        if (S === 0 && (A < w && (C[A] = []), F[A] = []), A < S) {
-          A < w && (C[A][S] = E[A][S]), S < d && (F[A][S] = 0);
+      for (E = 0; E < d; E++) {
+        if (S === 0 && (E < w && (C[E] = []), F[E] = []), E < S) {
+          E < w && (C[E][S] = A[E][S]), S < d && (F[E][S] = 0);
           continue;
         }
-        if (A === S) {
-          A < w && (C[A][S] = E[A][S]), S < d && (F[A][S] = 1);
+        if (E === S) {
+          E < w && (C[E][S] = A[E][S]), S < d && (F[E][S] = 1);
           continue;
         }
-        A < w && (C[A][S] = 0), S < d && (F[A][S] = E[A][S]);
+        E < w && (C[E][S] = 0), S < d && (F[E][S] = A[E][S]);
       }
-    var H = new u({
+    var K = new u({
       data: F,
       size: y
     }), P = new u({
       data: C,
       size: b
-    }), L = [];
-    for (A = 0, g = N.length; A < g; A++)
-      L[N[A]] = A;
+    }), q = [];
+    for (E = 0, g = x.length; E < g; E++)
+      q[x[E]] = E;
     return {
-      L: H,
+      L: K,
       U: P,
-      p: L,
-      toString: function() {
-        return "L: " + this.L.toString() + `
-U: ` + this.U.toString() + `
-P: ` + this.p;
-      }
-    };
-  }
-  function h(m) {
-    var d = m._size[0], w = m._size[1], g = Math.min(d, w), E = m._values, F = m._index, y = m._ptr, C = [], b = [], A = [], S = [d, g], M = [], N = [], O = [], T = [g, w], I, B, G, q = [], z = [];
-    for (I = 0; I < d; I++)
-      q[I] = I, z[I] = I;
-    var V = function(L, Z) {
-      var nr = z[L], k = z[Z];
-      q[nr] = Z, q[k] = L, z[L] = k, z[Z] = nr;
-    }, H = function() {
-      var L = new p();
-      B < d && (A.push(C.length), C.push(1), b.push(B)), O.push(M.length);
-      var Z = y[B], nr = y[B + 1];
-      for (G = Z; G < nr; G++)
-        I = F[G], L.set(q[I], E[G]);
-      B > 0 && L.forEach(0, B - 1, function(X, J) {
-        f._forEachRow(X, C, b, A, function(ur, j) {
-          ur > X && L.accumulate(ur, s(o(j, J)));
-        });
-      });
-      var k = B, U = L.get(B), Q = i(U);
-      L.forEach(B + 1, d - 1, function(X, J) {
-        var ur = i(J);
-        c(ur, Q) && (k = X, Q = ur, U = J);
-      }), B !== k && (f._swapRows(B, k, S[1], C, b, A), f._swapRows(B, k, T[1], M, N, O), L.swap(B, k), V(B, k)), L.forEach(0, d - 1, function(X, J) {
-        X <= B ? (M.push(J), N.push(X)) : (J = a(J, U), l(J, 0) || (C.push(J), b.push(X)));
-      });
-    };
-    for (B = 0; B < w; B++)
-      H();
-    return O.push(M.length), A.push(C.length), {
-      L: new f({
-        values: C,
-        index: b,
-        ptr: A,
-        size: S
-      }),
-      U: new f({
-        values: M,
-        index: N,
-        ptr: O,
-        size: T
-      }),
       p: q,
       toString: function() {
         return "L: " + this.L.toString() + `
@@ -8465,15 +8416,64 @@ P: ` + this.p;
       }
     };
   }
-}), ai = "qr", xl = ["typed", "matrix", "zeros", "identity", "isZero", "equal", "sign", "sqrt", "conj", "unaryMinus", "addScalar", "divideScalar", "multiplyScalar", "subtractScalar", "complex"], Bl = /* @__PURE__ */ rr(ai, xl, (r) => {
+  function v(m) {
+    var d = m._size[0], w = m._size[1], g = Math.min(d, w), A = m._values, F = m._index, y = m._ptr, C = [], b = [], E = [], S = [d, g], M = [], x = [], I = [], T = [g, w], O, B, G, $ = [], z = [];
+    for (O = 0; O < d; O++)
+      $[O] = O, z[O] = O;
+    var V = function(q, Z) {
+      var ne = z[q], k = z[Z];
+      $[ne] = Z, $[k] = q, z[q] = k, z[Z] = ne;
+    }, K = function() {
+      var q = new p();
+      B < d && (E.push(C.length), C.push(1), b.push(B)), I.push(M.length);
+      var Z = y[B], ne = y[B + 1];
+      for (G = Z; G < ne; G++)
+        O = F[G], q.set($[O], A[G]);
+      B > 0 && q.forEach(0, B - 1, function(X, J) {
+        f._forEachRow(X, C, b, E, function(ue, j) {
+          ue > X && q.accumulate(ue, s(o(j, J)));
+        });
+      });
+      var k = B, U = q.get(B), Q = i(U);
+      q.forEach(B + 1, d - 1, function(X, J) {
+        var ue = i(J);
+        c(ue, Q) && (k = X, Q = ue, U = J);
+      }), B !== k && (f._swapRows(B, k, S[1], C, b, E), f._swapRows(B, k, T[1], M, x, I), q.swap(B, k), V(B, k)), q.forEach(0, d - 1, function(X, J) {
+        X <= B ? (M.push(J), x.push(X)) : (J = a(J, U), l(J, 0) || (C.push(J), b.push(X)));
+      });
+    };
+    for (B = 0; B < w; B++)
+      K();
+    return I.push(M.length), E.push(C.length), {
+      L: new f({
+        values: C,
+        index: b,
+        ptr: E,
+        size: S
+      }),
+      U: new f({
+        values: M,
+        index: x,
+        ptr: I,
+        size: T
+      }),
+      p: $,
+      toString: function() {
+        return "L: " + this.L.toString() + `
+U: ` + this.U.toString() + `
+P: ` + this.p;
+      }
+    };
+  }
+}), ui = "qr", Bl = ["typed", "matrix", "zeros", "identity", "isZero", "equal", "sign", "sqrt", "conj", "unaryMinus", "addScalar", "divideScalar", "multiplyScalar", "subtractScalar", "complex"], _l = /* @__PURE__ */ ee(ui, Bl, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     zeros: i,
-    identity: t,
+    identity: r,
     isZero: a,
     equal: o,
-    sign: v,
+    sign: h,
     sqrt: c,
     conj: l,
     unaryMinus: s,
@@ -8481,17 +8481,17 @@ P: ` + this.p;
     divideScalar: f,
     multiplyScalar: p,
     subtractScalar: D,
-    complex: h
-  } = r;
-  return Oe(e(ai, {
-    DenseMatrix: function(E) {
-      return d(E);
+    complex: v
+  } = e;
+  return Ir(t(ui, {
+    DenseMatrix: function(A) {
+      return d(A);
     },
-    SparseMatrix: function(E) {
+    SparseMatrix: function(A) {
       return w();
     },
-    Array: function(E) {
-      var F = n(E), y = d(F);
+    Array: function(A) {
+      var F = n(A), y = d(F);
       return {
         Q: y.Q.valueOf(),
         R: y.R.valueOf()
@@ -8501,28 +8501,28 @@ P: ` + this.p;
     _denseQRimpl: m
   });
   function m(g) {
-    var E = g._size[0], F = g._size[1], y = t([E], "dense"), C = y._data, b = g.clone(), A = b._data, S, M, N, O = i([E], "");
-    for (N = 0; N < Math.min(F, E); ++N) {
-      var T = A[N][N], I = s(o(T, 0) ? 1 : v(T)), B = l(I), G = 0;
-      for (S = N; S < E; S++)
-        G = u(G, p(A[S][N], l(A[S][N])));
-      var q = p(I, c(G));
-      if (!a(q)) {
-        var z = D(T, q);
-        for (O[N] = 1, S = N + 1; S < E; S++)
-          O[S] = f(A[S][N], z);
-        var V = s(l(f(z, q))), H = void 0;
-        for (M = N; M < F; M++) {
-          for (H = 0, S = N; S < E; S++)
-            H = u(H, p(l(O[S]), A[S][M]));
-          for (H = p(H, V), S = N; S < E; S++)
-            A[S][M] = p(D(A[S][M], p(O[S], H)), B);
+    var A = g._size[0], F = g._size[1], y = r([A], "dense"), C = y._data, b = g.clone(), E = b._data, S, M, x, I = i([A], "");
+    for (x = 0; x < Math.min(F, A); ++x) {
+      var T = E[x][x], O = s(o(T, 0) ? 1 : h(T)), B = l(O), G = 0;
+      for (S = x; S < A; S++)
+        G = u(G, p(E[S][x], l(E[S][x])));
+      var $ = p(O, c(G));
+      if (!a($)) {
+        var z = D(T, $);
+        for (I[x] = 1, S = x + 1; S < A; S++)
+          I[S] = f(E[S][x], z);
+        var V = s(l(f(z, $))), K = void 0;
+        for (M = x; M < F; M++) {
+          for (K = 0, S = x; S < A; S++)
+            K = u(K, p(l(I[S]), E[S][M]));
+          for (K = p(K, V), S = x; S < A; S++)
+            E[S][M] = p(D(E[S][M], p(I[S], K)), B);
         }
-        for (S = 0; S < E; S++) {
-          for (H = 0, M = N; M < E; M++)
-            H = u(H, p(C[S][M], O[M]));
-          for (H = p(H, V), M = N; M < E; ++M)
-            C[S][M] = f(D(C[S][M], p(H, l(O[M]))), B);
+        for (S = 0; S < A; S++) {
+          for (K = 0, M = x; M < A; M++)
+            K = u(K, p(C[S][M], I[M]));
+          for (K = p(K, V), M = x; M < A; ++M)
+            C[S][M] = f(D(C[S][M], p(K, l(I[M]))), B);
         }
       }
     }
@@ -8536,26 +8536,26 @@ R: ` + this.R.toString();
     };
   }
   function d(g) {
-    var E = m(g), F = E.R._data;
+    var A = m(g), F = A.R._data;
     if (g._data.length > 0)
-      for (var y = F[0][0].type === "Complex" ? h(0) : 0, C = 0; C < F.length; ++C)
+      for (var y = F[0][0].type === "Complex" ? v(0) : 0, C = 0; C < F.length; ++C)
         for (var b = 0; b < C && b < (F[0] || []).length; ++b)
           F[C][b] = y;
-    return E;
+    return A;
   }
   function w(g) {
     throw new Error("qr not implemented for sparse matrices yet");
   }
 });
-function _l(r, e, n, i) {
-  for (var t = r._values, a = r._index, o = r._ptr, v = r._size, c = r._datatype, l = v[0], s = v[1], u = i && r._values ? [] : null, f = [], p = [], D = 0, h = 0; h < s; h++) {
-    p[h] = D;
-    for (var m = n ? n[h] : h, d = o[m], w = o[m + 1], g = d; g < w; g++) {
-      var E = e ? e[a[g]] : a[g];
-      f[D] = E, u && (u[D] = t[g]), D++;
+function zl(e, t, n, i) {
+  for (var r = e._values, a = e._index, o = e._ptr, h = e._size, c = e._datatype, l = h[0], s = h[1], u = i && e._values ? [] : null, f = [], p = [], D = 0, v = 0; v < s; v++) {
+    p[v] = D;
+    for (var m = n ? n[v] : v, d = o[m], w = o[m + 1], g = d; g < w; g++) {
+      var A = t ? t[a[g]] : a[g];
+      f[D] = A, u && (u[D] = r[g]), D++;
     }
   }
-  return p[s] = D, r.createSparseMatrix({
+  return p[s] = D, e.createSparseMatrix({
     values: u,
     index: f,
     ptr: p,
@@ -8563,172 +8563,172 @@ function _l(r, e, n, i) {
     datatype: c
   });
 }
-function ca(r, e, n, i, t, a, o) {
-  var v = 0;
-  for (n[o] = r; v >= 0; ) {
-    var c = n[o + v], l = n[i + c];
-    l === -1 ? (v--, a[e++] = c) : (n[i + c] = n[t + l], ++v, n[o + v] = l);
+function la(e, t, n, i, r, a, o) {
+  var h = 0;
+  for (n[o] = e; h >= 0; ) {
+    var c = n[o + h], l = n[i + c];
+    l === -1 ? (h--, a[t++] = c) : (n[i + c] = n[r + l], ++h, n[o + h] = l);
   }
-  return e;
-}
-function zl(r, e) {
-  if (!r)
-    return null;
-  var n = 0, i, t = [], a = [], o = 0, v = e, c = 2 * e;
-  for (i = 0; i < e; i++)
-    a[o + i] = -1;
-  for (i = e - 1; i >= 0; i--)
-    r[i] !== -1 && (a[v + i] = a[o + r[i]], a[o + r[i]] = i);
-  for (i = 0; i < e; i++)
-    r[i] === -1 && (n = ca(i, n, a, o, v, t, c));
   return t;
 }
-function Tl(r, e) {
-  if (!r)
+function Tl(e, t) {
+  if (!e)
     return null;
-  var n = r._index, i = r._ptr, t = r._size, a = t[0], o = t[1], v = [], c = [], l = 0, s = o, u, f;
-  if (e)
+  var n = 0, i, r = [], a = [], o = 0, h = t, c = 2 * t;
+  for (i = 0; i < t; i++)
+    a[o + i] = -1;
+  for (i = t - 1; i >= 0; i--)
+    e[i] !== -1 && (a[h + i] = a[o + e[i]], a[o + e[i]] = i);
+  for (i = 0; i < t; i++)
+    e[i] === -1 && (n = la(i, n, a, o, h, r, c));
+  return r;
+}
+function Il(e, t) {
+  if (!e)
+    return null;
+  var n = e._index, i = e._ptr, r = e._size, a = r[0], o = r[1], h = [], c = [], l = 0, s = o, u, f;
+  if (t)
     for (u = 0; u < a; u++)
       c[s + u] = -1;
   for (var p = 0; p < o; p++) {
-    v[p] = -1, c[l + p] = -1;
-    for (var D = i[p], h = i[p + 1], m = D; m < h; m++) {
+    h[p] = -1, c[l + p] = -1;
+    for (var D = i[p], v = i[p + 1], m = D; m < v; m++) {
       var d = n[m];
-      for (u = e ? c[s + d] : d; u !== -1 && u < p; u = f)
-        f = c[l + u], c[l + u] = p, f === -1 && (v[u] = p);
-      e && (c[s + d] = p);
+      for (u = t ? c[s + d] : d; u !== -1 && u < p; u = f)
+        f = c[l + u], c[l + u] = p, f === -1 && (h[u] = p);
+      t && (c[s + d] = p);
     }
   }
-  return v;
+  return h;
 }
-function Ol(r, e, n) {
-  for (var i = r._values, t = r._index, a = r._ptr, o = r._size, v = o[1], c = 0, l = 0; l < v; l++) {
+function Ol(e, t, n) {
+  for (var i = e._values, r = e._index, a = e._ptr, o = e._size, h = o[1], c = 0, l = 0; l < h; l++) {
     var s = a[l];
     for (a[l] = c; s < a[l + 1]; s++)
-      e(t[s], l, i ? i[s] : 1, n) && (t[c] = t[s], i && (i[c] = i[s]), c++);
+      t(r[s], l, i ? i[s] : 1, n) && (r[c] = r[s], i && (i[c] = i[s]), c++);
   }
-  return a[v] = c, t.splice(c, t.length - c), i && i.splice(c, i.length - c), c;
+  return a[h] = c, r.splice(c, r.length - c), i && i.splice(c, i.length - c), c;
 }
-function me(r) {
-  return -r - 2;
+function gr(e) {
+  return -e - 2;
 }
-var Il = "csAmd", $l = ["add", "multiply", "transpose"], ql = /* @__PURE__ */ rr(Il, $l, (r) => {
+var Ll = "csAmd", $l = ["add", "multiply", "transpose"], ql = /* @__PURE__ */ ee(Ll, $l, (e) => {
   var {
-    add: e,
+    add: t,
     multiply: n,
     transpose: i
-  } = r;
+  } = e;
   return function(s, u) {
     if (!u || s <= 0 || s > 3)
       return null;
-    var f = u._size, p = f[0], D = f[1], h = 0, m = Math.max(16, 10 * Math.sqrt(D));
+    var f = u._size, p = f[0], D = f[1], v = 0, m = Math.max(16, 10 * Math.sqrt(D));
     m = Math.min(D - 2, m);
-    var d = t(s, u, p, D, m);
+    var d = r(s, u, p, D, m);
     Ol(d, c, null);
-    for (var w = d._index, g = d._ptr, E = g[D], F = [], y = [], C = 0, b = D + 1, A = 2 * (D + 1), S = 3 * (D + 1), M = 4 * (D + 1), N = 5 * (D + 1), O = 6 * (D + 1), T = 7 * (D + 1), I = F, B = a(D, g, y, C, S, I, A, T, b, O, M, N), G = o(D, g, y, N, M, O, m, b, S, I, A), q = 0, z, V, H, P, L, Z, nr, k, U, Q, X, J, ur, j, or, fr; G < D; ) {
-      for (H = -1; q < D && (H = y[S + q]) === -1; q++)
+    for (var w = d._index, g = d._ptr, A = g[D], F = [], y = [], C = 0, b = D + 1, E = 2 * (D + 1), S = 3 * (D + 1), M = 4 * (D + 1), x = 5 * (D + 1), I = 6 * (D + 1), T = 7 * (D + 1), O = F, B = a(D, g, y, C, S, O, E, T, b, I, M, x), G = o(D, g, y, x, M, I, m, b, S, O, E), $ = 0, z, V, K, P, q, Z, ne, k, U, Q, X, J, ue, j, oe, le; G < D; ) {
+      for (K = -1; $ < D && (K = y[S + $]) === -1; $++)
         ;
-      y[A + H] !== -1 && (I[y[A + H]] = -1), y[S + q] = y[A + H];
-      var pr = y[M + H], gr = y[b + H];
-      G += gr;
-      var yr = 0;
-      y[b + H] = -gr;
-      var cr = g[H], Cr = pr === 0 ? cr : E, wr = Cr;
-      for (P = 1; P <= pr + 1; P++) {
-        for (P > pr ? (Z = H, nr = cr, k = y[C + H] - pr) : (Z = w[cr++], nr = g[Z], k = y[C + Z]), L = 1; L <= k; L++)
-          z = w[nr++], !((U = y[b + z]) <= 0) && (yr += U, y[b + z] = -U, w[wr++] = z, y[A + z] !== -1 && (I[y[A + z]] = I[z]), I[z] !== -1 ? y[A + I[z]] = y[A + z] : y[S + y[N + z]] = y[A + z]);
-        Z !== H && (g[Z] = me(H), y[O + Z] = 0);
+      y[E + K] !== -1 && (O[y[E + K]] = -1), y[S + $] = y[E + K];
+      var de = y[M + K], ge = y[b + K];
+      G += ge;
+      var we = 0;
+      y[b + K] = -ge;
+      var he = g[K], be = de === 0 ? he : A, Ee = be;
+      for (P = 1; P <= de + 1; P++) {
+        for (P > de ? (Z = K, ne = he, k = y[C + K] - de) : (Z = w[he++], ne = g[Z], k = y[C + Z]), q = 1; q <= k; q++)
+          z = w[ne++], !((U = y[b + z]) <= 0) && (we += U, y[b + z] = -U, w[Ee++] = z, y[E + z] !== -1 && (O[y[E + z]] = O[z]), O[z] !== -1 ? y[E + O[z]] = y[E + z] : y[S + y[x + z]] = y[E + z]);
+        Z !== K && (g[Z] = gr(K), y[I + Z] = 0);
       }
-      for (pr !== 0 && (E = wr), y[N + H] = yr, g[H] = Cr, y[C + H] = wr - Cr, y[M + H] = -2, B = v(B, h, y, O, D), Q = Cr; Q < wr; Q++)
+      for (de !== 0 && (A = Ee), y[x + K] = we, g[K] = be, y[C + K] = Ee - be, y[M + K] = -2, B = h(B, v, y, I, D), Q = be; Q < Ee; Q++)
         if (z = w[Q], !((X = y[M + z]) <= 0)) {
           U = -y[b + z];
-          var Sr = B - U;
-          for (cr = g[z], J = g[z] + X - 1; cr <= J; cr++)
-            Z = w[cr], y[O + Z] >= B ? y[O + Z] -= U : y[O + Z] !== 0 && (y[O + Z] = y[N + Z] + Sr);
+          var Se = B - U;
+          for (he = g[z], J = g[z] + X - 1; he <= J; he++)
+            Z = w[he], y[I + Z] >= B ? y[I + Z] -= U : y[I + Z] !== 0 && (y[I + Z] = y[x + Z] + Se);
         }
-      for (Q = Cr; Q < wr; Q++) {
-        for (z = w[Q], J = g[z], ur = J + y[M + z] - 1, j = J, or = 0, fr = 0, cr = J; cr <= ur; cr++)
-          if (Z = w[cr], y[O + Z] !== 0) {
-            var Ur = y[O + Z] - B;
-            Ur > 0 ? (fr += Ur, w[j++] = Z, or += Z) : (g[Z] = me(H), y[O + Z] = 0);
+      for (Q = be; Q < Ee; Q++) {
+        for (z = w[Q], J = g[z], ue = J + y[M + z] - 1, j = J, oe = 0, le = 0, he = J; he <= ue; he++)
+          if (Z = w[he], y[I + Z] !== 0) {
+            var Ue = y[I + Z] - B;
+            Ue > 0 ? (le += Ue, w[j++] = Z, oe += Z) : (g[Z] = gr(K), y[I + Z] = 0);
           }
         y[M + z] = j - J + 1;
-        var x = j, _ = J + y[C + z];
-        for (cr = ur + 1; cr < _; cr++) {
-          V = w[cr];
-          var $ = y[b + V];
-          $ <= 0 || (fr += $, w[j++] = V, or += V);
+        var N = j, _ = J + y[C + z];
+        for (he = ue + 1; he < _; he++) {
+          V = w[he];
+          var L = y[b + V];
+          L <= 0 || (le += L, w[j++] = V, oe += V);
         }
-        fr === 0 ? (g[z] = me(H), U = -y[b + z], yr -= U, gr += U, G += U, y[b + z] = 0, y[M + z] = -1) : (y[N + z] = Math.min(y[N + z], fr), w[j] = w[x], w[x] = w[J], w[J] = H, y[C + z] = j - J + 1, or = (or < 0 ? -or : or) % D, y[A + z] = y[T + or], y[T + or] = z, I[z] = or);
+        le === 0 ? (g[z] = gr(K), U = -y[b + z], we -= U, ge += U, G += U, y[b + z] = 0, y[M + z] = -1) : (y[x + z] = Math.min(y[x + z], le), w[j] = w[N], w[N] = w[J], w[J] = K, y[C + z] = j - J + 1, oe = (oe < 0 ? -oe : oe) % D, y[E + z] = y[T + oe], y[T + oe] = z, O[z] = oe);
       }
-      for (y[N + H] = yr, h = Math.max(h, yr), B = v(B + h, h, y, O, D), Q = Cr; Q < wr; Q++)
+      for (y[x + K] = we, v = Math.max(v, we), B = h(B + v, v, y, I, D), Q = be; Q < Ee; Q++)
         if (z = w[Q], !(y[b + z] >= 0))
-          for (or = I[z], z = y[T + or], y[T + or] = -1; z !== -1 && y[A + z] !== -1; z = y[A + z], B++) {
-            for (k = y[C + z], X = y[M + z], cr = g[z] + 1; cr <= g[z] + k - 1; cr++)
-              y[O + w[cr]] = B;
+          for (oe = O[z], z = y[T + oe], y[T + oe] = -1; z !== -1 && y[E + z] !== -1; z = y[E + z], B++) {
+            for (k = y[C + z], X = y[M + z], he = g[z] + 1; he <= g[z] + k - 1; he++)
+              y[I + w[he]] = B;
             var R = z;
-            for (V = y[A + z]; V !== -1; ) {
-              var K = y[C + V] === k && y[M + V] === X;
-              for (cr = g[V] + 1; K && cr <= g[V] + k - 1; cr++)
-                y[O + w[cr]] !== B && (K = 0);
-              K ? (g[V] = me(z), y[b + z] += y[b + V], y[b + V] = 0, y[M + V] = -1, V = y[A + V], y[A + R] = V) : (R = V, V = y[A + V]);
+            for (V = y[E + z]; V !== -1; ) {
+              var H = y[C + V] === k && y[M + V] === X;
+              for (he = g[V] + 1; H && he <= g[V] + k - 1; he++)
+                y[I + w[he]] !== B && (H = 0);
+              H ? (g[V] = gr(z), y[b + z] += y[b + V], y[b + V] = 0, y[M + V] = -1, V = y[E + V], y[E + R] = V) : (R = V, V = y[E + V]);
             }
           }
-      for (cr = Cr, Q = Cr; Q < wr; Q++)
-        z = w[Q], !((U = -y[b + z]) <= 0) && (y[b + z] = U, fr = y[N + z] + yr - U, fr = Math.min(fr, D - G - U), y[S + fr] !== -1 && (I[y[S + fr]] = z), y[A + z] = y[S + fr], I[z] = -1, y[S + fr] = z, q = Math.min(q, fr), y[N + z] = fr, w[cr++] = z);
-      y[b + H] = gr, (y[C + H] = cr - Cr) === 0 && (g[H] = -1, y[O + H] = 0), pr !== 0 && (E = cr);
+      for (he = be, Q = be; Q < Ee; Q++)
+        z = w[Q], !((U = -y[b + z]) <= 0) && (y[b + z] = U, le = y[x + z] + we - U, le = Math.min(le, D - G - U), y[S + le] !== -1 && (O[y[S + le]] = z), y[E + z] = y[S + le], O[z] = -1, y[S + le] = z, $ = Math.min($, le), y[x + z] = le, w[he++] = z);
+      y[b + K] = ge, (y[C + K] = he - be) === 0 && (g[K] = -1, y[I + K] = 0), de !== 0 && (A = he);
     }
     for (z = 0; z < D; z++)
-      g[z] = me(g[z]);
+      g[z] = gr(g[z]);
     for (V = 0; V <= D; V++)
       y[S + V] = -1;
     for (V = D; V >= 0; V--)
-      y[b + V] > 0 || (y[A + V] = y[S + g[V]], y[S + g[V]] = V);
+      y[b + V] > 0 || (y[E + V] = y[S + g[V]], y[S + g[V]] = V);
     for (Z = D; Z >= 0; Z--)
-      y[b + Z] <= 0 || g[Z] !== -1 && (y[A + Z] = y[S + g[Z]], y[S + g[Z]] = Z);
-    for (H = 0, z = 0; z <= D; z++)
-      g[z] === -1 && (H = ca(z, H, y, S, A, F, O));
+      y[b + Z] <= 0 || g[Z] !== -1 && (y[E + Z] = y[S + g[Z]], y[S + g[Z]] = Z);
+    for (K = 0, z = 0; z <= D; z++)
+      g[z] === -1 && (K = la(z, K, y, S, E, F, I));
     return F.splice(F.length - 1, 1), F;
   };
-  function t(l, s, u, f, p) {
+  function r(l, s, u, f, p) {
     var D = i(s);
     if (l === 1 && f === u)
-      return e(s, D);
+      return t(s, D);
     if (l === 2) {
-      for (var h = D._index, m = D._ptr, d = 0, w = 0; w < u; w++) {
+      for (var v = D._index, m = D._ptr, d = 0, w = 0; w < u; w++) {
         var g = m[w];
         if (m[w] = d, !(m[w + 1] - g > p))
-          for (var E = m[w + 1]; g < E; g++)
-            h[d++] = h[g];
+          for (var A = m[w + 1]; g < A; g++)
+            v[d++] = v[g];
       }
       return m[u] = d, s = i(D), n(D, s);
     }
     return n(D, s);
   }
-  function a(l, s, u, f, p, D, h, m, d, w, g, E) {
+  function a(l, s, u, f, p, D, v, m, d, w, g, A) {
     for (var F = 0; F < l; F++)
       u[f + F] = s[F + 1] - s[F];
     u[f + l] = 0;
     for (var y = 0; y <= l; y++)
-      u[p + y] = -1, D[y] = -1, u[h + y] = -1, u[m + y] = -1, u[d + y] = 1, u[w + y] = 1, u[g + y] = 0, u[E + y] = u[f + y];
-    var C = v(0, 0, u, w, l);
+      u[p + y] = -1, D[y] = -1, u[v + y] = -1, u[m + y] = -1, u[d + y] = 1, u[w + y] = 1, u[g + y] = 0, u[A + y] = u[f + y];
+    var C = h(0, 0, u, w, l);
     return u[g + l] = -2, s[l] = -1, u[w + l] = 0, C;
   }
-  function o(l, s, u, f, p, D, h, m, d, w, g) {
-    for (var E = 0, F = 0; F < l; F++) {
+  function o(l, s, u, f, p, D, v, m, d, w, g) {
+    for (var A = 0, F = 0; F < l; F++) {
       var y = u[f + F];
       if (y === 0)
-        u[p + F] = -2, E++, s[F] = -1, u[D + F] = 0;
-      else if (y > h)
-        u[m + F] = 0, u[p + F] = -1, E++, s[F] = me(l), u[m + l]++;
+        u[p + F] = -2, A++, s[F] = -1, u[D + F] = 0;
+      else if (y > v)
+        u[m + F] = 0, u[p + F] = -1, A++, s[F] = gr(l), u[m + l]++;
       else {
         var C = u[d + y];
         C !== -1 && (w[C] = F), u[g + F] = u[d + y], u[d + y] = F;
       }
     }
-    return E;
+    return A;
   }
-  function v(l, s, u, f, p) {
+  function h(l, s, u, f, p) {
     if (l < 2 || l + s < 0) {
       for (var D = 0; D < p; D++)
         u[f + D] !== 0 && (u[f + D] = 1);
@@ -8740,44 +8740,44 @@ var Il = "csAmd", $l = ["add", "multiply", "transpose"], ql = /* @__PURE__ */ rr
     return l !== s;
   }
 });
-function Ll(r, e, n, i, t, a, o) {
-  var v, c, l = 0, s;
-  if (r <= e || n[i + e] <= n[t + r])
+function Pl(e, t, n, i, r, a, o) {
+  var h, c, l = 0, s;
+  if (e <= t || n[i + t] <= n[r + e])
     return -1;
-  n[t + r] = n[i + e];
-  var u = n[a + r];
-  if (n[a + r] = e, u === -1)
-    l = 1, s = r;
+  n[r + e] = n[i + t];
+  var u = n[a + e];
+  if (n[a + e] = t, u === -1)
+    l = 1, s = e;
   else {
     for (l = 2, s = u; s !== n[o + s]; s = n[o + s])
       ;
-    for (v = u; v !== s; v = c)
-      c = n[o + v], n[o + v] = s;
+    for (h = u; h !== s; h = c)
+      c = n[o + h], n[o + h] = s;
   }
   return {
     jleaf: l,
     q: s
   };
 }
-var Pl = "csCounts", Rl = ["transpose"], Ul = /* @__PURE__ */ rr(Pl, Rl, (r) => {
+var Rl = "csCounts", Ul = ["transpose"], Vl = /* @__PURE__ */ ee(Rl, Ul, (e) => {
   var {
-    transpose: e
-  } = r;
-  return function(n, i, t, a) {
-    if (!n || !i || !t)
+    transpose: t
+  } = e;
+  return function(n, i, r, a) {
+    if (!n || !i || !r)
       return null;
-    var o = n._size, v = o[0], c = o[1], l, s, u, f, p, D, h, m = 4 * c + (a ? c + v + 1 : 0), d = [], w = 0, g = c, E = 2 * c, F = 3 * c, y = 4 * c, C = 5 * c + 1;
+    var o = n._size, h = o[0], c = o[1], l, s, u, f, p, D, v, m = 4 * c + (a ? c + h + 1 : 0), d = [], w = 0, g = c, A = 2 * c, F = 3 * c, y = 4 * c, C = 5 * c + 1;
     for (u = 0; u < m; u++)
       d[u] = -1;
-    var b = [], A = e(n), S = A._index, M = A._ptr;
+    var b = [], E = t(n), S = E._index, M = E._ptr;
     for (u = 0; u < c; u++)
-      for (s = t[u], b[s] = d[F + s] === -1 ? 1 : 0; s !== -1 && d[F + s] === -1; s = i[s])
+      for (s = r[u], b[s] = d[F + s] === -1 ? 1 : 0; s !== -1 && d[F + s] === -1; s = i[s])
         d[F + s] = u;
     if (a) {
       for (u = 0; u < c; u++)
-        d[t[u]] = u;
-      for (l = 0; l < v; l++) {
-        for (u = c, D = M[l], h = M[l + 1], p = D; p < h; p++)
+        d[r[u]] = u;
+      for (l = 0; l < h; l++) {
+        for (u = c, D = M[l], v = M[l + 1], p = D; p < v; p++)
           u = Math.min(u, d[S[p]]);
         d[C + l] = d[y + u], d[y + u] = l;
       }
@@ -8785,11 +8785,11 @@ var Pl = "csCounts", Rl = ["transpose"], Ul = /* @__PURE__ */ rr(Pl, Rl, (r) => 
     for (l = 0; l < c; l++)
       d[w + l] = l;
     for (u = 0; u < c; u++) {
-      for (s = t[u], i[s] !== -1 && b[i[s]]--, f = a ? d[y + u] : s; f !== -1; f = a ? d[C + f] : -1)
+      for (s = r[u], i[s] !== -1 && b[i[s]]--, f = a ? d[y + u] : s; f !== -1; f = a ? d[C + f] : -1)
         for (p = M[f]; p < M[f + 1]; p++) {
           l = S[p];
-          var N = Ll(l, s, d, F, g, E, w);
-          N.jleaf >= 1 && b[s]++, N.jleaf === 2 && b[N.q]--;
+          var x = Pl(l, s, d, F, g, A, w);
+          x.jleaf >= 1 && b[s]++, x.jleaf === 2 && b[x.q]--;
         }
       i[s] !== -1 && (d[w + s] = i[s]);
     }
@@ -8797,203 +8797,203 @@ var Pl = "csCounts", Rl = ["transpose"], Ul = /* @__PURE__ */ rr(Pl, Rl, (r) => 
       i[s] !== -1 && (b[i[s]] += b[s]);
     return b;
   };
-}), Vl = "csSqr", Zl = ["add", "multiply", "transpose"], Gl = /* @__PURE__ */ rr(Vl, Zl, (r) => {
+}), Zl = "csSqr", Gl = ["add", "multiply", "transpose"], Yl = /* @__PURE__ */ ee(Zl, Gl, (e) => {
   var {
-    add: e,
+    add: t,
     multiply: n,
     transpose: i
-  } = r, t = ql({
-    add: e,
+  } = e, r = ql({
+    add: t,
     multiply: n,
     transpose: i
-  }), a = Ul({
+  }), a = Vl({
     transpose: i
   });
   return function(c, l, s) {
-    var u = l._ptr, f = l._size, p = f[1], D, h = {};
-    if (h.q = t(c, l), c && !h.q)
+    var u = l._ptr, f = l._size, p = f[1], D, v = {};
+    if (v.q = r(c, l), c && !v.q)
       return null;
     if (s) {
-      var m = c ? _l(l, null, h.q, 0) : l;
-      h.parent = Tl(m, 1);
-      var d = zl(h.parent, p);
-      if (h.cp = a(m, h.parent, d, 1), m && h.parent && h.cp && o(m, h))
-        for (h.unz = 0, D = 0; D < p; D++)
-          h.unz += h.cp[D];
+      var m = c ? zl(l, null, v.q, 0) : l;
+      v.parent = Il(m, 1);
+      var d = Tl(v.parent, p);
+      if (v.cp = a(m, v.parent, d, 1), m && v.parent && v.cp && o(m, v))
+        for (v.unz = 0, D = 0; D < p; D++)
+          v.unz += v.cp[D];
     } else
-      h.unz = 4 * u[p] + p, h.lnz = h.unz;
-    return h;
+      v.unz = 4 * u[p] + p, v.lnz = v.unz;
+    return v;
   };
-  function o(v, c) {
-    var l = v._ptr, s = v._index, u = v._size, f = u[0], p = u[1];
+  function o(h, c) {
+    var l = h._ptr, s = h._index, u = h._size, f = u[0], p = u[1];
     c.pinv = [], c.leftmost = [];
-    var D = c.parent, h = c.pinv, m = c.leftmost, d = [], w = 0, g = f, E = f + p, F = f + 2 * p, y, C, b, A, S;
+    var D = c.parent, v = c.pinv, m = c.leftmost, d = [], w = 0, g = f, A = f + p, F = f + 2 * p, y, C, b, E, S;
     for (C = 0; C < p; C++)
-      d[g + C] = -1, d[E + C] = -1, d[F + C] = 0;
+      d[g + C] = -1, d[A + C] = -1, d[F + C] = 0;
     for (y = 0; y < f; y++)
       m[y] = -1;
     for (C = p - 1; C >= 0; C--)
-      for (A = l[C], S = l[C + 1], b = A; b < S; b++)
+      for (E = l[C], S = l[C + 1], b = E; b < S; b++)
         m[s[b]] = C;
     for (y = f - 1; y >= 0; y--)
-      h[y] = -1, C = m[y], C !== -1 && (d[F + C]++ === 0 && (d[E + C] = y), d[w + y] = d[g + C], d[g + C] = y);
+      v[y] = -1, C = m[y], C !== -1 && (d[F + C]++ === 0 && (d[A + C] = y), d[w + y] = d[g + C], d[g + C] = y);
     for (c.lnz = 0, c.m2 = f, C = 0; C < p; C++)
-      if (y = d[g + C], c.lnz++, y < 0 && (y = c.m2++), h[y] = C, !(--F[C] <= 0)) {
+      if (y = d[g + C], c.lnz++, y < 0 && (y = c.m2++), v[y] = C, !(--F[C] <= 0)) {
         c.lnz += d[F + C];
         var M = D[C];
-        M !== -1 && (d[F + M] === 0 && (d[E + M] = d[E + C]), d[w + d[E + C]] = d[g + M], d[g + M] = d[w + y], d[F + M] += d[F + C]);
+        M !== -1 && (d[F + M] === 0 && (d[A + M] = d[A + C]), d[w + d[A + C]] = d[g + M], d[g + M] = d[w + y], d[F + M] += d[F + C]);
       }
     for (y = 0; y < f; y++)
-      h[y] < 0 && (h[y] = C++);
+      v[y] < 0 && (v[y] = C++);
     return !0;
   }
 });
-function Zt(r, e) {
-  return r[e] < 0;
+function Zt(e, t) {
+  return e[t] < 0;
 }
-function la(r, e) {
-  r[e] = me(r[e]);
+function ha(e, t) {
+  e[t] = gr(e[t]);
 }
-function ui(r) {
-  return r < 0 ? me(r) : r;
+function oi(e) {
+  return e < 0 ? gr(e) : e;
 }
-function Yl(r, e, n, i, t) {
-  var a = e._index, o = e._ptr, v = e._size, c = v[1], l, s, u, f = 0;
-  for (i[0] = r; f >= 0; ) {
-    r = i[f];
-    var p = t ? t[r] : r;
-    Zt(o, r) || (la(o, r), i[c + f] = p < 0 ? 0 : ui(o[p]));
+function Jl(e, t, n, i, r) {
+  var a = t._index, o = t._ptr, h = t._size, c = h[1], l, s, u, f = 0;
+  for (i[0] = e; f >= 0; ) {
+    e = i[f];
+    var p = r ? r[e] : e;
+    Zt(o, e) || (ha(o, e), i[c + f] = p < 0 ? 0 : oi(o[p]));
     var D = 1;
-    for (s = i[c + f], u = p < 0 ? 0 : ui(o[p + 1]); s < u; s++)
+    for (s = i[c + f], u = p < 0 ? 0 : oi(o[p + 1]); s < u; s++)
       if (l = a[s], !Zt(o, l)) {
         i[c + f] = s, i[++f] = l, D = 0;
         break;
       }
-    D && (f--, i[--n] = r);
+    D && (f--, i[--n] = e);
   }
   return n;
 }
-function Jl(r, e, n, i, t) {
-  var a = r._ptr, o = r._size, v = e._index, c = e._ptr, l = o[1], s, u, f, p = l;
+function Ql(e, t, n, i, r) {
+  var a = e._ptr, o = e._size, h = t._index, c = t._ptr, l = o[1], s, u, f, p = l;
   for (u = c[n], f = c[n + 1], s = u; s < f; s++) {
-    var D = v[s];
-    Zt(a, D) || (p = Yl(D, r, p, i, t));
+    var D = h[s];
+    Zt(a, D) || (p = Jl(D, e, p, i, r));
   }
   for (s = p; s < l; s++)
-    la(a, i[s]);
+    ha(a, i[s]);
   return p;
 }
-var Ql = "csSpsolve", Xl = ["divideScalar", "multiply", "subtract"], Kl = /* @__PURE__ */ rr(Ql, Xl, (r) => {
+var Xl = "csSpsolve", Hl = ["divideScalar", "multiply", "subtract"], Kl = /* @__PURE__ */ ee(Xl, Hl, (e) => {
   var {
-    divideScalar: e,
+    divideScalar: t,
     multiply: n,
     subtract: i
-  } = r;
-  return function(a, o, v, c, l, s, u) {
-    var f = a._values, p = a._index, D = a._ptr, h = a._size, m = h[1], d = o._values, w = o._index, g = o._ptr, E, F, y, C, b = Jl(a, o, v, c, s);
-    for (E = b; E < m; E++)
-      l[c[E]] = 0;
-    for (F = g[v], y = g[v + 1], E = F; E < y; E++)
-      l[w[E]] = d[E];
-    for (var A = b; A < m; A++) {
-      var S = c[A], M = s ? s[S] : S;
+  } = e;
+  return function(a, o, h, c, l, s, u) {
+    var f = a._values, p = a._index, D = a._ptr, v = a._size, m = v[1], d = o._values, w = o._index, g = o._ptr, A, F, y, C, b = Ql(a, o, h, c, s);
+    for (A = b; A < m; A++)
+      l[c[A]] = 0;
+    for (F = g[h], y = g[h + 1], A = F; A < y; A++)
+      l[w[A]] = d[A];
+    for (var E = b; E < m; E++) {
+      var S = c[E], M = s ? s[S] : S;
       if (!(M < 0))
-        for (F = D[M], y = D[M + 1], l[S] = e(l[S], f[u ? F : y - 1]), E = u ? F + 1 : F, C = u ? y : y - 1; E < C; E++) {
-          var N = p[E];
-          l[N] = i(l[N], n(f[E], l[S]));
+        for (F = D[M], y = D[M + 1], l[S] = t(l[S], f[u ? F : y - 1]), A = u ? F + 1 : F, C = u ? y : y - 1; A < C; A++) {
+          var x = p[A];
+          l[x] = i(l[x], n(f[A], l[S]));
         }
     }
     return b;
   };
-}), Hl = "csLu", Wl = ["abs", "divideScalar", "multiply", "subtract", "larger", "largerEq", "SparseMatrix"], kl = /* @__PURE__ */ rr(Hl, Wl, (r) => {
+}), Wl = "csLu", kl = ["abs", "divideScalar", "multiply", "subtract", "larger", "largerEq", "SparseMatrix"], jl = /* @__PURE__ */ ee(Wl, kl, (e) => {
   var {
-    abs: e,
+    abs: t,
     divideScalar: n,
     multiply: i,
-    subtract: t,
+    subtract: r,
     larger: a,
     largerEq: o,
-    SparseMatrix: v
-  } = r, c = Kl({
+    SparseMatrix: h
+  } = e, c = Kl({
     divideScalar: n,
     multiply: i,
-    subtract: t
+    subtract: r
   });
   return function(s, u, f) {
     if (!s)
       return null;
-    var p = s._size, D = p[1], h, m = 100, d = 100;
-    u && (h = u.q, m = u.lnz || m, d = u.unz || d);
-    var w = [], g = [], E = [], F = new v({
+    var p = s._size, D = p[1], v, m = 100, d = 100;
+    u && (v = u.q, m = u.lnz || m, d = u.unz || d);
+    var w = [], g = [], A = [], F = new h({
       values: w,
       index: g,
-      ptr: E,
+      ptr: A,
       size: [D, D]
-    }), y = [], C = [], b = [], A = new v({
+    }), y = [], C = [], b = [], E = new h({
       values: y,
       index: C,
       ptr: b,
       size: [D, D]
-    }), S = [], M, N, O = [], T = [];
+    }), S = [], M, x, I = [], T = [];
     for (M = 0; M < D; M++)
-      O[M] = 0, S[M] = -1, E[M + 1] = 0;
+      I[M] = 0, S[M] = -1, A[M + 1] = 0;
     m = 0, d = 0;
-    for (var I = 0; I < D; I++) {
-      E[I] = m, b[I] = d;
-      var B = h ? h[I] : I, G = c(F, s, B, T, O, S, 1), q = -1, z = -1;
-      for (N = G; N < D; N++)
-        if (M = T[N], S[M] < 0) {
-          var V = e(O[M]);
-          a(V, z) && (z = V, q = M);
+    for (var O = 0; O < D; O++) {
+      A[O] = m, b[O] = d;
+      var B = v ? v[O] : O, G = c(F, s, B, T, I, S, 1), $ = -1, z = -1;
+      for (x = G; x < D; x++)
+        if (M = T[x], S[M] < 0) {
+          var V = t(I[M]);
+          a(V, z) && (z = V, $ = M);
         } else
-          C[d] = S[M], y[d++] = O[M];
-      if (q === -1 || z <= 0)
+          C[d] = S[M], y[d++] = I[M];
+      if ($ === -1 || z <= 0)
         return null;
-      S[B] < 0 && o(e(O[B]), i(z, f)) && (q = B);
-      var H = O[q];
-      for (C[d] = I, y[d++] = H, S[q] = I, g[m] = q, w[m++] = 1, N = G; N < D; N++)
-        M = T[N], S[M] < 0 && (g[m] = M, w[m++] = n(O[M], H)), O[M] = 0;
+      S[B] < 0 && o(t(I[B]), i(z, f)) && ($ = B);
+      var K = I[$];
+      for (C[d] = O, y[d++] = K, S[$] = O, g[m] = $, w[m++] = 1, x = G; x < D; x++)
+        M = T[x], S[M] < 0 && (g[m] = M, w[m++] = n(I[M], K)), I[M] = 0;
     }
-    for (E[D] = m, b[D] = d, N = 0; N < m; N++)
-      g[N] = S[g[N]];
+    for (A[D] = m, b[D] = d, x = 0; x < m; x++)
+      g[x] = S[g[x]];
     return w.splice(m, w.length - m), g.splice(m, g.length - m), y.splice(d, y.length - d), C.splice(d, C.length - d), {
       L: F,
-      U: A,
+      U: E,
       pinv: S
     };
   };
-}), oi = "slu", jl = ["typed", "abs", "add", "multiply", "transpose", "divideScalar", "subtract", "larger", "largerEq", "SparseMatrix"], r0 = /* @__PURE__ */ rr(oi, jl, (r) => {
+}), si = "slu", e0 = ["typed", "abs", "add", "multiply", "transpose", "divideScalar", "subtract", "larger", "largerEq", "SparseMatrix"], r0 = /* @__PURE__ */ ee(si, e0, (e) => {
   var {
-    typed: e,
+    typed: t,
     abs: n,
     add: i,
-    multiply: t,
+    multiply: r,
     transpose: a,
     divideScalar: o,
-    subtract: v,
+    subtract: h,
     larger: c,
     largerEq: l,
     SparseMatrix: s
-  } = r, u = Gl({
+  } = e, u = Yl({
     add: i,
-    multiply: t,
+    multiply: r,
     transpose: a
-  }), f = kl({
+  }), f = jl({
     abs: n,
     divideScalar: o,
-    multiply: t,
-    subtract: v,
+    multiply: r,
+    subtract: h,
     larger: c,
     largerEq: l,
     SparseMatrix: s
   });
-  return e(oi, {
-    "SparseMatrix, number, number": function(D, h, m) {
-      if (!zr(h) || h < 0 || h > 3)
+  return t(si, {
+    "SparseMatrix, number, number": function(D, v, m) {
+      if (!ze(v) || v < 0 || v > 3)
         throw new Error("Symbolic Ordering and Analysis order must be an integer number in the interval [0, 3]");
       if (m < 0 || m > 1)
         throw new Error("Partial pivoting threshold must be a number from 0 to 1");
-      var d = u(h, D, !1), w = f(D, d, m);
+      var d = u(v, D, !1), w = f(D, d, m);
       return {
         L: w.L,
         U: w.U,
@@ -9010,33 +9010,33 @@ q: ` + this.q.toString() : "") + `
     }
   });
 });
-function si(r, e) {
-  var n, i = e.length, t = [];
-  if (r)
+function fi(e, t) {
+  var n, i = t.length, r = [];
+  if (e)
     for (n = 0; n < i; n++)
-      t[r[n]] = e[n];
+      r[e[n]] = t[n];
   else
     for (n = 0; n < i; n++)
-      t[n] = e[n];
-  return t;
+      r[n] = t[n];
+  return r;
 }
-var fi = "lusolve", e0 = ["typed", "matrix", "lup", "slu", "usolve", "lsolve", "DenseMatrix"], t0 = /* @__PURE__ */ rr(fi, e0, (r) => {
+var ci = "lusolve", t0 = ["typed", "matrix", "lup", "slu", "usolve", "lsolve", "DenseMatrix"], n0 = /* @__PURE__ */ ee(ci, t0, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     lup: i,
-    slu: t,
+    slu: r,
     usolve: a,
     lsolve: o,
-    DenseMatrix: v
-  } = r, c = St({
-    DenseMatrix: v
+    DenseMatrix: h
+  } = e, c = St({
+    DenseMatrix: h
   });
-  return e(fi, {
+  return t(ci, {
     "Array, Array | Matrix": function(f, p) {
       f = n(f);
-      var D = i(f), h = s(D.L, D.U, D.p, null, p);
-      return h.valueOf();
+      var D = i(f), v = s(D.L, D.U, D.p, null, p);
+      return v.valueOf();
     },
     "DenseMatrix, Array | Matrix": function(f, p) {
       var D = i(f);
@@ -9046,8 +9046,8 @@ var fi = "lusolve", e0 = ["typed", "matrix", "lup", "slu", "usolve", "lsolve", "
       var D = i(f);
       return s(D.L, D.U, D.p, null, p);
     },
-    "SparseMatrix, Array | Matrix, number, number": function(f, p, D, h) {
-      var m = t(f, D, h);
+    "SparseMatrix, Array | Matrix, number, number": function(f, p, D, v) {
+      var m = r(f, D, v);
       return s(m.L, m.U, m.p, m.q, p);
     },
     "Object, Array | Matrix": function(f, p) {
@@ -9055,107 +9055,107 @@ var fi = "lusolve", e0 = ["typed", "matrix", "lup", "slu", "usolve", "lsolve", "
     }
   });
   function l(u) {
-    if (_r(u))
+    if (_e(u))
       return u;
-    if (Mr(u))
+    if (Me(u))
       return n(u);
     throw new TypeError("Invalid Matrix LU decomposition");
   }
-  function s(u, f, p, D, h) {
-    u = l(u), f = l(f), p && (h = c(u, h, !0), h._data = si(p, h._data));
-    var m = o(u, h), d = a(f, m);
-    return D && (d._data = si(D, d._data)), d;
+  function s(u, f, p, D, v) {
+    u = l(u), f = l(f), p && (v = c(u, v, !0), v._data = fi(p, v._data));
+    var m = o(u, v), d = a(f, m);
+    return D && (d._data = fi(D, d._data)), d;
   }
-}), ci = "det", n0 = ["typed", "matrix", "subtractScalar", "multiply", "divideScalar", "isZero", "unaryMinus"], i0 = /* @__PURE__ */ rr(ci, n0, (r) => {
+}), li = "det", i0 = ["typed", "matrix", "subtractScalar", "multiply", "divideScalar", "isZero", "unaryMinus"], a0 = /* @__PURE__ */ ee(li, i0, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     subtractScalar: i,
-    multiply: t,
+    multiply: r,
     divideScalar: a,
     isZero: o,
-    unaryMinus: v
-  } = r;
-  return e(ci, {
+    unaryMinus: h
+  } = e;
+  return t(li, {
     any: function(s) {
-      return Fr(s);
+      return Ce(s);
     },
     "Array | Matrix": function(s) {
       var u;
-      switch (_r(s) ? u = s.size() : Array.isArray(s) ? (s = n(s), u = s.size()) : u = [], u.length) {
+      switch (_e(s) ? u = s.size() : Array.isArray(s) ? (s = n(s), u = s.size()) : u = [], u.length) {
         case 0:
-          return Fr(s);
+          return Ce(s);
         case 1:
           if (u[0] === 1)
-            return Fr(s.valueOf()[0]);
+            return Ce(s.valueOf()[0]);
           if (u[0] === 0)
             return 1;
-          throw new RangeError("Matrix must be square (size: " + Ir(u) + ")");
+          throw new RangeError("Matrix must be square (size: " + Oe(u) + ")");
         case 2: {
           var f = u[0], p = u[1];
           if (f === p)
             return c(s.clone().valueOf(), f);
           if (p === 0)
             return 1;
-          throw new RangeError("Matrix must be square (size: " + Ir(u) + ")");
+          throw new RangeError("Matrix must be square (size: " + Oe(u) + ")");
         }
         default:
-          throw new RangeError("Matrix must be two dimensional (size: " + Ir(u) + ")");
+          throw new RangeError("Matrix must be two dimensional (size: " + Oe(u) + ")");
       }
     }
   });
   function c(l, s, u) {
     if (s === 1)
-      return Fr(l[0][0]);
+      return Ce(l[0][0]);
     if (s === 2)
-      return i(t(l[0][0], l[1][1]), t(l[1][0], l[0][1]));
+      return i(r(l[0][0], l[1][1]), r(l[1][0], l[0][1]));
     for (var f = !1, p = new Array(s).fill(0).map((C, b) => b), D = 0; D < s; D++) {
-      var h = p[D];
-      if (o(l[h][D])) {
+      var v = p[D];
+      if (o(l[v][D])) {
         var m = void 0;
         for (m = D + 1; m < s; m++)
           if (!o(l[p[m]][D])) {
-            h = p[m], p[m] = p[D], p[D] = h, f = !f;
+            v = p[m], p[m] = p[D], p[D] = v, f = !f;
             break;
           }
         if (m === s)
-          return l[h][D];
+          return l[v][D];
       }
-      for (var d = l[h][D], w = D === 0 ? 1 : l[p[D - 1]][D - 1], g = D + 1; g < s; g++)
-        for (var E = p[g], F = D + 1; F < s; F++)
-          l[E][F] = a(i(t(l[E][F], d), t(l[E][D], l[h][F])), w);
+      for (var d = l[v][D], w = D === 0 ? 1 : l[p[D - 1]][D - 1], g = D + 1; g < s; g++)
+        for (var A = p[g], F = D + 1; F < s; F++)
+          l[A][F] = a(i(r(l[A][F], d), r(l[A][D], l[v][F])), w);
     }
     var y = l[p[s - 1]][s - 1];
-    return f ? v(y) : y;
+    return f ? h(y) : y;
   }
-}), li = "inv", a0 = ["typed", "matrix", "divideScalar", "addScalar", "multiply", "unaryMinus", "det", "identity", "abs"], u0 = /* @__PURE__ */ rr(li, a0, (r) => {
+}), hi = "inv", u0 = ["typed", "matrix", "divideScalar", "addScalar", "multiply", "unaryMinus", "det", "identity", "abs"], o0 = /* @__PURE__ */ ee(hi, u0, (e) => {
   var {
-    typed: e,
+    typed: t,
     matrix: n,
     divideScalar: i,
-    addScalar: t,
+    addScalar: r,
     multiply: a,
     unaryMinus: o,
-    det: v,
+    det: h,
     identity: c,
     abs: l
-  } = r;
-  return e(li, {
+  } = e;
+  return t(hi, {
     "Array | Matrix": function(f) {
-      var p = _r(f) ? f.size() : qr(f);
+      var p = _e(f) ? f.size() : $e(f);
       switch (p.length) {
         case 1:
           if (p[0] === 1)
-            return _r(f) ? n([i(1, f.valueOf()[0])]) : [i(1, f[0])];
-          throw new RangeError("Matrix must be square (size: " + Ir(p) + ")");
+            return _e(f) ? n([i(1, f.valueOf()[0])]) : [i(1, f[0])];
+          throw new RangeError("Matrix must be square (size: " + Oe(p) + ")");
         case 2: {
-          var D = p[0], h = p[1];
-          if (D === h)
-            return _r(f) ? n(s(f.valueOf(), D, h), f.storage()) : s(f, D, h);
-          throw new RangeError("Matrix must be square (size: " + Ir(p) + ")");
+          var D = p[0], v = p[1];
+          if (D === v)
+            return _e(f) ? n(s(f.valueOf(), D, v), f.storage()) : s(f, D, v);
+          throw new RangeError("Matrix must be square (size: " + Oe(p) + ")");
         }
         default:
-          throw new RangeError("Matrix must be two dimensional (size: " + Ir(p) + ")");
+          throw new RangeError("Matrix must be two dimensional (size: " + Oe(p) + ")");
       }
     },
     any: function(f) {
@@ -9163,42 +9163,42 @@ var fi = "lusolve", e0 = ["typed", "matrix", "lup", "slu", "usolve", "lsolve", "
     }
   });
   function s(u, f, p) {
-    var D, h, m, d, w;
+    var D, v, m, d, w;
     if (f === 1) {
       if (d = u[0][0], d === 0)
         throw Error("Cannot calculate inverse, determinant is zero");
       return [[i(1, d)]];
     } else if (f === 2) {
-      var g = v(u);
+      var g = h(u);
       if (g === 0)
         throw Error("Cannot calculate inverse, determinant is zero");
       return [[i(u[1][1], g), i(o(u[0][1]), g)], [i(o(u[1][0]), g), i(u[0][0], g)]];
     } else {
-      var E = u.concat();
+      var A = u.concat();
       for (D = 0; D < f; D++)
-        E[D] = E[D].concat();
+        A[D] = A[D].concat();
       for (var F = c(f).valueOf(), y = 0; y < p; y++) {
-        var C = l(E[y][y]), b = y;
+        var C = l(A[y][y]), b = y;
         for (D = y + 1; D < f; )
-          l(E[D][y]) > C && (C = l(E[D][y]), b = D), D++;
+          l(A[D][y]) > C && (C = l(A[D][y]), b = D), D++;
         if (C === 0)
           throw Error("Cannot calculate inverse, determinant is zero");
-        D = b, D !== y && (w = E[y], E[y] = E[D], E[D] = w, w = F[y], F[y] = F[D], F[D] = w);
-        var A = E[y], S = F[y];
+        D = b, D !== y && (w = A[y], A[y] = A[D], A[D] = w, w = F[y], F[y] = F[D], F[D] = w);
+        var E = A[y], S = F[y];
         for (D = 0; D < f; D++) {
-          var M = E[D], N = F[D];
+          var M = A[D], x = F[D];
           if (D !== y) {
             if (M[y] !== 0) {
-              for (m = i(o(M[y]), A[y]), h = y; h < p; h++)
-                M[h] = t(M[h], a(m, A[h]));
-              for (h = 0; h < p; h++)
-                N[h] = t(N[h], a(m, S[h]));
+              for (m = i(o(M[y]), E[y]), v = y; v < p; v++)
+                M[v] = r(M[v], a(m, E[v]));
+              for (v = 0; v < p; v++)
+                x[v] = r(x[v], a(m, S[v]));
             }
           } else {
-            for (m = A[y], h = y; h < p; h++)
-              M[h] = i(M[h], m);
-            for (h = 0; h < p; h++)
-              N[h] = i(N[h], m);
+            for (m = E[y], v = y; v < p; v++)
+              M[v] = i(M[v], m);
+            for (v = 0; v < p; v++)
+              x[v] = i(x[v], m);
           }
         }
       }
@@ -9206,15 +9206,15 @@ var fi = "lusolve", e0 = ["typed", "matrix", "lup", "slu", "usolve", "lsolve", "
     }
   }
 });
-function o0(r) {
+function s0(e) {
   var {
-    addScalar: e,
+    addScalar: t,
     subtract: n,
     flatten: i,
-    multiply: t,
+    multiply: r,
     multiplyScalar: a,
     divideScalar: o,
-    sqrt: v,
+    sqrt: h,
     abs: c,
     bignumber: l,
     diag: s,
@@ -9222,24 +9222,24 @@ function o0(r) {
     reshape: f,
     inv: p,
     qr: D,
-    usolve: h,
+    usolve: v,
     usolveAll: m,
     equal: d,
     complex: w,
     larger: g,
-    smaller: E,
+    smaller: A,
     matrixFromColumns: F,
     dot: y
-  } = r;
-  function C(P, L, Z, nr) {
-    var k = arguments.length > 4 && arguments[4] !== void 0 ? arguments[4] : !0, U = b(P, L, Z, nr, k);
-    A(P, L, Z, nr, k, U);
+  } = e;
+  function C(P, q, Z, ne) {
+    var k = arguments.length > 4 && arguments[4] !== void 0 ? arguments[4] : !0, U = b(P, q, Z, ne, k);
+    E(P, q, Z, ne, k, U);
     var {
       values: Q,
       C: X
-    } = S(P, L, Z, nr, k);
+    } = S(P, q, Z, ne, k);
     if (k) {
-      var J = M(P, L, X, U, Q, Z, nr);
+      var J = M(P, q, X, U, Q, Z, ne);
       return {
         values: Q,
         eigenvectors: J
@@ -9249,152 +9249,152 @@ function o0(r) {
       values: Q
     };
   }
-  function b(P, L, Z, nr, k) {
-    var U = nr === "BigNumber", Q = nr === "Complex", X = U ? l(0) : 0, J = U ? l(1) : Q ? w(1) : 1, ur = U ? l(1) : 1, j = U ? l(10) : 2, or = a(j, j), fr;
-    k && (fr = Array(L).fill(J));
-    for (var pr = !1; !pr; ) {
-      pr = !0;
-      for (var gr = 0; gr < L; gr++) {
-        for (var yr = X, cr = X, Cr = 0; Cr < L; Cr++)
-          gr !== Cr && (yr = e(yr, c(P[Cr][gr])), cr = e(cr, c(P[gr][Cr])));
-        if (!d(yr, 0) && !d(cr, 0)) {
-          for (var wr = ur, Sr = yr, Ur = o(cr, j), x = a(cr, j); E(Sr, Ur); )
-            Sr = a(Sr, or), wr = a(wr, j);
-          for (; g(Sr, x); )
-            Sr = o(Sr, or), wr = o(wr, j);
-          var _ = E(o(e(Sr, cr), wr), a(e(yr, cr), 0.95));
+  function b(P, q, Z, ne, k) {
+    var U = ne === "BigNumber", Q = ne === "Complex", X = U ? l(0) : 0, J = U ? l(1) : Q ? w(1) : 1, ue = U ? l(1) : 1, j = U ? l(10) : 2, oe = a(j, j), le;
+    k && (le = Array(q).fill(J));
+    for (var de = !1; !de; ) {
+      de = !0;
+      for (var ge = 0; ge < q; ge++) {
+        for (var we = X, he = X, be = 0; be < q; be++)
+          ge !== be && (we = t(we, c(P[be][ge])), he = t(he, c(P[ge][be])));
+        if (!d(we, 0) && !d(he, 0)) {
+          for (var Ee = ue, Se = we, Ue = o(he, j), N = a(he, j); A(Se, Ue); )
+            Se = a(Se, oe), Ee = a(Ee, j);
+          for (; g(Se, N); )
+            Se = o(Se, oe), Ee = o(Ee, j);
+          var _ = A(o(t(Se, he), Ee), a(t(we, he), 0.95));
           if (_) {
-            pr = !1;
-            for (var $ = o(1, wr), R = 0; R < L; R++)
-              gr !== R && (P[gr][R] = a(P[gr][R], $), P[R][gr] = a(P[R][gr], wr));
-            k && (fr[gr] = a(fr[gr], $));
+            de = !1;
+            for (var L = o(1, Ee), R = 0; R < q; R++)
+              ge !== R && (P[ge][R] = a(P[ge][R], L), P[R][ge] = a(P[R][ge], Ee));
+            k && (le[ge] = a(le[ge], L));
           }
         }
       }
     }
-    return k ? s(fr) : null;
+    return k ? s(le) : null;
   }
-  function A(P, L, Z, nr, k, U) {
-    var Q = nr === "BigNumber", X = nr === "Complex", J = Q ? l(0) : X ? w(0) : 0;
+  function E(P, q, Z, ne, k, U) {
+    var Q = ne === "BigNumber", X = ne === "Complex", J = Q ? l(0) : X ? w(0) : 0;
     Q && (Z = l(Z));
-    for (var ur = 0; ur < L - 2; ur++) {
-      for (var j = 0, or = J, fr = ur + 1; fr < L; fr++) {
-        var pr = P[fr][ur];
-        E(c(or), c(pr)) && (or = pr, j = fr);
+    for (var ue = 0; ue < q - 2; ue++) {
+      for (var j = 0, oe = J, le = ue + 1; le < q; le++) {
+        var de = P[le][ue];
+        A(c(oe), c(de)) && (oe = de, j = le);
       }
-      if (!E(c(or), Z)) {
-        if (j !== ur + 1) {
-          var gr = P[j];
-          P[j] = P[ur + 1], P[ur + 1] = gr;
-          for (var yr = 0; yr < L; yr++) {
-            var cr = P[yr][j];
-            P[yr][j] = P[yr][ur + 1], P[yr][ur + 1] = cr;
+      if (!A(c(oe), Z)) {
+        if (j !== ue + 1) {
+          var ge = P[j];
+          P[j] = P[ue + 1], P[ue + 1] = ge;
+          for (var we = 0; we < q; we++) {
+            var he = P[we][j];
+            P[we][j] = P[we][ue + 1], P[we][ue + 1] = he;
           }
           if (k) {
-            var Cr = U[j];
-            U[j] = U[ur + 1], U[ur + 1] = Cr;
+            var be = U[j];
+            U[j] = U[ue + 1], U[ue + 1] = be;
           }
         }
-        for (var wr = ur + 2; wr < L; wr++) {
-          var Sr = o(P[wr][ur], or);
-          if (Sr !== 0) {
-            for (var Ur = 0; Ur < L; Ur++)
-              P[wr][Ur] = n(P[wr][Ur], a(Sr, P[ur + 1][Ur]));
-            for (var x = 0; x < L; x++)
-              P[x][ur + 1] = e(P[x][ur + 1], a(Sr, P[x][wr]));
+        for (var Ee = ue + 2; Ee < q; Ee++) {
+          var Se = o(P[Ee][ue], oe);
+          if (Se !== 0) {
+            for (var Ue = 0; Ue < q; Ue++)
+              P[Ee][Ue] = n(P[Ee][Ue], a(Se, P[ue + 1][Ue]));
+            for (var N = 0; N < q; N++)
+              P[N][ue + 1] = t(P[N][ue + 1], a(Se, P[N][Ee]));
             if (k)
-              for (var _ = 0; _ < L; _++)
-                U[wr][_] = n(U[wr][_], a(Sr, U[ur + 1][_]));
+              for (var _ = 0; _ < q; _++)
+                U[Ee][_] = n(U[Ee][_], a(Se, U[ue + 1][_]));
           }
         }
       }
     }
     return U;
   }
-  function S(P, L, Z, nr, k) {
-    var U = nr === "BigNumber", Q = nr === "Complex", X = U ? l(1) : Q ? w(1) : 1;
+  function S(P, q, Z, ne, k) {
+    var U = ne === "BigNumber", Q = ne === "Complex", X = U ? l(1) : Q ? w(1) : 1;
     U && (Z = l(Z));
-    for (var J = Fr(P), ur = [], j = L, or = [], fr = k ? s(Array(L).fill(X)) : void 0, pr = k ? s(Array(j).fill(X)) : void 0, gr = 0; gr <= 100; ) {
-      gr += 1;
-      for (var yr = J[j - 1][j - 1], cr = 0; cr < j; cr++)
-        J[cr][cr] = n(J[cr][cr], yr);
+    for (var J = Ce(P), ue = [], j = q, oe = [], le = k ? s(Array(q).fill(X)) : void 0, de = k ? s(Array(j).fill(X)) : void 0, ge = 0; ge <= 100; ) {
+      ge += 1;
+      for (var we = J[j - 1][j - 1], he = 0; he < j; he++)
+        J[he][he] = n(J[he][he], we);
       var {
-        Q: Cr,
-        R: wr
+        Q: be,
+        R: Ee
       } = D(J);
-      J = t(wr, Cr);
-      for (var Sr = 0; Sr < j; Sr++)
-        J[Sr][Sr] = e(J[Sr][Sr], yr);
-      if (k && (pr = t(pr, Cr)), j === 1 || E(c(J[j - 1][j - 2]), Z)) {
-        gr = 0, ur.push(J[j - 1][j - 1]), k && (or.unshift([[1]]), T(pr, L), fr = t(fr, pr), j > 1 && (pr = s(Array(j - 1).fill(X)))), j -= 1, J.pop();
-        for (var Ur = 0; Ur < j; Ur++)
-          J[Ur].pop();
-      } else if (j === 2 || E(c(J[j - 2][j - 3]), Z)) {
-        gr = 0;
-        var x = N(J[j - 2][j - 2], J[j - 2][j - 1], J[j - 1][j - 2], J[j - 1][j - 1]);
-        ur.push(...x), k && (or.unshift(O(J[j - 2][j - 2], J[j - 2][j - 1], J[j - 1][j - 2], J[j - 1][j - 1], x[0], x[1], Z, nr)), T(pr, L), fr = t(fr, pr), j > 2 && (pr = s(Array(j - 2).fill(X)))), j -= 2, J.pop(), J.pop();
+      J = r(Ee, be);
+      for (var Se = 0; Se < j; Se++)
+        J[Se][Se] = t(J[Se][Se], we);
+      if (k && (de = r(de, be)), j === 1 || A(c(J[j - 1][j - 2]), Z)) {
+        ge = 0, ue.push(J[j - 1][j - 1]), k && (oe.unshift([[1]]), T(de, q), le = r(le, de), j > 1 && (de = s(Array(j - 1).fill(X)))), j -= 1, J.pop();
+        for (var Ue = 0; Ue < j; Ue++)
+          J[Ue].pop();
+      } else if (j === 2 || A(c(J[j - 2][j - 3]), Z)) {
+        ge = 0;
+        var N = x(J[j - 2][j - 2], J[j - 2][j - 1], J[j - 1][j - 2], J[j - 1][j - 1]);
+        ue.push(...N), k && (oe.unshift(I(J[j - 2][j - 2], J[j - 2][j - 1], J[j - 1][j - 2], J[j - 1][j - 1], N[0], N[1], Z, ne)), T(de, q), le = r(le, de), j > 2 && (de = s(Array(j - 2).fill(X)))), j -= 2, J.pop(), J.pop();
         for (var _ = 0; _ < j; _++)
           J[_].pop(), J[_].pop();
       }
       if (j === 0)
         break;
     }
-    if (ur.sort((K, Y) => +n(c(K), c(Y))), gr > 100) {
-      var $ = Error("The eigenvalues failed to converge. Only found these eigenvalues: " + ur.join(", "));
-      throw $.values = ur, $.vectors = [], $;
+    if (ue.sort((H, Y) => +n(c(H), c(Y))), ge > 100) {
+      var L = Error("The eigenvalues failed to converge. Only found these eigenvalues: " + ue.join(", "));
+      throw L.values = ue, L.vectors = [], L;
     }
-    var R = k ? t(fr, I(or, L)) : void 0;
+    var R = k ? r(le, O(oe, q)) : void 0;
     return {
-      values: ur,
+      values: ue,
       C: R
     };
   }
-  function M(P, L, Z, nr, k, U, Q) {
-    var X = p(Z), J = t(X, P, Z), ur = Q === "BigNumber", j = Q === "Complex", or = ur ? l(0) : j ? w(0) : 0, fr = ur ? l(1) : j ? w(1) : 1, pr = [], gr = [];
-    for (var yr of k) {
-      var cr = B(pr, yr, d);
-      cr === -1 ? (pr.push(yr), gr.push(1)) : gr[cr] += 1;
+  function M(P, q, Z, ne, k, U, Q) {
+    var X = p(Z), J = r(X, P, Z), ue = Q === "BigNumber", j = Q === "Complex", oe = ue ? l(0) : j ? w(0) : 0, le = ue ? l(1) : j ? w(1) : 1, de = [], ge = [];
+    for (var we of k) {
+      var he = B(de, we, d);
+      he === -1 ? (de.push(we), ge.push(1)) : ge[he] += 1;
     }
-    for (var Cr = [], wr = pr.length, Sr = Array(L).fill(or), Ur = s(Array(L).fill(fr)), x = function() {
-      var R = pr[_], K = n(J, t(R, Ur)), Y = m(K, Sr);
-      for (Y.shift(); Y.length < gr[_]; ) {
-        var ar = G(K, L, Y, U, Q);
-        if (ar === null)
+    for (var be = [], Ee = de.length, Se = Array(q).fill(oe), Ue = s(Array(q).fill(le)), N = function() {
+      var R = de[_], H = n(J, r(R, Ue)), Y = m(H, Se);
+      for (Y.shift(); Y.length < ge[_]; ) {
+        var ae = G(H, q, Y, U, Q);
+        if (ae === null)
           break;
-        Y.push(ar);
+        Y.push(ae);
       }
-      var tr = t(p(nr), Z);
-      Y = Y.map((ir) => t(tr, ir)), Cr.push(...Y.map((ir) => ({
+      var te = r(p(ne), Z);
+      Y = Y.map((ie) => r(te, ie)), be.push(...Y.map((ie) => ({
         value: R,
-        vector: i(ir)
+        vector: i(ie)
       })));
-    }, _ = 0; _ < wr; _++)
-      x();
-    return Cr;
+    }, _ = 0; _ < Ee; _++)
+      N();
+    return be;
   }
-  function N(P, L, Z, nr) {
-    var k = e(P, nr), U = n(a(P, nr), a(L, Z)), Q = a(k, 0.5), X = a(v(n(a(k, k), a(4, U))), 0.5);
-    return [e(Q, X), n(Q, X)];
+  function x(P, q, Z, ne) {
+    var k = t(P, ne), U = n(a(P, ne), a(q, Z)), Q = a(k, 0.5), X = a(h(n(a(k, k), a(4, U))), 0.5);
+    return [t(Q, X), n(Q, X)];
   }
-  function O(P, L, Z, nr, k, U, Q, X) {
-    var J = X === "BigNumber", ur = X === "Complex", j = J ? l(0) : ur ? w(0) : 0, or = J ? l(1) : ur ? w(1) : 1;
-    if (E(c(Z), Q))
-      return [[or, j], [j, or]];
+  function I(P, q, Z, ne, k, U, Q, X) {
+    var J = X === "BigNumber", ue = X === "Complex", j = J ? l(0) : ue ? w(0) : 0, oe = J ? l(1) : ue ? w(1) : 1;
+    if (A(c(Z), Q))
+      return [[oe, j], [j, oe]];
     if (g(c(n(k, U)), Q))
-      return [[n(k, nr), n(U, nr)], [Z, Z]];
-    var fr = n(P, k), pr = n(nr, k);
-    return E(c(L), Q) && E(c(pr), Q) ? [[fr, or], [Z, j]] : [[L, j], [pr, or]];
+      return [[n(k, ne), n(U, ne)], [Z, Z]];
+    var le = n(P, k), de = n(ne, k);
+    return A(c(q), Q) && A(c(de), Q) ? [[le, oe], [Z, j]] : [[q, j], [de, oe]];
   }
-  function T(P, L) {
+  function T(P, q) {
     for (var Z = 0; Z < P.length; Z++)
-      P[Z].push(...Array(L - P[Z].length).fill(0));
-    for (var nr = P.length; nr < L; nr++)
-      P.push(Array(L).fill(0)), P[nr][nr] = 1;
+      P[Z].push(...Array(q - P[Z].length).fill(0));
+    for (var ne = P.length; ne < q; ne++)
+      P.push(Array(q).fill(0)), P[ne][ne] = 1;
     return P;
   }
-  function I(P, L) {
-    for (var Z = [], nr = 0; nr < L; nr++)
-      Z[nr] = Array(L).fill(0);
+  function O(P, q) {
+    for (var Z = [], ne = 0; ne < q; ne++)
+      Z[ne] = Array(q).fill(0);
     var k = 0;
     for (var U of P) {
       for (var Q = U.length, X = 0; X < Q; X++)
@@ -9404,17 +9404,17 @@ function o0(r) {
     }
     return Z;
   }
-  function B(P, L, Z) {
-    for (var nr = 0; nr < P.length; nr++)
-      if (Z(P[nr], L))
-        return nr;
+  function B(P, q, Z) {
+    for (var ne = 0; ne < P.length; ne++)
+      if (Z(P[ne], q))
+        return ne;
     return -1;
   }
-  function G(P, L, Z, nr, k) {
+  function G(P, q, Z, ne, k) {
     for (var U = k === "BigNumber" ? l(1e3) : 1e3, Q, X = 0; X < 5; ++X) {
-      Q = q(L, Z, k);
+      Q = $(q, Z, k);
       try {
-        Q = h(P, Q);
+        Q = v(P, Q);
       } catch {
         continue;
       }
@@ -9424,175 +9424,175 @@ function o0(r) {
     if (X >= 5)
       return null;
     for (X = 0; ; ) {
-      var J = h(P, Q);
-      if (E(V(z(Q, [J])), nr))
+      var J = v(P, Q);
+      if (A(V(z(Q, [J])), ne))
         break;
       if (++X >= 10)
         return null;
-      Q = H(J);
+      Q = K(J);
     }
     return Q;
   }
-  function q(P, L, Z) {
-    var nr = Z === "BigNumber", k = Z === "Complex", U = Array(P).fill(0).map((Q) => 2 * Math.random() - 1);
-    return nr && (U = U.map((Q) => l(Q))), k && (U = U.map((Q) => w(Q))), U = z(U, L), H(U, Z);
+  function $(P, q, Z) {
+    var ne = Z === "BigNumber", k = Z === "Complex", U = Array(P).fill(0).map((Q) => 2 * Math.random() - 1);
+    return ne && (U = U.map((Q) => l(Q))), k && (U = U.map((Q) => w(Q))), U = z(U, q), K(U, Z);
   }
-  function z(P, L) {
+  function z(P, q) {
     var Z = u(P);
-    for (var nr of L)
-      nr = f(nr, Z), P = n(P, t(o(y(nr, P), y(nr, nr)), nr));
+    for (var ne of q)
+      ne = f(ne, Z), P = n(P, r(o(y(ne, P), y(ne, ne)), ne));
     return P;
   }
   function V(P) {
-    return c(v(y(P, P)));
+    return c(h(y(P, P)));
   }
-  function H(P, L) {
-    var Z = L === "BigNumber", nr = L === "Complex", k = Z ? l(1) : nr ? w(1) : 1;
-    return t(o(k, V(P)), P);
+  function K(P, q) {
+    var Z = q === "BigNumber", ne = q === "Complex", k = Z ? l(1) : ne ? w(1) : 1;
+    return r(o(k, V(P)), P);
   }
   return C;
 }
-function s0(r) {
+function f0(e) {
   var {
-    config: e,
+    config: t,
     addScalar: n,
     subtract: i,
-    abs: t,
+    abs: r,
     atan: a,
     cos: o,
-    sin: v,
+    sin: h,
     multiplyScalar: c,
     inv: l,
     bignumber: s,
     multiply: u,
     add: f
-  } = r;
-  function p(A, S) {
-    var M = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : e.epsilon, N = arguments.length > 3 ? arguments[3] : void 0, O = arguments.length > 4 ? arguments[4] : void 0;
-    if (N === "number")
-      return D(A, M, O);
-    if (N === "BigNumber")
-      return h(A, M, O);
-    throw TypeError("Unsupported data type: " + N);
+  } = e;
+  function p(E, S) {
+    var M = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : t.epsilon, x = arguments.length > 3 ? arguments[3] : void 0, I = arguments.length > 4 ? arguments[4] : void 0;
+    if (x === "number")
+      return D(E, M, I);
+    if (x === "BigNumber")
+      return v(E, M, I);
+    throw TypeError("Unsupported data type: " + x);
   }
-  function D(A, S, M) {
-    var N = A.length, O = Math.abs(S / N), T, I;
+  function D(E, S, M) {
+    var x = E.length, I = Math.abs(S / x), T, O;
     if (M) {
-      I = new Array(N);
-      for (var B = 0; B < N; B++)
-        I[B] = Array(N).fill(0), I[B][B] = 1;
+      O = new Array(x);
+      for (var B = 0; B < x; B++)
+        O[B] = Array(x).fill(0), O[B][B] = 1;
     }
-    for (var G = y(A); Math.abs(G[1]) >= Math.abs(O); ) {
-      var q = G[0][0], z = G[0][1];
-      T = m(A[q][q], A[z][z], A[q][z]), A = F(A, T, q, z), M && (I = w(I, T, q, z)), G = y(A);
+    for (var G = y(E); Math.abs(G[1]) >= Math.abs(I); ) {
+      var $ = G[0][0], z = G[0][1];
+      T = m(E[$][$], E[z][z], E[$][z]), E = F(E, T, $, z), M && (O = w(O, T, $, z)), G = y(E);
     }
-    for (var V = Array(N).fill(0), H = 0; H < N; H++)
-      V[H] = A[H][H];
-    return b(Fr(V), I, M);
+    for (var V = Array(x).fill(0), K = 0; K < x; K++)
+      V[K] = E[K][K];
+    return b(Ce(V), O, M);
   }
-  function h(A, S, M) {
-    var N = A.length, O = t(S / N), T, I;
+  function v(E, S, M) {
+    var x = E.length, I = r(S / x), T, O;
     if (M) {
-      I = new Array(N);
-      for (var B = 0; B < N; B++)
-        I[B] = Array(N).fill(0), I[B][B] = 1;
+      O = new Array(x);
+      for (var B = 0; B < x; B++)
+        O[B] = Array(x).fill(0), O[B][B] = 1;
     }
-    for (var G = C(A); t(G[1]) >= t(O); ) {
-      var q = G[0][0], z = G[0][1];
-      T = d(A[q][q], A[z][z], A[q][z]), A = E(A, T, q, z), M && (I = g(I, T, q, z)), G = C(A);
+    for (var G = C(E); r(G[1]) >= r(I); ) {
+      var $ = G[0][0], z = G[0][1];
+      T = d(E[$][$], E[z][z], E[$][z]), E = A(E, T, $, z), M && (O = g(O, T, $, z)), G = C(E);
     }
-    for (var V = Array(N).fill(0), H = 0; H < N; H++)
-      V[H] = A[H][H];
-    return b(Fr(V), I, M);
+    for (var V = Array(x).fill(0), K = 0; K < x; K++)
+      V[K] = E[K][K];
+    return b(Ce(V), O, M);
   }
-  function m(A, S, M) {
-    var N = S - A;
-    return Math.abs(N) <= e.epsilon ? Math.PI / 4 : 0.5 * Math.atan(2 * M / (S - A));
+  function m(E, S, M) {
+    var x = S - E;
+    return Math.abs(x) <= t.epsilon ? Math.PI / 4 : 0.5 * Math.atan(2 * M / (S - E));
   }
-  function d(A, S, M) {
-    var N = i(S, A);
-    return t(N) <= e.epsilon ? s(-1).acos().div(4) : c(0.5, a(u(2, M, l(N))));
+  function d(E, S, M) {
+    var x = i(S, E);
+    return r(x) <= t.epsilon ? s(-1).acos().div(4) : c(0.5, a(u(2, M, l(x))));
   }
-  function w(A, S, M, N) {
-    for (var O = A.length, T = Math.cos(S), I = Math.sin(S), B = Array(O).fill(0), G = Array(O).fill(0), q = 0; q < O; q++)
-      B[q] = T * A[q][M] - I * A[q][N], G[q] = I * A[q][M] + T * A[q][N];
-    for (var z = 0; z < O; z++)
-      A[z][M] = B[z], A[z][N] = G[z];
-    return A;
+  function w(E, S, M, x) {
+    for (var I = E.length, T = Math.cos(S), O = Math.sin(S), B = Array(I).fill(0), G = Array(I).fill(0), $ = 0; $ < I; $++)
+      B[$] = T * E[$][M] - O * E[$][x], G[$] = O * E[$][M] + T * E[$][x];
+    for (var z = 0; z < I; z++)
+      E[z][M] = B[z], E[z][x] = G[z];
+    return E;
   }
-  function g(A, S, M, N) {
-    for (var O = A.length, T = o(S), I = v(S), B = Array(O).fill(s(0)), G = Array(O).fill(s(0)), q = 0; q < O; q++)
-      B[q] = i(c(T, A[q][M]), c(I, A[q][N])), G[q] = n(c(I, A[q][M]), c(T, A[q][N]));
-    for (var z = 0; z < O; z++)
-      A[z][M] = B[z], A[z][N] = G[z];
-    return A;
+  function g(E, S, M, x) {
+    for (var I = E.length, T = o(S), O = h(S), B = Array(I).fill(s(0)), G = Array(I).fill(s(0)), $ = 0; $ < I; $++)
+      B[$] = i(c(T, E[$][M]), c(O, E[$][x])), G[$] = n(c(O, E[$][M]), c(T, E[$][x]));
+    for (var z = 0; z < I; z++)
+      E[z][M] = B[z], E[z][x] = G[z];
+    return E;
   }
-  function E(A, S, M, N) {
-    for (var O = A.length, T = s(o(S)), I = s(v(S)), B = c(T, T), G = c(I, I), q = Array(O).fill(s(0)), z = Array(O).fill(s(0)), V = u(s(2), T, I, A[M][N]), H = n(i(c(B, A[M][M]), V), c(G, A[N][N])), P = f(c(G, A[M][M]), V, c(B, A[N][N])), L = 0; L < O; L++)
-      q[L] = i(c(T, A[M][L]), c(I, A[N][L])), z[L] = n(c(I, A[M][L]), c(T, A[N][L]));
-    A[M][M] = H, A[N][N] = P, A[M][N] = s(0), A[N][M] = s(0);
-    for (var Z = 0; Z < O; Z++)
-      Z !== M && Z !== N && (A[M][Z] = q[Z], A[Z][M] = q[Z], A[N][Z] = z[Z], A[Z][N] = z[Z]);
-    return A;
+  function A(E, S, M, x) {
+    for (var I = E.length, T = s(o(S)), O = s(h(S)), B = c(T, T), G = c(O, O), $ = Array(I).fill(s(0)), z = Array(I).fill(s(0)), V = u(s(2), T, O, E[M][x]), K = n(i(c(B, E[M][M]), V), c(G, E[x][x])), P = f(c(G, E[M][M]), V, c(B, E[x][x])), q = 0; q < I; q++)
+      $[q] = i(c(T, E[M][q]), c(O, E[x][q])), z[q] = n(c(O, E[M][q]), c(T, E[x][q]));
+    E[M][M] = K, E[x][x] = P, E[M][x] = s(0), E[x][M] = s(0);
+    for (var Z = 0; Z < I; Z++)
+      Z !== M && Z !== x && (E[M][Z] = $[Z], E[Z][M] = $[Z], E[x][Z] = z[Z], E[Z][x] = z[Z]);
+    return E;
   }
-  function F(A, S, M, N) {
-    for (var O = A.length, T = Math.cos(S), I = Math.sin(S), B = T * T, G = I * I, q = Array(O).fill(0), z = Array(O).fill(0), V = B * A[M][M] - 2 * T * I * A[M][N] + G * A[N][N], H = G * A[M][M] + 2 * T * I * A[M][N] + B * A[N][N], P = 0; P < O; P++)
-      q[P] = T * A[M][P] - I * A[N][P], z[P] = I * A[M][P] + T * A[N][P];
-    A[M][M] = V, A[N][N] = H, A[M][N] = 0, A[N][M] = 0;
-    for (var L = 0; L < O; L++)
-      L !== M && L !== N && (A[M][L] = q[L], A[L][M] = q[L], A[N][L] = z[L], A[L][N] = z[L]);
-    return A;
+  function F(E, S, M, x) {
+    for (var I = E.length, T = Math.cos(S), O = Math.sin(S), B = T * T, G = O * O, $ = Array(I).fill(0), z = Array(I).fill(0), V = B * E[M][M] - 2 * T * O * E[M][x] + G * E[x][x], K = G * E[M][M] + 2 * T * O * E[M][x] + B * E[x][x], P = 0; P < I; P++)
+      $[P] = T * E[M][P] - O * E[x][P], z[P] = O * E[M][P] + T * E[x][P];
+    E[M][M] = V, E[x][x] = K, E[M][x] = 0, E[x][M] = 0;
+    for (var q = 0; q < I; q++)
+      q !== M && q !== x && (E[M][q] = $[q], E[q][M] = $[q], E[x][q] = z[q], E[q][x] = z[q]);
+    return E;
   }
-  function y(A) {
-    for (var S = A.length, M = 0, N = [0, 1], O = 0; O < S; O++)
-      for (var T = O + 1; T < S; T++)
-        Math.abs(M) < Math.abs(A[O][T]) && (M = Math.abs(A[O][T]), N = [O, T]);
-    return [N, M];
+  function y(E) {
+    for (var S = E.length, M = 0, x = [0, 1], I = 0; I < S; I++)
+      for (var T = I + 1; T < S; T++)
+        Math.abs(M) < Math.abs(E[I][T]) && (M = Math.abs(E[I][T]), x = [I, T]);
+    return [x, M];
   }
-  function C(A) {
-    for (var S = A.length, M = 0, N = [0, 1], O = 0; O < S; O++)
-      for (var T = O + 1; T < S; T++)
-        t(M) < t(A[O][T]) && (M = t(A[O][T]), N = [O, T]);
-    return [N, M];
+  function C(E) {
+    for (var S = E.length, M = 0, x = [0, 1], I = 0; I < S; I++)
+      for (var T = I + 1; T < S; T++)
+        r(M) < r(E[I][T]) && (M = r(E[I][T]), x = [I, T]);
+    return [x, M];
   }
-  function b(A, S, M) {
-    var N = A.length, O = Array(N), T;
+  function b(E, S, M) {
+    var x = E.length, I = Array(x), T;
     if (M) {
-      T = Array(N);
-      for (var I = 0; I < N; I++)
-        T[I] = Array(N);
+      T = Array(x);
+      for (var O = 0; O < x; O++)
+        T[O] = Array(x);
     }
-    for (var B = 0; B < N; B++) {
-      for (var G = 0, q = A[0], z = 0; z < A.length; z++)
-        t(A[z]) < t(q) && (G = z, q = A[G]);
-      if (O[B] = A.splice(G, 1)[0], M)
-        for (var V = 0; V < N; V++)
+    for (var B = 0; B < x; B++) {
+      for (var G = 0, $ = E[0], z = 0; z < E.length; z++)
+        r(E[z]) < r($) && (G = z, $ = E[G]);
+      if (I[B] = E.splice(G, 1)[0], M)
+        for (var V = 0; V < x; V++)
           T[B][V] = S[V][G], S[V].splice(G, 1);
     }
     if (!M)
       return {
-        values: O
+        values: I
       };
-    var H = T.map((P, L) => ({
-      value: O[L],
+    var K = T.map((P, q) => ({
+      value: I[q],
       vector: P
     }));
     return {
-      values: O,
-      eigenvectors: H
+      values: I,
+      eigenvectors: K
     };
   }
   return p;
 }
-var f0 = "eigs", c0 = ["config", "typed", "matrix", "addScalar", "equal", "subtract", "abs", "atan", "cos", "sin", "multiplyScalar", "divideScalar", "inv", "bignumber", "multiply", "add", "larger", "column", "flatten", "number", "complex", "sqrt", "diag", "size", "reshape", "qr", "usolve", "usolveAll", "im", "re", "smaller", "matrixFromColumns", "dot"], l0 = /* @__PURE__ */ rr(f0, c0, (r) => {
+var c0 = "eigs", l0 = ["config", "typed", "matrix", "addScalar", "equal", "subtract", "abs", "atan", "cos", "sin", "multiplyScalar", "divideScalar", "inv", "bignumber", "multiply", "add", "larger", "column", "flatten", "number", "complex", "sqrt", "diag", "size", "reshape", "qr", "usolve", "usolveAll", "im", "re", "smaller", "matrixFromColumns", "dot"], h0 = /* @__PURE__ */ ee(c0, l0, (e) => {
   var {
-    config: e,
+    config: t,
     typed: n,
     matrix: i,
-    addScalar: t,
+    addScalar: r,
     subtract: a,
     equal: o,
-    abs: v,
+    abs: h,
     atan: c,
     cos: l,
     sin: s,
@@ -9600,33 +9600,33 @@ var f0 = "eigs", c0 = ["config", "typed", "matrix", "addScalar", "equal", "subtr
     divideScalar: f,
     inv: p,
     bignumber: D,
-    multiply: h,
+    multiply: v,
     add: m,
     larger: d,
     column: w,
     flatten: g,
-    number: E,
+    number: A,
     complex: F,
     sqrt: y,
     diag: C,
     size: b,
-    reshape: A,
+    reshape: E,
     qr: S,
     usolve: M,
-    usolveAll: N,
-    im: O,
+    usolveAll: x,
+    im: I,
     re: T,
-    smaller: I,
+    smaller: O,
     matrixFromColumns: B,
     dot: G
-  } = r, q = s0({
-    config: e,
-    addScalar: t,
+  } = e, $ = f0({
+    config: t,
+    addScalar: r,
     subtract: a,
     column: w,
     flatten: g,
     equal: o,
-    abs: v,
+    abs: h,
     atan: c,
     cos: l,
     sin: s,
@@ -9634,30 +9634,30 @@ var f0 = "eigs", c0 = ["config", "typed", "matrix", "addScalar", "equal", "subtr
     inv: p,
     bignumber: D,
     complex: F,
-    multiply: h,
+    multiply: v,
     add: m
-  }), z = o0({
-    config: e,
-    addScalar: t,
+  }), z = s0({
+    config: t,
+    addScalar: r,
     subtract: a,
-    multiply: h,
+    multiply: v,
     multiplyScalar: u,
     flatten: g,
     divideScalar: f,
     sqrt: y,
-    abs: v,
+    abs: h,
     bignumber: D,
     diag: C,
     size: b,
-    reshape: A,
+    reshape: E,
     qr: S,
     inv: p,
     usolve: M,
-    usolveAll: N,
+    usolveAll: x,
     equal: o,
     complex: F,
     larger: d,
-    smaller: I,
+    smaller: O,
     matrixFromColumns: B,
     dot: G
   });
@@ -9694,52 +9694,52 @@ var f0 = "eigs", c0 = ["config", "typed", "matrix", "addScalar", "equal", "subtr
       var X = {
         matricize: !0
       };
-      return Oe(X, Q), V(U, X);
+      return Ir(X, Q), V(U, X);
     }
   });
   function V(k) {
-    var U, Q = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, X = "eigenvectors" in Q ? Q.eigenvectors : !0, J = (U = Q.precision) !== null && U !== void 0 ? U : e.epsilon, ur = H(k, J, X);
-    return Q.matricize && (ur.values = i(ur.values), X && (ur.eigenvectors = ur.eigenvectors.map((j) => {
+    var U, Q = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, X = "eigenvectors" in Q ? Q.eigenvectors : !0, J = (U = Q.precision) !== null && U !== void 0 ? U : t.epsilon, ue = K(k, J, X);
+    return Q.matricize && (ue.values = i(ue.values), X && (ue.eigenvectors = ue.eigenvectors.map((j) => {
       var {
-        value: or,
-        vector: fr
+        value: oe,
+        vector: le
       } = j;
       return {
-        value: or,
-        vector: i(fr)
+        value: oe,
+        vector: i(le)
       };
-    }))), X && Object.defineProperty(ur, "vectors", {
+    }))), X && Object.defineProperty(ue, "vectors", {
       enumerable: !1,
       // to make sure that the eigenvectors can still be
       // converted to string.
       get: () => {
         throw new Error("eigs(M).vectors replaced with eigs(M).eigenvectors");
       }
-    }), ur;
+    }), ue;
   }
-  function H(k, U, Q) {
+  function K(k, U, Q) {
     var X = k.toArray(), J = k.size();
     if (J.length !== 2 || J[0] !== J[1])
-      throw new RangeError("Matrix must be square (size: ".concat(Ir(J), ")"));
-    var ur = J[0];
-    if (L(X, ur, U) && (Z(X, ur), P(X, ur, U))) {
-      var j = nr(k, X, ur);
-      return q(X, ur, U, j, Q);
+      throw new RangeError("Matrix must be square (size: ".concat(Oe(J), ")"));
+    var ue = J[0];
+    if (q(X, ue, U) && (Z(X, ue), P(X, ue, U))) {
+      var j = ne(k, X, ue);
+      return $(X, ue, U, j, Q);
     }
-    var or = nr(k, X, ur);
-    return z(X, ur, U, or, Q);
+    var oe = ne(k, X, ue);
+    return z(X, ue, U, oe, Q);
   }
   function P(k, U, Q) {
     for (var X = 0; X < U; X++)
       for (var J = X; J < U; J++)
-        if (d(D(v(a(k[X][J], k[J][X]))), Q))
+        if (d(D(h(a(k[X][J], k[J][X]))), Q))
           return !1;
     return !0;
   }
-  function L(k, U, Q) {
+  function q(k, U, Q) {
     for (var X = 0; X < U; X++)
       for (var J = 0; J < U; J++)
-        if (d(D(v(O(k[X][J]))), Q))
+        if (d(D(h(I(k[X][J]))), Q))
           return !1;
     return !0;
   }
@@ -9748,432 +9748,432 @@ var f0 = "eigs", c0 = ["config", "typed", "matrix", "addScalar", "equal", "subtr
       for (var X = 0; X < U; X++)
         k[Q][X] = T(k[Q][X]);
   }
-  function nr(k, U, Q) {
+  function ne(k, U, Q) {
     var X = k.datatype();
     if (X === "number" || X === "BigNumber" || X === "Complex")
       return X;
-    for (var J = !1, ur = !1, j = !1, or = 0; or < Q; or++)
-      for (var fr = 0; fr < Q; fr++) {
-        var pr = U[or][fr];
-        if ($r(pr) || Yt(pr))
+    for (var J = !1, ue = !1, j = !1, oe = 0; oe < Q; oe++)
+      for (var le = 0; le < Q; le++) {
+        var de = U[oe][le];
+        if (Le(de) || Yt(de))
           J = !0;
-        else if (Pr(pr))
-          ur = !0;
-        else if (Gt(pr))
+        else if (Pe(de))
+          ue = !0;
+        else if (Gt(de))
           j = !0;
         else
-          throw TypeError("Unsupported type in Matrix: " + fe(pr));
+          throw TypeError("Unsupported type in Matrix: " + lr(de));
       }
-    if (ur && j && console.warn("Complex BigNumbers not supported, this operation will lose precission."), j) {
-      for (var gr = 0; gr < Q; gr++)
-        for (var yr = 0; yr < Q; yr++)
-          U[gr][yr] = F(U[gr][yr]);
+    if (ue && j && console.warn("Complex BigNumbers not supported, this operation will lose precission."), j) {
+      for (var ge = 0; ge < Q; ge++)
+        for (var we = 0; we < Q; we++)
+          U[ge][we] = F(U[ge][we]);
       return "Complex";
     }
-    if (ur) {
-      for (var cr = 0; cr < Q; cr++)
-        for (var Cr = 0; Cr < Q; Cr++)
-          U[cr][Cr] = D(U[cr][Cr]);
+    if (ue) {
+      for (var he = 0; he < Q; he++)
+        for (var be = 0; be < Q; be++)
+          U[he][be] = D(U[he][be]);
       return "BigNumber";
     }
     if (J) {
-      for (var wr = 0; wr < Q; wr++)
-        for (var Sr = 0; Sr < Q; Sr++)
-          U[wr][Sr] = E(U[wr][Sr]);
+      for (var Ee = 0; Ee < Q; Ee++)
+        for (var Se = 0; Se < Q; Se++)
+          U[Ee][Se] = A(U[Ee][Se]);
       return "number";
     } else
       throw TypeError("Matrix contains unsupported types only.");
   }
-}), We = /* @__PURE__ */ jo({
-  config: kr
-}), Nt = /* @__PURE__ */ ns({}), Ht = /* @__PURE__ */ os({}), Wt = /* @__PURE__ */ cs({}), Yr = /* @__PURE__ */ hs({
+}), Wr = /* @__PURE__ */ es({
+  config: je
+}), xt = /* @__PURE__ */ is({}), Kt = /* @__PURE__ */ ss({}), Wt = /* @__PURE__ */ ls({}), Je = /* @__PURE__ */ ps({
   Matrix: Wt
-}), sr = /* @__PURE__ */ eo({
-  BigNumber: We,
-  Complex: Nt,
-  DenseMatrix: Yr,
-  Fraction: Ht
-}), ke = /* @__PURE__ */ Ks({
-  typed: sr
-}), Fe = /* @__PURE__ */ Ws({
-  typed: sr
-}), v0 = /* @__PURE__ */ pl({
-  typed: sr
-}), kt = /* @__PURE__ */ Is({
-  BigNumber: We,
-  typed: sr
-}), jt = /* @__PURE__ */ Ls({
-  Complex: Nt,
-  typed: sr
-}), xt = /* @__PURE__ */ Zf({
-  typed: sr
-}), h0 = /* @__PURE__ */ ml({
-  typed: sr
-}), oe = /* @__PURE__ */ Cs({
-  config: kr,
-  typed: sr
-}), p0 = /* @__PURE__ */ nc({
-  typed: sr
-}), d0 = /* @__PURE__ */ Yf({
-  typed: sr
-}), va = /* @__PURE__ */ ds({
-  typed: sr
-}), m0 = /* @__PURE__ */ gs({
-  typed: sr
-}), ha = /* @__PURE__ */ ys({
-  typed: sr
-}), Ce = /* @__PURE__ */ Bf({
-  typed: sr
-}), rn = /* @__PURE__ */ zs({
-  typed: sr
-}), g0 = /* @__PURE__ */ Qf({
-  typed: sr
-}), D0 = /* @__PURE__ */ Of({
-  BigNumber: We,
-  Fraction: Ht,
+}), ce = /* @__PURE__ */ to({
+  BigNumber: Wr,
+  Complex: xt,
+  DenseMatrix: Je,
+  Fraction: Kt
+}), kr = /* @__PURE__ */ Ks({
+  typed: ce
+}), Fr = /* @__PURE__ */ ks({
+  typed: ce
+}), v0 = /* @__PURE__ */ dl({
+  typed: ce
+}), kt = /* @__PURE__ */ Ls({
+  BigNumber: Wr,
+  typed: ce
+}), jt = /* @__PURE__ */ Ps({
+  Complex: xt,
+  typed: ce
+}), Nt = /* @__PURE__ */ Gf({
+  typed: ce
+}), p0 = /* @__PURE__ */ gl({
+  typed: ce
+}), sr = /* @__PURE__ */ bs({
+  config: je,
+  typed: ce
+}), d0 = /* @__PURE__ */ ic({
+  typed: ce
+}), m0 = /* @__PURE__ */ Jf({
+  typed: ce
+}), va = /* @__PURE__ */ ms({
+  typed: ce
+}), g0 = /* @__PURE__ */ Ds({
+  typed: ce
+}), pa = /* @__PURE__ */ ws({
+  typed: ce
+}), Cr = /* @__PURE__ */ _f({
+  typed: ce
+}), en = /* @__PURE__ */ Ts({
+  typed: ce
+}), D0 = /* @__PURE__ */ Xf({
+  typed: ce
+}), y0 = /* @__PURE__ */ Of({
+  BigNumber: Wr,
+  Fraction: Kt,
   complex: jt,
-  typed: sr
-}), y0 = /* @__PURE__ */ Dl({
-  typed: sr
-}), Ue = /* @__PURE__ */ Ss({
+  typed: ce
+}), w0 = /* @__PURE__ */ yl({
+  typed: ce
+}), Ur = /* @__PURE__ */ xs({
   Matrix: Wt,
-  equalScalar: oe,
-  typed: sr
-}), Se = /* @__PURE__ */ js({
-  typed: sr
-}), w0 = /* @__PURE__ */ As({
-  typed: sr
-}), en = /* @__PURE__ */ qf({
-  Complex: Nt,
-  config: kr,
-  typed: sr
-}), je = /* @__PURE__ */ Qs({
-  typed: sr
-}), pa = /* @__PURE__ */ Us({
-  Fraction: Ht,
-  typed: sr
-}), Dr = /* @__PURE__ */ Zs({
-  DenseMatrix: Yr,
+  equalScalar: sr,
+  typed: ce
+}), Sr = /* @__PURE__ */ ef({
+  typed: ce
+}), A0 = /* @__PURE__ */ Es({
+  typed: ce
+}), rn = /* @__PURE__ */ qf({
+  Complex: xt,
+  config: je,
+  typed: ce
+}), jr = /* @__PURE__ */ Xs({
+  typed: ce
+}), da = /* @__PURE__ */ Vs({
+  Fraction: Kt,
+  typed: ce
+}), ye = /* @__PURE__ */ Gs({
+  DenseMatrix: Je,
   Matrix: Wt,
-  SparseMatrix: Ue,
-  typed: sr
-}), A0 = /* @__PURE__ */ Nc({
+  SparseMatrix: Ur,
+  typed: ce
+}), E0 = /* @__PURE__ */ Nc({
   bignumber: kt,
-  fraction: pa,
-  number: rn
-}), E0 = /* @__PURE__ */ cc({
+  fraction: da,
+  number: en
+}), F0 = /* @__PURE__ */ lc({
   isInteger: va,
-  matrix: Dr,
-  typed: sr
-}), rt = /* @__PURE__ */ vc({
-  matrix: Dr,
-  config: kr,
-  typed: sr
-}), ge = /* @__PURE__ */ pc({
-  matrix: Dr,
-  typed: sr
-}), re = /* @__PURE__ */ Ac({
-  matrix: Dr,
-  typed: sr
-}), Xr = /* @__PURE__ */ bc({
-  BigNumber: We,
-  config: kr,
-  matrix: Dr,
-  typed: sr
-}), Ne = /* @__PURE__ */ Kf({
+  matrix: ye,
+  typed: ce
+}), et = /* @__PURE__ */ vc({
+  matrix: ye,
+  config: je,
+  typed: ce
+}), Dr = /* @__PURE__ */ dc({
+  matrix: ye,
+  typed: ce
+}), Ze = /* @__PURE__ */ Ec({
+  matrix: ye,
+  typed: ce
+}), He = /* @__PURE__ */ Mc({
+  BigNumber: Wr,
+  config: je,
+  matrix: ye,
+  typed: ce
+}), xr = /* @__PURE__ */ Kf({
   isInteger: va,
-  matrix: Dr,
-  typed: sr
-}), F0 = /* @__PURE__ */ Fc({
-  conj: xt,
-  transpose: re,
-  typed: sr
-}), C0 = /* @__PURE__ */ jf({
-  DenseMatrix: Yr,
-  SparseMatrix: Ue,
-  matrix: Dr,
-  typed: sr
-}), pe = /* @__PURE__ */ Bc({
-  numeric: A0,
-  typed: sr
-}), da = /* @__PURE__ */ Rc({
-  DenseMatrix: Yr,
-  concat: Ne,
-  equalScalar: oe,
-  matrix: Dr,
-  typed: sr
-}), ma = /* @__PURE__ */ ec({
-  matrix: Dr,
-  typed: sr
-}), et = /* @__PURE__ */ ac({
-  BigNumber: We,
-  DenseMatrix: Yr,
-  SparseMatrix: Ue,
-  config: kr,
-  matrix: Dr,
-  typed: sr
-}), ga = /* @__PURE__ */ kc({
-  DenseMatrix: Yr,
-  concat: Ne,
-  config: kr,
-  matrix: Dr,
-  typed: sr
-}), b0 = /* @__PURE__ */ Oc({
-  DenseMatrix: Yr,
-  divideScalar: pe,
-  equalScalar: oe,
-  matrix: Dr,
-  multiplyScalar: Ce,
-  subtractScalar: Se,
-  typed: sr
-}), M0 = /* @__PURE__ */ Ys({
-  flatten: ma,
-  matrix: Dr,
-  size: rt,
-  typed: sr
-}), S0 = /* @__PURE__ */ Bl({
-  addScalar: Fe,
+  matrix: ye,
+  typed: ce
+}), C0 = /* @__PURE__ */ Cc({
+  conj: Nt,
+  transpose: Ze,
+  typed: ce
+}), b0 = /* @__PURE__ */ ec({
+  DenseMatrix: Je,
+  SparseMatrix: Ur,
+  matrix: ye,
+  typed: ce
+}), dr = /* @__PURE__ */ _c({
+  numeric: E0,
+  typed: ce
+}), ma = /* @__PURE__ */ Uc({
+  DenseMatrix: Je,
+  concat: xr,
+  equalScalar: sr,
+  matrix: ye,
+  typed: ce
+}), ga = /* @__PURE__ */ tc({
+  matrix: ye,
+  typed: ce
+}), rt = /* @__PURE__ */ uc({
+  BigNumber: Wr,
+  DenseMatrix: Je,
+  SparseMatrix: Ur,
+  config: je,
+  matrix: ye,
+  typed: ce
+}), Da = /* @__PURE__ */ jc({
+  DenseMatrix: Je,
+  concat: xr,
+  config: je,
+  matrix: ye,
+  typed: ce
+}), M0 = /* @__PURE__ */ Oc({
+  DenseMatrix: Je,
+  divideScalar: dr,
+  equalScalar: sr,
+  matrix: ye,
+  multiplyScalar: Cr,
+  subtractScalar: Sr,
+  typed: ce
+}), S0 = /* @__PURE__ */ Js({
+  flatten: ga,
+  matrix: ye,
+  size: et,
+  typed: ce
+}), x0 = /* @__PURE__ */ _l({
+  addScalar: Fr,
   complex: jt,
-  conj: xt,
-  divideScalar: pe,
-  equal: da,
-  identity: et,
-  isZero: ha,
-  matrix: Dr,
-  multiplyScalar: Ce,
-  sign: D0,
-  sqrt: en,
-  subtractScalar: Se,
-  typed: sr,
-  unaryMinus: je,
-  zeros: Xr
-}), tt = /* @__PURE__ */ Zc({
-  DenseMatrix: Yr,
-  concat: Ne,
-  config: kr,
-  matrix: Dr,
-  typed: sr
-}), ce = /* @__PURE__ */ Pf({
-  DenseMatrix: Yr,
-  concat: Ne,
-  equalScalar: oe,
-  matrix: Dr,
-  subtractScalar: Se,
-  typed: sr,
-  unaryMinus: je
-}), Da = /* @__PURE__ */ $c({
-  DenseMatrix: Yr,
-  divideScalar: pe,
-  equalScalar: oe,
-  matrix: Dr,
-  multiplyScalar: Ce,
-  subtractScalar: Se,
-  typed: sr
-}), se = /* @__PURE__ */ wl({
-  DenseMatrix: Yr,
-  SparseMatrix: Ue,
-  addScalar: Fe,
-  concat: Ne,
-  equalScalar: oe,
-  matrix: Dr,
-  typed: sr
-}), ya = /* @__PURE__ */ Cl({
-  addScalar: Fe,
-  conj: xt,
-  multiplyScalar: Ce,
-  size: rt,
-  typed: sr
-}), N0 = /* @__PURE__ */ tl({
-  DenseMatrix: Yr,
+  conj: Nt,
+  divideScalar: dr,
+  equal: ma,
+  identity: rt,
+  isZero: pa,
+  matrix: ye,
+  multiplyScalar: Cr,
+  sign: y0,
+  sqrt: rn,
+  subtractScalar: Sr,
+  typed: ce,
+  unaryMinus: jr,
+  zeros: He
+}), tt = /* @__PURE__ */ Gc({
+  DenseMatrix: Je,
+  concat: xr,
+  config: je,
+  matrix: ye,
+  typed: ce
+}), nr = /* @__PURE__ */ Rf({
+  DenseMatrix: Je,
+  concat: xr,
+  equalScalar: sr,
+  matrix: ye,
+  subtractScalar: Sr,
+  typed: ce,
+  unaryMinus: jr
+}), ya = /* @__PURE__ */ $c({
+  DenseMatrix: Je,
+  divideScalar: dr,
+  equalScalar: sr,
+  matrix: ye,
+  multiplyScalar: Cr,
+  subtractScalar: Sr,
+  typed: ce
+}), fr = /* @__PURE__ */ Al({
+  DenseMatrix: Je,
+  SparseMatrix: Ur,
+  addScalar: Fr,
+  concat: xr,
+  equalScalar: sr,
+  matrix: ye,
+  typed: ce
+}), wa = /* @__PURE__ */ bl({
+  addScalar: Fr,
+  conj: Nt,
+  multiplyScalar: Cr,
+  size: et,
+  typed: ce
+}), N0 = /* @__PURE__ */ nl({
+  DenseMatrix: Je,
   smaller: tt
-}), wa = /* @__PURE__ */ al({
+}), Aa = /* @__PURE__ */ ul({
   ImmutableDenseMatrix: N0,
-  getMatrixDataType: p0
-}), Ve = /* @__PURE__ */ Kc({
-  DenseMatrix: Yr,
-  concat: Ne,
-  config: kr,
-  matrix: Dr,
-  typed: sr
-}), dr = /* @__PURE__ */ zf({
-  addScalar: Fe,
-  dot: ya,
-  equalScalar: oe,
-  matrix: Dr,
-  multiplyScalar: Ce,
-  typed: sr
-}), x0 = /* @__PURE__ */ r0({
-  SparseMatrix: Ue,
-  abs: ke,
-  add: se,
-  divideScalar: pe,
-  larger: Ve,
-  largerEq: ga,
-  multiply: dr,
-  subtract: ce,
-  transpose: re,
-  typed: sr
-}), br = /* @__PURE__ */ mc({
-  add: se,
-  matrix: Dr,
-  typed: sr,
-  zeros: Xr
-}), B0 = /* @__PURE__ */ Lc({
-  DenseMatrix: Yr,
-  divideScalar: pe,
-  equalScalar: oe,
-  matrix: Dr,
-  multiplyScalar: Ce,
-  subtractScalar: Se,
-  typed: sr
-}), _0 = /* @__PURE__ */ i0({
-  divideScalar: pe,
-  isZero: ha,
-  matrix: Dr,
-  multiply: dr,
-  subtractScalar: Se,
-  typed: sr,
-  unaryMinus: je
-}), z0 = /* @__PURE__ */ sl({
-  larger: Ve,
+  getMatrixDataType: d0
+}), Vr = /* @__PURE__ */ Kc({
+  DenseMatrix: Je,
+  concat: xr,
+  config: je,
+  matrix: ye,
+  typed: ce
+}), fe = /* @__PURE__ */ Tf({
+  addScalar: Fr,
+  dot: wa,
+  equalScalar: sr,
+  matrix: ye,
+  multiplyScalar: Cr,
+  typed: ce
+}), B0 = /* @__PURE__ */ r0({
+  SparseMatrix: Ur,
+  abs: kr,
+  add: fr,
+  divideScalar: dr,
+  larger: Vr,
+  largerEq: Da,
+  multiply: fe,
+  subtract: nr,
+  transpose: Ze,
+  typed: ce
+}), Ae = /* @__PURE__ */ gc({
+  add: fr,
+  matrix: ye,
+  typed: ce,
+  zeros: He
+}), _0 = /* @__PURE__ */ Pc({
+  DenseMatrix: Je,
+  divideScalar: dr,
+  equalScalar: sr,
+  matrix: ye,
+  multiplyScalar: Cr,
+  subtractScalar: Sr,
+  typed: ce
+}), z0 = /* @__PURE__ */ a0({
+  divideScalar: dr,
+  isZero: pa,
+  matrix: ye,
+  multiply: fe,
+  subtractScalar: Sr,
+  typed: ce,
+  unaryMinus: jr
+}), T0 = /* @__PURE__ */ fl({
+  larger: Vr,
   smaller: tt
-}), Ar = /* @__PURE__ */ Ml({
-  Index: wa,
-  typed: sr
-}), T0 = /* @__PURE__ */ Jc({
-  DenseMatrix: Yr,
-  concat: Ne,
-  config: kr,
-  matrix: Dr,
-  typed: sr
-}), Te = /* @__PURE__ */ sc({
+}), De = /* @__PURE__ */ Sl({
+  Index: Aa,
+  typed: ce
+}), I0 = /* @__PURE__ */ Qc({
+  DenseMatrix: Je,
+  concat: xr,
+  config: je,
+  matrix: ye,
+  typed: ce
+}), Tr = /* @__PURE__ */ fc({
   bignumber: kt,
-  matrix: Dr,
-  add: se,
-  config: kr,
-  isPositive: m0,
-  larger: Ve,
-  largerEq: ga,
+  matrix: ye,
+  add: fr,
+  config: je,
+  isPositive: g0,
+  larger: Vr,
+  largerEq: Da,
   smaller: tt,
-  smallerEq: T0,
-  typed: sr
-}), O0 = /* @__PURE__ */ ll({
-  FibonacciHeap: z0,
-  addScalar: Fe,
-  equalScalar: oe
-}), I0 = /* @__PURE__ */ Wf({
-  Index: wa,
-  matrix: Dr,
-  range: Te,
-  typed: sr
-}), De = /* @__PURE__ */ u0({
-  abs: ke,
-  addScalar: Fe,
-  det: _0,
-  divideScalar: pe,
-  identity: et,
-  matrix: Dr,
-  multiply: dr,
-  typed: sr,
-  unaryMinus: je
+  smallerEq: I0,
+  typed: ce
+}), O0 = /* @__PURE__ */ hl({
+  FibonacciHeap: T0,
+  addScalar: Fr,
+  equalScalar: sr
+}), L0 = /* @__PURE__ */ kf({
+  Index: Aa,
+  matrix: ye,
+  range: Tr,
+  typed: ce
+}), cr = /* @__PURE__ */ o0({
+  abs: kr,
+  addScalar: Fr,
+  det: z0,
+  divideScalar: dr,
+  identity: rt,
+  matrix: ye,
+  multiply: fe,
+  typed: ce,
+  unaryMinus: jr
 }), $0 = /* @__PURE__ */ Nl({
-  DenseMatrix: Yr,
+  DenseMatrix: Je,
   Spa: O0,
-  SparseMatrix: Ue,
-  abs: ke,
-  addScalar: Fe,
-  divideScalar: pe,
-  equalScalar: oe,
-  larger: Ve,
-  matrix: Dr,
-  multiplyScalar: Ce,
-  subtractScalar: Se,
-  typed: sr,
-  unaryMinus: je
-}), q0 = /* @__PURE__ */ zc({
-  Complex: Nt,
-  config: kr,
-  fraction: pa,
-  identity: et,
-  inv: De,
-  matrix: Dr,
-  multiply: dr,
-  number: rn,
-  typed: sr
-}), L0 = /* @__PURE__ */ t0({
-  DenseMatrix: Yr,
-  lsolve: b0,
+  SparseMatrix: Ur,
+  abs: kr,
+  addScalar: Fr,
+  divideScalar: dr,
+  equalScalar: sr,
+  larger: Vr,
+  matrix: ye,
+  multiplyScalar: Cr,
+  subtractScalar: Sr,
+  typed: ce,
+  unaryMinus: jr
+}), q0 = /* @__PURE__ */ Tc({
+  Complex: xt,
+  config: je,
+  fraction: da,
+  identity: rt,
+  inv: cr,
+  matrix: ye,
+  multiply: fe,
+  number: en,
+  typed: ce
+}), P0 = /* @__PURE__ */ n0({
+  DenseMatrix: Je,
+  lsolve: M0,
   lup: $0,
-  matrix: Dr,
-  slu: x0,
-  typed: sr,
-  usolve: Da
-}), P0 = /* @__PURE__ */ l0({
-  abs: ke,
-  add: se,
-  addScalar: Fe,
+  matrix: ye,
+  slu: B0,
+  typed: ce,
+  usolve: ya
+}), R0 = /* @__PURE__ */ h0({
+  abs: kr,
+  add: fr,
+  addScalar: Fr,
   atan: v0,
   bignumber: kt,
-  column: I0,
+  column: L0,
   complex: jt,
-  config: kr,
-  cos: h0,
-  diag: C0,
-  divideScalar: pe,
-  dot: ya,
-  equal: da,
-  flatten: ma,
-  im: d0,
-  inv: De,
-  larger: Ve,
-  matrix: Dr,
-  matrixFromColumns: M0,
-  multiply: dr,
-  multiplyScalar: Ce,
-  number: rn,
-  qr: S0,
-  re: g0,
-  reshape: E0,
-  sin: y0,
-  size: rt,
+  config: je,
+  cos: p0,
+  diag: b0,
+  divideScalar: dr,
+  dot: wa,
+  equal: ma,
+  flatten: ga,
+  im: m0,
+  inv: cr,
+  larger: Vr,
+  matrix: ye,
+  matrixFromColumns: S0,
+  multiply: fe,
+  multiplyScalar: Cr,
+  number: en,
+  qr: x0,
+  re: D0,
+  reshape: F0,
+  sin: w0,
+  size: et,
   smaller: tt,
-  sqrt: en,
-  subtract: ce,
-  typed: sr,
-  usolve: Da,
-  usolveAll: B0
-}), vi = /* @__PURE__ */ El({
-  abs: ke,
-  add: se,
-  conj: xt,
-  ctranspose: F0,
-  eigs: P0,
-  equalScalar: oe,
-  larger: Ve,
-  matrix: Dr,
-  multiply: dr,
+  sqrt: rn,
+  subtract: nr,
+  typed: ce,
+  usolve: ya,
+  usolveAll: _0
+}), vi = /* @__PURE__ */ Fl({
+  abs: kr,
+  add: fr,
+  conj: Nt,
+  ctranspose: C0,
+  eigs: R0,
+  equalScalar: sr,
+  larger: Vr,
+  matrix: ye,
+  multiply: fe,
   pow: q0,
   smaller: tt,
-  sqrt: en,
-  typed: sr
+  sqrt: rn,
+  typed: ce
 });
-class R0 {
+class U0 {
   /**
    * Node constructor
    * @param label number
    * @param coords coordinates
    * @param bcs boundary conditions {code:string]:boolean}
    */
-  constructor(e, n, i = [0, 0, 0], t = []) {
-    lr(this, "label");
+  constructor(t, n, i = [0, 0, 0], r = []) {
+    se(this, "label");
     // Node number
-    lr(this, "domain");
+    se(this, "domain");
     // domain reference
-    lr(this, "coords");
+    se(this, "coords");
     // ([float,float,float])* coordinates [m]
     //bcs: Set<DofID>; // for each DOF (identified by string id) the bc is applied
     //Note: prescribed values to be specified via boundaryCondition class
-    lr(this, "bcs");
+    se(this, "bcs");
     //Node local coordinate system. In this c.s. boundary conditions are applied and results obtained
     /**
      * Triplet defining the local coordinate system in node.
@@ -10181,8 +10181,8 @@ class R0 {
      * where e' is base vector of local coordinate system and e is
      * base vector of global c.s.
      */
-    lr(this, "lcs");
-    this.label = e.toString(), this.domain = n, this.coords = i, this.bcs = new Set(t), this.lcs = void 0;
+    se(this, "lcs");
+    this.label = t.toString(), this.domain = n, this.coords = i, this.bcs = new Set(r), this.lcs = void 0;
   }
   /**
    * Change properties
@@ -10190,65 +10190,65 @@ class R0 {
    * @param coords new coordinates
    * @param bcs new dictionary with applied boundary conditions
    */
-  change(e, n, i = []) {
-    e != null && (this.label = e.toString()), n != null && (this.coords = n), i != null && (this.bcs = new Set(i));
+  change(t, n, i = []) {
+    t != null && (this.label = t.toString()), n != null && (this.coords = n), i != null && (this.bcs = new Set(i));
   }
-  change2(e) {
-    e.label != null && (this.label = e.label.toString()), e.coords != null && (this.coords = e.coords), e.bcs != null && (this.bcs = new Set(e.bcs)), e.lcs != null && this.updateLcs(e.lcs);
+  change2(t) {
+    t.label != null && (this.label = t.label.toString()), t.coords != null && (this.coords = t.coords), t.bcs != null && (this.bcs = new Set(t.bcs)), t.lcs != null && this.updateLcs(t.lcs);
   }
-  getLocationArray(e) {
-    return this.domain.solver.getNodeLocationArray(this.label, e);
+  getLocationArray(t) {
+    return this.domain.solver.getNodeLocationArray(this.label, t);
   }
-  getUnknowns(e, n) {
+  getUnknowns(t, n) {
     const i = this.getLocationArray(n);
-    return br(e.r, Ar(i));
+    return Ae(t.r, De(i));
   }
-  getEigenValueUnknowns(e, n, i) {
-    const t = this.getLocationArray(n);
-    return br(e.eigenVectors[i], Ar(t));
+  getEigenValueUnknowns(t, n, i) {
+    const r = this.getLocationArray(n);
+    return Ae(t.eigenVectors[i], De(r));
   }
   /**
    * Returns receiver transformation matrix (from nodal to global c.s., ie. rg=t*r_n)
    * @param dofs dofs mask to consider
    */
-  getTransformationMtrx(e) {
-    const n = e.length;
+  getTransformationMtrx(t) {
+    const n = t.length;
     if (this.lcs == null)
-      return et(n);
+      return rt(n);
     {
-      const i = Xr([n, n]);
-      for (let t = 0; t < n; t++) {
-        const a = e[t];
+      const i = He([n, n]);
+      for (let r = 0; r < n; r++) {
+        const a = t[r];
         switch (a) {
-          case Lr.Dx:
-          case Lr.Dy:
-          case Lr.Dz:
+          case qe.Dx:
+          case qe.Dy:
+          case qe.Dz:
             for (let o = 0; o < n; o++) {
-              const v = e[o];
-              (v == Lr.Dx || v == Lr.Dy || v == Lr.Dz) && (i[t][o] = this.lcs[v][a]);
+              const h = t[o];
+              (h == qe.Dx || h == qe.Dy || h == qe.Dz) && (i[r][o] = this.lcs[h][a]);
             }
             break;
-          case Lr.Rx:
-          case Lr.Ry:
-          case Lr.Rz:
+          case qe.Rx:
+          case qe.Ry:
+          case qe.Rz:
             for (let o = 0; o < n; o++) {
-              const v = e[o];
-              (v == Lr.Rx || v == Lr.Ry || v == Lr.Rz) && (i[t][o] = this.lcs[v - Lr.Rx][a - Lr.Rx]);
+              const h = t[o];
+              (h == qe.Rx || h == qe.Ry || h == qe.Rz) && (i[r][o] = this.lcs[h - qe.Rx][a - qe.Rx]);
             }
             break;
           default:
             throw new TypeError("Unknown DofID: " + a);
         }
       }
-      return Dr(i);
+      return ye(i);
     }
   }
   /**
    * Updates the reciver lcs triplet according to given lcs orientation
    * @param lcs
    */
-  updateLcs(e) {
-    if (e == null)
+  updateLcs(t) {
+    if (t == null)
       this.lcs = void 0;
     else {
       this.lcs = [
@@ -10256,9 +10256,9 @@ class R0 {
         [0, 0, 0],
         [0, 0, 0]
       ];
-      const n = vi(e.locx), i = vi(e.locy);
-      for (let t = 0; t < 3; t++)
-        this.lcs[0][t] = e.locx[t] / n, this.lcs[1][t] = e.locy[t] / i;
+      const n = vi(t.locx), i = vi(t.locy);
+      for (let r = 0; r < 3; r++)
+        this.lcs[0][r] = t.locx[r] / n, this.lcs[1][r] = t.locy[r] / i;
       this.lcs[2][0] = this.lcs[0][1] * this.lcs[1][2] - this.lcs[0][2] * this.lcs[1][1], this.lcs[2][1] = this.lcs[0][2] * this.lcs[1][0] - this.lcs[0][0] * this.lcs[1][2], this.lcs[2][2] = this.lcs[0][0] * this.lcs[1][1] - this.lcs[0][1] * this.lcs[1][0];
     }
   }
@@ -10268,24 +10268,24 @@ class R0 {
   hasLcs() {
     return this.lcs != null;
   }
-  getReactions(e, n = !1) {
+  getReactions(t, n = !1) {
     if (n && this.hasLcs()) {
-      const i = this.domain.solver.getNodeDofIDs(this.label), t = this.getLocationArray(i), a = [];
-      for (let v = 0; v < i.length; v++)
-        this.bcs.has(i[v]) ? a.push(br(e.R, Ar([t[v] - this.domain.solver.neq]))) : a.push(0);
+      const i = this.domain.solver.getNodeDofIDs(this.label), r = this.getLocationArray(i), a = [];
+      for (let h = 0; h < i.length; h++)
+        this.bcs.has(i[h]) ? a.push(Ae(t.R, De([r[h] - this.domain.solver.neq]))) : a.push(0);
       const o = this.getTransformationMtrx(i);
       return {
         dofs: i,
-        values: dr(o, a).toArray()
+        values: fe(o, a).toArray()
       };
     } else if (this.bcs.size > 0) {
-      const i = Array.from(this.bcs), t = this.getLocationArray(i), a = ce(t, this.domain.solver.neq), o = br(e.R, Ar(a));
-      return w0(o) === "number" ? { dofs: i, values: [o] } : { dofs: i, values: o };
+      const i = Array.from(this.bcs), r = this.getLocationArray(i), a = nr(r, this.domain.solver.neq), o = Ae(t.R, De(a));
+      return A0(o) === "number" ? { dofs: i, values: [o] } : { dofs: i, values: o };
     } else
       return { dofs: [], values: [] };
   }
 }
-class U0 {
+class V0 {
   // domain reference
   /**
    * Constructor
@@ -10294,17 +10294,17 @@ class U0 {
    * @param mat element material number
    * @param cs element cross section number
    */
-  constructor(e, n, i, t, a) {
-    lr(this, "label");
+  constructor(t, n, i, r, a) {
+    se(this, "label");
     //element number
-    lr(this, "nodes");
+    se(this, "nodes");
     // element nodes
-    lr(this, "mat");
+    se(this, "mat");
     // material
-    lr(this, "cs");
+    se(this, "cs");
     // cross section
-    lr(this, "domain");
-    this.label = e.toString(), this.nodes = i.map((o) => o.toString()), this.mat = t.toString(), this.cs = a.toString(), this.domain = n;
+    se(this, "domain");
+    this.label = t.toString(), this.nodes = i.map((o) => o.toString()), this.mat = r.toString(), this.cs = a.toString(), this.domain = n;
   }
   /**
    * Change receiver properties
@@ -10313,8 +10313,8 @@ class U0 {
    * @param mat new material (number)
    * @param cs new cross section (number)
    */
-  change(e, n, i, t) {
-    e != null && (this.label = e.toString()), n != null && (this.nodes = n.map((a) => a.toString())), i != null && (this.mat = i.toString()), t != null && (this.cs = t.toString());
+  change(t, n, i, r) {
+    t != null && (this.label = t.toString()), n != null && (this.nodes = n.map((a) => a.toString())), i != null && (this.mat = i.toString()), r != null && (this.cs = r.toString());
   }
   /**
    * Returns Material (object) associated to element
@@ -10332,7 +10332,7 @@ class U0 {
    * Returns array of DOFs for given node
    * @param node node id
    */
-  getNodeDofs(e) {
+  getNodeDofs(t) {
     return [];
   }
   /**
@@ -10359,10 +10359,10 @@ class U0 {
    * Returns element transformation matrix frol global to local c.s
    */
   computeT() {
-    return Dr();
+    return ye();
   }
 }
-class V0 extends U0 {
+class Z0 extends V0 {
   /**
    * Constructor
    * @param label element label (num)
@@ -10371,20 +10371,20 @@ class V0 extends U0 {
    * @param cs element cross section (num)
    * @param hinges array of two boolean values indicating if hinge is present at start or end
    */
-  constructor(n, i, t, a, o, v = [!1, !1]) {
-    super(n, i, t, a, o);
-    lr(this, "hinges");
+  constructor(n, i, r, a, o, h = [!1, !1]) {
+    super(n, i, r, a, o);
+    se(this, "hinges");
     // indicates element hinges
-    lr(this, "diagonalMassMatrix", !1);
-    this.hinges = v;
+    se(this, "diagonalMassMatrix", !1);
+    this.hinges = h;
   }
   getNodeDofs(n) {
-    return [Lr.Dx, Lr.Dz, Lr.Ry];
+    return [qe.Dx, qe.Dz, qe.Ry];
   }
   getLocationArray() {
     let n = Array();
     for (const i of this.nodes)
-      n = n.concat(this.domain.solver.getNodeLocationArray(i, [Lr.Dx, Lr.Dz, Lr.Ry]));
+      n = n.concat(this.domain.solver.getNodeLocationArray(i, [qe.Dx, qe.Dz, qe.Ry]));
     return n;
   }
   // evaluates l, dx, dz
@@ -10392,8 +10392,8 @@ class V0 extends U0 {
    * Returns Beam2D geometry object containing l: length, dx: element projection in to x axis, dz: element projection in z axis
    */
   computeGeo() {
-    const n = this.domain.getNode(this.nodes[0]).coords, i = this.domain.getNode(this.nodes[1]).coords, t = i[0] - n[0], a = i[2] - n[2];
-    return { l: Math.sqrt(t * t + a * a), dx: t, dz: a };
+    const n = this.domain.getNode(this.nodes[0]).coords, i = this.domain.getNode(this.nodes[1]).coords, r = i[0] - n[0], a = i[2] - n[2];
+    return { l: Math.sqrt(r * r + a * a), dx: r, dz: a };
   }
   /**
    * Returns tru if element has start or end hinge (or both)
@@ -10405,26 +10405,26 @@ class V0 extends U0 {
    * Computes element transformation matrix from local to global (nodal) c.s.
    */
   computeT() {
-    const n = this.computeGeo(), i = n.dx / n.l, t = n.dz / n.l;
-    let a = Dr([
-      [i, t, 0, 0, 0, 0],
-      [-t, i, 0, 0, 0, 0],
+    const n = this.computeGeo(), i = n.dx / n.l, r = n.dz / n.l;
+    let a = ye([
+      [i, r, 0, 0, 0, 0],
+      [-r, i, 0, 0, 0, 0],
       [0, 0, 1, 0, 0, 0],
-      [0, 0, 0, i, t, 0],
-      [0, 0, 0, -t, i, 0],
+      [0, 0, 0, i, r, 0],
+      [0, 0, 0, -r, i, 0],
       [0, 0, 0, 0, 0, 1]
     ]);
     if (this.domain.getNode(this.nodes[0]).hasLcs() || this.domain.getNode(this.nodes[1]).hasLcs()) {
-      let o = Xr(6);
-      o = br(
+      let o = He(6);
+      o = Ae(
         o,
-        Ar([0, 1, 2], [0, 1, 2]),
+        De([0, 1, 2], [0, 1, 2]),
         this.domain.getNode(this.nodes[0]).getTransformationMtrx(this.getNodeDofs(this.nodes[0]))
-      ), o = br(
+      ), o = Ae(
         o,
-        Ar([3, 4, 5], [3, 4, 5]),
+        De([3, 4, 5], [3, 4, 5]),
         this.domain.getNode(this.nodes[1]).getTransformationMtrx(this.getNodeDofs(this.nodes[1]))
-      ), a = dr(a, o);
+      ), a = fe(a, o);
     }
     return a;
   }
@@ -10433,31 +10433,31 @@ class V0 extends U0 {
    * @param retCondenseSubMats when true, extended info on condensed DOFs is provided
    */
   computeLocalStiffnessMtrx(n = !1) {
-    const i = this.computeGeo(), t = this.getMaterial(), a = this.getCS(), o = t.e * a.a, v = t.e * a.iy, c = i.l, l = c * c, s = l * c, u = 12 * v / (a.k * t.g * a.a * c * c), f = 1 + u, p = Dr([
+    const i = this.computeGeo(), r = this.getMaterial(), a = this.getCS(), o = r.e * a.a, h = r.e * a.iy, c = i.l, l = c * c, s = l * c, u = 12 * h / (a.k * r.g * a.a * c * c), f = 1 + u, p = ye([
       [o / c, 0, 0, -o / c, 0, 0],
-      [0, 12 * v / s / f, -6 * v / l / f, 0, -12 * v / s / f, -6 * v / l / f],
-      [0, -6 * v / l / f, (4 + u) * v / c / f, 0, 6 * v / l / f, (2 - u) * v / c / f],
+      [0, 12 * h / s / f, -6 * h / l / f, 0, -12 * h / s / f, -6 * h / l / f],
+      [0, -6 * h / l / f, (4 + u) * h / c / f, 0, 6 * h / l / f, (2 - u) * h / c / f],
       [-o / c, 0, 0, o / c, 0, 0],
-      [0, -12 * v / s / f, 6 * v / l / f, 0, 12 * v / s / f, 6 * v / l / f],
-      [0, -6 * v / l / f, (2 - u) * v / c / f, 0, 6 * v / l / f, (4 + u) * v / c / f]
+      [0, -12 * h / s / f, 6 * h / l / f, 0, 12 * h / s / f, 6 * h / l / f],
+      [0, -6 * h / l / f, (2 - u) * h / c / f, 0, 6 * h / l / f, (4 + u) * h / c / f]
     ]);
     if (this.hasHinges()) {
       if (this.hinges[0] && this.hinges[1])
-        var D = [0, 1, 3, 4], h = [2, 5];
+        var D = [0, 1, 3, 4], v = [2, 5];
       else if (this.hinges[0])
-        var D = [0, 1, 3, 4, 5], h = [2];
+        var D = [0, 1, 3, 4, 5], v = [2];
       else if (this.hinges[1])
-        var D = [0, 1, 2, 3, 4], h = [5];
-      const m = p.subset(Ar(D, D)), d = p.subset(Ar(D, h)), w = p.subset(Ar(h, h)), g = ce(m, dr(dr(d, De(w)), re(d)));
-      let E = Xr(6, 6);
-      return E = br(E, Ar(D, D), g), n ? {
-        answer: E,
+        var D = [0, 1, 2, 3, 4], v = [5];
+      const m = p.subset(De(D, D)), d = p.subset(De(D, v)), w = p.subset(De(v, v)), g = nr(m, fe(fe(d, cr(w)), Ze(d)));
+      let A = He(6, 6);
+      return A = Ae(A, De(D, D), g), n ? {
+        answer: A,
         a: D,
-        b: h,
+        b: v,
         kaa: m,
         kab: d,
         kbb: w
-      } : { answer: E };
+      } : { answer: A };
     }
     return { answer: p };
   }
@@ -10466,39 +10466,39 @@ class V0 extends U0 {
    * @param N normal force
    */
   computeLocalInitialStressMtrx(n) {
-    const i = this.computeGeo(), t = this.getMaterial(), a = this.getCS(), o = i.l, v = o * o, c = n / o, l = 12 * t.e * a.iy / (a.k * t.g * a.a * o * o), s = l * l, u = Dr([
+    const i = this.computeGeo(), r = this.getMaterial(), a = this.getCS(), o = i.l, h = o * o, c = n / o, l = 12 * r.e * a.iy / (a.k * r.g * a.a * o * o), s = l * l, u = ye([
       [0, 0, 0, 0, 0, 0],
       [0, 6 / 5 + 2 * l + s, -o / 10, 0, -6 / 5 - 2 * l - s, -o / 10],
       [
         0,
         -o / 10,
-        2 * v / 15 + v * l / 6 + v * s / 12,
+        2 * h / 15 + h * l / 6 + h * s / 12,
         0,
         o / 10,
-        -v / 30 - v * l / 6 - v * s / 12
+        -h / 30 - h * l / 6 - h * s / 12
       ],
       [0, 0, 0, 0, 0, 0],
       [0, -6 / 5 - 2 * l - s, o / 10, 0, 6 / 5 + 2 * l + s, o / 10],
       [
         0,
         -o / 10,
-        -v / 30 - v * l / 6 - v * s / 12,
+        -h / 30 - h * l / 6 - h * s / 12,
         0,
         o / 10,
-        2 * v / 15 + v * l / 6 + v * s / 12
+        2 * h / 15 + h * l / 6 + h * s / 12
       ]
     ]);
-    dr(u, c / (1 + l) / (1 + l));
+    fe(u, c / (1 + l) / (1 + l));
     const f = Math.min(Math.abs(u[1][1]), Math.abs(u[2][2])) / 1e3;
     if (u[0][0] = f, u[0][3] = -f, u[3][0] = -f, u[3][3] = f, this.hasHinges()) {
-      const p = this.computeLocalStiffnessMtrx(!0), D = rt(p.a)[0], h = Xr(6, D);
-      br(h, Ar(p.a, Te(0, D)), et(D)), br(
-        h,
-        Ar(p.b, Te(0, D)),
-        dr(dr(De(p.kbb), re(p.kab)), -1)
+      const p = this.computeLocalStiffnessMtrx(!0), D = et(p.a)[0], v = He(6, D);
+      Ae(v, De(p.a, Tr(0, D)), rt(D)), Ae(
+        v,
+        De(p.b, Tr(0, D)),
+        fe(fe(cr(p.kbb), Ze(p.kab)), -1)
       );
-      const m = dr(re(h), dr(u, h)), d = Xr(6, 6);
-      return br(p.a, Ar(p.a, p.a), m), d;
+      const m = fe(Ze(v), fe(u, v)), d = He(6, 6);
+      return Ae(p.a, De(p.a, p.a), m), d;
     }
     return u;
   }
@@ -10507,11 +10507,11 @@ class V0 extends U0 {
    * @param retCondenseSubMats when true, extended info on condensed DOFs is provided
    */
   computeLocalMassMatrix(n = !1) {
-    const i = this.computeGeo(), t = this.getMaterial(), a = this.getCS(), o = i.l, v = o * o;
+    const i = this.computeGeo(), r = this.getMaterial(), a = this.getCS(), o = i.l, h = o * o;
     if (!this.diagonalMassMatrix)
-      return dr(
-        t.d * a.a * o / 420,
-        Dr([
+      return fe(
+        r.d * a.a * o / 420,
+        ye([
           [140, 0, 0, 70, 0, 0],
           [0, 156, -22 * o, 0, 54, 13 * o],
           [0, -22 * o, 4 * o * o, 0, -13 * o, -3 * o * o],
@@ -10521,15 +10521,15 @@ class V0 extends U0 {
         ])
       );
     const c = 1 / 78;
-    return dr(
-      t.d * a.a * o,
-      Dr([
+    return fe(
+      r.d * a.a * o,
+      ye([
         [1 / 2, 0, 0, 0, 0, 0],
         [0, 1 / 2, 0, 0, 0, 0],
-        [0, 0, c * v, 0, 0, 0],
+        [0, 0, c * h, 0, 0, 0],
         [0, 0, 0, 1 / 2, 0, 0],
         [0, 0, 0, 0, 1 / 2, 0],
-        [0, 0, 0, 0, 0, c * v]
+        [0, 0, 0, 0, 0, c * h]
       ])
     );
   }
@@ -10539,7 +10539,7 @@ class V0 extends U0 {
   computeStiffness() {
     this.computeGeo();
     const n = this.computeLocalStiffnessMtrx(), i = this.computeT();
-    return dr(dr(re(i), n.answer), i);
+    return fe(fe(Ze(i), n.answer), i);
   }
   /**
    * Evaluate element mass matrix in global c.s.
@@ -10547,37 +10547,37 @@ class V0 extends U0 {
   computeMassMatrix() {
     this.computeGeo();
     const n = this.computeLocalMassMatrix(), i = this.computeT();
-    return dr(dr(re(i), n), i);
+    return fe(fe(Ze(i), n), i);
   }
   /**
    * Evaluates initial stress matrix in global c.s.
    * @param N Element normal force
    */
   computeInitialStressMatrix(n) {
-    const i = this.computeLocalInitialStressMtrx(n), t = this.computeT();
-    return dr(dr(re(t), i), t);
+    const i = this.computeLocalInitialStressMtrx(n), r = this.computeT();
+    return fe(fe(Ze(r), i), r);
   }
   /**
    * Computes element end displacement vector (in element local c.s.)
    * @param r global vector of unknowns
    */
   computeEndDisplacement(n) {
-    const i = this.computeT(), t = this.getLocationArray();
-    let a = dr(i, br(n.r, Ar(t)));
+    const i = this.computeT(), r = this.getLocationArray();
+    let a = fe(i, Ae(n.r, De(r)));
     if (this.hasHinges()) {
       const o = this.computeLocalStiffnessMtrx(!0);
-      let v = Xr(6);
+      let h = He(6);
       for (const c of n.getElementLoadsOnElement(this.label))
-        v = se(v, c.getLoadVectorForClampedBeam());
-      this.hasHinges() && (a = br(
+        h = fr(h, c.getLoadVectorForClampedBeam());
+      this.hasHinges() && (a = Ae(
         a,
-        Ar(o.b),
-        dr(
-          De(o.kbb),
-          dr(
-            se(
-              br(v, Ar(o.b)),
-              ge(dr(re(o.kab), br(a, Ar(o.a))))
+        De(o.b),
+        fe(
+          cr(o.kbb),
+          fe(
+            fr(
+              Ae(h, De(o.b)),
+              Dr(fe(Ze(o.kab), Ae(a, De(o.a))))
             ),
             -1
           )
@@ -10591,30 +10591,30 @@ class V0 extends U0 {
    * @param lc load case reference
    */
   computeEndForces(n) {
-    const i = this.computeT(), t = this.getLocationArray(), a = dr(i, br(n.r, Ar(t))), o = this.computeLocalStiffnessMtrx(!0);
-    let v = dr(o.answer, a), c = Xr(6);
+    const i = this.computeT(), r = this.getLocationArray(), a = fe(i, Ae(n.r, De(r))), o = this.computeLocalStiffnessMtrx(!0);
+    let h = fe(o.answer, a), c = He(6);
     for (const l of n.getElementLoadsOnElement(this.label))
-      c = se(c, l.getLoadVectorForClampedBeam());
+      c = fr(c, l.getLoadVectorForClampedBeam());
     if (this.hasHinges()) {
-      const l = dr(o.kab, De(o.kbb));
+      const l = fe(o.kab, cr(o.kbb));
       if (o.b.length == 1) {
         const s = c.get(o.b);
         for (let u = 0; u < o.a.length; u++)
-          v.set([o.a[u]], v.get([o.a[u]]) + c.get([o.a[u]]) - l.get([u, 0]) * s);
+          h.set([o.a[u]], h.get([o.a[u]]) + c.get([o.a[u]]) - l.get([u, 0]) * s);
       } else {
-        const s = ce(
-          br(c, Ar(o.a)),
-          dr(l, Dr(br(c, Ar(o.b))))
+        const s = nr(
+          Ae(c, De(o.a)),
+          fe(l, ye(Ae(c, De(o.b))))
         );
-        v = br(
-          v,
-          Ar(o.a),
-          ce(br(v, Ar(o.a)), s)
+        h = Ae(
+          h,
+          De(o.a),
+          nr(Ae(h, De(o.a)), s)
         );
       }
     } else
-      v = se(v, c);
-    return v;
+      h = fr(h, c);
+    return h;
   }
   /**
    * Computes nseg+1 values of local deflections
@@ -10622,13 +10622,13 @@ class V0 extends U0 {
    * @param nseg deflection will be evaluated in nseg+1 points generated along the element
    */
   computeLocalDefl(n, i) {
-    const t = this.computeEndDisplacement(n), a = [], o = [], c = this.computeGeo().l, l = n.getElementLoadsOnElement(this.label);
+    const r = this.computeEndDisplacement(n), a = [], o = [], c = this.computeGeo().l, l = n.getElementLoadsOnElement(this.label);
     for (let s = 0; s <= i; s++) {
       const u = s / i;
-      let f = (1 - 3 * u * u + 2 * u * u * u) * t.get([1]) + c * (-u + 2 * u * u - u * u * u) * t.get([2]) + (3 * u * u - 2 * u * u * u) * t.get([4]) + c * (u * u - u * u * u) * t.get([5]), p = (1 - u) * t.get([0]) + u * t.get([3]);
+      let f = (1 - 3 * u * u + 2 * u * u * u) * r.get([1]) + c * (-u + 2 * u * u - u * u * u) * r.get([2]) + (3 * u * u - 2 * u * u * u) * r.get([4]) + c * (u * u - u * u * u) * r.get([5]), p = (1 - u) * r.get([0]) + u * r.get([3]);
       for (const D of l) {
-        const h = D.computeBeamDeflectionContrib(u);
-        f += h.w, p += h.u;
+        const v = D.computeBeamDeflectionContrib(u);
+        f += v.w, p += v.u;
       }
       a.push(p), o.push(f);
     }
@@ -10640,9 +10640,9 @@ class V0 extends U0 {
    * @param nseg deflection will be evaluated in nseg+1 points generated along the element
    */
   computeGlobalDefl(n, i) {
-    const t = this.computeLocalDefl(n, i), a = this.computeGeo(), o = a.dx / a.l, v = a.dz / a.l, c = [], l = [];
+    const r = this.computeLocalDefl(n, i), a = this.computeGeo(), o = a.dx / a.l, h = a.dz / a.l, c = [], l = [];
     for (let s = 0; s <= i; s++)
-      c.push(t.u[s] * o - t.w[s] * v), l.push(t.w[s] * o + t.u[s] * v);
+      c.push(r.u[s] * o - r.w[s] * h), l.push(r.w[s] * o + r.u[s] * h);
     return { u: c, w: l };
   }
   /**
@@ -10650,19 +10650,19 @@ class V0 extends U0 {
    * @param r global vector of unknowns
    */
   computeEndDisplacementEigenMode(n, i) {
-    const t = this.computeT(), a = this.getLocationArray();
-    let o = dr(t, br(n.eigenVectors[i], Ar(a)));
+    const r = this.computeT(), a = this.getLocationArray();
+    let o = fe(r, Ae(n.eigenVectors[i], De(a)));
     if (this.hasHinges()) {
-      const v = this.computeLocalStiffnessMtrx(!0), c = Xr(6);
-      this.hasHinges() && (o = br(
+      const h = this.computeLocalStiffnessMtrx(!0), c = He(6);
+      this.hasHinges() && (o = Ae(
         o,
-        Ar(v.b),
-        dr(
-          De(v.kbb),
-          dr(
-            se(
-              br(c, Ar(v.b)),
-              ge(dr(re(v.kab), br(o, Ar(v.a))))
+        De(h.b),
+        fe(
+          cr(h.kbb),
+          fe(
+            fr(
+              Ae(c, De(h.b)),
+              Dr(fe(Ze(h.kab), Ae(o, De(h.a))))
             ),
             -1
           )
@@ -10676,13 +10676,13 @@ class V0 extends U0 {
    * @param lc reference to load case
    * @param nseg deflection will be evaluated in nseg+1 points generated along the element
    */
-  computeLocalEigenMode(n, i, t) {
-    const a = this.computeEndDisplacementEigenMode(n, i), o = [], v = [], l = this.computeGeo().l;
-    for (let s = 0; s <= t; s++) {
-      const u = s / t, f = (1 - 3 * u * u + 2 * u * u * u) * a.get([1]) + l * (-u + 2 * u * u - u * u * u) * a.get([2]) + (3 * u * u - 2 * u * u * u) * a.get([4]) + l * (u * u - u * u * u) * a.get([5]), p = (1 - u) * a.get([0]) + u * a.get([3]);
-      o.push(p), v.push(f);
+  computeLocalEigenMode(n, i, r) {
+    const a = this.computeEndDisplacementEigenMode(n, i), o = [], h = [], l = this.computeGeo().l;
+    for (let s = 0; s <= r; s++) {
+      const u = s / r, f = (1 - 3 * u * u + 2 * u * u * u) * a.get([1]) + l * (-u + 2 * u * u - u * u * u) * a.get([2]) + (3 * u * u - 2 * u * u * u) * a.get([4]) + l * (u * u - u * u * u) * a.get([5]), p = (1 - u) * a.get([0]) + u * a.get([3]);
+      o.push(p), h.push(f);
     }
-    return { u: o, w: v };
+    return { u: o, w: h };
   }
   /**
    * Computes nseg+1 values of global deflections
@@ -10690,10 +10690,10 @@ class V0 extends U0 {
    * @param ntheig n-th eigen value
    * @param nseg deflection will be evaluated in nseg+1 points generated along the element
    */
-  computeGlobalEigenMode(n, i, t) {
-    const a = this.computeLocalEigenMode(n, i, t), o = this.computeGeo(), v = o.dx / o.l, c = o.dz / o.l, l = [], s = [];
-    for (let u = 0; u <= t; u++)
-      l.push(a.u[u] * v - a.w[u] * c), s.push(a.w[u] * v + a.u[u] * c);
+  computeGlobalEigenMode(n, i, r) {
+    const a = this.computeLocalEigenMode(n, i, r), o = this.computeGeo(), h = o.dx / o.l, c = o.dz / o.l, l = [], s = [];
+    for (let u = 0; u <= r; u++)
+      l.push(a.u[u] * h - a.w[u] * c), s.push(a.w[u] * h + a.u[u] * c);
     return { u: l, w: s };
   }
   /**
@@ -10702,15 +10702,15 @@ class V0 extends U0 {
    * @param nseg number of points-1
    */
   computeNormalForce(n, i) {
-    const t = this.computeEndForces(n), a = this.computeGeo(), o = [], v = [], c = n.getElementLoadsOnElement(this.label);
+    const r = this.computeEndForces(n), a = this.computeGeo(), o = [], h = [], c = n.getElementLoadsOnElement(this.label);
     for (let l = 0; l <= i; l++) {
       const s = a.l * l / i;
-      let u = -t.get([0]);
+      let u = -r.get([0]);
       for (const f of c)
         u += f.computeBeamNContrib(s);
-      o.push(s), v.push(u);
+      o.push(s), h.push(u);
     }
-    return { x: o, N: v };
+    return { x: o, N: h };
   }
   /**
    * Computes the values of shear force along element
@@ -10718,15 +10718,15 @@ class V0 extends U0 {
    * @param nseg number of points-1
    */
   computeShearForce(n, i) {
-    const t = this.computeEndForces(n), a = this.computeGeo(), o = [], v = [], c = n.getElementLoadsOnElement(this.label);
+    const r = this.computeEndForces(n), a = this.computeGeo(), o = [], h = [], c = n.getElementLoadsOnElement(this.label);
     for (let l = 0; l <= i; l++) {
       const s = a.l * l / i;
-      let u = -t.get([1]);
+      let u = -r.get([1]);
       for (const f of c)
         u += f.computeBeamVContrib(s);
-      o.push(s), v.push(u);
+      o.push(s), h.push(u);
     }
-    return { x: o, V: v };
+    return { x: o, V: h };
   }
   /**
    * Computes the values of bending moment along element
@@ -10734,27 +10734,27 @@ class V0 extends U0 {
    * @param nseg number of points-1
    */
   computeBendingMoment(n, i) {
-    const t = this.computeEndForces(n), a = this.computeGeo(), o = [], v = [], c = n.getElementLoadsOnElement(this.label);
+    const r = this.computeEndForces(n), a = this.computeGeo(), o = [], h = [], c = n.getElementLoadsOnElement(this.label);
     for (let l = 0; l <= i; l++) {
       const s = a.l * l / i;
-      let u = -t.get([2]) - t.get([1]) * s;
+      let u = -r.get([2]) - r.get([1]) * s;
       for (const f of c)
         u += f.computeBeamMContrib(s);
-      o.push(s), v.push(u);
+      o.push(s), h.push(u);
     }
-    return { x: o, M: v };
+    return { x: o, M: h };
   }
 }
-class Aa {
+class Ea {
   /**
    * Returns load vector for clamped beam
    * @param elem element number
    */
-  constructor(e, n) {
-    lr(this, "target");
+  constructor(t, n) {
+    se(this, "target");
     // component number the target is applied
-    lr(this, "domain");
-    this.target = e.toString(), this.domain = n;
+    se(this, "domain");
+    this.target = t.toString(), this.domain = n;
   }
   /**
    * Evaluates the contribution to the load vector
@@ -10769,101 +10769,96 @@ class Aa {
     return [];
   }
 }
-class Z0 extends Aa {
-  constructor(n, i, t = {}) {
+class G0 extends Ea {
+  constructor(n, i, r = {}) {
     super(n, i);
-    lr(this, "values");
-    this.values = t;
+    se(this, "values");
+    this.values = r;
   }
   change(n, i) {
     this.target = n.toString(), this.values = i;
   }
   getLoadVector() {
     const n = this.domain.solver.getNodeDofIDs(this.target), i = Array();
-    for (const t of n)
-      t in this.values ? i.push(this.values[t]) : i.push(0);
+    for (const r of n)
+      r in this.values ? i.push(this.values[r]) : i.push(0);
     return i;
   }
   getLocationArray() {
     return this.domain.solver.getNodeLocationArray(this.target, this.domain.solver.getNodeDofIDs(this.target));
   }
 }
-class G0 extends Aa {
+class tn extends Ea {
   getLoadVectorForClampedBeam() {
     return [];
   }
-  computeBeamDeflectionContrib(e) {
+  computeBeamDeflectionContrib(t) {
     return { u: 0, w: 0 };
   }
-  computeBeamNContrib(e) {
+  computeBeamNContrib(t) {
     return 0;
   }
-  computeBeamVContrib(e) {
+  computeBeamVContrib(t) {
     return 0;
   }
-  computeBeamMContrib(e) {
+  computeBeamMContrib(t) {
     return 0;
   }
 }
-class Y0 extends G0 {
-  // true if values in element local c.s (along length)
-  constructor(n, i, t, a) {
+class Y0 extends tn {
+  // fx, fz intensities
+  constructor(n, i, r) {
     super(n, i);
-    lr(this, "values");
-    // fx, fz intensities
-    lr(this, "lcs");
-    this.values = t, this.lcs = a;
+    se(this, "values");
+    this.values = r;
   }
-  change(n, i, t) {
-    this.target = n.toString(), this.values = i, this.lcs = t;
+  change(n, i) {
+    this.target = n.toString(), this.values = i;
   }
   getGlobalIntensities() {
-    const n = this.values[0], i = this.values[1];
-    if (this.lcs) {
-      const t = this.domain.getElement(this.target).computeGeo(), a = t.dx / t.l, o = t.dz / t.l;
-      return { fx: n * a - i * o, fz: n * o + i * a, my: 0 };
-    } else
-      return { fx: n, fz: i, my: 0 };
+    const n = this.values[0], i = this.values[1], r = this.domain.getElement(this.target).computeGeo(), a = r.dx / r.l, o = r.dz / r.l;
+    return { fx: n * a - i * o, fz: n * o + i * a, my: 0 };
   }
   getLocalIntensities() {
-    const n = this.values[0], i = this.values[1], t = this.domain.getElement(this.target).computeGeo(), a = t.l, o = t.dx, v = t.dz, c = o / a, l = v / a;
-    return this.lcs ? { fx: n, fz: i } : {
+    const n = this.values[0], i = this.values[1], r = this.domain.getElement(this.target).computeGeo(), a = r.l, o = r.dx, h = r.dz, c = o / a, l = h / a;
+    return {
       fx: n * c + i * l,
       fz: -n * l + i * c
     };
   }
   // in local c.s
   getLoadVectorForClampedBeam() {
-    const n = this.domain.getElement(this.target).computeGeo(), i = this.getLocalIntensities(), t = i.fx, a = i.fz, o = n.l;
-    return [-0.5 * o * t, -0.5 * o * a, 1 / 12 * a * o * o, -0.5 * o * t, -0.5 * o * a, -1 / 12 * a * o * o];
+    this.domain.getElement(this.target).computeGeo().l;
+    const i = this.domain.getElement(this.target).getMaterial().e, r = this.domain.getElement(this.target).getMaterial().alpha, a = this.domain.getElement(this.target).getCS().a;
+    return [i * a * r * this.values[0], 0, 0, -i * a * r * this.values[0], 0, 0];
   }
   getLocationArray() {
     return this.domain.getElement(this.target).getLocationArray();
   }
   getLoadVector() {
-    const n = this.domain.getElement(this.target), i = n.computeT(), t = this.getLoadVectorForClampedBeam();
+    const n = this.domain.getElement(this.target), i = n.computeT(), r = this.getLoadVectorForClampedBeam();
     if (n.hasHinges()) {
       const a = n.computeLocalStiffnessMtrx(!0);
       let o = [0, 0, 0, 0, 0, 0];
-      const v = dr(a.kab, De(a.kbb));
+      const h = fe(a.kab, cr(a.kbb));
       if (a.b.length == 1) {
-        const c = t[a.b[0]];
+        const c = r[a.b[0]];
         for (let l = 0; l < a.a.length; l++)
-          o[a.a[l]] = t[a.a[l]] - v.get([l, 0]) * c;
-        return dr(dr(re(i), o), -1).toArray();
+          o[a.a[l]] = r[a.a[l]] - h.get([l, 0]) * c;
+        return fe(fe(Ze(i), o), -1).toArray();
       } else {
-        const c = ce(
-          br(t, Ar(a.a)),
-          dr(v, br(t, Ar(a.b)))
+        const c = nr(
+          Ae(r, De(a.a)),
+          fe(h, Ae(r, De(a.b)))
         );
-        return o = br(o, Ar(a.a), c), dr(dr(re(i), o), -1).toArray();
+        return o = Ae(o, De(a.a), c), fe(fe(Ze(i), o), -1).toArray();
       }
     } else
-      return dr(dr(re(i), t), -1).toArray();
+      return fe(fe(Ze(i), r), -1).toArray();
   }
   computeBeamDeflectionContrib(n) {
-    const i = this.getLocalIntensities(), t = this.domain.elements.get(this.target), o = t.computeGeo().l;
-    return { u: 0, w: i.fz * o * o * o * o * (n * n * n * n / 24 - n * n * n / 12 + n * n / 24) / (t.getMaterial().e * t.getCS().iy) };
+    const i = this.getLocalIntensities(), r = this.domain.elements.get(this.target), o = r.computeGeo().l;
+    return { u: 0, w: i.fz * o * o * o * o * (n * n * n * n / 24 - n * n * n / 12 + n * n / 24) / (r.getMaterial().e * r.getCS().iy) };
   }
   computeBeamNContrib(n) {
     return -this.getLocalIntensities().fx * n;
@@ -10875,30 +10870,190 @@ class Y0 extends G0 {
     return -this.getLocalIntensities().fz * n * n / 2;
   }
 }
-class J0 {
+class J0 extends tn {
+  constructor(n, i, r, a) {
+    super(n, i);
+    se(this, "values");
+    // Fx, Fz, My, distance x
+    se(this, "lcs");
+    this.values = r, this.lcs = a;
+  }
+  change(n, i, r) {
+    this.target = n.toString(), this.values = i, this.lcs = r;
+  }
+  getGlobalIntensities() {
+    const n = this.values[0], i = this.values[1];
+    if (this.lcs) {
+      const r = this.domain.getElement(this.target).computeGeo(), a = r.dx / r.l, o = r.dz / r.l;
+      return { fx: n * a - i * o, fz: n * o + i * a, my: 0 };
+    } else
+      return { fx: n, fz: i, my: 0 };
+  }
+  getLocalIntensities() {
+    const n = this.values[0], i = this.values[1], r = this.domain.getElement(this.target).computeGeo(), a = r.l, o = r.dx, h = r.dz, c = o / a, l = h / a;
+    return this.lcs ? { fx: n, fz: i } : {
+      fx: n * c + i * l,
+      fz: -n * l + i * c
+    };
+  }
+  getLoadVectorForClampedBeam() {
+    const i = this.domain.getElement(this.target).computeGeo().l, r = this.values[3], a = i - r;
+    return [
+      -a / i * this.values[0],
+      a / i * (r * (r - a) / i / i - 1) * this.values[1],
+      r * a * a / i / i * this.values[1],
+      -r / i * this.values[0],
+      r / i * (a * (a - r) / i / i - 1) * this.values[1],
+      -r * r * a / i / i * this.values[1]
+    ];
+  }
+  getLocationArray() {
+    return this.domain.getElement(this.target).getLocationArray();
+  }
+  getLoadVector() {
+    const n = this.domain.getElement(this.target), i = n.computeT(), r = this.getLoadVectorForClampedBeam();
+    if (n.hasHinges()) {
+      const a = n.computeLocalStiffnessMtrx(!0);
+      let o = [0, 0, 0, 0, 0, 0];
+      const h = fe(a.kab, cr(a.kbb));
+      if (a.b.length == 1) {
+        const c = r[a.b[0]];
+        for (let l = 0; l < a.a.length; l++)
+          o[a.a[l]] = r[a.a[l]] - h.get([l, 0]) * c;
+        return fe(fe(Ze(i), o), -1).toArray();
+      } else {
+        const c = nr(
+          Ae(r, De(a.a)),
+          fe(h, Ae(r, De(a.b)))
+        );
+        return o = Ae(o, De(a.a), c), fe(fe(Ze(i), o), -1).toArray();
+      }
+    } else
+      return fe(fe(Ze(i), r), -1).toArray();
+  }
+  computeBeamDeflectionContrib(n) {
+    const i = this.getLocalIntensities(), o = this.domain.elements.get(this.target).computeGeo().l, h = i.fx, c = i.fz, l = this.domain.getElement(this.target).getMaterial().e, s = this.domain.getElement(this.target).getCS().a, u = this.domain.getElement(this.target).getCS().iy, f = this.values[3], p = o - f, D = p / o * (f * (f - p) / o / o - 1) * c, v = f * p * p / o / o * c, m = l * u, d = l * s, w = n * o;
+    let g = 0, A = 0;
+    return w < f ? g += p / o * h * w / d : g += p / o * h * f / d - f / o * h * (w - f) / d, w > f ? A = (D * Math.pow(w, 3) / 6 + v * Math.pow(w, 2) / 2 + c * Math.pow(w - f, 3) / 6) / m : A = (D * Math.pow(w, 3) / 6 + v * Math.pow(w, 2) / 2) / m, { u: g, w: A };
+  }
+  computeBeamNContrib(n) {
+    const i = this.getLocalIntensities(), r = this.values[3];
+    return n < r ? 0 : -i.fx;
+  }
+  computeBeamVContrib(n) {
+    const i = this.getLocalIntensities(), r = this.values[3];
+    return n < r ? 0 : -i.fz;
+  }
+  computeBeamMContrib(n) {
+    const i = this.getLocalIntensities(), r = this.values[3];
+    return n < r ? 0 : -i.fz * (n - r);
+  }
+}
+class Q0 extends tn {
+  // true if values in element local c.s (along length)
+  constructor(n, i, r, a) {
+    super(n, i);
+    se(this, "values");
+    // fx, fz intensities
+    se(this, "lcs");
+    this.values = r, this.lcs = a;
+  }
+  change(n, i, r) {
+    this.target = n.toString(), this.values = i, this.lcs = r;
+  }
+  getGlobalIntensities() {
+    const n = this.values[0], i = this.values[1];
+    if (this.lcs) {
+      const r = this.domain.getElement(this.target).computeGeo(), a = r.dx / r.l, o = r.dz / r.l;
+      return { fx: n * a - i * o, fz: n * o + i * a, my: 0 };
+    } else
+      return { fx: n, fz: i, my: 0 };
+  }
+  getLocalIntensities() {
+    const n = this.values[0], i = this.values[1], r = this.domain.getElement(this.target).computeGeo(), a = r.l, o = r.dx, h = r.dz, c = o / a, l = h / a;
+    return this.lcs ? { fx: n, fz: i } : {
+      fx: n * c + i * l,
+      fz: -n * l + i * c
+    };
+  }
+  // in local c.s
+  getLoadVectorForClampedBeam() {
+    const n = this.domain.getElement(this.target).computeGeo(), i = this.getLocalIntensities(), r = i.fx, a = i.fz, o = n.l;
+    return [-0.5 * o * r, -0.5 * o * a, 1 / 12 * a * o * o, -0.5 * o * r, -0.5 * o * a, -1 / 12 * a * o * o];
+  }
+  getLocationArray() {
+    return this.domain.getElement(this.target).getLocationArray();
+  }
+  getLoadVector() {
+    const n = this.domain.getElement(this.target), i = n.computeT(), r = this.getLoadVectorForClampedBeam();
+    if (n.hasHinges()) {
+      const a = n.computeLocalStiffnessMtrx(!0);
+      let o = [0, 0, 0, 0, 0, 0];
+      const h = fe(a.kab, cr(a.kbb));
+      if (a.b.length == 1) {
+        const c = r[a.b[0]];
+        for (let l = 0; l < a.a.length; l++)
+          o[a.a[l]] = r[a.a[l]] - h.get([l, 0]) * c;
+        return fe(fe(Ze(i), o), -1).toArray();
+      } else {
+        const c = nr(
+          Ae(r, De(a.a)),
+          fe(h, Ae(r, De(a.b)))
+        );
+        return o = Ae(o, De(a.a), c), fe(fe(Ze(i), o), -1).toArray();
+      }
+    } else
+      return fe(fe(Ze(i), r), -1).toArray();
+  }
+  computeBeamDeflectionContrib(n) {
+    const i = this.getLocalIntensities(), r = this.domain.elements.get(this.target), o = r.computeGeo().l;
+    return { u: 0, w: i.fz * o * o * o * o * (n * n * n * n / 24 - n * n * n / 12 + n * n / 24) / (r.getMaterial().e * r.getCS().iy) };
+  }
+  computeBeamNContrib(n) {
+    return -this.getLocalIntensities().fx * n;
+  }
+  computeBeamVContrib(n) {
+    return -this.getLocalIntensities().fz * n;
+  }
+  computeBeamMContrib(n) {
+    return -this.getLocalIntensities().fz * n * n / 2;
+  }
+}
+class X0 {
   /**
-   * Constructor
+   * Constructs a new PrescribedDisplacement object.
+   * @param target - The label of the target node.
+   * @param domain - The domain in which the prescribed displacement is applied.
+   * @param values - The prescribed values of individual degrees of freedom (DOFs).
    */
-  constructor(e, n, i) {
-    lr(this, "target");
+  constructor(t, n, i) {
+    se(this, "target");
     // node (umber) subjected to Prescribed Displacement
-    lr(this, "prescribedValues");
+    se(this, "prescribedValues");
     // prescribed values of individual DOFs
-    lr(this, "domain");
-    this.target = e.toString(), this.prescribedValues = i, this.domain = n;
+    se(this, "domain");
+    this.target = t.toString(), this.prescribedValues = i, this.domain = n;
   }
+  /**
+   * Gets the prescribed displacement vector for the target node.
+   * @returns The prescribed displacement vector.
+   */
   getNodePrescribedDisplacementVector() {
-    const e = new Array(), n = this.domain.solver.getNodeDofIDs(this.target);
+    const t = new Array(), n = this.domain.solver.getNodeDofIDs(this.target);
     for (const i of n)
-      i in this.prescribedValues ? e.push(this.prescribedValues[i]) : e.push(0);
-    return e;
+      i in this.prescribedValues ? t.push(this.prescribedValues[i]) : t.push(0);
+    return t;
   }
+  /**
+   * Gets the location array for the target node.
+   * @returns The location array.
+   */
   getLocationArray() {
     return this.domain.solver.getNodeLocationArray(this.target, this.domain.solver.getNodeDofIDs(this.target));
   }
 }
-const Q0 = {};
-class X0 {
+const H0 = {};
+class K0 {
   // torsional stiffness moment [m4]
   /**
    * Constructor
@@ -10911,23 +11066,23 @@ class X0 {
    * @param k Timoshenko's shear coefficient [-]
    * @param j torsional stiffness moment [m4]
    */
-  constructor(e, n = {}) {
-    lr(this, "label");
+  constructor(t, n = {}) {
+    se(this, "label");
     // label of receiver
-    lr(this, "a");
+    se(this, "a");
     // cross section area of receiver [m2]. > 0.0
-    lr(this, "iy");
+    se(this, "iy");
     // area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
-    lr(this, "iz");
+    se(this, "iz");
     // area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
-    lr(this, "dyz");
+    se(this, "dyz");
     // product moment of area with respect to yz axes [m4]
-    lr(this, "h");
+    se(this, "h");
     // height of receiver [m]
-    lr(this, "k");
+    se(this, "k");
     // Timoshenko's shear coefficient [-]
-    lr(this, "j");
-    this.label = e.toString(), n = { ...Q0, ...n }, this.a = n.a, this.iy = n.iy, this.iz = n.iz, this.dyz = n.dyz, this.h = n.h, this.k = n.k, this.j = n.j;
+    se(this, "j");
+    this.label = t.toString(), n = { ...H0, ...n }, this.a = n.a, this.iy = n.iy, this.iz = n.iz, this.dyz = n.dyz, this.h = n.h, this.k = n.k, this.j = n.j;
   }
   /**
    * Change receiver properties
@@ -10939,12 +11094,12 @@ class X0 {
    * @param k Timoshenko's shear coefficient [-]
    * @param j torsional stiffness moment [m4]
    */
-  change(e) {
-    e.a != null && (this.a = e.a), e.iy != null && (this.iy = e.iy), e.iz != null && (this.iz = e.iz), e.dyz != null && (this.dyz = e.dyz), e.h != null && (this.h = e.h), e.k != null && (this.k = e.k), e.j != null && (this.j = e.j);
+  change(t) {
+    t.a != null && (this.a = t.a), t.iy != null && (this.iy = t.iy), t.iz != null && (this.iz = t.iz), t.dyz != null && (this.dyz = t.dyz), t.h != null && (this.h = t.h), t.k != null && (this.k = t.k), t.j != null && (this.j = t.j);
   }
 }
-const K0 = { e: 1, g: 1, alpha: 1, d: 1 };
-class H0 {
+const W0 = { e: 1, g: 1, alpha: 1, d: 1 };
+class k0 {
   // mass density [kg/m3]
   /**
    * @param  label int label of receiver
@@ -10953,17 +11108,17 @@ class H0 {
    * @param alpha thermal dillatation coefficient [K-1]
    * @param d mass density of receiver [kg/m3]
    */
-  constructor(e, n = {}) {
-    lr(this, "label");
+  constructor(t, n = {}) {
+    se(this, "label");
     //  label
-    lr(this, "e");
+    se(this, "e");
     // Young's modulus [Pa]
-    lr(this, "g");
+    se(this, "g");
     // Shear modulus [Pa]
-    lr(this, "alpha");
+    se(this, "alpha");
     // thermal dillatation coefficient [K-1]
-    lr(this, "d");
-    this.label = e.toString(), n = { ...K0, ...n }, this.e = n.e, this.g = n.g, this.alpha = n.alpha, this.d = n.d;
+    se(this, "d");
+    this.label = t.toString(), n = { ...W0, ...n }, this.e = n.e, this.g = n.g, this.alpha = n.alpha, this.d = n.d;
   }
   /**
    * Change receiver properties
@@ -10972,241 +11127,303 @@ class H0 {
    * @param alpha thermal dillatation coefficient [K-1]
    * @param d mass density of receiver [kg/m3]
    */
-  change(e) {
-    e.e !== void 0 && (this.e = e.e), e.g !== void 0 && (this.g = e.g), e.alpha !== void 0 && (this.alpha = e.alpha), e.d !== void 0 && (this.d = e.d);
+  change(t) {
+    t.e !== void 0 && (this.e = t.e), t.g !== void 0 && (this.g = t.g), t.alpha !== void 0 && (this.alpha = t.alpha), t.d !== void 0 && (this.d = t.d);
   }
 }
-class W0 {
+class j0 {
   /**
-   * Constructor
+   * Constructor.
+   * @param solver The solver instance.
    */
-  constructor(e) {
-    lr(this, "solver");
-    lr(this, "nodes", /* @__PURE__ */ new Map());
-    lr(this, "elements", /* @__PURE__ */ new Map());
-    lr(this, "materials", /* @__PURE__ */ new Map());
-    lr(this, "crossSections", /* @__PURE__ */ new Map());
-    this.solver = e;
+  constructor(t) {
+    se(this, "solver");
+    se(this, "nodes", /* @__PURE__ */ new Map());
+    se(this, "elements", /* @__PURE__ */ new Map());
+    se(this, "materials", /* @__PURE__ */ new Map());
+    se(this, "crossSections", /* @__PURE__ */ new Map());
+    this.solver = t;
   }
-  getNode(e) {
-    const n = e.toString();
+  /**
+   * Get a node by its label.
+   * @param id The label of the node.
+   * @returns The node with the specified label.
+   * @throws RangeError if the node label does not exist.
+   */
+  getNode(t) {
+    const n = t.toString();
     if (this.nodes.has(n))
       return this.nodes.get(n);
-    throw new RangeError("Node label " + e + " does not exists");
+    throw new RangeError(`Node label ${t} does not exist.`);
   }
-  getElement(e) {
-    const n = e.toString();
+  /**
+   * Get an element by its label.
+   * @param id The label of the element.
+   * @returns The element with the specified label.
+   * @throws RangeError if the element label does not exist.
+   */
+  getElement(t) {
+    const n = t.toString();
     if (this.elements.has(n))
       return this.elements.get(n);
-    throw new RangeError("Element label " + e + " does not exists");
+    throw new RangeError(`Element label ${t} does not exist.`);
   }
-  getMaterial(e) {
-    const n = e.toString();
+  /**
+   * Get a material by its label.
+   * @param id The label of the material.
+   * @returns The material with the specified label.
+   * @throws RangeError if the material label does not exist.
+   */
+  getMaterial(t) {
+    const n = t.toString();
     if (this.materials.has(n))
       return this.materials.get(n);
-    throw new RangeError("Material label " + e + " does not exists");
+    throw new RangeError(`Material label ${t} does not exist.`);
   }
-  getCS(e) {
-    const n = e.toString();
+  /**
+   * Get a cross section by its label.
+   * @param id The label of the cross section.
+   * @returns The cross section with the specified label.
+   * @throws RangeError if the cross section label does not exist.
+   */
+  getCS(t) {
+    const n = t.toString();
     if (this.crossSections.has(n))
       return this.crossSections.get(n);
-    throw new RangeError("CrossSection label " + e + " does not exists");
+    throw new RangeError(`CrossSection label ${t} does not exist.`);
   }
-  // class factory
-  createNode(e, n = [0, 0, 0], i = []) {
-    const t = new R0(e, this, n, i);
-    return this.nodes.set(e.toString(), t), t;
+  /**
+   * Create a new node.
+   * @param label The label of the node.
+   * @param coords The coordinates of the node.
+   * @param bcs The boundary conditions of the node.
+   * @returns The created node.
+   */
+  createNode(t, n = [0, 0, 0], i = []) {
+    const r = new U0(t, this, n, i);
+    return this.nodes.set(t.toString(), r), r;
   }
-  createBeam2D(e, n, i, t, a = [!1, !1]) {
-    const o = new V0(e, this, n, i, t, a);
-    return this.elements.set(e.toString(), o), o;
+  /**
+   * Create a new 2D beam element.
+   * @param label The label of the element.
+   * @param nodes The nodes of the element.
+   * @param mat The material of the element.
+   * @param cs The cross section of the element.
+   * @param hinges The hinge conditions of the element.
+   * @returns The created beam element.
+   */
+  createBeam2D(t, n, i, r, a = [!1, !1]) {
+    const o = new Z0(t, this, n, i, r, a);
+    return this.elements.set(t.toString(), o), o;
   }
-  createMaterial(e, n = {}) {
-    const i = new H0(e, n);
-    return this.materials.set(e.toString(), i), i;
+  /**
+   * Create a new material.
+   * @param label The label of the material.
+   * @param params The parameters of the material.
+   * @returns The created material.
+   */
+  createMaterial(t, n = {}) {
+    const i = new k0(t, n);
+    return this.materials.set(t.toString(), i), i;
   }
-  createCrossSection(e, n = {}) {
-    const i = new X0(e, n);
-    return this.crossSections.set(e.toString(), i), i;
+  /**
+   * Create a new cross section.
+   * @param label The label of the cross section.
+   * @param params The parameters of the cross section.
+   * @returns The created cross section.
+   */
+  createCrossSection(t, n = {}) {
+    const i = new K0(t, n);
+    return this.crossSections.set(t.toString(), i), i;
   }
 }
-class k0 {
+class eh {
   constructor() {
-    lr(this, "domain");
-    lr(this, "neq");
+    se(this, "domain");
+    se(this, "neq");
     // number of unknowns
-    lr(this, "pneq");
+    se(this, "pneq");
     // number of prescribed unknowns
-    lr(this, "k");
-    lr(this, "m");
-    lr(this, "f");
-    lr(this, "loadCases", new Array());
-    lr(this, "codeNumberGenerated", !1);
+    se(this, "k");
+    se(this, "m");
+    se(this, "f");
+    se(this, "loadCases", new Array());
+    se(this, "codeNumberGenerated", !1);
     // code numbers assigned to supported as well as free DOFs
-    lr(this, "nodeCodeNumbers", /* @__PURE__ */ new Map());
-    this.domain = new W0(this), this.loadCases.push(new j0("DefaultLC", this.domain));
+    se(this, "nodeCodeNumbers", /* @__PURE__ */ new Map());
+    this.domain = new j0(this), this.loadCases.push(new rh("DefaultLC", this.domain));
   }
-  getNodeLocationArray(e, n) {
+  getNodeLocationArray(t, n) {
     let i = [];
-    for (const t of n)
-      i = i.concat(this.nodeCodeNumbers.get(e)[t]);
+    for (const r of n)
+      i = i.concat(this.nodeCodeNumbers.get(t)[r]);
     return i;
   }
-  getNodeDofIDs(e) {
+  getNodeDofIDs(t) {
     const n = [];
-    for (const i in this.nodeCodeNumbers.get(e))
+    for (const i in this.nodeCodeNumbers.get(t))
       n.push(parseInt(i));
     return n;
   }
   generateCodeNumbers() {
-    const e = /* @__PURE__ */ new Map();
-    for (const [t, a] of this.domain.nodes)
-      this.nodeCodeNumbers.set(t, {}), e.set(t, /* @__PURE__ */ new Set());
-    for (const [t, a] of this.domain.elements)
+    const t = /* @__PURE__ */ new Map();
+    for (const [r, a] of this.domain.nodes)
+      this.nodeCodeNumbers.set(r, {}), t.set(r, /* @__PURE__ */ new Set());
+    for (const [r, a] of this.domain.elements)
       for (const o of a.nodes) {
-        const v = a.getNodeDofs(o);
-        for (const c of v)
-          if (e.has(o))
-            e.get(o).add(c);
+        const h = a.getNodeDofs(o);
+        for (const c of h)
+          if (t.has(o))
+            t.get(o).add(c);
           else
-            throw console.log(o, o in e, e.get(o)), new RangeError("Node label " + o + " does not exists");
+            throw console.log(o, o in t, t.get(o)), new RangeError("Node label " + o + " does not exists");
       }
     this.neq = 0, this.pneq = 0;
-    for (const [t, a] of this.domain.nodes)
-      for (const o of e.get(t))
+    for (const [r, a] of this.domain.nodes)
+      for (const o of t.get(r))
         a.bcs.has(o) ? this.pneq++ : this.neq++;
     let n = 0, i = this.neq;
-    for (const [t, a] of this.domain.nodes)
-      for (const o of e.get(t))
-        a.bcs.has(o) ? this.nodeCodeNumbers.get(t)[o] = i++ : this.nodeCodeNumbers.get(t)[o] = n++;
+    for (const [r, a] of this.domain.nodes)
+      for (const o of t.get(r))
+        a.bcs.has(o) ? this.nodeCodeNumbers.get(r)[o] = i++ : this.nodeCodeNumbers.get(r)[o] = n++;
     this.codeNumberGenerated = !0;
   }
-  assembleVecLC(e, n, i, t) {
+  assembleVecLC(t, n, i, r) {
     for (let a = 0; a < i.length; a++)
-      e.set([i[a], t], e.get([i[a], t]) + n[a]);
+      t.set([i[a], r], t.get([i[a], r]) + n[a]);
   }
-  assembleVec(e, n, i) {
-    for (let t = 0; t < i.length; t++)
-      e.set([i[t]], e.get([i[t]]) + n[t]);
+  assembleVec(t, n, i) {
+    for (let r = 0; r < i.length; r++)
+      t.set([i[r]], t.get([i[r]]) + n[r]);
   }
 }
-class ev extends k0 {
+class nh extends eh {
   assemble() {
-    this.k = Xr(this.neq + this.pneq, this.neq + this.pneq);
-    for (const [e, n] of this.domain.elements) {
-      const i = n.computeStiffness(), t = n.getLocationArray(), a = rt(t)[0];
+    this.k = He(this.neq + this.pneq, this.neq + this.pneq);
+    for (const [t, n] of this.domain.elements) {
+      const i = n.computeStiffness(), r = n.getLocationArray(), a = et(r)[0];
       for (let o = 0; o < a; o++) {
-        const v = t[o];
+        const h = r[o];
         for (let c = 0; c < a; c++) {
-          const l = t[c];
-          this.k.set([v, l], this.k.get([v, l]) + i.get([o, c]));
+          const l = r[c];
+          this.k.set([h, l], this.k.get([h, l]) + i.get([o, c]));
         }
       }
     }
-    this.f = Xr(this.neq + this.pneq, this.loadCases.length);
-    for (let e = 0; e < this.loadCases.length; e++) {
-      this.loadCases[e].r = Xr(this.neq + this.pneq);
-      const n = this.loadCases[e];
+    this.f = He(this.neq + this.pneq, this.loadCases.length);
+    for (let t = 0; t < this.loadCases.length; t++) {
+      this.loadCases[t].r = He(this.neq + this.pneq);
+      const n = this.loadCases[t];
       for (const i of n.nodalLoadList)
-        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), e);
+        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), t);
       for (const i of n.elementLoadList)
-        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), e);
+        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), t);
       for (const i of n.prescribedBC)
         this.assembleVec(n.r, i.getNodePrescribedDisplacementVector(), i.getLocationArray());
     }
   }
   solve() {
-    const e = /* @__PURE__ */ new Date();
+    const t = /* @__PURE__ */ new Date();
     this.codeNumberGenerated || this.generateCodeNumbers();
-    const n = Te(0, this.neq), i = Te(this.neq, this.neq + this.pneq);
+    const n = Tr(0, this.neq), i = Tr(this.neq, this.neq + this.pneq);
     if (this.assemble(), this.neq > 0)
       for (let o = 0; o < this.loadCases.length; o++) {
         this.loadCases[o].solved = !1;
-        const v = br(this.loadCases[o].r, Ar(i)), c = dr(br(this.k, Ar(n, i)), v);
-        let l = br(this.k, Ar(n, n));
-        typeof l == "number" && (l = Dr([[l]]));
-        let s = br(this.f, Ar(n, [o]));
-        typeof s == "number" && (s = Dr([s]));
-        const u = ce(ge(s), c), f = ge(L0(l, u));
-        this.loadCases[o].r = br(this.loadCases[o].r, Ar(Te(0, this.neq)), f), this.loadCases[o].R = ge(dr(br(this.k, Ar(i, n)), f)), this.loadCases[o].R = ce(
+        const h = Ae(this.loadCases[o].r, De(i)), c = fe(Ae(this.k, De(n, i)), h);
+        let l = Ae(this.k, De(n, n));
+        typeof l == "number" && (l = ye([[l]]));
+        let s = Ae(this.f, De(n, [o]));
+        typeof s == "number" && (s = ye([s]));
+        const u = nr(Dr(s), c), f = Dr(P0(l, u));
+        this.loadCases[o].r = Ae(this.loadCases[o].r, De(Tr(0, this.neq)), f), this.loadCases[o].R = Dr(fe(Ae(this.k, De(i, n)), f)), this.loadCases[o].R = nr(
           this.loadCases[o].R,
-          ge(br(this.f, Ar(i, [o])))
+          Dr(Ae(this.f, De(i, [o])))
         ), this.loadCases[o].solved = !0;
       }
     else
       for (let o = 0; o < this.loadCases.length; o++)
-        this.loadCases[o].R = ge(dr(this.k, this.loadCases[o].r)), this.loadCases[o].R = ce(
+        this.loadCases[o].R = Dr(fe(this.k, this.loadCases[o].r)), this.loadCases[o].R = nr(
           this.loadCases[o].R,
-          ge(br(this.f, Ar(i, [o])))
+          Dr(Ae(this.f, De(i, [o])))
         ), this.loadCases[o].solved = !0;
-    const a = (/* @__PURE__ */ new Date()).getTime() - e.getTime();
+    const a = (/* @__PURE__ */ new Date()).getTime() - t.getTime();
     console.log("Solution took ", Math.round(a * 100) / 100, " [ms]");
   }
 }
-class j0 {
+class rh {
   /**
    * Creates a new loadcase
    * @param label load case name
    */
-  constructor(e, n) {
-    lr(this, "label");
-    lr(this, "domain");
+  constructor(t, n) {
+    se(this, "label");
+    se(this, "domain");
     // domain reference
     // dictionary (map), key is node number, value is PrescribedDisplacement object applied
-    lr(this, "bcMap", {});
+    se(this, "bcMap", {});
     // Array of loads applied
-    lr(this, "nodalLoadList", new Array());
-    lr(this, "elementLoadList", new Array());
-    lr(this, "prescribedBC", new Array());
+    se(this, "nodalLoadList", new Array());
+    se(this, "elementLoadList", new Array());
+    se(this, "prescribedBC", new Array());
     // solution vector
-    lr(this, "r", Xr(0));
+    se(this, "r", He(0));
     // vector of reactions
-    lr(this, "R", Xr(0));
+    se(this, "R", He(0));
     // omegas
-    lr(this, "eigenNumbers", []);
-    lr(this, "eigenVectors", []);
-    lr(this, "solved", !1);
-    this.label = e, this.domain = n;
+    se(this, "eigenNumbers", []);
+    se(this, "eigenVectors", []);
+    se(this, "solved", !1);
+    this.label = t, this.domain = n;
   }
   /**
    * Returns list of applied element loads on element with given number
    * param e element number
    */
-  getElementLoadsOnElement(e) {
+  getElementLoadsOnElement(t) {
     const n = [];
     for (const i of this.elementLoadList)
-      i.target == e && n.push(i);
+      i.target == t && n.push(i);
     return n;
   }
   //class factory
-  createNodalLoad(e, n = {}) {
-    const i = new Z0(e, this.domain, n);
+  createNodalLoad(t, n = {}) {
+    const i = new G0(t, this.domain, n);
     return this.nodalLoadList.push(i), i;
   }
-  createBeamElementUniformEdgeLoad(e, n, i) {
-    const t = new Y0(e, this.domain, n, i);
-    return this.elementLoadList.push(t), t;
+  createBeamElementUniformEdgeLoad(t, n, i) {
+    const r = new Q0(t, this.domain, n, i);
+    return this.elementLoadList.push(r), r;
   }
-  createPrescribedDisplacement(e, n) {
-    const i = new J0(e, this.domain, n);
+  createBeamConcentratedLoad(t, n, i) {
+    const r = new J0(t, this.domain, n, i);
+    return this.elementLoadList.push(r), r;
+  }
+  createBeamTemperatureLoad(t, n) {
+    const i = new Y0(t, this.domain, n);
+    return this.elementLoadList.push(i), i;
+  }
+  createPrescribedDisplacement(t, n) {
+    const i = new X0(t, this.domain, n);
     return this.prescribedBC.push(i), i;
   }
 }
-var Lr = /* @__PURE__ */ ((r) => (r[r.Dx = 0] = "Dx", r[r.Dy = 1] = "Dy", r[r.Dz = 2] = "Dz", r[r.Rx = 3] = "Rx", r[r.Ry = 4] = "Ry", r[r.Rz = 5] = "Rz", r))(Lr || {});
+var qe = /* @__PURE__ */ ((e) => (e[e.Dx = 0] = "Dx", e[e.Dy = 1] = "Dy", e[e.Dz = 2] = "Dz", e[e.Rx = 3] = "Rx", e[e.Ry = 4] = "Ry", e[e.Rz = 5] = "Rz", e))(qe || {});
 export {
-  V0 as Beam2D,
-  G0 as BeamElementLoad,
-  Y0 as BeamElementUniformEdgeLoad,
-  X0 as CrossSection,
-  Lr as DofID,
-  W0 as Domain,
-  U0 as Element,
-  ev as LinearStaticSolver,
-  Aa as Load,
-  j0 as LoadCase,
-  H0 as Material,
-  Z0 as NodalLoad,
-  R0 as Node,
-  J0 as PrescribedDisplacement,
-  k0 as Solver
+  Z0 as Beam2D,
+  J0 as BeamConcentratedLoad,
+  tn as BeamElementLoad,
+  Q0 as BeamElementUniformEdgeLoad,
+  Y0 as BeamTemperatureLoad,
+  K0 as CrossSection,
+  qe as DofID,
+  j0 as Domain,
+  V0 as Element,
+  nh as LinearStaticSolver,
+  Ea as Load,
+  rh as LoadCase,
+  k0 as Material,
+  G0 as NodalLoad,
+  U0 as Node,
+  X0 as PrescribedDisplacement,
+  eh as Solver
 };

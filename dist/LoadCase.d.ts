@@ -4,8 +4,9 @@ import { BeamElementUniformEdgeLoad } from "./BeamElementUniformEdgeLoad";
 import { Domain } from "./Domain";
 import { NodalLoad } from "./NodalLoad";
 import { PrescribedDisplacement } from "./PrescribedDisplacement";
-import { DofID, LabelType } from ".";
+import { BeamConcentratedLoad, DofID, LabelType } from ".";
 import { EnumDictionary } from ".";
+import { BeamTemperatureLoad } from "./BeamTemperatureLoad";
 /**
  * LoadCase represents a collection of loads. LoadCase stores also its solution vector.
  */
@@ -16,7 +17,7 @@ export declare class LoadCase {
         [node: number]: PrescribedDisplacement;
     };
     nodalLoadList: NodalLoad[];
-    elementLoadList: BeamElementUniformEdgeLoad[];
+    elementLoadList: BeamElementLoad[];
     prescribedBC: PrescribedDisplacement[];
     r: math.Matrix;
     R: math.Matrix;
@@ -35,5 +36,7 @@ export declare class LoadCase {
     getElementLoadsOnElement(e: LabelType): Array<BeamElementLoad>;
     createNodalLoad(node: LabelType, values?: EnumDictionary<DofID, number>): NodalLoad;
     createBeamElementUniformEdgeLoad(elem: LabelType, values: number[], lcs: boolean): BeamElementUniformEdgeLoad;
+    createBeamConcentratedLoad(elem: LabelType, values: number[], lcs: boolean): BeamConcentratedLoad;
+    createBeamTemperatureLoad(elem: LabelType, values: number[]): BeamTemperatureLoad;
     createPrescribedDisplacement(target: LabelType, values: EnumDictionary<DofID, number>): PrescribedDisplacement;
 }
