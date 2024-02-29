@@ -139,6 +139,7 @@ export declare class Beam2D extends Element {
         x: number[];
         N: number[];
     };
+    computeNormalForceAt(lc: LoadCase, xi: number): number;
     /**
      * Computes the values of shear force along element
      * @param lc load case reference
@@ -148,6 +149,7 @@ export declare class Beam2D extends Element {
         x: number[];
         V: number[];
     };
+    computeShearForceAt(lc: LoadCase, xi: number): number;
     /**
      * Computes the values of bending moment along element
      * @param lc load case reference
@@ -157,4 +159,5 @@ export declare class Beam2D extends Element {
         x: number[];
         M: number[];
     };
+    computeBendingMomentAt(lc: LoadCase, xi: number): number;
 }
