@@ -6,6 +6,7 @@ import { NodalLoad } from "./NodalLoad";
 import { PrescribedDisplacement } from "./PrescribedDisplacement";
 import { BeamConcentratedLoad, DofID, LabelType } from ".";
 import { EnumDictionary } from ".";
+import { BeamTemperatureLoad } from "./BeamTemperatureLoad";
 
 /**
  * LoadCase represents a collection of loads. LoadCase stores also its solution vector.
@@ -66,6 +67,12 @@ export class LoadCase {
 
   createBeamConcentratedLoad(elem: LabelType, values: number[], lcs: boolean) {
     const ans = new BeamConcentratedLoad(elem, this.domain, values, lcs);
+    this.elementLoadList.push(ans);
+    return ans;
+  }
+
+  createBeamTemperatureLoad(elem: LabelType, values: number[]) {
+    const ans = new BeamTemperatureLoad(elem, this.domain, values);
     this.elementLoadList.push(ans);
     return ans;
   }
