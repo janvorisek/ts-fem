@@ -395,7 +395,7 @@ export class Beam2D extends Element {
         fe = math.subset(
           fe,
           math.index(stiffrec.a),
-          math.subtract(math.subset(fe, math.index(stiffrec.a)), help)
+          math.subtract(help, math.subset(fe, math.index(stiffrec.a)))
         ) as math.Matrix;
       }
     } else {
