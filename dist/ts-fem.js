@@ -10609,7 +10609,7 @@ class Z0 extends V0 {
         h = Ae(
           h,
           De(o.a),
-          nr(Ae(h, De(o.a)), s)
+          nr(s, Ae(h, De(o.a)))
         );
       }
     } else
