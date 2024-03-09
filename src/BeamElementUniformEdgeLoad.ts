@@ -82,12 +82,21 @@ export class BeamElementUniformEdgeLoad extends BeamElementLoad {
 
       const h1 = math.multiply(stiffrec.kab, math.inv(stiffrec.kbb));
 
-      const help = math.subtract(
-        math.subset(f, math.index(stiffrec.a)),
-        math.multiply(h1, math.subset(f, math.index(stiffrec.b)))
-      );
-      ans = math.subset(ans, math.index(stiffrec.a), help);
-      return math.multiply(math.multiply(math.transpose(t), ans), -1.0).toArray() as number[];
+      if (stiffrec.b.length == 1) {
+        const flv = f[stiffrec.b[0]];
+        for (let i = 0; i < stiffrec.a.length; i++) {
+          ans[stiffrec.a[i]] = f[stiffrec.a[i]] - h1.get([i, 0]) * flv;
+        }
+
+        return math.multiply(math.multiply(math.transpose(t), ans), -1.0).toArray() as number[];
+      } else {
+        const help = math.subtract(
+          math.subset(f, math.index(stiffrec.a)),
+          math.multiply(h1, math.subset(f, math.index(stiffrec.b)))
+        );
+        ans = math.subset(ans, math.index(stiffrec.a), help);
+        return math.multiply(math.multiply(math.transpose(t), ans), -1.0).toArray() as number[];
+      }
     } else {
       return math.multiply(math.multiply(math.transpose(t), f), -1.0).toArray() as number[];
     }
