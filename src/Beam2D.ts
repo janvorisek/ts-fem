@@ -378,26 +378,17 @@ export class Beam2D extends Element {
     for (const load of lc.getElementLoadsOnElement(this.label)) {
       bl = math.add(bl, load.getLoadVectorForClampedBeam()) as math.Matrix;
     }
+
     if (this.hasHinges()) {
       // fe[ix_(a)] += bl[ix_(a)] - dot(dot(kab,linalg.inv(kbb)),bl[ix_(b)])
 
       const h1 = math.multiply(stiffrec.kab, math.inv(stiffrec.kbb));
-      if (stiffrec.b.length == 1) {
-        const blv = bl.get(stiffrec.b);
-        for (let i = 0; i < stiffrec.a.length; i++) {
-          fe.set([stiffrec.a[i]], fe.get([stiffrec.a[i]]) + bl.get([stiffrec.a[i]]) - h1.get([i, 0]) * blv);
-        }
-      } else {
-        const help = math.subtract(
-          math.subset(bl, math.index(stiffrec.a)),
-          math.multiply(h1, math.matrix(math.subset(bl, math.index(stiffrec.b))))
-        );
-        fe = math.subset(
-          fe,
-          math.index(stiffrec.a),
-          math.subtract(help, math.subset(fe, math.index(stiffrec.a)))
-        ) as math.Matrix;
-      }
+      const sub = math.subtract(
+        math.subset(bl, math.index(stiffrec.a)),
+        math.multiply(h1, math.subset(bl, math.index(stiffrec.b)))
+      );
+
+      fe = math.add(math.subset(fe, math.index(stiffrec.a)), sub) as math.Matrix;
     } else {
       fe = math.add(fe, bl) as math.Matrix;
     }
