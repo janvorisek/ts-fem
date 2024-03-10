@@ -10606,7 +10606,7 @@ class Z0 extends V0 {
           Ae(c, De(o.a)),
           fe(l, Ae(c, De(o.b)))
         );
-        h = ar(Ae(h, De(o.a)), s);
+        h = ar(h, Ae(h, De(o.a), s));
       }
     } else
       h = ar(h, c);
