@@ -390,12 +390,13 @@ export class Beam2D extends Element {
           fe.set([stiffrec.a[i]], fe.get([stiffrec.a[i]]) + bl.get([stiffrec.a[i]]) - h1.get([i, 0]) * blv);
         }
       } else {
-        const sub = math.subtract(
+        const help = math.subtract(
           math.subset(bl, math.index(stiffrec.a)),
           math.multiply(h1, math.subset(bl, math.index(stiffrec.b)))
         );
 
-        fe = math.add(math.subset(fe, math.index(stiffrec.a)), sub) as math.Matrix;
+        fe = math.add(fe, math.subset(fe, math.index(stiffrec.a), help));
+        //fe = math.subset(fe, math.index(stiffrec.a), fe);
       }
     } else {
       fe = math.add(fe, bl) as math.Matrix;
