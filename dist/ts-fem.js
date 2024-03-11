@@ -10971,275 +10971,7 @@ class J0 extends tn {
     return -this.getLocalIntensities().fz * n * n / 2;
   }
 }
-class Q0 {
-  /**
-   * Constructor
-   */
-  constructor(t, n, i) {
-    se(this, "target");
-    // node (umber) subjected to Prescribed Displacement
-    se(this, "prescribedValues");
-    // prescribed values of individual DOFs
-    se(this, "domain");
-    this.target = t.toString(), this.prescribedValues = i, this.domain = n;
-  }
-  getNodePrescribedDisplacementVector() {
-    const t = new Array(), n = this.domain.solver.getNodeDofIDs(this.target);
-    for (const i of n)
-      i in this.prescribedValues ? t.push(this.prescribedValues[i]) : t.push(0);
-    return t;
-  }
-  getLocationArray() {
-    return this.domain.solver.getNodeLocationArray(this.target, this.domain.solver.getNodeDofIDs(this.target));
-  }
-}
-const X0 = {};
-class H0 {
-  // torsional stiffness moment [m4]
-  /**
-   * Constructor
-   * @param label string label of receiver
-   * @param a cross section area of receiver [m2]. > 0.0
-   * @param iy area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
-   * @param iz area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
-   * @param dyz product moment of area with respect to yz axes [m4]
-   * @param h height of receiver [m]
-   * @param k Timoshenko's shear coefficient [-]
-   * @param j torsional stiffness moment [m4]
-   */
-  constructor(t, n = {}) {
-    se(this, "label");
-    // label of receiver
-    se(this, "a");
-    // cross section area of receiver [m2]. > 0.0
-    se(this, "iy");
-    // area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
-    se(this, "iz");
-    // area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
-    se(this, "dyz");
-    // product moment of area with respect to yz axes [m4]
-    se(this, "h");
-    // height of receiver [m]
-    se(this, "k");
-    // Timoshenko's shear coefficient [-]
-    se(this, "j");
-    this.label = t.toString(), n = { ...X0, ...n }, this.a = n.a, this.iy = n.iy, this.iz = n.iz, this.dyz = n.dyz, this.h = n.h, this.k = n.k, this.j = n.j;
-  }
-  /**
-   * Change receiver properties
-   * @param a cross section area of receiver [m2]. > 0.0
-   * @param iy area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
-   * @param iz area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
-   * @param dyz product moment of area with respect to yz axes [m4]
-   * @param h height of receiver [m]
-   * @param k Timoshenko's shear coefficient [-]
-   * @param j torsional stiffness moment [m4]
-   */
-  change(t) {
-    t.a != null && (this.a = t.a), t.iy != null && (this.iy = t.iy), t.iz != null && (this.iz = t.iz), t.dyz != null && (this.dyz = t.dyz), t.h != null && (this.h = t.h), t.k != null && (this.k = t.k), t.j != null && (this.j = t.j);
-  }
-}
-const K0 = { e: 1, g: 1, alpha: 1, d: 1 };
-class W0 {
-  // mass density [kg/m3]
-  /**
-   * @param  label int label of receiver
-   * @param  e Young's modulus of receiver [Pa]
-   * @param g  Shear modulus of receiver [Pa]
-   * @param alpha thermal dillatation coefficient [K-1]
-   * @param d mass density of receiver [kg/m3]
-   */
-  constructor(t, n = {}) {
-    se(this, "label");
-    //  label
-    se(this, "e");
-    // Young's modulus [Pa]
-    se(this, "g");
-    // Shear modulus [Pa]
-    se(this, "alpha");
-    // thermal dillatation coefficient [K-1]
-    se(this, "d");
-    this.label = t.toString(), n = { ...K0, ...n }, this.e = n.e, this.g = n.g, this.alpha = n.alpha, this.d = n.d;
-  }
-  /**
-   * Change receiver properties
-   * @param  e Young's modulus of receiver [Pa]
-   * @param g  Shear modulus of receiver [Pa]
-   * @param alpha thermal dillatation coefficient [K-1]
-   * @param d mass density of receiver [kg/m3]
-   */
-  change(t) {
-    t.e !== void 0 && (this.e = t.e), t.g !== void 0 && (this.g = t.g), t.alpha !== void 0 && (this.alpha = t.alpha), t.d !== void 0 && (this.d = t.d);
-  }
-}
-class k0 {
-  /**
-   * Constructor
-   */
-  constructor(t) {
-    se(this, "solver");
-    se(this, "nodes", /* @__PURE__ */ new Map());
-    se(this, "elements", /* @__PURE__ */ new Map());
-    se(this, "materials", /* @__PURE__ */ new Map());
-    se(this, "crossSections", /* @__PURE__ */ new Map());
-    this.solver = t;
-  }
-  getNode(t) {
-    const n = t.toString();
-    if (this.nodes.has(n))
-      return this.nodes.get(n);
-    throw new RangeError("Node label " + t + " does not exists");
-  }
-  getElement(t) {
-    const n = t.toString();
-    if (this.elements.has(n))
-      return this.elements.get(n);
-    throw new RangeError("Element label " + t + " does not exists");
-  }
-  getMaterial(t) {
-    const n = t.toString();
-    if (this.materials.has(n))
-      return this.materials.get(n);
-    throw new RangeError("Material label " + t + " does not exists");
-  }
-  getCS(t) {
-    const n = t.toString();
-    if (this.crossSections.has(n))
-      return this.crossSections.get(n);
-    throw new RangeError("CrossSection label " + t + " does not exists");
-  }
-  // class factory
-  createNode(t, n = [0, 0, 0], i = []) {
-    const r = new U0(t, this, n, i);
-    return this.nodes.set(t.toString(), r), r;
-  }
-  createBeam2D(t, n, i, r, a = [!1, !1]) {
-    const o = new Z0(t, this, n, i, r, a);
-    return this.elements.set(t.toString(), o), o;
-  }
-  createMaterial(t, n = {}) {
-    const i = new W0(t, n);
-    return this.materials.set(t.toString(), i), i;
-  }
-  createCrossSection(t, n = {}) {
-    const i = new H0(t, n);
-    return this.crossSections.set(t.toString(), i), i;
-  }
-}
-class j0 {
-  constructor() {
-    se(this, "domain");
-    se(this, "neq");
-    // number of unknowns
-    se(this, "pneq");
-    // number of prescribed unknowns
-    se(this, "k");
-    se(this, "m");
-    se(this, "f");
-    se(this, "loadCases", new Array());
-    se(this, "codeNumberGenerated", !1);
-    // code numbers assigned to supported as well as free DOFs
-    se(this, "nodeCodeNumbers", /* @__PURE__ */ new Map());
-    this.domain = new k0(this), this.loadCases.push(new rh("DefaultLC", this.domain));
-  }
-  getNodeLocationArray(t, n) {
-    let i = [];
-    for (const r of n)
-      i = i.concat(this.nodeCodeNumbers.get(t)[r]);
-    return i;
-  }
-  getNodeDofIDs(t) {
-    const n = [];
-    for (const i in this.nodeCodeNumbers.get(t))
-      n.push(parseInt(i));
-    return n;
-  }
-  generateCodeNumbers() {
-    const t = /* @__PURE__ */ new Map();
-    for (const [r, a] of this.domain.nodes)
-      this.nodeCodeNumbers.set(r, {}), t.set(r, /* @__PURE__ */ new Set());
-    for (const [r, a] of this.domain.elements)
-      for (const o of a.nodes) {
-        const h = a.getNodeDofs(o);
-        for (const c of h)
-          if (t.has(o))
-            t.get(o).add(c);
-          else
-            throw console.log(o, o in t, t.get(o)), new RangeError("Node label " + o + " does not exists");
-      }
-    this.neq = 0, this.pneq = 0;
-    for (const [r, a] of this.domain.nodes)
-      for (const o of t.get(r))
-        a.bcs.has(o) ? this.pneq++ : this.neq++;
-    let n = 0, i = this.neq;
-    for (const [r, a] of this.domain.nodes)
-      for (const o of t.get(r))
-        a.bcs.has(o) ? this.nodeCodeNumbers.get(r)[o] = i++ : this.nodeCodeNumbers.get(r)[o] = n++;
-    this.codeNumberGenerated = !0;
-  }
-  assembleVecLC(t, n, i, r) {
-    for (let a = 0; a < i.length; a++)
-      t.set([i[a], r], t.get([i[a], r]) + n[a]);
-  }
-  assembleVec(t, n, i) {
-    for (let r = 0; r < i.length; r++)
-      t.set([i[r]], t.get([i[r]]) + n[r]);
-  }
-}
-class nh extends j0 {
-  assemble() {
-    this.k = He(this.neq + this.pneq, this.neq + this.pneq);
-    for (const [t, n] of this.domain.elements) {
-      const i = n.computeStiffness(), r = n.getLocationArray(), a = et(r)[0];
-      for (let o = 0; o < a; o++) {
-        const h = r[o];
-        for (let c = 0; c < a; c++) {
-          const l = r[c];
-          this.k.set([h, l], this.k.get([h, l]) + i.get([o, c]));
-        }
-      }
-    }
-    this.f = He(this.neq + this.pneq, this.loadCases.length);
-    for (let t = 0; t < this.loadCases.length; t++) {
-      this.loadCases[t].r = He(this.neq + this.pneq);
-      const n = this.loadCases[t];
-      for (const i of n.nodalLoadList)
-        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), t);
-      for (const i of n.elementLoadList)
-        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), t);
-      for (const i of n.prescribedBC)
-        this.assembleVec(n.r, i.getNodePrescribedDisplacementVector(), i.getLocationArray());
-    }
-  }
-  solve() {
-    const t = /* @__PURE__ */ new Date();
-    this.codeNumberGenerated || this.generateCodeNumbers();
-    const n = Tr(0, this.neq), i = Tr(this.neq, this.neq + this.pneq);
-    if (this.assemble(), this.neq > 0)
-      for (let o = 0; o < this.loadCases.length; o++) {
-        this.loadCases[o].solved = !1;
-        const h = Ae(this.loadCases[o].r, De(i)), c = fe(Ae(this.k, De(n, i)), h);
-        let l = Ae(this.k, De(n, n));
-        typeof l == "number" && (l = ye([[l]]));
-        let s = Ae(this.f, De(n, [o]));
-        typeof s == "number" && (s = ye([s]));
-        const u = sr(Dr(s), c), f = Dr(P0(l, u));
-        this.loadCases[o].r = Ae(this.loadCases[o].r, De(Tr(0, this.neq)), f), this.loadCases[o].R = Dr(fe(Ae(this.k, De(i, n)), f)), this.loadCases[o].R = sr(
-          this.loadCases[o].R,
-          Dr(Ae(this.f, De(i, [o])))
-        ), this.loadCases[o].solved = !0;
-      }
-    else
-      for (let o = 0; o < this.loadCases.length; o++)
-        this.loadCases[o].R = Dr(fe(this.k, this.loadCases[o].r)), this.loadCases[o].R = sr(
-          this.loadCases[o].R,
-          Dr(Ae(this.f, De(i, [o])))
-        ), this.loadCases[o].solved = !0;
-    const a = (/* @__PURE__ */ new Date()).getTime() - t.getTime();
-    console.log("Solution took ", Math.round(a * 100) / 100, " [ms]");
-  }
-}
-class eh extends tn {
+class Q0 extends tn {
   // fx, fz intensities
   constructor(n, i, r) {
     super(n, i);
@@ -11298,6 +11030,274 @@ class eh extends tn {
     return 0;
   }
 }
+class X0 {
+  /**
+   * Constructor
+   */
+  constructor(t, n, i) {
+    se(this, "target");
+    // node (umber) subjected to Prescribed Displacement
+    se(this, "prescribedValues");
+    // prescribed values of individual DOFs
+    se(this, "domain");
+    this.target = t.toString(), this.prescribedValues = i, this.domain = n;
+  }
+  getNodePrescribedDisplacementVector() {
+    const t = new Array(), n = this.domain.solver.getNodeDofIDs(this.target);
+    for (const i of n)
+      i in this.prescribedValues ? t.push(this.prescribedValues[i]) : t.push(0);
+    return t;
+  }
+  getLocationArray() {
+    return this.domain.solver.getNodeLocationArray(this.target, this.domain.solver.getNodeDofIDs(this.target));
+  }
+}
+const H0 = {};
+class K0 {
+  // torsional stiffness moment [m4]
+  /**
+   * Constructor
+   * @param label string label of receiver
+   * @param a cross section area of receiver [m2]. > 0.0
+   * @param iy area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
+   * @param iz area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
+   * @param dyz product moment of area with respect to yz axes [m4]
+   * @param h height of receiver [m]
+   * @param k Timoshenko's shear coefficient [-]
+   * @param j torsional stiffness moment [m4]
+   */
+  constructor(t, n = {}) {
+    se(this, "label");
+    // label of receiver
+    se(this, "a");
+    // cross section area of receiver [m2]. > 0.0
+    se(this, "iy");
+    // area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
+    se(this, "iz");
+    // area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
+    se(this, "dyz");
+    // product moment of area with respect to yz axes [m4]
+    se(this, "h");
+    // height of receiver [m]
+    se(this, "k");
+    // Timoshenko's shear coefficient [-]
+    se(this, "j");
+    this.label = t.toString(), n = { ...H0, ...n }, this.a = n.a, this.iy = n.iy, this.iz = n.iz, this.dyz = n.dyz, this.h = n.h, this.k = n.k, this.j = n.j;
+  }
+  /**
+   * Change receiver properties
+   * @param a cross section area of receiver [m2]. > 0.0
+   * @param iy area moment of inertia (second moment of area) with respect to y axis [m4]. > 0.0
+   * @param iz area moment of inertia (second moment of area) with respect to z axis [m4]. > 0.0
+   * @param dyz product moment of area with respect to yz axes [m4]
+   * @param h height of receiver [m]
+   * @param k Timoshenko's shear coefficient [-]
+   * @param j torsional stiffness moment [m4]
+   */
+  change(t) {
+    t.a != null && (this.a = t.a), t.iy != null && (this.iy = t.iy), t.iz != null && (this.iz = t.iz), t.dyz != null && (this.dyz = t.dyz), t.h != null && (this.h = t.h), t.k != null && (this.k = t.k), t.j != null && (this.j = t.j);
+  }
+}
+const W0 = { e: 1, g: 1, alpha: 1, d: 1 };
+class k0 {
+  // mass density [kg/m3]
+  /**
+   * @param  label int label of receiver
+   * @param  e Young's modulus of receiver [Pa]
+   * @param g  Shear modulus of receiver [Pa]
+   * @param alpha thermal dillatation coefficient [K-1]
+   * @param d mass density of receiver [kg/m3]
+   */
+  constructor(t, n = {}) {
+    se(this, "label");
+    //  label
+    se(this, "e");
+    // Young's modulus [Pa]
+    se(this, "g");
+    // Shear modulus [Pa]
+    se(this, "alpha");
+    // thermal dillatation coefficient [K-1]
+    se(this, "d");
+    this.label = t.toString(), n = { ...W0, ...n }, this.e = n.e, this.g = n.g, this.alpha = n.alpha, this.d = n.d;
+  }
+  /**
+   * Change receiver properties
+   * @param  e Young's modulus of receiver [Pa]
+   * @param g  Shear modulus of receiver [Pa]
+   * @param alpha thermal dillatation coefficient [K-1]
+   * @param d mass density of receiver [kg/m3]
+   */
+  change(t) {
+    t.e !== void 0 && (this.e = t.e), t.g !== void 0 && (this.g = t.g), t.alpha !== void 0 && (this.alpha = t.alpha), t.d !== void 0 && (this.d = t.d);
+  }
+}
+class j0 {
+  /**
+   * Constructor
+   */
+  constructor(t) {
+    se(this, "solver");
+    se(this, "nodes", /* @__PURE__ */ new Map());
+    se(this, "elements", /* @__PURE__ */ new Map());
+    se(this, "materials", /* @__PURE__ */ new Map());
+    se(this, "crossSections", /* @__PURE__ */ new Map());
+    this.solver = t;
+  }
+  getNode(t) {
+    const n = t.toString();
+    if (this.nodes.has(n))
+      return this.nodes.get(n);
+    throw new RangeError("Node label " + t + " does not exists");
+  }
+  getElement(t) {
+    const n = t.toString();
+    if (this.elements.has(n))
+      return this.elements.get(n);
+    throw new RangeError("Element label " + t + " does not exists");
+  }
+  getMaterial(t) {
+    const n = t.toString();
+    if (this.materials.has(n))
+      return this.materials.get(n);
+    throw new RangeError("Material label " + t + " does not exists");
+  }
+  getCS(t) {
+    const n = t.toString();
+    if (this.crossSections.has(n))
+      return this.crossSections.get(n);
+    throw new RangeError("CrossSection label " + t + " does not exists");
+  }
+  // class factory
+  createNode(t, n = [0, 0, 0], i = []) {
+    const r = new U0(t, this, n, i);
+    return this.nodes.set(t.toString(), r), r;
+  }
+  createBeam2D(t, n, i, r, a = [!1, !1]) {
+    const o = new Z0(t, this, n, i, r, a);
+    return this.elements.set(t.toString(), o), o;
+  }
+  createMaterial(t, n = {}) {
+    const i = new k0(t, n);
+    return this.materials.set(t.toString(), i), i;
+  }
+  createCrossSection(t, n = {}) {
+    const i = new K0(t, n);
+    return this.crossSections.set(t.toString(), i), i;
+  }
+}
+class eh {
+  constructor() {
+    se(this, "domain");
+    se(this, "neq");
+    // number of unknowns
+    se(this, "pneq");
+    // number of prescribed unknowns
+    se(this, "k");
+    se(this, "m");
+    se(this, "f");
+    se(this, "loadCases", new Array());
+    se(this, "codeNumberGenerated", !1);
+    // code numbers assigned to supported as well as free DOFs
+    se(this, "nodeCodeNumbers", /* @__PURE__ */ new Map());
+    this.domain = new j0(this), this.loadCases.push(new rh("DefaultLC", this.domain));
+  }
+  getNodeLocationArray(t, n) {
+    let i = [];
+    for (const r of n)
+      i = i.concat(this.nodeCodeNumbers.get(t)[r]);
+    return i;
+  }
+  getNodeDofIDs(t) {
+    const n = [];
+    for (const i in this.nodeCodeNumbers.get(t))
+      n.push(parseInt(i));
+    return n;
+  }
+  generateCodeNumbers() {
+    const t = /* @__PURE__ */ new Map();
+    for (const [r, a] of this.domain.nodes)
+      this.nodeCodeNumbers.set(r, {}), t.set(r, /* @__PURE__ */ new Set());
+    for (const [r, a] of this.domain.elements)
+      for (const o of a.nodes) {
+        const h = a.getNodeDofs(o);
+        for (const c of h)
+          if (t.has(o))
+            t.get(o).add(c);
+          else
+            throw console.log(o, o in t, t.get(o)), new RangeError("Node label " + o + " does not exists");
+      }
+    this.neq = 0, this.pneq = 0;
+    for (const [r, a] of this.domain.nodes)
+      for (const o of t.get(r))
+        a.bcs.has(o) ? this.pneq++ : this.neq++;
+    let n = 0, i = this.neq;
+    for (const [r, a] of this.domain.nodes)
+      for (const o of t.get(r))
+        a.bcs.has(o) ? this.nodeCodeNumbers.get(r)[o] = i++ : this.nodeCodeNumbers.get(r)[o] = n++;
+    this.codeNumberGenerated = !0;
+  }
+  assembleVecLC(t, n, i, r) {
+    for (let a = 0; a < i.length; a++)
+      t.set([i[a], r], t.get([i[a], r]) + n[a]);
+  }
+  assembleVec(t, n, i) {
+    for (let r = 0; r < i.length; r++)
+      t.set([i[r]], t.get([i[r]]) + n[r]);
+  }
+}
+class nh extends eh {
+  assemble() {
+    this.k = He(this.neq + this.pneq, this.neq + this.pneq);
+    for (const [t, n] of this.domain.elements) {
+      const i = n.computeStiffness(), r = n.getLocationArray(), a = et(r)[0];
+      for (let o = 0; o < a; o++) {
+        const h = r[o];
+        for (let c = 0; c < a; c++) {
+          const l = r[c];
+          this.k.set([h, l], this.k.get([h, l]) + i.get([o, c]));
+        }
+      }
+    }
+    this.f = He(this.neq + this.pneq, this.loadCases.length);
+    for (let t = 0; t < this.loadCases.length; t++) {
+      this.loadCases[t].r = He(this.neq + this.pneq);
+      const n = this.loadCases[t];
+      for (const i of n.nodalLoadList)
+        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), t);
+      for (const i of n.elementLoadList)
+        this.assembleVecLC(this.f, i.getLoadVector(), i.getLocationArray(), t);
+      for (const i of n.prescribedBC)
+        this.assembleVec(n.r, i.getNodePrescribedDisplacementVector(), i.getLocationArray());
+    }
+  }
+  solve() {
+    const t = /* @__PURE__ */ new Date();
+    this.codeNumberGenerated || this.generateCodeNumbers();
+    const n = Tr(0, this.neq), i = Tr(this.neq, this.neq + this.pneq);
+    if (this.assemble(), this.neq > 0)
+      for (let o = 0; o < this.loadCases.length; o++) {
+        this.loadCases[o].solved = !1;
+        const h = Ae(this.loadCases[o].r, De(i)), c = fe(Ae(this.k, De(n, i)), h);
+        let l = Ae(this.k, De(n, n));
+        typeof l == "number" && (l = ye([[l]]));
+        let s = Ae(this.f, De(n, [o]));
+        typeof s == "number" && (s = ye([s]));
+        const u = sr(Dr(s), c), f = Dr(P0(l, u));
+        this.loadCases[o].r = Ae(this.loadCases[o].r, De(Tr(0, this.neq)), f), this.loadCases[o].R = Dr(fe(Ae(this.k, De(i, n)), f)), this.loadCases[o].R = sr(
+          this.loadCases[o].R,
+          Dr(Ae(this.f, De(i, [o])))
+        ), this.loadCases[o].solved = !0;
+      }
+    else
+      for (let o = 0; o < this.loadCases.length; o++)
+        this.loadCases[o].R = Dr(fe(this.k, this.loadCases[o].r)), this.loadCases[o].R = sr(
+          this.loadCases[o].R,
+          Dr(Ae(this.f, De(i, [o])))
+        ), this.loadCases[o].solved = !0;
+    const a = (/* @__PURE__ */ new Date()).getTime() - t.getTime();
+    console.log("Solution took ", Math.round(a * 100) / 100, " [ms]");
+  }
+}
 class rh {
   /**
    * Creates a new loadcase
@@ -11347,11 +11347,11 @@ class rh {
     return this.elementLoadList.push(r), r;
   }
   createBeamTemperatureLoad(t, n) {
-    const i = new eh(t, this.domain, n);
+    const i = new Q0(t, this.domain, n);
     return this.elementLoadList.push(i), i;
   }
   createPrescribedDisplacement(t, n) {
-    const i = new Q0(t, this.domain, n);
+    const i = new X0(t, this.domain, n);
     return this.prescribedBC.push(i), i;
   }
 }
@@ -11361,16 +11361,17 @@ export {
   Y0 as BeamConcentratedLoad,
   tn as BeamElementLoad,
   J0 as BeamElementUniformEdgeLoad,
-  H0 as CrossSection,
+  Q0 as BeamTemperatureLoad,
+  K0 as CrossSection,
   qe as DofID,
-  k0 as Domain,
+  j0 as Domain,
   V0 as Element,
   nh as LinearStaticSolver,
   Ea as Load,
   rh as LoadCase,
-  W0 as Material,
+  k0 as Material,
   G0 as NodalLoad,
   U0 as Node,
-  Q0 as PrescribedDisplacement,
-  j0 as Solver
+  X0 as PrescribedDisplacement,
+  eh as Solver
 };
