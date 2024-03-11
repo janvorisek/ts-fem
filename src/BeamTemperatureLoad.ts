@@ -17,42 +17,28 @@ export class BeamTemperatureLoad extends BeamElementLoad {
     this.values = values;
   }
 
-  getGlobalIntensities() {
-    const fx = this.values[0]; // temperature of top fibers
-    const fz = this.values[1]; // temperature of bottom fibers
-
-    // transrform intensities to global
-    const geo = this.domain.getElement(this.target).computeGeo();
-    const cos = geo.dx / geo.l;
-    const sin = geo.dz / geo.l;
-    return { fx: fx * cos - fz * sin, fz: fx * sin + fz * cos, my: 0.0 };
-  }
-
-  getLocalIntensities() {
-    const fx = this.values[0]; // intensity in x-local
-    const fz = this.values[1]; // intensity in z-local
-    const geo = this.domain.getElement(this.target).computeGeo();
-    const l = geo.l;
-    const dx = geo.dx;
-    const dz = geo.dz;
-    const cos = dx / l;
-    const sin = dz / l;
-
-    return {
-      fx: fx * cos + fz * sin,
-      fz: -fx * sin + fz * cos,
-    };
-  }
-
   // in local c.s
   getLoadVectorForClampedBeam(): Array<number> {
-    const geo = this.domain.getElement(this.target).computeGeo();
-    const l = geo.l;
-    const e = this.domain.getElement(this.target).getMaterial().e;
-    const alpha = this.domain.getElement(this.target).getMaterial().alpha;
-    const a = this.domain.getElement(this.target).getCS().a;
+    const mat = this.domain.getElement(this.target).getMaterial();
+    const cs = this.domain.getElement(this.target).getCS();
 
-    return [e * a * alpha * this.values[0], 0, 0, -e * a * alpha * this.values[0], 0, 0];
+    const e = mat.e;
+    const alpha = mat.alpha;
+
+    const a = cs.a;
+    const iy = cs.iy;
+    const h = cs.h;
+
+    const dT = this.values[1] - this.values[2];
+
+    return [
+      +e * a * alpha * this.values[0],
+      0,
+      +(e * iy * alpha * dT) / h,
+      -e * a * alpha * this.values[0],
+      0,
+      -(e * iy * alpha * dT) / h,
+    ];
   }
 
   getLocationArray(): number[] {
@@ -93,26 +79,17 @@ export class BeamTemperatureLoad extends BeamElementLoad {
   }
 
   computeBeamDeflectionContrib(xl: number): { u: number; w: number } {
-    const f = this.getLocalIntensities();
-    const elem = this.domain.elements.get(this.target);
-    const geo = elem.computeGeo();
-    const l = geo.l;
-    const w =
-      (f.fz * l * l * l * l * ((xl * xl * xl * xl) / 24 - (xl * xl * xl) / 12 + (xl * xl) / 24)) /
-      (elem.getMaterial().e * elem.getCS().iy);
+    const w = 0.0;
     const u = 0.0;
     return { u: u, w: w };
   }
   computeBeamNContrib(x: number): number {
-    const f = this.getLocalIntensities();
-    return -f.fx * x;
+    return 0.0;
   }
   computeBeamVContrib(x: number): number {
-    const f = this.getLocalIntensities();
-    return -f.fz * x;
+    return 0.0;
   }
   computeBeamMContrib(x: number): number {
-    const f = this.getLocalIntensities();
-    return (-f.fz * x * x) / 2.0;
+    return 0.0;
   }
 }

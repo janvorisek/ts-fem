@@ -14,7 +14,8 @@ test("Cantilever - uniform temperature change", () => {
   solver.domain.createMaterial("1", { e: 210000e6, g: 210000e6 / (2 * (1 + 0.2)), alpha: 12e-6, d: 4000 /*kg/m3!!!*/ });
   solver.domain.createCrossSection("1", { a: 1, iy: 8.356e-5, iz: 1.0, dyz: 999991.0, h: 1, k: 1e32, j: 99999.0 });
 
-  solver.loadCases[0].createBeamTemperatureLoad("1", [100]);
+  // Tc= 100, Td= 200, Th= 0
+  solver.loadCases[0].createBeamTemperatureLoad("1", [100, 200, 0]);
 
   solver.solve();
 
