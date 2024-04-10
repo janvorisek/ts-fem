@@ -11283,7 +11283,7 @@ class nh extends eh {
         let s = Ae(this.f, De(n, [o]));
         typeof s == "number" && (s = ye([s]));
         const u = sr(Cr(s), c), f = Cr(P0(l, u));
-        console.log("r=", this.loadCases[o].r), this.loadCases[o].r = Ae(this.loadCases[o].r, De(Tr(0, this.neq)), f), this.loadCases[o].R = Ae(fe(this.k, this.loadCases[o].r), De(i)), console.log("k=", this.k), console.log("ru=", f), console.log("ksolve=", Ae(this.k, De(i, n))), console.log("r=", this.loadCases[o].r), console.log("R=", this.loadCases[o].R), this.loadCases[o].R = sr(
+        this.loadCases[o].r = Ae(this.loadCases[o].r, De(Tr(0, this.neq)), f), this.loadCases[o].R = Ae(fe(this.k, this.loadCases[o].r), De(i)), this.loadCases[o].R = sr(
           this.loadCases[o].R,
           Cr(Ae(this.f, De(i, [o])))
         ), this.loadCases[o].solved = !0;
