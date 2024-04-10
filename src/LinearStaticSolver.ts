@@ -80,7 +80,8 @@ export class LinearStaticSolver extends Solver {
         this.loadCases[lc].r = math.subset(this.loadCases[lc].r, math.index(math.range(0, this.neq)), ru);
 
         // evaluate reactions
-        this.loadCases[lc].R = math.squeeze(math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru));
+        //this.loadCases[lc].R = math.squeeze(math.multiply(math.subset(this.k, math.index(prescribed, unknowns)), ru));
+        this.loadCases[lc].R = math.subset(math.multiply(this.k, this.loadCases[lc].r), math.index(prescribed));
 
         // add contributions from elements
         this.loadCases[lc].R = math.subtract(
