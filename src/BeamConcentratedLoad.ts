@@ -55,18 +55,21 @@ export class BeamConcentratedLoad extends BeamElementLoad {
 
   getLoadVectorForClampedBeam(): Array<number> {
     const geo = this.domain.getElement(this.target).computeGeo();
+    const f = this.getLocalIntensities();
+    const fx = f.fx;
+    const fz = f.fz;
     const l = geo.l;
 
     const a = this.values[3];
     const b = l - a;
 
     return [
-      (-b / l) * this.values[0],
-      (b / l) * ((a * (a - b)) / l / l - 1) * this.values[1],
-      ((a * b * b) / l / l) * this.values[1],
-      (-a / l) * this.values[0],
-      (a / l) * ((b * (b - a)) / l / l - 1) * this.values[1],
-      ((-a * a * b) / l / l) * this.values[1],
+      (-b / l) * fx,
+      (b / l) * ((a * (a - b)) / l / l - 1) * fz,
+      ((a * b * b) / l / l) * fz,
+      (-a / l) * fx,
+      (a / l) * ((b * (b - a)) / l / l - 1) * fz,
+      ((-a * a * b) / l / l) * fz,
     ];
   }
 
